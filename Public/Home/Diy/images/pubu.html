@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pubu</title>
+<script type="text/javascript" src='javascriptwaterfall.js'></script>
+<script type="text/javascript" src="j.js"></script>
+<link rel="stylesheet" href="reset.css" />
+<style>
+	#main .pin{width: 225px;height: auto;padding: 15px 0px 0px 15px;float: left;position: relative;}
+    #main .pin .box{width: 205px;height: auto;padding: 10px;background: #FFF;border: 1px solid #CCC;box-shadow: 0px 0px 6px #CCC;}
+    #main .pin .box img{width: 205px;}
+    .single_hide{position: absolute;top: 10px;z-index: 999;width: 100%;padding: 15px 0}
+    .hide_left{float: left;margin-left: 10px;}
+    .hide_left a{display:block;width:   54px;height: 32px;line-height:32px;text-align:center;background-color: #79B6C8;color: #fff;border-radius: 5px;}
+    .hide_right{float: right;margin-right: 23px;}
+    .hide_right a{display:block;width: 30px;height: 20px;padding-top:10px;color: #fff;border:1px solid #C8C8C8;border-radius: 5px;}
+    .hide_right a.zan_no{background: url(zan_no.png) center no-repeat;background-color: #FAFAFA;}
+    .hide_right a.zan_yes{background: url(zan_yes.png) center no-repeat;background-color: #FAFAFA;}
+    .zf_zan li{padding-left:15px;text-align: right;float: left;margin:10px 10px 10px 0;}
+    .zf_zan .zf{background: url(zf.png) left center no-repeat;}
+    .zf_zan .zan{background: url(zan_no.png) left center no-repeat;}
+    .zf_zan li span{color: #999;}
+    .user{margin:-10px;padding:15px;color: #999;border-top: 1px solid #ccc;background: #f3f3f3;}
+    .user .tx{float: left;width: 34px;height: 34px;background-image: url(tx.jpg);background-size:100% 100%;}
+    .user_name{float: left;margin-left:10px;height: 34px;line-height: 1.5;}
+    .user_name a{color: #9E7E6B;margin-right: 10px;}
+    
+    /*导航*/
+    .nav ul{margin-top: 20px;}
+    .nav ul li{float: left;}
+    .nav ul li a{display: inline-block;width: 185px;height: 98px;line-height:98px;text-align:center;margin-left: 15px;font-size: 22px;font-weight: bold;color: #fff;border-radius: 3px;}
+    .nav ul li a:hover{opacity: 0.8;}
+    
+    /*婚礼经纪人*/
+    .quote{width: 198px;border: 1px solid #d1d1d1;padding: 10px 15px;}
+	.quote h3{font-size: 18px;text-align: center;}
+	.quote p{margin: 5px 0;}
+	.quote input{margin: 5px 0;}
+	.quote input[type=text]{width: 190px;height: 25px;line-height: 25px;border: 1px solid #E2E2E2;text-indent: 1em;}
+	.quote select{width: 90px;height: 25px;line-height: 25px;border: 1px solid #E2E2E2;margin: 5px 0;}
+	.quote input[type=submit]{width: 190px;height: 25px;line-height: 25px;text-align: center;background-color: #79B6C8;color: #fff;border: 0;}
+</style>
+
+</head>
+<body>
+	<!--导航 start-->
+	<div class="w nav">
+		<ul class="clearfix">
+			<li><a href="#" style="background-image: url(DIY_zh.jpg);">主持人</a></li>
+			<li><a href="#" style="background-image: url(DIY_hz.jpg);">化妆师</a></li>
+			<li><a href="#" style="background-image: url(DIY_sy.jpg);">摄影师</a></li>
+			<li><a href="#" style="background-image: url(DIY_sx.jpg);">摄像师</a></li>
+			<li><a href="#" style="background-image: url(DIY_hy.jpg);">花艺师</a></li>
+			<li><a href="#" style="background-image: url(DIY_kj.jpg);">空间搭建</a></li>
+		</ul>
+	</div>	
+	<!--导航 end-->
+	
+	<!--为您推荐 start-->
+	<div style="text-align: center;position: relative;width: 1170px;margin:0 auto;padding: 20px 0 5px;">
+		<span style="display: block;position: absolute;top: 28px;left:0;width: 44%;border-top: 1px solid #ededed;"></span>
+		<span style="color: #999;font-size: 16px;">为您推荐</span>
+		<span style="display: block;position: absolute;top: 28px;right:0;width: 44%;border-top: 1px solid #ededed;"></span>
+	</div>
+	<!--为您推荐 end-->
+	
+	<div id="main">	
+		<!--婚礼经纪人 start-->
+		<div class="pin">	
+			<div class="quote">
+				<h3>婚礼经纪人</h3>
+				<p class="c_blue">1对1全程服务，真正解决婚礼问题</p>
+				<form>
+					<input type="text" placeholder="您的称呼"/>	
+					<input type="text" placeholder="手机号码"/>
+					<select>
+						<option>省/市</option>
+					</select>
+					<select style="margin-left: 8px;">
+						<option>市/地区</option>
+					</select>
+					<input type="checkbox" style="vertical-align: middle;" checked="checked"/> <span> 阅读并接受<a href="#" class="c_blue">《婚礼问题条款》</a></span>
+					<input type="submit" value="免费申请" />
+				</form>
+				<p>嘉仕澜德专业婚礼经纪人会在24小时内与您取得联系。</p>
+			</div>
+		</div>
+		<!--婚礼经纪人 end-->
+		
+	    <div class="pin">
+	    	<div class="single_hide clearfix">
+	    		<div class="hide_left">
+	    			<a href="#" title="收藏">GET</a>
+	    		</div>
+	    		<div class="hide_right">
+	    			<a href="#" class="zan_no" title="喜欢"></a>
+	    		</div>
+	    	</div>
+	        <div class="box">
+	            <a href="#"><img src="1.jpg"></a>
+	            <div style="padding: 10px;">
+	        		<span>婚礼</span><span>#唯美</span><span>#小清新</span>
+	        		<ul class="zf_zan clearfix">
+	        			<li class="zf"><span>10</span></li>
+	        			<li class="zan"><span>10</span></li>
+	        		</ul>
+	       		</div>
+	       		<div class="user clearfix">
+	       			<a class="tx"></a>
+	       			<div class="user_name">
+	       				<span><a href="#">郭沛东</a>采集到</span><br />
+	       				<span><a href="#">画板未命名</a></span>
+	       			</div>
+	       		</div>
+	        </div>
+	    </div>
+	    <div class="pin">
+	    	<div class="single_hide clearfix">
+	    		<div class="hide_right">
+	    			<a href="#" class="zan_no"></a>
+	    		</div>
+	    	</div>
+	        <div class="box">
+	            <a href="#"><img src="1.jpg"></a>
+	            <div style="padding: 10px;">
+	        		<span>主持人</span><span>#幽默风趣</span>
+	        		<ul class="zf_zan clearfix">
+	        			<li class="zan"><span>10</span></li>
+	        		</ul>
+	       		</div>
+	       		<div class="user clearfix">
+	       			<a class="tx"></a>
+	       			<div class="user_name">
+	       				<span>编号：</span><span>BJ_ZC_01</span><br />
+	       				<span>热度：</span><span>52</span>
+	       			</div>
+	       		</div>
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="2.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="3.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="4.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="5.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="6.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="7.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="8.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="9.jpg">
+	        </div>
+	    </div>
+	
+	    <div class="pin">
+	        <div class="box">
+	            <img src="1.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="2.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="3.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="4.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="5.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="6.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="7.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="8.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="9.jpg">
+	        </div>
+	    </div>
+	
+	    <div class="pin">
+	        <div class="box">
+	            <img src="1.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="2.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="3.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="4.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="5.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="6.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="7.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="8.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="9.jpg">
+	        </div>
+	    </div>
+	
+	    <div class="pin">
+	        <div class="box">
+	            <img src="1.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="2.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="3.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="4.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="5.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="6.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="7.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="8.jpg">
+	        </div>
+	    </div>
+	    <div class="pin">
+	        <div class="box">
+	            <img src="9.jpg">
+	        </div>
+	    </div>
+	</div>
+	<img src="gif.gif" style="position:fixed;bottom:0;left:50%;">
+</body>
+</html>

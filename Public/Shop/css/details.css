@@ -1,0 +1,212 @@
+body{
+	background:#f7f7f7;
+}
+.tk_img{display:none;background-color:#f2f2f2;width: 100%;}
+.tk_img .close{position: absolute;top:40px;right: 40px;z-index: 99;}
+.introduce{width: 1000px;margin: 0 auto;}
+
+.introduce .introduce_left{
+	width:440px;
+}
+.introduce_left .tuku{
+	display:block;
+	font-size:20px;
+	margin:0 auto;
+	margin-top:40px;
+	width:80px;
+	height:22px;
+	line-height:22px;
+	padding-left:70px;
+	background:url(../img/dateils_img/tubiao.png) no-repeat left;
+	color:#79b6c8;
+}
+
+.introduce .introduce_right{
+	width:500px;
+}
+.introduce_right .title{
+	width:500px;
+	font-size:30px;
+	color:#333333;
+	text-align:center;
+	margin-top:20px;
+}
+.introduce_right .xiangqing{
+	display:block;
+	width:400px;
+	line-height:36px;
+	color:#555555;
+	font-size:18px;
+	margin-top:45px;
+	margin-left:50px;
+}
+.introduce_right .money{
+	width:400px;
+	height:66px;
+	margin:0 auto;
+	margin-top:20px;
+}
+.money .money_left{
+	display:block;
+	padding: 0 20px;
+	height:54px;
+	line-height:54px;
+	text-align:center;
+	font-size:18px;
+	color:#999;
+	float:left;
+	border:#999 1px solid;
+	margin-top:12px;
+}
+.money .money_right{
+	display:block;
+	padding: 0 20px;
+	height:66px;
+	line-height:66px;
+	text-align:center;
+	font-size:20px;
+	font-weight:bold;
+	color:#79b6c8;
+	float:right;
+	border:#79b6c8 1px solid;
+}
+.xuanze{
+	width:400px;
+	padding: 10px 0px;
+	border:1px #79b6c8 solid;
+	border-radius:10px;
+	margin:0 auto;
+	margin-top:15px;
+}
+.xuanze .xuanze_ul{
+	margin-left:-7px;
+	}
+.xuanze .xuanze_ul .xuanze_li{
+	float:left;
+	margin:10px 0 10px 36px;
+}
+.xuanze .xuanze_ul .xuanze_li a{
+	display:block;
+	width:58px;
+	height:64px;
+	border:1px #79b6c8 solid;
+}
+.xuanze .xuanze_ul .on a{
+	display:block;
+	width:58px;
+	height:64px;
+	border:1px #c30008 solid;
+	background:url(../img/dateils_img/yes_g.png) no-repeat right bottom;
+}
+.chicun{
+	width:400px;
+	padding:1px 0 15px 0;
+	border:1px #79b6c8 solid;
+	border-radius:10px;
+	margin:0 auto;
+	margin-top:15px;
+}
+
+.chicun ul{
+	margin:0 auto;
+}
+.chicun ul li{
+	float:left;
+	margin-left:36px;
+	margin-top:14px;
+}
+.chicun ul li a{
+	display:block;
+	height:22px;
+	padding:0 7px;
+	line-height:22px;
+	font-size:12px;
+	color:#a9a8a8;
+	border:1px #a9a8a8 solid;
+}
+.chicun ul li a:hover{
+	border:1px #79b6c8 solid;
+	color:#79b6c8;
+	transition:1s;
+}
+.chicun ul .on a{
+	color:#79b6c8;
+	border:1px #c30008 solid;
+	background:url(../img/dateils_img/yes_g.png) no-repeat right bottom;}
+	
+.shuliang a{
+	display: block;
+    height: 23px;
+    width: 17px;
+	font-size:14px;
+    border: 1px solid #e5e5e5;
+	border-radius:3px;
+    background: #f0f0f0;
+    text-align: center;
+    line-height: 23px;
+    color: #444;
+}
+.shuliang p{
+	display: block;
+    height: 23px;
+	padding:0 20px 0 0;
+	font-size:14px;
+	border-radius:3px;
+    text-align: center;
+    line-height: 23px;
+    color: #444;
+}.shuliang span{
+	display:inline-block;
+    height: 23px;
+	padding:0 5px;
+	font-size:14px;
+	border-radius:3px;
+    text-align: center;
+    line-height: 23px;
+    color: #444;
+}
+.ml{margin-left:20px;}
+.text-amount {
+    width: 39px;
+    height: 15px;
+    line-height: 15px;
+    border: 1px solid #e5e5e5;
+    color: #343434;
+    text-align: center;
+    padding: 4px 0;
+    background-color: #fff;
+    background-position: -75px -375px;
+}
+
+/*按钮开始*/
+.anniu{width:400px; height:50px; margin-left:50px;}
+.anniu a{ display:inline-block;
+	margin-top:20px;
+    padding:6px 16px;
+    color: #fff;
+    /*border:2px solid #79b6c8;*/
+	background: -ms-linear-gradient(top, #b8e1ed,  #79b6c8);        /* IE 10 */
+	background:-moz-linear-gradient(top,#b8e1ed,#79b6c8);/*火狐*/ 
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#b8e1ed), to(#79b6c8));/*谷歌*/ 
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#b8e1ed), to(#79b6c8));      /* Safari 4-5, Chrome 1-9*/
+	background: -webkit-linear-gradient(top, #b8e1ed, #79b6c8);   /*Safari5.1 Chrome 10+*/
+	background: -o-linear-gradient(top, #b8e1ed, #79b6c8);  /*Opera 11.10+*/
+    font-size: 14px;
+	border-radius:2px;
+}
+.anniu a:hover{
+	background: -ms-linear-gradient(top,#79b6c8,#b8e1ed);        /* IE 10 */
+	background:-moz-linear-gradient(top,#79b6c8,#b8e1ed);/*火狐*/ 
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#79b6c8), to(#b8e1ed));/*谷歌*/ 
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79b6c8), to(#b8e1ed));      /* Safari 4-5, Chrome 1-9*/
+	background: -webkit-linear-gradient(top,#79b6c8,#b8e1ed);   /*Safari5.1 Chrome 10+*/
+	background: -o-linear-gradient(top,#79b6c8,#b8e1ed);  /*Opera 11.10+*/
+}
+.ml15{margin-left:30px;}
+/*按钮结束*/
+
+
+.nrall_bj{width: 1000px;margin: 0 auto;text-align: center;}
+.nrall_bj .detail_img{max-width: 1000px;margin: 0 auto;}
+
+

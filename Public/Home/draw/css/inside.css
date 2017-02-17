@@ -1,0 +1,266 @@
+*{margin: 0px;padding: 0px;}
+li{list-style: none;}
+a{text-decoration: none;}
+.tou{
+	width: 100%;
+	height: 140px;
+}
+.tou .tou_1200{
+	width: 1240px;
+	height: 140px;
+	background: #fff;
+	margin: 0px auto;
+	border: 1px solid #666;
+}
+.tou .tou_1200 .top{
+	width: 1240px;
+	height: 80px;
+	border-bottom: 1px solid #D0C9DD;
+	line-height: 80px;
+}
+.tou .tou_1200 .top span{
+	float: left;
+	font-size: 23px;
+	color: #666666;
+	font-weight: 700;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.tou .tou_1200 .top .annji{
+	float: right;
+	margin-top: 20px;
+}
+.tou .tou_1200 .top .annji button{
+	width: 82px;
+	height: 38px;
+	font-size: 15px;
+	border: 0px;
+	border-radius: 4px;
+}
+.tou .tou_1200 .top .annji .shan{
+	background: #D43636;
+	display: none;
+}
+.tou .tou_1200 .top .annji .wan{
+	display: none;
+}
+#border{
+	display: none;
+}
+.tou .tou_1200 .bottom{
+	width: 1240px;
+	height: 59px;
+	background: #f5f5f5;
+}
+.tou .tou_1200 .bottom .xiang{
+	width: 	40px;
+	height: 40px;
+	float: left;
+}
+.tou .tou_1200 .bottom .xiang img{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.tou .tou_1200 .bottom .min{
+	font-size: 20px;
+	margin-left: 20px;
+	margin-top: 14px;
+	float: left;
+}
+.tou .tou_1200 .bottom .tun{
+	float: right;
+	width: 80px;
+	height: 59px;
+	border: 1px solid #D4D4D4;
+	line-height: 159px;
+	text-align: center;
+	font-size: 17px;
+}
+.back{
+	width: 100%;
+	height: 100%;
+	background: #F0C040;
+	position: fixed;
+	top: 0px;
+	z-index: 2;
+	opacity: 0.2;
+	display: none;
+}
+.form{
+	width: 580px;
+	height: 330px;
+	background: #fff;
+	position: fixed;
+	z-index: 3;
+	top: 30%;
+	left: 30%;
+	display: none;
+}
+.form .db{
+	width: 580px;
+	height: 50px;
+	border-bottom: 1px solid #ececec;
+}
+.form .db .q1{
+	float: left;
+	margin-left: 30px;
+	font-size:18px ;
+		margin-top: 20px;
+}
+.form .db .q2{
+	float: right;
+	margin-right: 20px;
+	font-size:40px;
+	margin-top: 15px;
+}
+.form .db .q2:hover{
+	cursor: pointer;
+}
+.form .db_z{
+	width: 580px;
+	height: 210px;
+}
+.form .db_z .open_img{
+	width: 170px;
+	height: 174px;
+	border: 1px solid #000000;
+	margin-left: 20px;
+	margin-top: 20px;
+	float: left;
+	overflow: hidden;
+}
+.form .db_z .open_img img{
+	width: 100%;
+}
+.form .db_z .board_cont{
+	float: left;
+	width: 348px;
+	height: 200px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+.form .db_z .board_cont #opt_board{
+	width: 330px;
+	height: 40px;
+	border: 2px solid #666666;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+.form .db_z .board_cont #alter_cint{
+	width: 330px;
+	height: 80px;
+	margin-top: 20px;
+	border: 2px solid #666666;
+	margin-left: 8px;
+	border-radius: 5px;
+}
+.form .db_z .board_cont .tishi{
+	width: 330px;
+	height: 30px;
+	margin-left: 8px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-left: 2px solid #666666;
+	border-bottom: 2px solid #666666;
+	border-right: 2px solid #666666;
+	line-height: 30px;
+}
+.form .bummot{
+	width: 580px;
+	height: 68px;
+	border-top: 2px solid #666666;
+	line-height: 68px;
+	background: #F0EAD8;
+}
+.form .bummot .bu_l{
+	width: 87px;
+	height: 38px;
+	background: #79b6c8;
+	float: left;
+	margin-left: 20px;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+.form .bummot .bu_r{
+	width: 87px;
+	height: 38px;
+	background: #79b6c8;
+	float: right;
+	margin-right: 20px;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+.found{
+	width: 580px;
+	height: 330px;
+	background: #fff;
+	position: fixed;
+	z-index: 3;
+	top: 30%;
+	left: 30%;
+	display: none;
+}
+/*采集页面 开始*/
+.back_d{
+	width: 100%;
+	height: 100%;
+	background: #F0C040;
+	position: fixed;
+	top: 0px;
+	z-index: 2;
+	opacity: 0.2;
+	display: none;
+}
+.form_d{
+	width: 580px;
+	height: 330px;
+	background: #fff;
+	position: fixed;
+	z-index: 3;
+	top: 30%;
+	left: 30%;
+	display: none;
+}
+.form_d .tishi{
+	width: 580px;
+	height: 80px;
+	background: red;
+	line-height: 80px;
+	text-align: center;
+	font-size: 25px;
+}
+.found .db{
+	width: 580px;
+	height: 50px;
+	border-bottom: 1px solid #ececec;
+	line-height: 50px;
+}
+.found .db .q3{
+	float: left;
+	margin-left: 30px;
+	font-size:18px ;
+}
+.found .db .q4{
+	float: right;
+	margin-right: 20px;
+	font-size:40px;
+}
+.found .db .q4:hover{
+	cursor: pointer;
+}
+.found #board_name{
+	width: 330px;
+	height: 40px;
+	border: 2px solid #666666;
+	border-radius: 5px;
+	margin-left: 60px;
+	margin-top: 70px;
+}
+.found #chji{
+	width: 87px;
+	height: 38px;
+	background: #79b6c8;
+	margin-right: 20px;
+	border-radius: 5px;
+	margin-top: 10px;
+}

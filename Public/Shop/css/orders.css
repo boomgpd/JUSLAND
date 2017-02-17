@@ -1,0 +1,66 @@
+/*右侧*/
+.right{width: 1000px;}
+	/*标题分类*/
+.right .title{height: 40px;margin-bottom: 30px;line-height: 40px;background:url(../img/selfcenter/left_bg.gif) repeat-x;text-align: center;font-weight: 700;}
+.right .title li{float: left;} 
+.right .title li:nth-child(1){width: 32%;}
+.right .title li:nth-child(2){width: 11.7%;}
+.right .title li:nth-child(3){width: 6.8%;}
+.right .title li:nth-child(4){width: 11.7%;}
+.right .title li:nth-child(5){width: 12.5%;}
+.right .title li:nth-child(6){width: 12.5%;}
+.right .title li:nth-child(7){width: 12.5%;}
+
+	/*订单*/
+.details .son{margin-bottom: 30px;border: 1px solid #ececec;}
+.details .son:hover{border: 1px solid #BDBBBB;}
+.details .son .top{background-color: #F4F4F4;height: 40px;line-height: 40px;padding: 0 15px;}
+.details .son .top span{padding: 0 20px;color: #999;}
+.details .son .bottom{border-bottom: 1px solid #ececec;}
+.details .son .bottom:last-child{border-bottom: 0;}
+.details .son .bottom li{float: left;padding: 10px 0;text-align: center;}
+.details .son .bottom li:nth-child(1){width: 32%;}
+.details .son .bottom li:nth-child(2){width: 11.7%;}
+.details .son .bottom li:nth-child(3){width: 6.8%;}
+.details .son .bottom li:nth-child(4){width: 11.7%;}
+.details .son .bottom li:nth-child(5){width: 12.5%;}
+.details .son .bottom li:nth-child(6){width: 12.5%;}
+.details .son .bottom li:nth-child(7){width: 12.5%;}
+
+.details .son .bottom li:nth-child(1) .al{float: left;margin-left: 20px;width: 70px;height: 70px;border: 1px solid #ddd;border-radius: 3px;overflow: hidden;}
+.details .son .bottom li:nth-child(1) .al img{width: 70px;}
+.details .son .bottom li:nth-child(1) .size{margin-left: 20px;line-height: 1.5em;}
+.details .son .bottom li:nth-child(1) .size a{color: #333;display:block;width:150px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap;}
+.details .son .bottom li:nth-child(1) .size p{width:150px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap;}
+.details .son .bottom li:nth-child(1) .size span{color: #999;}
+.details .son .bottom li:nth-child(2) del{color: #999;line-height: 1.5em;}
+.details .son .bottom li:nth-child(5){font-size: 16px;}
+.details .son .bottom li:nth-child(6){line-height: 2em;}
+.details .son .bottom li:nth-child(7) a{display: block;line-height: 2em;}
+.details .son .bottom li:nth-child(5),.details .son .bottom li:nth-child(6),.details .son .bottom li:nth-child(7){border-left: 1px solid #ECECEC;}
+
+/*分页*/
+.list_page{text-align: center;margin: 15px auto;}
+.list_page .turning,.list_page .num,.list_page .yes{padding: 5px 10px;border: 1px solid #BFBFBF;}
+.list_page .current{background-color: #EFB26F;color: #fff;border: 1px solid #EFB26F;}
+.list_page input[type=text]{width:30px;height:27px;padding:0 3px;margin: 0 5px;background-color: #fff;border: 1px solid #BFBFBF;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

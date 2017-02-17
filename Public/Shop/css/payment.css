@@ -1,0 +1,144 @@
+body{background: #F7F7F7;}
+/*顶部logo*/
+.top_logo{width:1200px;margin: 20px auto;text-align: center;}
+
+/*购物车内容*/
+/*购物车内容*/
+.cart_cot{width: 1098px;margin: 0 auto;border: 1px solid #C6C6C6;border-radius: 15px;box-shadow: 0px 0px 15px #ccc;padding: 30px 0;}
+.cart_title{margin:0 40px;border-bottom: 1px solid #D3D3D3;padding-bottom: 15px;}
+.cart_title p{font-size: 24px;text-indent: 1em;color: #999;}
+.cart_product{margin:0 40px;border-bottom: 1px solid #D3D3D3;padding: 25px 0 25px 55px;position: relative;}
+.cart_product input[type=checkbox]{position: absolute;top: 74px;left: 20px;}
+.cart_product_left img{width: 110px;height: 110px;}
+.cart_product_right{margin-left: 40px;}
+.cart_product_right .top{width:800px;border-bottom: 1px dashed #CACACA;font-size: 20px;padding: 16px 0px;}
+.cart_product_right .top .title{font-size: 20px;color:#666;width: 270px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin-right: 150px;}
+.cart_product_right .top .count{width: 20px;height: 20px;line-height:20px;border: 2px solid #878787;border-radius: 5px;background-color: #F7F7F7;text-align: center;outline: medium;}
+.cart_product_right .top input[type=text]{width: 40px;padding:0 5px;height: 20px;border: 2px solid #878787;border-radius: 5px;background-color: #F7F7F7;text-align: center;outline: medium;margin: 0 5px;}
+.cart_product_right .bot{width:800px;padding: 16px 0px;font-size: 16px;color: #cacaca;}
+.cart_product_right .bot p{display: inline-block;width: 200px;}
+.cart_gross{height: 100px;line-height: 100px;width: 100%;border-bottom: 1px solid #D3D3D3;font-size: 26px;text-align: right;}
+.cart_gross span{font-size: 18px;color: #999;}
+.cart_gross b{margin: 0 100px 0 20px;color: #EFB26F;}
+.cart_bill{ width:100%; height:110px; background-color:#fafafa; border-bottom:1px #cacaca solid;border-top:1px #ececec solid;}
+.cart_bill .jiesuan{display: inline-block;width: 130px;height: 50px;line-height: 50px;text-align: center;border-radius: 10px;font-size: 24px;color: #fff;float: right;margin-right: 100px;margin-top: 30px;background: -webkit-gradient(linear, 0 0, 0 100%, from(#a4cdda), to(#79b6c8));}
+.cart_bill .fanhui{display: inline-block;padding:0 28px;height: 48px;line-height: 48px;text-align: center;background-color: #79B6C8;border-radius: 5px;font-size: 24px;color: #79b6c8;float: left;margin-left: 100px;margin-top: 30px; border:1px #bfbfbf solid;background: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#cbcbcb));}
+
+
+/*收货地址*/
+.address .address_title{
+	display:block;
+	color:#999;
+	font-size:24px;
+	height:55px;
+	line-height:55px;
+	margin:7px 0 0 78px;
+}
+.address .address_tab{
+	width:750px;
+	margin:0 auto;
+	margin-top:27px;
+}
+.address_tab ul{
+	margin: 0 auto;
+}
+.address_tab ul li{
+	float:left;
+	margin:  0 25px;
+}
+.address_tab ul li a{
+	display:block;
+	width:198px;
+	height:98px;
+	text-align:center;
+	line-height:98px;
+	font-size:24px;
+	color:#bfbfbf;
+	border:1px #bfbfbf dashed;
+	border-radius:10px;
+}
+.address_tab ul li .new{
+	background:url(../../../../../../Fist/jia.png) no-repeat center center;
+}
+
+.address_tab .wenzi{
+	width:550px;
+	margin:0 auto;
+}
+.wenzi form{
+	margin:20px 0;
+}
+.wenzi form .text{
+	float:left;
+	margin:12px 0 0 20px;
+}
+.wenzi form input{
+	height:38px;
+	border:1px #bfbfbf solid;
+	border-radius:10px;
+	padding-left:30px;
+	color:#333333;
+	font-size:12px;
+	line-height:38px;
+	outline:none;
+}
+.w1{width:148px;}
+.w2{width:398px;}
+.w3{width:500px;}
+
+.goon{
+	width:1100px;
+	height:110px;
+	background-color:#3F9;
+	border-bottom:1px #cacaca solid;
+	border-top:1px #cacaca solid;
+}
+.goon .goon_box{
+	width:1098px;
+	height:108px;
+	background-color:#fafafa;
+	border:1px #ececec solid;
+}
+.goon_box .left{
+	height:15px;
+	margin-top:45px;
+	margin-left:308px;
+}
+.goon_box a{
+	display:block;
+	width:133px;
+	height:50px;
+	margin:29px 100px 0 0;
+	text-align:center;
+	line-height:50px;
+	font-size:24px;
+	color:#fff;
+	font-weight:bold;
+	border-radius:10px;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#a4cdda), to(#79b6c8));
+}
+.goon_box .left input{
+	display:block;
+	wdith:15px;
+	height:15px;
+	float:left;
+}
+.goon_box .left span{
+	display:inline-block;
+	font-size:12px;
+	color:#333333;
+	margin-left:15px;
+}
+.address .address_danxuan{
+	width:550px;
+	margin:30px auto;
+}
+.address .address_danxuan input{
+	display:block;
+	margin-top:21px;
+	float:left;
+}
+.address .address_danxuan img{
+	display:block;
+	margin-left:20px;
+}

@@ -1,0 +1,36 @@
+body{background: url(../img/selfcenter/body_bj.png);}
+
+.detail{width: 960px;margin: 0 auto;padding-bottom: 10px;background:#fff url(../img/selfcenter/bot_bj.jpg) 0 bottom repeat-x;}
+.detail h2{padding: 20px 25px;line-height: 24px;color: #424242;font-size: 20px;border-bottom: 1px solid #f1f1f1;}
+.detail .state{margin: 0 30px;height: 50px;line-height: 50px;}
+.detail .state span{display: inline-block;padding-right: 20px;color: #333;vertical-align: middle;}
+.detail .info{padding: 20px 30px;border-top: 1px solid #f1f1f1;}
+.detail .info h3{padding-bottom: 20px;}
+.detail .info ul li{line-height: 20px;}
+.detail .info ul li p{margin-left: 60px;}
+.detail .info table{border: 1px solid #C9D8E6;width: 100%;}
+.detail .info table tr:nth-child(1){background-color: #EFF7FF;color: #666;}
+.detail .info table td{width: 10%;padding: 10px 0;text-align: center;}
+.detail .info table td:nth-child(1){width: 30%;}
+.detail .info table td .al{float: left;margin-left: 20px;width: 70px;height: 70px;border: 1px solid #ddd;border-radius: 3px;overflow: hidden;}
+.detail .info table td .al img{width: 70px;}
+.detail .info table td .size{margin-left: 20px;line-height: 1.5em;}
+.detail .info table td .size a{color: #333;display:block;width:150px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap;}
+.detail .info table td .size span{color: #999;}
+.detail .info table td del{color: #999;line-height: 1.5em;}
+.detail .info p.c_gray{padding-top:30px;text-align: right;}
+
+
+
+
+/*状态*/
+.per-detail{width:598px;margin: 20px auto;}
+.progress li{width:167px;background:url(../img/selfcenter/personal_04.jpg) no-repeat 80px 34px;}
+.progress strong{width:81px;height:81px;line-height:81px;text-align:center;font-weight:normal;display:block;background:url(../img/selfcenter/personal_02.jpg) no-repeat;color:#545252;margin-bottom:10px;}
+.progress span{width:80px;display:block;text-align:center;color:#C3C3C3;}
+.progress .finish_step strong{background-image:url(../img/selfcenter/personal_01.jpg);color:#fff;}
+.progress .finish_step span{color:#D73135;}
+.progress .finishbg{background-image:url(../img/selfcenter/personal_03.jpg);}
+.progress .laststep{background:none; width:81px;}
+
+

@@ -1,0 +1,17 @@
+/*左侧*/
+.left{width: 150px;margin-right: 50px;background: url(../img/selfcenter/left_bg.gif);padding-bottom: 20px;}
+	/*头像*/
+.left .portrait{padding: 20px 0;}
+.left .portrait .img{border: 1px solid #EDEDED;width: 110px;height: 110px;border-radius: 50%;overflow: hidden;margin: 0 auto;}
+.left .portrait img{width: 100px;height: 100px;border-radius: 50%;border: 5px solid #fff;}
+.left .portrait .size{text-align: center;color: #333;height: 30px;line-height: 30px;}
+	/*导航*/
+.left .nav li{padding: 0 20px;}
+.left .nav li a{display: inline-block;width:100%;height: 50px;line-height: 50px;font-size: 16px;text-align: center;color: #333;border-top: 1px solid #e1e1e1;}
+.left .nav li a:hover{color: #EFB26F;}
+.left .nav li a.current{color: #EFB26F;}
+
+	/*隐藏小导航*/
+.left .nav .nav_zi{display: none;}
+.left .nav .nav_zi li.current a{color: #EFB26F;cursor: default;font-weight: 700;}
+.left .nav .nav_zi li a{border: 0;text-align: left;font-size: 14px;height: 30px;line-height: 30px;}

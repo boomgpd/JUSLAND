@@ -1,0 +1,34 @@
+/*地址管理*/
+.site{width: 800px;}
+.site h2{padding-left: 20px;line-height: 43px;height: 43px;font-size: 16px;color: #333;border-bottom: 1px solid #dfdfdf;font-weight: 400;}
+.site .content{padding: 18px 18px 50px;}
+.content .submit a{display: inline-block;padding: 10px 15px;background-color: #EFB26F;color: #fff;border-radius: 5px;}
+.content .add{margin: 30px 0 20px;background: #fafafa;border: 1px solid #efefef;padding: 20px 20px 20px 0;line-height: 38px;display: none;}
+.add li span.c_orange{font-size: 20px;}
+.add li label{display: inline-block;width: 90px;color: #333;text-align: right;}
+.add li select{border: 1px solid #c7c7c7;border-radius: 2px;background-color: #fff;padding: 6px 8px;}
+.add select{background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;}
+.add li .w_140{width: 140px;}
+.add li .w_100{width: 100px;}
+.add li .p_10{padding: 0 10px;}
+.add li .text{margin-top: 5px;margin-bottom: 5px;padding: 6px 8px;height: 12px;line-height: 12px;color: #666;border: 1px solid #c7c7c7;border-radius: 2px;outline: none;}
+.add li textarea{width: 580px;height:50px;margin-top: 5px;margin-bottom: 5px;padding: 6px 8px;line-height: 16px;color: #666;border: 1px solid #c7c7c7;border-radius: 2px;vertical-align: top;outline: none;resize: none;}
+.add input[type=button]{margin-left:106px;margin-top:20px;background-color: #EFB26F;padding: 10px 30px;border: 0;color: #fff;font-size: 14px;border-radius: 3px;}
+.add .hide{margin-left:20px;margin-top:20px;background-color: #FBFBFB;padding: 7px 30px;border: 1px solid #EEEEEF;color: #656565;font-size: 14px;border-radius: 3px;}
+.site_son{margin-top: 10px;padding: 13px 17px;border: 1px solid #efefef;background: #fafafa;}
+.site_son.current{border: 1px solid #dedcba;background: #fdfbea;box-shadow: 1px 1px 5px rgba(0,0,0,.1);}
+.site_son li{float: left;line-height: 20px;color: #333;margin:0 5px;}
+.site_son li.name{width: 60px;margin-right: 5px;word-wrap: break-word;word-break: normal;}
+.site_son li.addr{width: 300px;}
+.site_son li.zcode{width: 50px;}
+.site_son li.mob{width: 80px;}
+.site_son li.oper {float: right;}
+.site_son li.oper a{display: inline-block;padding: 0 7px;margin: 2px 0;line-height: 16px;border-right: 1px solid #e2e2e2;color: #2f63cf;}
+.site_son li.oper a:last-child{border-right: none;}
+.site_son li.oper a:hover{text-decoration:underline;}
+
+
+
+
+
+

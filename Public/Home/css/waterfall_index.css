@@ -1,0 +1,74 @@
+	#main .pin{width: 225px;height: auto;padding: 15px 0px 0px 15px;float: left;position: relative;}
+    #main .pin .box{width: 205px;height: auto;padding: 10px;background: #FFF;border: 1px solid #CCC;box-shadow: 0px 0px 6px #CCC;}
+    #main .pin .box img{width: 205px;margin-bottom: 1px;}
+    .pin:hover .single_hide{display: block;}
+    .single_hide{position: absolute;top: 10px;z-index: 999;width: 100%;padding: 15px 0;display: none;}
+    .hide_left{float: left;margin-left: 10px;}
+    .hide_left a{display:block;width: 54px;height: 32px;line-height:32px;text-align:center;background-color: #79B6C8;color: #fff;border-radius: 5px;}
+    .hide_right{float: right;margin-right: 23px;}
+    .hide_right a{display:block;width: 30px;height: 20px;padding-top:10px;color: #fff;border:1px solid #C8C8C8;border-radius: 5px;}
+    .hide_right a.zan_no{background: url(../img/waterfall/zan_no.png) center no-repeat;background-color: #FAFAFA;}
+    .hide_right a.zan_yes{background: url(../img/waterfall/zan_yes.png) center no-repeat;background-color: #FAFAFA;}
+    .zf_zan li{padding-left:15px;text-align: right;float: left;margin:10px 10px 10px 0;}
+    .zf_zan .zf{background: url(../img/waterfall/zf.png) left center no-repeat;}
+    .zf_zan .zan{background: url(../img/waterfall/zan_no.png) left center no-repeat;}
+    .zf_zan li span{color: #999;}
+    .user{margin:-10px;padding:15px;color: #999;border-top: 1px solid #ccc;background: #f3f3f3;}
+    .user .tx{float: left;width: 34px;height: 34px;background-image: url(../img/waterfall/tx.jpg);background-size:100% 100%;}
+    .user_name{float: left;margin-left:10px;height: 34px;line-height: 1.5;}
+    .user_name a{color: #9E7E6B;margin-right: 10px;}
+    .quote{width: 195px;border: 1px solid #d1d1d1;padding: 10px 15px;}
+	.quote h3{font-size: 18px;text-align: center;}
+	.quote p{margin: 5px 0;}
+	.quote input{margin: 5px 0;}
+	.quote input[type=text]{width: 190px;height: 25px;line-height: 25px;border: 1px solid #E2E2E2;text-indent: 1em;}
+	.quote select{width: 90px;height: 25px;line-height: 25px;border: 1px solid #E2E2E2;margin: 5px 0;}
+	.quote .upload {width: 190px;text-align: center;height: 25px;line-height: 25px;position: relative;cursor: pointer;background: #d4e8ed;border: 1px solid #E2E2E2;overflow: hidden;margin: 5px 0 ;display: inline-block;*display: inline;*zoom: 1;}	
+	.quote .upload  input[type=file]{position: absolute;font-size: 100px;right: 0;top: 0;opacity: 0;filter: alpha(opacity=0); cursor: pointer}	
+	.quote .upload:hover{color: #444;background: #eee;border-color: #ccc;text-decoration: none}
+	.quote input[type=submit]{width: 190px;height: 25px;line-height: 25px;text-align: center;background-color: #79B6C8;color: #fff;border: 0;}
+	
+		/*弹框*/
+			.tk{background: #fff;width: 580px;border-radius: 1px;box-shadow: 0 2px 10px rgba(0,0,0,.3);margin:0 auto;display: none;position: fixed;top: 30%;left: 30%;z-index: 1000;}
+			.tk_top{height: 50px;line-height: 50px;font-size: 18px;border-bottom: 1px solid #EDEDED;padding:0 30px;}
+			.tk_cnt{padding: 20px 30px;}
+			.tk_cnt_left{width:170px;height:170px;line-height:170px;overflow:hidden;float: left;position: relative;}
+			.tk_cnt_left_bj{width:170px;height: 12px;position: absolute;left: 0; bottom: 8px;background: url(../img/waterfall/get_bj_bot.png) repeat-x;}
+			.tk_cnt_right{width: 330px;float: right;}
+			.tk_cnt_right_one select{width: 100%;height:40px;line-height:40px;padding-left:10px;border: 1px solid #CCC;font-size: 16px;border-radius: 3px;cursor: pointer;}
+			.tk_cnt_right_two textarea{width: 308px;height: 100px;resize: none;border-radius: 4px;margin-top: 20px;font-size: 16px;padding: 5px 10px;}
+			.tk_bot{width: 520px;height:30px;padding: 20px 30px;background-color: #FAFAFA;border-top: 1px solid #F2F2F2;}
+			.tk_bot_add{float:left;width:80px;text-align:center;height:40px;line-height:40px;padding: 0 15px;background-color: #DF3B42;border-radius: 3px;font-size: 16px;color: #fff;}
+			.tk_bot_down{float:right;width:80px;text-align:center;height:40px;line-height:40px;padding:0 15px;background-color:#DF3B42;border-radius:3px;font-size: 16px;color: #fff;}
+			
+		/*弹框_添加画板*/
+			.tk_add{width: 580px;height: 337px;background: #fff;border-radius: 1px;box-shadow: 0 2px 10px rgba(0,0,0,.3);display: none;position: fixed;top: 30%;left: 30%;z-index: 1001;}
+			.tk_add .tk_bot{position: absolute;bottom: 0;}
+			.tk_input{height: 215px;line-height: 215px;padding-left: 30px;}
+			.tk_input span{font-size: 16px;}
+			.tk_input input{width:300px;height: 35px;line-height: 35px;font-size: 16px;padding-left: 10px;}
+/*.haha{
+	display:none;
+	width: 180px;
+	height: 200px;
+	background: #fff;
+	position: absolute;
+	top:50px;
+	left: 1140px;
+	z-index: 200;
+}
+.haha li{
+	width: 180px;
+	height: 45px;
+}
+.haha ul li .red{
+	width: 180px;
+	height: 45px;
+	font-size: 15px;
+	line-height: 45px;
+	color: #000000;
+}
+.haha ul li .red img{
+	padding-left: 20px;
+	padding-right: 20px;
+}*/

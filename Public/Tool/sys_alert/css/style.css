@@ -1,0 +1,15 @@
+/*弹窗背景开始*/
+div.sys_alert_box_cover{width: 100%;height: 100%;background: rgba(0,0,0,.4);position: fixed;top: 0px;left: 0px;z-index: 10000000;display: none;}
+/*弹窗背景结束*/
+
+/*弹窗样式开始*/
+.sys_alert_box{display: none;background-color: #F0F4F5;width: 400px;height: 200px;margin-left: -200px;margin-top: -100px;position: fixed;left: 50%;top: 50%;z-index:10000000;border-radius: 5px;box-shadow: 0px 0px 20px rgba(0,0,0,.5);}
+.sys_alert_box .logo{text-align: center;padding-top: 10px;}
+.sys_alert_box .content{height: 80px;padding:10px 60px;overflow: hidden;}
+.sys_alert_box .content p{text-indent: 2rem;width: 100%;height: 80px;}
+.sys_alert_box .content span{display:block;line-height: 20px;font-size: 14px;color: #333;}
+.sys_alert_box .submit{text-align: center;}
+.sys_alert_box .submit button:hover{box-shadow: 0px 0px 20px rgba(0,0,0,.5);}
+.sys_alert_box .submit .btn_yes{background-color: rgba(50,61,67,1);color: #fff;border: 0;width: 80px;height: 25px;border-radius: 3px;}
+.sys_alert_box .submit .btn_no{background-color: rgba(50,61,67,.5);color: #fff;border: 0;width: 80px;height: 25px;border-radius: 3px;margin-left: 20px;}
+/*弹窗样式结束*/

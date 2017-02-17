@@ -1,0 +1,55 @@
+body{background: #F6F4F3;}
+/*顶部logo*/
+.top_logo{width:1200px;margin: 20px auto;text-align: center;}
+
+/*大分类导航*/
+.list_bignav{width:1074px;margin:0 auto 40px;padding: 0 63px;}
+.list_bignav li{float: left;margin-right: 66px;}
+.list_bignav li a{display: inline-block;width: 219px;height: 100px;color: #fff;font-size: 24px;text-align: center;line-height: 100px;}
+
+/*所有分类*/
+.list_smlnav_top{padding: 10px 20px;}
+.list_smlnav_top .crumbs_hide{float: right;}
+.list_smlnav_bot{border: 1px solid #C0C0C0;padding:10px  20px;position: relative;}
+.smlnav_bot_zi{padding-top: 10px;}
+.smlnav_bot_zi .name{width: 60px;color: #999;padding-top: 3px;}
+.smlnav_bot_zi ul{width: 1020px;padding-right: 60px;padding-top:3px;position: relative;height: 24px;overflow: hidden;}
+.smlnav_bot_zi ul .more,.smlnav_bot_zi ul .hide{position: absolute;top:0px;right: 0px;background-color: #EFB26F;color: #fff;padding: 3px 5px;}
+.smlnav_bot_zi ul li{float: left;margin-left: 30px;margin-bottom: 10px;}
+.smlnav_bot_zi .current{color: #79B6C8;}
+.smlnav_more,.smlnav_hide{position: absolute;bottom: 0;left:570px;background-color: #EFB26F;color: #fff;padding: 3px 5px;}
+
+/*排序*/
+.list_sort{border: 1px solid #BFBFBF;background-color: #E1E1E1;margin: 30px auto 15px;}
+.list_sort li{float: left;}
+.list_sort li a{display:inline-block;padding: 15px 30px;}
+.list_sort li a.current{background-color: #fff;}
+.list_sort .qujian{padding: 10px 30px;}
+.list_sort .qujian input{width: 65px;height: 20px;outline:medium;text-indent: 0.2em;}
+.list_sort .qujian .yes{padding: 3px 7px;background:#EFB26F;color: #fff;border-bottom: 1px solid #EFB26F;}
+.list_sort .seek{margin-top: 8px;}
+.list_sort .seek input{width:200px;height: 28px;float: left;outline:medium;text-indent: 1em;border:1px solid #A9A9A9;border-right:0;}
+.list_sort .seek a{display: inline-block;width: 30px;height: 30px;float: left;}
+
+/*主体内容*/
+.list_cot{width: 1180px;margin: 0 auto;padding: 0 10px;}
+.list_cot dl{width: 280px;height: 360px;margin-right: 20px;margin-bottom:20px;float: left;}
+.list_cot dt{width: 280px;height: 280px;overflow: hidden;}
+.list_cot dd{background: #fff;height: 60px;padding: 10px 15px;}
+.list_cot dd p{margin-bottom: 15px;font-size: 16px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.list_cot dd b{font-size: 24px;color: #EFB26F;}
+.list_cot dd span{color: #999;padding-top: 11px;float: right;}
+
+/*分页*/
+.list_page{text-align: center;margin: 15px auto;}
+.list_page .turning,.list_page .num,.list_page .yes{padding: 5px 10px;border: 1px solid #BFBFBF;}
+.list_page .current{background-color: #EFB26F;color: #fff;border: 1px solid #EFB26F;}
+.list_page input[type=text]{width:30px;height:27px;padding:0 3px;margin: 0 5px;background-color: #F6F4F3;border: 1px solid #BFBFBF;}
+
+
+
+
+
+
+
+

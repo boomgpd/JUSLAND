@@ -1,0 +1,82 @@
+*{margin: 0px;padding: 0px;}
+a{text-decoration: none;}
+li{list-style: none;}
+.zi{
+	color: #666666;
+	font-size: 20px;
+	font-weight: bold;
+}
+.kuang{
+	width: 550px;
+	height: 600px;
+	border: 1px solid #0000FF;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+.tiao{
+	width: 550px;
+	height: 99px;
+	border-bottom:1px solid #666666 ;
+}
+.left{
+	width: 30px;
+	height:99px;
+	background: #666666;
+	color: #fff;
+	line-height: 100px;
+	text-align: center;
+	float: left;
+}
+.tu img{
+	float: left;
+	position: relative;
+	top: 10px;
+	left: 10px;
+}
+.inp{
+	float: left;
+}
+.inp span{
+	color: #666666;
+	font-weight: bold;
+	position: relative;
+	top: 30px;
+	left: 20px;
+}
+.inp input{
+	width: 300px;
+	height: 30px;
+	border: 1px solid #000000;
+	position: relative;
+	top: 30px;
+	left: 20px;
+}
+.inp button{
+	width: 80px;
+	height:33px ;
+	position: relative;
+	top: 30px;
+	left: 20px;
+	background: #924DAE;
+	border: 0px;
+}
+.an{
+	width: 150px;
+	height: 50px;
+	margin-left: 10px;
+	margin-top: 30px;
+	background: #169CE9;
+	border: 0px;
+}
+.db{
+	width: 500px;
+	margin: 20px auto;
+}
+.db .qu{
+	width: 150px;
+	height: 50px;
+	margin-left: 10px;
+	margin-top: 30px;
+	background: #A57FB5;
+	border: 0px;
+}

@@ -1,0 +1,26 @@
+/*basic_right*/
+.basic_right{width: 598px;margin: 50px 100px;}
+/*基本资料*/
+.basic_right .data h2{font-size:18px;font-weight:normal;width: 580px;padding-left: 20px;height: 35px;line-height: 35px;background-color: #9FC2CB;color: #5091a1;}
+.basic_right ul li{color: #797979;height: 40px;line-height: 40px;}
+.basic_right ul li label{display:inline-block;width: 120px;text-align: right;font-size: 14px;}
+.basic_right ul li span{display:inline-block;padding-left: 50px;}
+.basic_right ul li span b{vertical-align: middle;font-weight: normal;}
+.basic_right ul li span input{vertical-align: middle;}
+.basic_right ul li span select{border: 1px solid #CACACA;border-radius: 3px;color: #797979;outline: none;padding:5px 25px ;}
+.basic_right ul li span.hide_rmb{cursor: pointer;margin-right: 20px;}
+.basic_right ul li span.show_rmb{cursor: pointer;margin-right: 20px;display: none;}
+/*其他信息
+.basic_right .else{margin-top: 40px;color: #797979;}
+.basic_right .else h2{font-size:18px;font-weight:normal;width: 580px;padding-left: 20px;height: 35px;line-height: 35px;background-color: #9FC2CB;color: #5091a1;}
+.basic_right .else p{font-size: 14px;padding: 15px;}
+.basic_right .else textarea{width: 578px;height: 128px;border: 1px solid #C6C6C6;resize: none;outline: none;padding: 10px 10px;color: #797979;}
+*/
+
+/*用户信息*/
+.basic .user{position: absolute;top: 10px;right: 10px;}
+.basic .user .tx{display:inline-block;width:120px;height:35px;text-align:center;line-height:35px;position: relative;color: #FC8500;}
+.basic .user ul{width:120px;position: absolute;top: 35px;left: 0;background-color: #fff;display: none;}
+.basic .user ul li{float: left;width:120px;height:35px;}
+.basic .user ul li a{display:inline-block;width: 110px;height: 25px;text-align: center;line-height: 25px;margin: 5px;color: #7f7f7f;}
+.basic .user ul li a:hover{background-color: #F4F4F4;}

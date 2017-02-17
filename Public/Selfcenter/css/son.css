@@ -1,0 +1,10 @@
+/*portrait_right*/
+.portrait_right{width: 598px;margin: 50px 100px;}
+.portrait_right .compile h2{font-size:18px;font-weight:normal;width: 580px;padding-left: 20px;height: 35px;line-height: 35px;background-color: #9FC2CB;color: #5091a1;}
+.portrait_right .compile ul{width: 300px;margin: 0 auto;padding: 20px 0;}
+.portrait_right .compile ul li{margin: 15px 0;}
+.portrait_right .compile ul li label{display: inline-block;width: 70px;text-align: right;}
+.portrait_right .compile ul li label,span{font-size: 14px;color: #929292;}
+.portrait_right .compile ul li input[type=text]{width: 168px;height: 28px;border: 1px solid #C5C5C5;outline: none;text-indent: 1em;}
+.portrait_right .compile ul li.yes{text-align: center;}
+.portrait_right .compile ul li.yes a{display:inline-block;width: 100px;height: 30px;text-align:center;line-height:30px;background-color: #77B6C9;color: #fff;}

@@ -1,0 +1,46 @@
+/*header start*/
+.header{height: 40px;line-height:40px;border-bottom: 2px solid #79B6C8;}
+.header .logo{width:155px;height:40px;float: left;}
+.header .header_left li{float: left;padding: 0 15px;}
+.header_right{background-color: #79B6C8;position: relative;}
+.header_right li{float:left;}
+.header_right a{display:block;width:80px;height:40px;line-height:40px;text-align:center;color: #fff;}
+.header_right .vip_name{width: 80px;background-color: #79B6C8;display: none;}
+.header_right .vip_name li{clear: both;}
+.header_right .vip_name li a:hover{color: #EFB26F;}
+/*header end*/
+	
+/*导航*/
+nav{height:95px;}
+nav .logo{display:inline-block;width: 200px;height: 95px;line-height: 95px;}
+nav a{color: #000;font-size: 14px;}
+nav ul{width: 600px;height: 95px;line-height: 95px;}
+nav ul li{float: left;margin: 0 25px;}
+nav ul li a{display: block;height: 60px;}
+nav ul li .current{color:#C54C4E;border-bottom: 2px solid #DFDFDF;}
+	
+/*content start*/
+
+.remark_top{width: 1200px;height:36px;line-height:36px;background-color: #F3F3F3;color: #999;}
+.remark_top h4{font-size: 14px;font-weight: normal;display: inline-block;color: #CD0000;margin-left: 10px;}
+.remark_top a{margin-right: 10px;color: #999;}
+.remark form{width: 700px;margin-top: 20px;}
+.remark form li{padding: 5px 0;}
+.remark form li label{display:inline-block;width: 100px;text-align: right;}
+.remark form li textarea{resize: none;width: 500px;height: 80px;padding: 5px;}
+.remark .upload{width: 190px;text-align: center;height: 25px;line-height: 25px;position: relative;cursor: pointer;background: #d4e8ed;border: 1px solid #E2E2E2;overflow: hidden;display: inline-block;*display: inline;*zoom: 1;}	
+.remark .upload  input[type=file]{position: absolute;font-size: 100px;right: 0;top: 0;opacity: 0;filter: alpha(opacity=0); cursor: pointer}	
+.remark .upload:hover{color: #444;background: #eee;border-color: #ccc;text-decoration: none}
+.remark input[type=submit]{width: 150px;text-align:center;height: 30px;line-height: 30px;background-color: #79B6C8;border: 0;color: #fff;}
+			
+/*底部*/
+.footer{width: 100%;background-color: #000;height: 300px;border-top: 2px solid #79b6c8;color:#fff;}
+.footer_top{height: 150px;}
+.footer_chaining{width: 678px;height:77px;margin-top:54px;margin-left:35px;background-image: url(../img/index_footer.png);}
+.footer_chaining li a{width: 95px;float: left;margin-top:35px ;color: #fff;}
+.footer_vx{width: 250px;height: 150px;padding: 0 100px;}
+.footer_vx dl{float: left;}
+.footer_vx dt{width: 100px;text-align: center;margin: 25px 0 10px;}
+.footer_bottom{height: 100px;text-align: center;padding: 25px 0;}
+.footer_bottom p{margin: 10px 0;}
+.footer_bottom p a{color: #fff;}

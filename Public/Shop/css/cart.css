@@ -1,0 +1,26 @@
+body{background: #F7F7F7;}
+/*顶部logo*/
+.top_logo{width:1000px;margin: 20px auto;text-align: center;}
+
+/*购物车内容*/
+.cart_cot{width: 1000px;margin: 0 auto;border: 1px solid #C6C6C6;border-radius: 15px;box-shadow: 0px 0px 15px #ccc;padding: 30px 0;}
+.cart_title{margin:0 40px;border-bottom: 1px solid #D3D3D3;padding-bottom: 15px;}
+.cart_title p{font-size: 24px;text-indent: 1em;color: #999;}
+.cart_product{margin:0 40px;border-bottom: 1px solid #D3D3D3;padding: 25px 0 25px 55px;position: relative;}
+.cart_product input[type=checkbox]{position: absolute;top: 74px;left: 20px;}
+.cart_product_left img{width: 110px;height: 110px;}
+.cart_product_right{margin-left: 40px;}
+.cart_product_right .top{width:700px;border-bottom: 1px dashed #CACACA;font-size: 20px;padding: 16px 0px;}
+.cart_product_right .top .title{font-size: 20px;color:#666;width: 270px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin-right: 80px;}
+.cart_product_right .top .count{width: 20px;height: 20px;line-height:20px;border: 2px solid #878787;border-radius: 5px;background-color: #F7F7F7;text-align: center;outline: medium;}
+.cart_product_right .top input[type=text]{width: 40px;padding:0 5px;height: 20px;border: 2px solid #878787;border-radius: 5px;background-color: #F7F7F7;text-align: center;outline: medium;margin: 0 5px;}
+.cart_product_right .bot{width:700px;padding: 16px 0px;font-size: 16px;color: #cacaca;}
+.cart_product_right .bot p{display: inline-block;width: 200px;}
+.cart_gross{margin:0 auto;height: 100px;line-height: 100px;width: 100%;border-bottom: 1px solid #D3D3D3;font-size: 26px;text-align: right;}
+.cart_gross span{font-size: 18px;color: #999;}
+.cart_gross b{margin: 0 100px 0 20px;color: #EFB26F;}
+.cart_bill a{display: inline-block;width: 130px;height: 50px;line-height: 50px;text-align: center;background-color: #79B6C8;border-radius: 5px;font-size: 24px;color: #fff;float: right;margin-right: 100px;margin-top: 30px;}
+
+
+/*购物车为空*/
+.cart_empty{width:300px;height: 100px;margin:100px auto 0;line-height:25px;background: url(../img/cart_img/cart_empty.png) no-repeat;color: #A9A9A9;padding-left: 100px;font-size: 14px;}

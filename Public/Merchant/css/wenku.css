@@ -1,0 +1,72 @@
+*{margin: 0px;padding: 0px;}
+li{list-style: none;}
+a{text-decoration: none;color: #666666;}
+/*@font-face{
+	font-family:"微软雅黑";
+	src: url('微软雅黑/msyhbd.ttc');
+	color: #666666;
+}*/
+/*body{font-family: "微软雅黑";color: #666666;}*/
+/*后加的公司简介开始*/
+.wenku{width: 1200px;height: 278px;margin: 80px auto;}
+.wenku .mp4{width: 492px;height:278px;float: left;}
+.wenku .mp4 .mp5{width: 492px;height: 278px;}
+.wenku .brief{width: 566px;height: 278px;float: right;}
+.wenku .brief .assess{width: 566px;height: 170px;}
+.wenku .brief .assess .assess_left{width: 204px;height: 170px;border-right:1px solid #AAAAAA;float: left;}
+.wenku .brief .assess .assess_left ul li{width: 204px;height: 44px;margin-top:2px ;line-height: 54px;color: #999999;}
+.wenku .brief .assess .assess_left ul li span{position: relative;top: -3px;left: 20px;font-size: 13px;}
+.wenku .brief .assess .assess_left ul li img{position: relative;left: 10px;top:-5px;}
+.wenku .brief .assess .assess_left ul li .jiantou{position: relative;left: 40px;top:-3px;}
+.wenku .brief .assess .assess_rigth{width: 361px;height: 170px;float: right;}
+.wenku .brief .assess .assess_rigth .dong{width: 311px;height: 46px;line-height: 46px;font-size: 13px;font-weight: bold;color: #989898;margin-left: 50px;}
+.wenku .brief .assess .assess_rigth .ping{width: 311px;height: 25px;margin-top: 1px;line-height: 30px;font-size: 13px;font-weight: bold;color: #8e8e8e;margin-left: 50px;}
+.wenku .brief .present{width: 444px;height: 108px;} 
+.wenku .brief .present .biaoti{font-size: 14px;color: #222222;font-weight: 500;}
+.wenku .brief .present .jieshao{font-size: 12px;color: #666666;}
+.wenku .brief .present button{width: 143px;height: 37px;background: #79b6c8;color: #fff;border: 0px;margin-top: 8px;cursor:pointer;}
+.wenku .brief .present .yu{font-size: 12px;color: #a1a1a1;}
+.wenku .brief .present .yue{font-size: 20px;color: #efb26f;font-weight: 700;}
+/*后加的公司简介结束*/
+
+/*new_remark start*/
+.comment{width: 1200px;margin: 0 auto;}
+.new_remark{border-bottom: 1px solid #DADADA;margin-top: 80px;padding-bottom: 10px;}
+.new_remark span{float: left;font-size: 24px;}
+.new_remark span label{font-size: 12px;color:#999;}
+.new_remark a{float: right;font-size: 12px;padding-top: 15px;}
+/*new_remark end*/
+
+/*remark start*/
+.remark{border-bottom: 1px solid #DADADA;padding: 20px 0;}
+.remark_left{width: 100px;float: left;}
+.remark_left p{font-size: 12px;}
+.remark_right{width:1100px;float: right;}
+.remark_right dt,dd{margin-bottom: 10px;}
+.remark_right dl label{color:#79B6C8;margin-right: 10px;}
+.remark_right dl span{margin-right: 10px;}
+.remark_right dd p{text-indent: 2em;line-height: 20px;}
+.remark_right dd img{margin-right: 10px;}
+.replay{border-top: 1px dashed #DADADA;margin-top: 10px;}
+.replay li{padding-top:10px;}
+.replay li label{color: #EFB26F;}
+.replay li span{color: #666;margin-left: 10px;}
+.replay li p{text-indent: 2em;line-height: 20px;}
+/*remar end*/
+
+/*question start*/
+.question{width: 1200px;margin: 0px auto;margin-top: 70px;padding: 20px 0;}
+.question_top{border-bottom:1px solid #DADADA ;padding-bottom: 10px;}
+.question_top span{font-size: 24px;}
+.question_top a{float: right;font-size: 12px;padding-top: 15px;}
+.question_center ul{border-bottom: 1px dashed #DADADA;}
+.question_center li{margin: 10px 0;}
+.question_center li p{text-indent: 2em;line-height: 20px;}
+.question_center li span{color: #79B6C8;margin-right: 10px;}
+.question_bottom{height: 50px;line-height: 50px;border-bottom: 1px solid #DADADA;}
+.question_bottom a{color:#79B6C8;}
+/*question end*/
+
+/*编辑*/
+/*a .BJ{width: ;}*/
+ 

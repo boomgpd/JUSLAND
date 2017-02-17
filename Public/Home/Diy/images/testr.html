@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<div class="table-list">
+    <table width="100%" cellspacing="0" id="mytable">
+        <thead>
+            <tr>
+                <th width="6%">序号</th>
+                <th width="10%">订单编号</th>
+            </tr>
+        </thead>
+        <tbody id="meetingList">
+        </tbody>
+    </table>
+</div>            
+<script src="j.js"></script>
+<script>
+window.onload = function(){
+	$.ajax({
+		type: 'GET',
+		url : 'http://localhost/pubu/request.php',
+		dataType : "json",//数据类型为jsonp  
+        //jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
+    	//jsonpCallback:"success_jsonpCallback",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名 
+		success:function(data){
+			var html ='';
+			for(i in data){
+				html+= '<tr>';
+				html+= '<td align="center">'+data[i].id+'</td>';
+				html+= '<td align="center">'+data[i].src+'</td>';
+				html+= '</tr>';
+			}
+			console.log(html);
+			$("#meetingList").html(html);
+		},
+	}); 
+}
+</script>
+</body>
+</html>

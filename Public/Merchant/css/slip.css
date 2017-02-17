@@ -1,0 +1,95 @@
+#mainwrapper {
+	font: 10pt normal Arial, sans-serif;
+	height: auto;
+	margin: 10px auto 0 auto;
+	text-align: center;
+}
+
+/* Image Box Style */
+#mainwrapper .box {
+	
+	cursor: pointer;
+	height: 170px;
+	margin: 15px;
+	position: relative;
+	overflow: hidden;
+	width: 270px;
+		-webkit-box-shadow: 1px 1px 1px 1px #ccc;
+		-moz-box-shadow: 1px 1px 1px 1px #ccc;
+		box-shadow: 1px 1px 1px 1px #ccc;
+}
+#mainwrapper #box_big {
+	height: 355px;
+}
+#mainwrapper .box img {
+	margin: 30px auto 0;
+}
+#mainwrapper .box b{
+	font-size: 16px;
+	position: absolute;
+	bottom: 40px;left:105px;
+}
+#mainwrapper #box_big img{
+	margin: 100px auto 0;
+}
+#mainwrapper #box_big b{
+	font-size: 18px;
+	position: absolute;
+	bottom: 150px;left:95px;
+}
+/* Caption Common Style */
+#mainwrapper .box .caption {
+	background-color: #C13C3D;
+	position: absolute;
+	color: #fff;
+	z-index: 100;
+		-webkit-transition: all 300ms ease-out;
+		-moz-transition: all 300ms ease-out;
+		-o-transition: all 300ms ease-out;
+		-ms-transition: all 300ms ease-out;	
+		transition: all 300ms ease-out;
+	left: 0;
+}
+
+/** Caption 4: Slide **/
+#mainwrapper .box .slide-caption {
+	padding: 25px;
+	width: 220px;
+	height: 120px;	
+	text-align: left;
+	left: 270px;
+}
+#mainwrapper #box_big .slide-caption {
+	padding: 25px;
+	width: 220px;
+	height: 340px;	
+	text-align: left;
+	left: 270px;
+}
+#mainwrapper #box_big .slide-caption p{
+	font-size: 14px;
+	margin: 10px 0;
+}
+#mainwrapper .box .slide-caption h4{
+	text-align: center;
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+
+/** Slide Caption :hover Behaviour **/
+#mainwrapper .box:hover .slide-caption {
+	background-color: #C13C3D !important;
+	-moz-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	-webkit-transform: translateX(-100%);
+	opacity: 1;
+	transform: translateX(-100%);
+}
+/*#mainwrapper .box:hover img#image-4 {
+	-moz-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	-webkit-transform: translateX(-100%);
+	transform: translateX(-100%);
+	opacity: 1;
+}*/
+/*-小图标会动   已改完-*/

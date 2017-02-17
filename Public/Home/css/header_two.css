@@ -1,0 +1,35 @@
+/*登录弹窗*/
+#background_cover{display: none;}
+.login{width: 320px;height: 320px;padding:60px 100px;margin: 0 auto;background: rgba(0,0,0,0.8);position: fixed;z-index: 100;display: none;}
+.login .classify{width: 270px;margin: 0 auto 40px;}
+.classify li{float: left;padding-left: 15px;}
+.classify li a{color: #C5C5C5;font-size: 20px;}
+.classify li .bor_bot{border-bottom: 1px solid #fff;color: #fff;}
+.login .user_data li{margin: 10px 0;color: #fff;}
+.user_data li label{display:inline-block;font-size: 16px;color:#C5C5C5;width: 60px;text-align: left;}
+.user_data li input[type=text]{width: 220px;padding-left:10px;height: 30px;color:#fff;border: 1px solid #C3C3C3;background-color:transparent;outline:medium;}
+.user_data li input[type=password]{width: 220px;padding-left:10px;height: 30px;color:#fff;border: 1px solid #C3C3C3;background-color:transparent;outline:medium;}
+.user_data li :focus{border:1px solid #E05E06;}
+.user_data li span{display:inline-block;color: #E05E06;margin-left:64px;padding-top:5px;height: 12px;}
+.login_close{display: inline-block;position: absolute;top: 20px;right: 20px;}
+/*登录弹窗结束*/
+/*header start*/
+			.header{height: 40px;line-height:40px;border-bottom: 2px solid #79B6C8;}
+			.header .logo{width:155px;height:40px;float: left;}
+			.header .header_left li{float: left;padding: 0 15px;}
+			.header_right{background-color: #79B6C8;position: relative;}
+			.header_right li{float:left;}
+			.header_right a{display:block;width:80px;height:40px;line-height:40px;text-align:center;color: #fff;}
+			.header_right .vip_name{width: 80px;background-color: #79B6C8;display: none;}
+			.header_right .vip_name li{clear: both;}
+			.header_right .vip_name li a:hover{color: #EFB26F;}
+			/*header end*/
+			
+			/*导航*/
+			nav{height:95px;}
+			nav .logo{display:inline-block;width: 200px;height: 95px;line-height: 95px;}
+			nav a{color: #000;font-size: 14px;}
+			nav ul{width: 600px;height: 95px;line-height: 95px;}
+			nav ul li{float: left;margin: 0 25px;}
+			nav ul li a{display: block;height: 60px;}
+			nav ul li .current{color:#C54C4E;border-bottom: 2px solid #DFDFDF;}

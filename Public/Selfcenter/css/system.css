@@ -1,0 +1,33 @@
+/*suggest_right*/
+.system_right{width: 600px;margin: 50px 99px;}
+.system_right ul li{float: left;width: 300px;height: 270px;text-align: center;position: relative;}
+/*已购买图片显示*/
+.system_right ul li.one{background-image: url(../img/hunlidaoju1.png);}
+.system_right ul li.two{background-image: url(../img/caiwuxitong1.png);}
+.system_right ul li.three{background-image: url(../img/hunlirencai1.png);}
+.system_right ul li.four{background-image: url(../img/hunlilinggan1.png);}
+.system_right ul li.five{background-image: url(../img/hunlipeixun1.png);}
+.system_right ul li.six{background-image: url(../img/hunliAPP1.png);}
+.system_right ul li.seven{background-image: url(../img/dingdanxitong1.png);}
+.system_right ul li.eight{background-image: url(../img/houqixitong1.png);}
+/*未购买图片显示*/
+.system_right ul li.one_no{background-image: url(../img/hunlidaoju3.png);}
+.system_right ul li.two_no{background-image: url(../img/caiwuxitong3.png);}
+.system_right ul li.three_no{background-image: url(../img/hunlirencai3.png);}
+.system_right ul li.four_no{background-image: url(../img/hunlilinggan3.png);}
+.system_right ul li.five_no{background-image: url(../img/hunlipeixun3.png);}
+.system_right ul li.six_no{background-image: url(../img/hunliAPP3.png);}
+.system_right ul li.seven_no{background-image: url(../img/dingdanxitong3.png);}
+.system_right ul li.eight_no{background-image: url(../img/houqixitong3.png);}
+
+.system_right ul li.left .yuan{display:inline-block;width: 200px;height: 200px;border-radius: 50%;position: absolute;top: 6px;left: 72px;}
+.system_right ul li.right .yuan{display:inline-block;width: 200px;height: 200px;border-radius: 50%;position: absolute;top: 6px;left: 55px;}
+.system_right .hide_size,.hide_size_no{color: #5091a1;font-size: 14px;width: 200px;height: 200px;border-radius: 50%;position: absolute;top: 0px;left: 0px;display: none;}
+.system_right .hide_size p{margin-top: 50px;}
+.system_right .hide_size span{display:inline-block;margin:25px 20px 0;}
+.system_right .hide_size a{display: inline-block;width: 60px;height: 20px;text-align: center;line-height: 20px;background-color: #fff;border-radius:3px;margin-top: 35px;color: #7cafbc;}
+.system_right .hide_size a:hover{background-color: #77A9B6;color: #fff;}
+.system_right .hide_size_no a{display: inline-block;width: 60px;height: 20px;text-align: center;line-height: 20px;background-color: #AAABAB;border-radius:3px;margin-top: 142px;color: #fff;}
+.system_right .hide_size_no a:hover{background-color: #fff;color: #AAABAB;}
+
+

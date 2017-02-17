@@ -1,0 +1,6 @@
+/*suggest_right*/
+.suggest_right{width: 598px;margin: 50px 100px;}
+.suggest_right .use h2{font-size:18px;font-weight:normal;width: 580px;padding-left: 20px;height: 35px;line-height: 35px;background-color: #9FC2CB;color: #5091a1;}
+.suggest_right .use textarea{width: 578px;height: 128px;margin:45px 0;border: 1px solid #C6C6C6;resize: none;outline: none;padding: 10px 10px;color: #797979;}
+.suggest_right .use .submit{display: inline-block;width: 100px;height: 30px;text-align: center;line-height: 30px;background-color: #9FC2CB;color: #5091a1;border-radius: 3px;}
+.suggest_right .use span{color: #5091a1;margin-left: 25px;}

@@ -1,0 +1,92 @@
+*{margin: 0px;padding: 0px;}
+li{list-style: none;}
+a{text-decoration: none;}
+.db{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: #eae9e7;
+}
+.db .db_1400{
+	width: 1240px;
+	height: 100%;
+	margin: 0px auto;
+}
+.db .db_1400 .bj{
+	width: 616px;
+	height: 525px;
+	float: left;
+	margin-left: 100px;
+}
+.db .db_1400 .bj .biao{
+	width: 616px;
+	height: 89px;
+	border-bottom: 1px double #d7d6d4;
+	line-height: 89px;
+	font-size: 26px;
+	color: #454f68;
+}
+.db .db_1400 .bj .title{
+	width: 616px;
+	height: 133px;
+	line-height: 133px;
+	border-top: 1px solid #fff;
+}
+.db .db_1400 .bj .title span{
+	font-size: 16px;
+	color: #90837d;
+	position: relative;
+	top: -70px;
+}
+.db .db_1400 .bj .title textarea{
+	width: 370px;
+	height: 95px;
+	border-radius: 5px;
+	margin-left: 85px;
+	border: 1px solid #d9d9d7;
+	margin-top: 14px;
+}
+.db .db_1400 .bj .title1{
+	width: 616px;
+	height: 68px;
+	line-height: 68px;
+	border-top: 1px solid #fff;
+}
+.db .db_1400 .bj .title1 span{
+	font-size: 16px;
+	color: #90837d;
+	position: relative;
+	top: 0px;
+}
+.db .db_1400 .bj .title1 button{
+	width: 100px;
+	height: 35px;
+	border-radius: 5px;
+	margin-left: 85px;
+	margin-top: 14px;
+	border: 1px solid #d9d9d7;
+	background: #f5faf3;
+	
+}
+.db .db_1400 .bj .title2{
+	width: 616px;
+	height: 68px;
+	line-height: 68px;
+	border-top: 1px solid #fff;
+}
+.db .db_1400 .bj .title2 #button{
+	width: 67px;
+	height: 35px;
+	border-radius: 5px;
+	margin-left: 115px;
+	margin-top: 14px;
+	background: #e13c43;
+	border: 1px solid #841b17;
+}
+.db .db_1400 .rigth{
+	float: right;
+	width: 230px;
+	background: red;
+	margin-right: 200px;
+	margin-top: 80px;
+}

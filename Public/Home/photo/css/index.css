@@ -1,0 +1,64 @@
+/*header start*/
+.photo_index_banner{position: relative;}
+.photo_index_nav{position: absolute;top: 75px;left: 45px;}
+.photo_index_nav .nav_left{width: 100px;float: left;}
+.photo_index_nav .nav_left a{float: left;padding: 15px 25px;background: rgba(121,182,200,.3);color: #fff;font-size: 18px;margin-bottom: 5px;}
+.photo_index_nav .nav_left .nav_current{background: rgba(255,255,255,.3);color: #79B6C8;}
+.photo_index_nav .nav_right{width: 400px;float: left;background: rgba(255,255,255,.3);color: #979696;padding: 15px;}
+.nav_right .nav_three h6{font-size: 14px;font-weight: normal;padding-left: 10px;margin:5px 0;border-left: 5px solid #79B6C8;}
+.nav_right .nav_three a{display:inline-block;padding:0 15px;margin:5px 0;border-right:1px solid #979696 ;color: #979696;}
+
+
+/*content start*/
+.index_content{margin-top: 50px;}
+.content_left{width: 975px;margin-right: 25px;}
+/*限时特惠*/
+.limit .limit_top{height: 30px;line-height: 30px;}
+.limit .limit_top h3{font-size: 18px;font-weight:normal;color: #79B6C8;}
+.limit_bot li{width: 225px;height: 125px;float: left;margin-right: 25px;position: relative;}
+.limit_bot .right_cot{width: 109px;height: 111px;padding:7px 3px;background: rgba(255,255,255,.7);position: absolute;top:0;right: 0;text-align: center;line-height: 2em;}
+.limit_bot .right_cot span{display:inline-block;background-color: #79B6C8;color: #fff;}
+.limit_bot .right_cot b{color: #fb9321;font-size: 14px;}
+/*结婚分期*/
+.stages .stages_top{height: 30px;line-height: 30px;margin-top: 30px;}
+.stages .stages_top h3{font-size: 18px;font-weight:normal;color: #79B6C8;}
+.stages_bot li{width: 225px;height: 125px;float: left;margin-right: 25px;position: relative;}
+.stages_bot .right_cot{width: 109px;height: 111px;padding:7px 3px;background: rgba(255,255,255,.7);position: absolute;top:0;right: 0;text-align: center;line-height: 1.8em;}
+.stages_bot .right_cot .boder_bot{border-bottom: 1px solid #A2A2A1;}
+.stages_bot .right_cot span{display:inline-block;background-color: #79B6C8;color: #fff;}
+.stages_bot .right_cot b{color: #fb9321;font-size: 14px;}
+/*热销风格*/
+.hotsell .hotsell_current{color: #79B6C8;border-bottom: 1px solid #79B6C8;}
+.hotsell .hotsell_top{height: 30px;line-height: 30px;margin-top: 30px;}
+.hotsell .hotsell_top h3{font-size: 18px;font-weight:normal;color: #79B6C8;width: 225px;margin-right: 25px;}
+.hotsell .hotsell_top ul li{float: left;margin-right: 50px;font-size: 14px;}
+.hotsell_bot .hotsell_bot_left{width: 225px;height: 280px;position: relative;margin-right: 25px;}
+.hotsell_bot .hotsell_bot_left .posi_ab{position: absolute;bottom: 0;left: 0;padding:0 20px;width: 185px;height: 40px;text-align: center;line-height: 40px;background: rgba(0,0,0,.3);color: #fff;}
+.hotsell_bot .hotsell_bot_right{width: 725px;}
+.hotsell_bot .hotsell_bot_right li{width: 225px;height: 125px;position: relative;margin:0 25px 30px 0;}
+.hotsell_bot .hotsell_bot_right .posi_ab{position: absolute;bottom: 0;left: 0;padding:0 10px;width: 205px;height: 30px;text-align: center;line-height: 30px;background: rgba(0,0,0,.3);color: #fff;}
+
+
+
+
+
+
+
+
+
+
+/*热门头条*/
+.content_right{width: 200px;}
+.content_right .hot h3{width:73px;font-size: 18px;font-weight:normal;border-bottom:1px solid;}
+.hot .hot_article{margin: 5px 0;}
+.hot .hot_article a{display:inline-block;height: 25px;line-height: 25px;overflow: hidden;}
+/*排行*/
+.content_right .array{padding: 15px 10px;background: #eee;margin-bottom: 20px;}
+.array h3{font-size: 14px;font-weight: normal;}
+.array_cot li{margin-top: 5px;}
+.array_cot img{width: 60px;height: 60px;margin-right: 5px;}
+.array_cot .array_cot_right{width: 115px;line-height: 1.4em;}
+.array_cot .array_cot_right a,.array_cot .array_cot_right span{display:inline-block;width:115px;overflow: hidden;white-space: nowrap;  text-overflow: ellipsis;}
+.array_cot .array_cot_right span,.array_cot .array_cot_right p{color: #999;}
+.array_cot .array_cot_right b{color: #f89b3d;}
+

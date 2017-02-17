@@ -1,0 +1,129 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+a{
+	text-decoration: none;
+}
+li{
+	list-style: none;
+}
+.sava{
+	width: 100%;
+	height: 93%;
+	position: absolute;
+	background: #edece8;
+}
+.sava .save_z{
+	width: 800px;
+	height: 500px;
+	margin: 0px auto;
+}
+.sava .save_z .s1{
+	width: 800px;
+	height: 85px;
+	border-bottom: 1px double #d9d8d4;
+}
+.sava .save_z .s1 .s1_xian{
+	width: 800px;
+	height: 83px;
+	border-bottom: 1px double #d9d8d4;
+	line-height: 83px;
+}
+.sava .save_z .s1 .s1_xian h1{
+	float: left;
+	color: #435273;
+	font-weight: 100;
+}
+.sava .save_z .s1 .s1_xian h2{
+	color: #292a3e;
+	font-weight: 100;
+}
+.sava .save_z .biao{
+	width: 800px;
+	height: 66px;
+	border-top: 1px double #fff;
+	border-bottom: 1px double #fff;
+	line-height: 66px;
+}
+.sava .save_z .biao span{
+	font-size: 18px;
+	color: #8a8184;
+}
+.sava .save_z .biao input{
+	width: 375px;
+	height: 36px;
+	border-radius:5px ;
+	border: 1px solid #cdccca;
+	color: #767676;
+	margin-left: 90px;
+	font-size: 17px;
+}
+.sava .save_z .miao{
+	width: 800px;
+	height: 125px;
+	border-bottom: 1px double #fff;
+	line-height: 125px;
+}
+.sava .save_z .miao span{
+	font-size: 18px;
+	color: #8a8184;
+}
+.sava .save_z .miao input{
+	width: 375px;
+	height: 88px;
+	border-radius:5px ;
+	border: 1px solid #cdccca;
+	color: #767676;
+	margin-left: 90px;
+	font-size: 17px;
+}
+.sava .save_z .fen{
+	width: 800px;
+	height: 85px;
+	border-bottom: 1px double #fff;
+	line-height: 85px;
+}
+.sava .save_z .fen span{
+	font-size: 18px;
+	color: #8a8184;
+}
+.sava .save_z .fen select{
+	margin-left: 90px;
+	width: 375px;
+	height: 36px;
+	border-radius:5px ;
+	border: 1px solid #cdccca;
+	color: #767676;
+	font-size: 17px;
+}
+.sava .save_z .san{
+	width: 800px;
+	height: 70px;
+	border-bottom: 1px double #fff;
+	line-height: 70px;
+}
+.sava .save_z .san span{
+	font-size: 18px;
+	color: #8a8184;
+}
+.sava .save_z .san button{
+	margin-left: 90px;
+	width: 102px;
+	height: 36px;
+	border-radius:5px ;
+	border: 1px solid #cdccca;
+	color: #494a4f;
+	font-size: 17px;
+}
+.sava .save_z .submit{
+	width: 132px;
+	height: 46px;
+	background: #dd3c41;
+	border: 1px solid #b10b0d;
+	border-radius:5px ;
+	color: #fff;
+	font-size: 17px;
+	margin-left: 130px;
+	margin-top: 20px;
+}

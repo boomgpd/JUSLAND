@@ -1,0 +1,51 @@
+﻿/*右侧内容*/
+.right{background-color: #F0F4F5;width: 650px;float: right;padding: 100px 150px;}
+.right h2{font-size: 18px;font-weight: normal;height: 50px;line-height: 50px;}
+.right li{float: left;width: 100%;height: 50px;line-height: 50px;}
+.right li label{display:inline-block;width: 150px;text-align: left;font-size: 16px;}
+.right li input[type=text]{border: 1px solid #000;height: 33px;line-height: 33px;outline: none;text-indent: 1em;width: 148px;}
+.right li:nth-child(2) input{width: 308px;}
+.right li:nth-child(4) select{border: 1px solid #000;height: 33px;line-height: 33px;outline: none;text-indent: 1em;width: 148px;background-color: #fff;}
+.right li:nth-child(5) input{width: 308px;}
+.right li:nth-child(6) input,span{vertical-align: middle;}
+.right li:nth-child(6) span{margin: 0 14px 0 10px;font-size: 16px;padding-left: 20px;background: url(../img/no.png) no-repeat center left;cursor: pointer;}
+.right li:nth-child(6) input::-webkit-input-placeholder{
+	color: #ff4401 !important;}
+.right li:nth-child(6) input:-moz-placeholder {
+　　color: #ff4401 !important;}
+.right li:nth-child(6) input::-moz-placeholder {
+　　color: #ff4401 !important;}
+.right li:nth-child(6) input:-ms-input-placeholder {
+　　color: #ff4401 !important;}
+.right li:nth-child(8) input{width: 198px;}
+
+
+.right .describe{margin-top: 9px;}
+.right .describe span{float: left;width: 150px;text-align: left;font-size: 16px;}
+.right .describe textarea{float: left;width: 428px;height: 128px;resize: none;outline: none;padding: 10px;border: 1px solid #000;margin-left: 4px;}
+
+.right .file{margin-top: 15px;}
+.right .file span{float: left;width: 150px;text-align: left;font-size: 16px;}
+.right .file .file_son{float: left;width: 420px;border: 1px solid #000;margin-left: 4px;border-radius: 10px;padding: 0 14px;}
+.right .file .file_son .file_sub{width: 78px;height: 78px;border: 1px solid #000;float: left;margin: 15px 30px;position: relative;}
+.right .file .file_son .file_sub a{display: inline-block;background: url(../img/file.png) no-repeat;width: 78px;height: 78px;}
+.right .file .file_son .file_sub input[type=file]{position: absolute;top: 0;left: 0;width: 80px;height: 80px;opacity: 0;cursor: pointer;}
+.right .file .file_son .img{width: 78px;height: 78px;border: 1px dashed #000;float: left;margin: 15px 30px;overflow: hidden;}
+.right .file .file_son .img img{width: px;height: 78px;}
+
+.right input[type=submit]{display:block;width: 150px;height: 40px;border: 0;outline: none;margin: 50px auto 0;background-color: #FF906A;color: #fff;font-size: 16px;}
+.right input[type=submit]:hover{box-shadow: 0px 0px 20px rgba(0,0,0,.4);}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

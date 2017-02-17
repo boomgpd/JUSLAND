@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="__PUBLIC__/Tool/sys_alert/css/style.css" />
+<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+<div class="sys_alert_box_cover"></div>
+<div class="sys_alert_box">
+	<div class="logo">
+		<img src="__PUBLIC__/Tool/sys_alert/img/logo.png" width="80%">
+	</div>
+	<div class="content">
+		<p><span class="wp_alert_content"></span></p>
+	</div>
+	<div class="submit">
+		<button class="btn_yes sys_alert_btn">确认</button>
+		<a href="" class="sys_alert_jump_url" style="display:none;"></a>
+		<button class="btn_no sys_alert_btn">取消</button>
+	</div>
+</div>
+<script type="text/javascript">
+	/**
+	 * 点击确认方法
+	 */
+	$(".btn_yes.sys_alert_btn").click(function(){
+		var jump_url  = $("a.sys_alert_jump_url").attr('href');
+		if(jump_url){
+			window.location.href = jump_url;
+		}else{
+			$("div.sys_alert_box_cover").hide();
+			$("div.sys_alert_box").hide();	
+		}
+		
+	})
+	
+	/**
+	 * 点击取消方法
+	 */
+	$(".btn_no.sys_alert_btn").click(function(){
+		$("div.sys_alert_box_cover").hide();
+		$("div.sys_alert_box").hide();	
+	})
+	
+	/**
+	 * 弹窗跳转方法需要参数
+	 * 1.content，提示内容
+	 * 2.跳转地址
+	 */
+	function wp_confirm(content,jump_url){
+		$(".wp_alert_content").html(content);
+		$("a.sys_alert_jump_url").attr('href',jump_url);
+		$("div.sys_alert_box_cover").show();
+		$("div.sys_alert_box").show();
+		$(".btn_no.sys_alert_btn").show();
+	}
+	
+	/**
+	 * 创建弹窗提示方法
+	 */
+	function wp_alert(content){
+		$(".wp_alert_content").html(content);
+		$("div.sys_alert_box_cover").show();
+		$("div.sys_alert_box").show();
+		$(".btn_no.sys_alert_btn").hide();
+		$("a.sys_alert_jump_url").attr('href','');
+	}
+	
+</script>

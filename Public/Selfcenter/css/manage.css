@@ -1,0 +1,12 @@
+/*右侧内容*/
+.portrait_right{background-color: #F0F4F5;width: 700px;margin-left:50px;padding: 100px 0;}
+.portrait_right .message{width: 100%;border-bottom: 1px solid #000;}
+.portrait_right .message li{float: left;width: 19%;text-align: center;}
+.portrait_right .message li a{font-size: 16px;}
+.portrait_right .message li a.current{border-bottom: 3px solid #79b6c8;}
+
+.portrait_right .content ul{display: none;margin-top: 30px;}
+.portrait_right .content ul li:hover{background: rgba(0,0,0,.5);color: #fff;transition: background 1s;}
+.portrait_right .content ul li:hover a{color: #fff;}
+.portrait_right .content ul li:nth-child(1){pointer-events: none;}
+.portrait_right .content ul li span{display: inline-block;width: 19%;height:35px;line-height:35px;text-align: center;font-size: 16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}

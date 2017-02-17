@@ -1,0 +1,39 @@
+body{background-color: #F0F4F5;}
+.basic{width: 1000px;margin: 50px auto 0;position: relative;}
+.bor_right{border-right: 2px solid #D6D6D6;}
+
+/*固定头部*/
+.header{width:100%;\top: 0;left: 0;background-color: #fff;z-index: 99;box-shadow: 0 0 6px rgba(0,0,0,.2);}
+.header .content{width: 1000px;margin:0 auto;height: 50px;position: relative;}
+/*用户信息*/
+.header .user{position: absolute;top: 7px;right: 10px;}
+.header .user .tx{display:inline-block;padding:0 10px;height:35px;text-align:center;line-height:35px;position: relative;color: #FC8500;}
+.header .user ul{width:120px;position: absolute;top: 35px;left: 0;background-color: #fff;display: none;}
+.header .user ul li{float: left;width:120px;height:35px;}
+.header .user ul li a{display:inline-block;width: 110px;height: 25px;text-align: center;line-height: 25px;margin: 5px;color: #7f7f7f;}
+.header .user ul li a:hover{background-color: #F4F4F4;}
+
+
+/*basic_left*/
+.basic_left{width: 200px;background-color: #9FC2CB;box-shadow: 10px 0px 15px #ccc;}
+/*头像*/
+.basic_left dl dt{margin:50px auto 10px;width: 100px;height: 100px;border-radius: 50%;border: 1px solid #fff;overflow: hidden;}
+.basic_left dl dd{text-align: center;}
+.basic_left dl dd a{color: #fff;}
+/*导航*/
+.basic_left ul{padding-top: 30px;}
+.basic_left ul li a{display:inline-block;width: 200px;height: 40px;text-align: center;line-height: 40px;color: #5091a1;margin: 10px 0;font-size: 16px;}
+.basic_left ul li a.current{background-color: #8FAEB6;color: #fff;}
+/*安全设置子分类*/
+.basic_left .aq_son{margin: 0;padding: 0;background-color: #8FAEB6;margin: -10px 0;display: none;}
+.basic_left .aq_son li{float: left}
+.basic_left .aq_son li a{font-size: 12px;color: #5091a1;height: 20px;line-height: 20px;}
+.basic_left .aq_son li a:hover{color: #fff;}
+
+/*用户信息*/
+.basic .user{position: absolute;top: 10px;right: 10px;}
+.basic .user .tx{display:inline-block;width:120px;height:35px;text-align:center;line-height:35px;position: relative;color: #FC8500;}
+.basic .user ul{width:120px;position: absolute;top: 35px;left: 0;background-color: #fff;display: none;}
+.basic .user ul li{float: left;width:120px;height:35px;}
+.basic .user ul li a{display:inline-block;width: 110px;height: 25px;text-align: center;line-height: 25px;margin: 5px;color: #7f7f7f;}
+.basic .user ul li a:hover{background-color: #F4F4F4;}

@@ -1,0 +1,12 @@
+/*右侧内容*/
+.right{background-color: #F0F4F5;width: 950px;float: right;padding: 100px 0;}
+.right .message{width: 100%;border-bottom: 1px solid #000;}
+.right .message li{float: left;width: 20%;text-align: center;}
+.right .message li a{font-size: 16px;}
+.right .message li a.current{border-bottom: 3px solid #79b6c8;}
+
+.right .content ul{display: none;margin-top: 30px;}
+.right .content ul li:hover{background: rgba(0,0,0,.5);color: #fff;transition: background 1s;}
+.right .content ul li:hover a{color: #fff;}
+.right .content ul li:nth-child(1){pointer-events: none;}
+.right .content ul li span{display: inline-block;width: 19.6%;height:35px;line-height:35px;text-align: center;font-size: 16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}

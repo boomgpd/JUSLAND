@@ -1,0 +1,24 @@
+/*头部*/
+.main_top{position: fixed;top:20px;box-shadow:0 0 15px rgba(0,0,0,.5);}
+
+
+/*商家图片*/
+.merchant{background-color: #EEE;}
+.merchant li{float: left;width: 294px;margin-right: 9px;height: 254px;position: relative;}
+.merchant li:nth-child(1){width: 300px;margin: 0;text-align: center;line-height: 254px;}
+.merchant li:nth-child(4){margin: 0;}
+.merchant li .merchant_close{position:absolute;bottom:0;display: inline-block;width: 100%;background: rgba(0,0,0,.7);color: #fff;font-size: 18px;padding: 10px 0;text-align: center;}
+.merchant li .merchant_close i{position: absolute;top:9px;right: 20px;}
+
+
+/*对比分类*/
+.classify li{width: 300px;line-height: 50px;font-size: 20px;color: #272631;background-color: #eee;float: left;text-align: center;}
+.classify li:hover{background-color: #D7D7D7;}
+.classify li.current{background-color: #D7D7D7;}
+
+
+/*表格*/
+.main_bottom{margin-top: 350px;}
+.main_bottom table{width: 1200px;text-align: center;border: 0;}
+.main_bottom table tr:nth-child(1) td{font-size: 24px;}
+.main_bottom table td{width: 300px;height: 80px;font-size: 16px;border-color: #D6D6D6;color: #21212c;}

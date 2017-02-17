@@ -1,0 +1,477 @@
+*{margin: 0px;padding: 0px;}
+li{list-style: none;}
+a{text-decoration: none;}
+body{overflow:scroll;overflow-x:hidden;}
+/*顶部  开始*/
+.bt{
+	width: 100%;
+	height: 38px;
+	background: #f9f9f9;
+}
+.bt .bt_z{
+	width: 1180px;
+	height:38px;
+	margin: 0px auto;
+}
+.bt .bt_z .bt_left{
+	float: left;
+	line-height: 38px;
+}
+.bt .bt_z .bt_left span a{
+	font-size: 12px;
+	color: #99a0aa;
+	margin-left: 10px;
+}
+.bt .bt_z .bt_left span img{
+	position: relative;
+	top: 3px;
+}
+.bt .bt_z .bt_right{
+	float: right;
+	line-height: 38px;
+}
+.bt .bt_z .bt_right span{
+	font-size: 12px;
+	color: #a5a9b2;
+	margin-right: 42px;
+}
+.bt .bt_z .bt_right span:hover{
+	color: orangered;
+}
+/*顶部  结束*/
+/*搜索栏   开始*/
+.da{
+	width: 100%;
+	height: 85px;
+}
+.da .search{
+	width: 1920px;
+	height: 85px;
+	margin: 0px auto;
+}
+.da .search .sr_1550{
+	width: 1550px;
+	height: 85px;
+	float: right;
+	margin-right: 260px;
+	margin-top: -1px;
+}
+.da .search .sr_1550 .img{
+	float: left;
+	margin-top: -1px;
+}
+.da .search .sr_1550 .remen{
+	float: left;
+	width: 71px;
+	height: 26px;
+	background: #f9f9f9;
+	font-size: 13px;
+	color: #747474;
+	line-height: 26px;
+	text-align: center;
+	border: 1px solid #e4e4e4;
+	margin-top: 18px;
+}
+.da .search .sr_1550 input{
+	float: left;
+	width: 243px;
+	height: 26px;
+	margin-top: 18px;
+	border: 1px solid #e4e4e4;
+}
+.da .search .sr_1550 .anniu{
+	float: left;
+	width: 29px;
+	height: 28px;
+	background: #7cb7c9;
+	border: 1px solid #86b2bf;
+	margin-left: 10px;
+	margin-top: 18px;
+}
+.da .search .sr_1550 .app{
+	margin-left: 99px;
+}
+.da .search .sr_1550 .app1{
+	margin-left: 40px;
+	margin-top: 13px;
+}
+/*搜索栏   结束*/
+/*标题栏   开始*/
+.title{
+	width: 100%;
+	height: 47px;
+	border-bottom: 2px solid #76b8c8;
+}
+.title .title_1920{
+	width: 1920px;
+	height: 47px;
+	margin: 0px auto;
+}
+.title .title_1920 .title_1550{
+	width: 1550px;
+	height: 47px;
+	float: right;
+	margin-right: 240px;
+}
+.title .title_1920 .title_1550 .hf{
+	width: 906px;
+	height: 47px;
+	margin-left: 10px;
+	line-height: 47px;
+	float: left;
+}
+.title .title_1920 .title_1550 .hf .bt1 li .bt2{
+	float: left;
+	padding-right:83px;
+	color: #656565;
+	font-size: 12px;
+	font-weight: bold;
+}
+.title .title_1920 .title_1550 .hf .bt1 li .bt3{
+	color: #7cb2ca;
+}
+.title .title_1920 .title_1550 .suo{
+	float: left;
+	width: 433px;
+	height: 47px;
+	background: #79b6c8;
+	margin-left: 150px;
+}
+.title .title_1920 .title_1550 .suo img{
+	margin-left: 20px;
+}
+/*标题栏   结束*/
+/*服务地区   开始*/
+.area{
+	width: 100%;
+	height: 252px;
+	background: #f9f9f9;
+}
+.area .area_1200{
+	width: 1200px;
+	height: 252px;
+	margin: 0px auto;
+	overflow: hidden;
+}
+.area .area_1200 .type{
+	width: 928px;
+	height: 170px;
+	border: 1px solid #d5d5d5;
+	float: left;
+}
+.area .area_1200 .type .t1{
+	width: 928px;
+	height: 47px;
+}
+.area .area_1200 .type .t1 div{
+	float: left;
+	width: 87px;
+	height: 41px;
+	line-height: 47px;
+	text-align: center;
+	font-size: 12px;
+	color: #626262;
+}
+.area .area_1200 .type .t2{
+	width: 928px;
+	height: 41px;
+}
+.area .area_1200 .type .t2 .tou{
+	width: 85px;
+	height: 40px;
+	border-top: 1px solid #d5d5d5;
+	border-right: 1px solid #d5d5d5;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+	color: #7e7e7e;
+	float: left;
+}
+.area .area_1200 .type .t2 .xingxi{
+	float: left;
+	width: 842px;
+	height: 40px;
+	border-top: 1px solid #f9f9f9;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+	color: #666666;
+}
+.area .area_1200 .type .t2 .xingxi img{
+	float: right;
+	margin-top: 12px;
+	margin-right: 28px;
+}
+.area .area_1200 .type .t2 .xingxi li a{
+	float: left;
+	height: 40px;
+	font-size: 13px;
+	padding-left: 13.5px;
+	padding-right: 13.5px;
+	color: #666666;
+}
+.area .area_1200 .type .t3{
+	width: 928px;
+	height: 41px;
+}
+.area .area_1200 .type .t3 .tou{
+	width: 85px;
+	height: 40px;
+	border-top: 1px solid #d5d5d5;
+	border-right: 1px solid #d5d5d5;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+	color: #7e7e7e;
+	float: left;
+}
+.area .area_1200 .type .t3 .xingxi{
+	float: left;
+	width: 842px;
+	height: 40px;
+	border-top: 1px solid #f9f9f9;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+	color: #666666;
+}
+.area .area_1200 .type .t3 .xingxi img{
+	float: right;
+	margin-top: 12px;
+	margin-right: 28px;
+}
+.area .area_1200 .type .t3 .xingxi li a{
+	float: left;
+	height: 40px;
+	font-size: 12px;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #666666;
+}
+.area .area_1200 .type .t4{
+	width: 928px;
+	height: 41px;
+}
+.area .area_1200 .type .t4 .tou{
+	width: 85px;
+	height: 40px;
+	border-top: 1px solid #d5d5d5;
+	border-right: 1px solid #d5d5d5;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+	color: #7e7e7e;
+	float: left;
+}
+.area .area_1200 .type .t4 .xingxi{
+	float: left;
+	width: 842px;
+	height: 40px;
+	border-top: 1px solid #f9f9f9;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+	color: #666666;
+}
+.area .area_1200 .type .t4 .xingxi li a{
+	float: left;
+	height: 40px;
+	font-size: 12px;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #666666;
+}
+.area .area_1200 .banna{
+	width: 928px;
+	height: 36px;
+	border: 1px solid #ebebeb;
+	margin-top: 42px;
+	float: left;
+}
+.area .area_1200 .banna li a{
+	width: 84px;
+	height: 36px;
+	border-right:1px solid #ebebeb;
+	float: left;
+	line-height: 37px;
+	text-align: center;
+	font-size: 12px;
+	color: #7f7f7f;
+}
+.area .area_1200 .banna li .re1{
+	color:#77b6d5;
+}
+.area .area_1200 .banna .yeshu li{
+	width: 120px;
+	height: 37px;
+	border-left:1px solid #ebebeb;
+	float: right;
+	line-height: 37px;
+}
+.area .area_1200 .banna .yeshu li a{
+	float: left;
+	width: 39px;
+	height: 39px;
+	border: 0px;
+}
+.area .area_1200 .tu{
+	float: left;
+	width: 230px;
+	height: 251px;
+	background: red;margin-left: 20px;
+	position: relative;
+	top: -172px;
+}
+.area .area_1200 .tu .wu{
+	width: 230px;
+	height: 251px;
+	background: #fff;
+	position: absolute;
+	top: 0px;
+	opacity: 0.6;
+}
+/*服务地区   结束*/
+.jianju{
+	width: 100%;
+	height: 20px;
+	background: #f9f9f9;
+}
+/*商家排行   开始*/
+.seller{
+	width: 100%;
+	height: 674px;
+	background: #f9f9f9;
+}
+.seller .seller_1200{
+	width: 1200px;
+	height: 671px;
+	margin: 0px auto;
+	border: 1px solid #e9e9e9;
+}
+.seller .seller_1200 .seller_left{
+	width: 929px;
+	height: 671px;
+	border-right: 1px solid #e9e9e9;
+	float: left;
+}
+.seller .seller_1200 .seller_left .seller1{
+	width:929px ;
+	height: 167px;
+	border-bottom: 1px solid #ededed;
+}
+.seller .seller_1200 .seller_left .seller1:hover{
+	background-color: #fff;
+}
+.seller .seller_1200 .seller_left .seller1 li{
+	float: left;
+	height: 127px;
+	margin-top:14px ;
+	margin-left: 14px;
+	line-height: 127px;
+	border: 1px solid #efeae4;
+}
+.jian{
+	float: left;
+	width: 18px;
+	height: 673px;
+	background: #f9f9f9;
+	margin-top: -1px;
+	border-right: 1px solid #efeae4;
+}
+.seller .seller_1200 .seller_right{
+	float: left;
+	width: 231px;
+	height: 661px;
+	margin-left: 20px;
+}
+/*商家排行   结束*/
+/*分页按钮   开始*/
+.fen{
+	width: 1200px;
+	height: 42px;
+	margin: 47px auto;
+}
+.fen .F_anniu{
+	margin-left: 300px;
+}
+.fen .F_anniu li a{
+	padding-top: 13px;
+	padding-bottom: 13px;
+	padding-left: 19px;
+	padding-right: 19px;
+	border: 1px solid #ededed;
+	float: left;
+	font-size: 12px;
+	color: #747474;
+}
+/*分页按钮   结束*/
+/*底部   开始*/
+.db{
+	width: 100%;
+	height: 300px;
+	background: #000;
+}
+.db .db_1200{
+	width: 1200px;
+	height: 300px;
+	margin: 0px auto;
+}
+.db .db_1200 .db_link{
+	width: 862px;
+	height: 99px;
+	margin-left: 80px;
+	float: left;
+}
+.db .db_1200 .db_link img{
+	margin-top: 111px;
+}
+.db .db_1200 .db_link li a{
+	float: left;
+	margin-left: 50px;
+	position: relative;
+	top: -40px;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+}
+.db .db_1200 .db_info{
+	clear: both;
+	width: 330px;
+	height: 80px;
+	margin-left: 420px;
+	margin-top: 120px;
+	float: left;
+}
+
+.db .db_1200 .db_info .db_AND li a{
+	float: left;
+	margin-left: 10px;
+	color: #fff;
+	font-size: 12px;
+}
+.db .db_1200 .db_info .db_ent{
+	clear: both;
+}
+.db .db_1200 .db_info .db_ent li{
+	font-size: 12px;
+	color: #fff;
+	line-height: 30px;
+	margin-left: 10px;
+}
+.db .db_1200 .db_er{
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	/*position: relative;
+	top: 90px;*/
+}
+.db .db_1200 .db_er dl{
+	float: left;
+	margin-left: 80px;
+	margin-top: -40px;
+}
+.db .db_1200 .db_er dl dt{
+	margin-bottom: 20px;
+}
+/*底部   结束*/

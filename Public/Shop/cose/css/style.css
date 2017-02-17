@@ -1,0 +1,48 @@
+﻿/*header*/
+.header{width: 100%;height: 63px;background-color: #323D43;}
+.header .logo{width: 200px;float: left;margin-top: 8px;text-align: center;border-right: 1px solid rgba(255,255,255,.5);}
+.header .size{height: 64px;line-height: 64px;float: left;color: #fff;}
+.size .name{margin: 0 10px 0 40px;}
+
+/*content*/
+	/*左侧*/
+.content .left{width: 80%;background-color: #F0F0F0;}
+		/*对话框*/
+			/*客服*/
+.left .talk{color: #333;width:100%;overflow: auto;}
+.talk .staff,.talk .say{width: 95%;margin: 0 auto 50px;position: relative;}
+.staff .time{width: 100%;text-align: center;padding: 15px 0 40px;}
+.staff .say .tx{width: 50px;height: 50px;overflow: hidden;margin-top: 30px;}
+.staff .say .tx img{width: 50px;height: 50px;border-radius: 50%;}
+.staff .say .zi{margin: 0px 0 0 60px;}
+.staff .say .zi .name{font-size: 16px;padding: 10px 0;}
+.staff .say .zi .hf{background-color: #fff;padding:10px;line-height: 20px;border-radius: 5px;position: relative;display:inline-block;}
+.staff .say .zi .hf .tb_left{position: absolute;top: 15px;left: -7px;}
+			/*用户*/
+.left .client{color: #333;width:100%;overflow: auto;}
+.talk .client,.talk .say{width: 95%;position: relative;}
+.client .time{width: 100%;text-align: center;padding: 15px 0 40px;}
+.client .say .tx{width: 50px;height: 50px;overflow: hidden;margin-top: 30px;}
+.client .say .tx img{width: 50px;height: 50px;border-radius: 50%;}
+.client .say .zi{margin: 12px 0 0 60px;}
+.client .say .zi .name{font-size: 16px;padding: 10px 0;text-align: right;}
+.client .say .zi .hf{background-color: #fff;padding:10px;line-height: 20px;border-radius: 5px;position: relative;display:inline-block;float: right;margin-right: 10px;}
+.client .say .zi .hf .tb_right{position: absolute;top: 15px;right: -7px;}
+		/*输入框*/
+.left .input{position:fixed;bottom:0;background-color: #fff;width: 80%;height: 64px;}
+.input textarea{width: 85%;height:54px;float:left;padding:10px 0 0 20px;border: 0;resize: none;outline: none;}
+.input button{position:absolute;top:17px;right:20px;width: 80px;height: 30px;border: 0;border-radius: 20px;background-color: #323D43;color: #fff;outline: none;cursor: pointer;}
+.input button:hover{background-color: rgba(50,61,67,.8)}
+	/*右侧*/
+		/*服务热线*/
+.content  .right{width:20%;background-color: #F7F7F7;}
+.right .tel{width: 90%;margin: 10px auto 0;padding:10px 0;border: 1px solid #eee;background-color: #fff;color: #333;cursor: pointer;}
+.tel h4{height: 30px;line-height: 30px;padding: 0 10px;font-size: 16px;font-weight: normal;padding-right:20px;}
+.tel h4 .xb{float: right;margin-top: 11.5px;}
+.tel .phone{margin-top:10px;display: none;}
+.tel .phone p{height: 25px;line-height: 25px;padding: 0 10px;}
+		/*婚博士是什么*/
+.right .hbs{width: 90%;margin: 10px auto 0;padding:10px 0;border: 1px solid #eee;background-color: #fff;color: #333;}
+.hbs h4{height: 30px;line-height: 30px;padding: 0 10px;font-size: 16px;font-weight: normal;padding-right:20px;}
+.hbs p{text-indent:2em;line-height: 25px;padding: 0 10px;}
+

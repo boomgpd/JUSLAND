@@ -1,0 +1,41 @@
+/*首屏*/
+.one img{width: 100%;height: auto;}
+
+
+/*二屏*/
+.two{background-color: #F0F4F5;height: 1080px;}
+.two .son{width: 1200px;margin: 0 auto;position: relative;}
+.two h2{width: 1061px;margin: 0 auto;text-align: center;height: 82px;line-height: 82px;color: #d49766;font-size: 36px;font-weight:normal;background: url(../img/two_bg.png) no-repeat center bottom;padding-top: 100px;margin-bottom: 50px;}
+.two .font{width: 445px;height: 375px;line-height:2em;border: 5px solid #fff;padding: 50px 85px;font-size: 16px;background: rgba(255,255,255,0);position: absolute;left:287.5px;z-index: 99;}
+.two .t_left{position: absolute;top: 435px;left: 0;z-index: 0;}
+.two .t_cot{position: absolute;top: 635px;right: 87px;}
+.two .t_right{position: absolute;top: 280px;right: 30px;}
+
+
+/*三屏*/
+.three{background-color: #fff;height: 1080px;}
+.three .son{width: 1200px;margin: 0 auto;position: relative;}
+.three .blue{width: 800px;height: 60px;background-color: #79B6C8;position: absolute;top: 160px;right:0;}
+.three .left_01{width: 446px;height: 446px;padding: 20px;border: 3px solid #000;position: absolute;top: 180px;left: 0;}
+.three .left_01 img{width:446px;height: 446px;}
+.three .left_01 li{display: none;}
+.three .left_02{width: 446px;padding: 20px;position: absolute;top:680px;left: 0;}
+.three .left_02 li{display: none;}
+.three .left_02 h3{font-size: 24px;border-bottom: 2px solid #000;color:#d49766;padding: 10px 0;}
+.three .left_02 p{font-size: 16px;line-height: 2em;text-indent: 2em;}
+.three .right_01{width: 700px;position: absolute;top: 330px;right: 0;}
+.three .right_01 p{text-align: center;}
+.three .right_01 p:nth-child(1){font-size: 16px;text-transform: uppercase;margin-bottom: 20px;}
+.three .right_01 p:nth-child(2){font-size: 30px;color: #d49766;margin-bottom: 40px;}
+.three .right_01 p:nth-child(3){font-size: 26px;}
+.three .right_02{position: absolute;top:570px;right: 70px;}
+.three .right_02 li{float: left;margin: 0 10px;}
+.three .right_02 li a{display: inline-block;width: 90px;height: 30px;text-align: center;line-height: 30px;background-color: #fff;border:1px solid #000;}
+.three .right_02 li a.current{background-color: #000;color: #fff;}
+.three .right_02 li a:hover{background-color: #000;color: #fff;}
+.three .right_03{width: 579px;height: 196px;padding: 20px;border: 3px solid #000;position: absolute;top:680px;right: 0;}
+.three .right_03 li{display: none;}
+.three .right_03 li img{width: 579px;height: 196px;}
+
+
+

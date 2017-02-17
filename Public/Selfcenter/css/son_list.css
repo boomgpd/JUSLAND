@@ -1,0 +1,6 @@
+/*portrait_right*/
+.portrait_right{width: 598px;margin: 50px 100px;}
+.portrait_right .compile h2{font-size:18px;font-weight:normal;width: 580px;padding-left: 18px;height: 35px;line-height: 35px;background-color: #9FC2CB;color: #5091a1;}
+.portrait_right .compile ul{width: 100%;}
+.portrait_right .compile ul li h4{width: 199px;float: left;text-align: center;margin: 10px 0;font-size: 16px;font-weight: normal;}
+.portrait_right .compile ul li span{float:left;width: 199px;text-align: center;padding: 10px 0;font-size: 16px;font-weight: normal;border-bottom: 1px dashed #000;}

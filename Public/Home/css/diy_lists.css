@@ -1,0 +1,85 @@
+#main{width:1200px;overflow: hidden;margin:0 auto;margin-bottom:20px;}
+	#main .pin{width: 225px;height: auto;padding: 15px 0px 0px 15px;float: left;position: relative;}
+    #main .pin .box{width: 205px;height: auto;padding: 10px;background: #FFF;border: 1px solid #CCC;box-shadow: 0px 0px 6px #CCC;}
+    #main .pin .box img{width: 205px;}
+    .single_hide{position: absolute;top: 10px;z-index: 999;width: 100%;padding: 15px 0;display: none}
+    .pin:hover .single_hide{
+        display: block;
+    }
+    /*header start*/
+    .header{height: 40px;line-height:40px;background-color: #F9F9F9;width: 100%;border-bottom: 1px solid #F0F0F0;}
+    .header_left{width: 90px;border-left: 1px solid #F9F9F9;border-right: 1px solid #F9F9F9;padding: 0 10px;}
+    .header_right{width: 500px;position: relative;}
+    .header_right li{margin-left: 20px;float: right;}
+    .header_right li a{color: #999;}
+    .header_right .vip_name{width: 80px;background-color: #F9F9F9;text-align: center;display: none;}
+    .header_right .vip_name li{margin: 0;float: none;}
+    .header_right .vip_name li a:hover{color: #EFB26F;}
+    /*header end*/
+    
+    /*nav start*/
+    .nav{height: 130px;}
+    .nav_top{height: 80px;line-height:80px ;}
+    .nav_top form{width: 400px;margin-left: 300px;padding: 25px 0;}
+    .nav_top select{width: 75px;height: 30px;line-height: 30px;border: 1px solid #E5E5E5;background-color: #F9F9F9;color: #666;}
+    .nav_top input[type=text]{width: 240px;height: 28px;line-height: 30px;border: 1px solid #E5E5E5;border-left: 0;text-indent: 1em;}
+    .nav_top .nav_button{width:30px;height:30px;margin-left: 10px;background-image: url(img/index_seek.png);}
+    .nav_top .tb_app{display: block;width:60px;height:50px;line-height: 50px;font-size: 24px;border: 1px solid #e5e5e5;float: left;border-radius:10px;margin: 15px 20px 0 0;text-align: center;color: #e5e5e5;}
+    .nav .nav_one{height:50px;line-height:50px;padding-left: 5px;position: relative;}
+    .nav .nav_one li{float: left;margin-right:50px ;}
+    .nav .current{color: #79b6c8;}
+    .nav_free a{display:block;width: 150px;height: 50px;line-height: 50px;text-align: center;float: left;background-color: #79b6c8;margin-left: 1px;color: #fff;}
+    .nav_free a:hover{background-color: #81d8d0;}
+    /*nav end*/
+    
+    /*导航下拉*/
+    .nav_two_gl{width: 150px;background-color: #fff;position: absolute;top: 50px;left: 240px;display: none;opacity: 0.6;z-index: 99;}
+    .nav_two_gl li a,.nav_two_diy a{display: block;width: 150px;height: 150px;line-height: 220px;color: #FFF;text-align: center;}
+    .nav_two_diy{width: 150px;background-color: #fff;position: absolute;top: 50px;left: 450px;display: none;opacity: 0.6;z-index: 99;}  
+    /*下拉结束*/    
+    
+    /*城市定位*/
+    .dw_city{background-color: #F9F9F9;z-index: 99;position: absolute;top: 41px;display: none;border: 1px solid #F0F0F0;border-top: 0;}
+    .dw_city li{width: 200px;line-height: 20px;padding: 2px 0;}
+    .dw_city li h6{display: inline-block;text-align:center;width: 15%;height: 20px;text-align: center;}
+    .dw_city li label{width: 85%;}
+    .dw_city li a{margin-right: 10px;color: #999;}
+    .dw_city li a:hover{color: #79B6C8;}
+    #c_blue{color: #79B6C8;}
+    /*城市定位*/
+    
+#main .pin{width: 225px;height: auto;padding: 15px 0px 0px 15px;float: left;position: relative;}
+#main .pin .box{width: 205px;height: auto;padding: 10px;background: #FFF;border: 1px solid #CCC;box-shadow: 0px 0px 6px #CCC;}
+#main .pin .box img{width: 205px;}
+.single_hide{position: absolute;top: 10px;z-index: 999;width: 100%;padding: 15px 0}
+.hide_left{float: left;margin-left: 10px;}
+.hide_left a{display:block;width:   54px;height: 32px;line-height:32px;text-align:center;background-color: #79B6C8;color: #fff;border-radius: 5px;}
+.hide_right{float: right;margin-right: 23px;}
+.hide_right a{display:block;width: 30px;height: 20px;padding-top:10px;color: #fff;border:1px solid #C8C8C8;border-radius: 5px;}
+.hide_right a.zan_no{background: url(../Diy/images/zan_no.png) center no-repeat;background-color: #FAFAFA;}
+.hide_right a.zan_yes{background: url(../Diy/images/zan_yes.png) center no-repeat;background-color: #FAFAFA;}
+.zf_zan li{padding-left:15px;text-align: right;float: left;margin:10px 10px 10px 0;}
+.zf_zan .zf{background: url(../Diy/images/zf.png) left center no-repeat;}
+.zf_zan .zan{background: url(../Diy/images/zan_no.png) left center no-repeat;}
+.zf_zan li span{color: #999;}
+.user{margin:-10px;padding:15px;color: #999;border-top: 1px solid #ccc;background: #f3f3f3;}
+.user .tx{float: left;width: 34px;height: 34px;background-image: url(../Diy/images/tx.jpg);background-size:100% 100%;}
+.user_name{float: left;margin-left:10px;height: 34px;line-height: 1.5;}
+.user_name a{color: #9E7E6B;margin-right: 10px;}
+
+/*导航*/
+.diy_nav ul{margin-top: 20px;}
+.diy_nav ul li{float: left;}
+.diy_nav ul li a{display: inline-block;width: 185px;height: 98px;line-height:98px;text-align:center;margin-left: 15px;font-size: 22px;font-weight: bold;color: #fff;border-radius: 3px;}
+.diy_nav ul li a:hover{opacity: 0.8;}
+
+/*婚礼经纪人*/
+.quote{width: 198px;height:354px;border: 1px solid #d1d1d1;padding: 10px 15px;}
+.quote h3{font-size: 22px;text-align: center;padding:10px 0;}
+.quote p{margin: 5px auto;}
+.quote .clause{margin-top:20px;}
+.quote .clause input,span{vertical-align: middle;margin:0;}
+.quote input{margin: 5px 0;}
+.quote input[type=text]{width: 186px;height: 30px;line-height: 30px;border: 1px solid #E2E2E2;color:#999;padding-left:10px;}
+.quote select{width: 198px;height: 30px;line-height: 30px;border: 1px solid #E2E2E2;margin: 5px 0;color:#999;padding-left:6px;}
+.quote input[type=submit]{width: 198px;height: 35px;line-height: 35px;text-align: center;background-color: #79B6C8;color: #fff;border: 0;font-size:16px;}

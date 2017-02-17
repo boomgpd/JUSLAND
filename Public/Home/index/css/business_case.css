@@ -1,0 +1,44 @@
+/*body{background-image:url(../img/body_bg.jpg);background-size: 100% 100% ;}*/
+/*reset*/
+
+/*header start*/
+.header{height: 40px;line-height:40px;border-bottom: 2px solid #79B6C8;}
+.header .logo{width:155px;height:40px;float: left;}
+.header li{float: left;padding: 0 15px;}
+.header p{width: 300px;float: right;text-align:center;background-color: #79B6C8;}
+.header p a{color: #fff;padding: 0 15px;}
+.header p span{color: #fff;padding: 0 15px;}
+/*header end*/
+
+/*nav start*/
+.nav{width:100%;height: 40px;line-height:40px;background-color: #79B6C8;}
+.nav li{float: left;padding: 0 5px;color: #fff;}
+.nav li a{color: #fff;}
+/*nav end*/
+
+/*reserve start*/
+.reserve{margin:70px auto;width: 1200px;}
+.reserve_left{width: 270px;border: 1px solid #E0E0E0;padding: 15px;}
+.reserve_left h5{font-size: 14px;font-weight: normal;}
+.reserve_left .grade{margin: 10px 0;}
+.reserve_left .grade span{margin: 0 3px;}
+.reserve_left a{display: block;width: 268px;height: 48px;line-height:48px;background-color: #79B6C8;text-align: center;font-size: 14px;color: #fff;border-radius: 5px;}
+.reserve_right{width: 790px;border: 1px solid #E0E0E0;padding: 10px 30px;}
+.reserve_right p{width: 90px;height: 110px;line-height:110px;float: left;font-size: 18px;text-align: center;}
+.reserve_right dl{float: left;margin: 0 24px;}
+.reserve_right dd{margin-top: 2px;}
+.reserve_right dd a:hover{color:#79B6C8;}
+/*reserve end*/
+
+/*footer start*/
+.footer{width: 100%;background-color: #fff;height: 300px;color:#b7b7b7;}
+.footer_top{height: 150px;border:1px solid #e0e0e0;border-bottom: 0;}
+.footer_chaining{width: 678px;height:77px;margin-top:54px;margin-left:35px;background-image: url(../img/business_case//index_footer.png);}
+.footer_chaining li a{width: 95px;float: left;margin-top:35px ;color: #fff;}
+.footer_vx{width: 250px;height: 150px;padding: 0 100px;}
+.footer_vx dl{float: left;}
+.footer_vx dt{width: 100px;text-align: center;margin: 25px 0 10px;}
+.footer_bottom{height: 100px;text-align: center;padding: 25px 0;border:1px solid #e0e0e0;border-top: 0;}
+.footer_bottom p{margin: 10px 0;}
+.footer_bottom p a{color: #b7b7b7;}
+/*ffooter end*/

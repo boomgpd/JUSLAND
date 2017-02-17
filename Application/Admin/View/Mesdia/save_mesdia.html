@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+
+	<link rel="stylesheet" href="__PUBLIC__/Admin/minti/css/bootstrap.min.css" />
+	<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor1_4_3/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor1_4_3/ueditor.all.min.js"> </script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor1_4_3/lang/zh-cn/zh-cn.js"></script>
+	
+	<style type="text/css">
+		/*去掉uploadify上传按钮的边框*/
+	    .uploadify-button {
+	        background-color: transparent;
+	        border: none;
+	        padding: 0;
+	    }
+	    .uploadify:hover .uploadify-button {
+	        background-color: transparent;
+    	}
+    	.hide{
+    		display: none;
+    	}
+    	body{
+    		margin-bottom: 100px;
+    	}
+    	li{
+    		list-style: none;
+    	}
+    	#uploadList li{
+    		position: relative;
+    	}
+    	#uploadList li span{
+    		display: block;
+    		width: 25px;
+    		height: 15px;
+    		font-family: "微软雅黑";
+    		font-size: 14px;
+    		background: indianred;
+    		color: white;
+    		line-height: 15px;
+    		font-weight: 700;
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+    	#uploadLists li{
+    		position: relative;
+    	}
+    	#uploadLists li span{
+    		display: block;
+    		width: 25px;
+    		height: 15px;
+    		font-family: "微软雅黑";
+    		font-size: 14px;
+    		background: indianred;
+    		color: white;
+    		line-height: 15px;
+    		font-weight: 700;
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+    	#uploadLista li{
+    		position: relative;
+    	}
+    	#uploadLista li span{
+    		display: block;
+    		width: 25px;
+    		height: 15px;
+    		font-family: "微软雅黑";
+    		font-size: 14px;
+    		background: indianred;
+    		color: white;
+    		line-height: 15px;
+    		font-weight: 700;
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+	</style> 
+	
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span12">
+
+	<form action="" method='post' enctype="multipart/form-data">
+		<fieldset>
+				<legend>添加媒体案例</legend>
+			<table class='table table-bordered table-hover'>
+				<thead>
+					<tr>
+						<th colspan="2" class="btn btn-primary">添加基本信息</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info">
+						<td>左侧标题</td>
+						<td>
+							<input type="text" name="left_easy_title" id="" value="{$arr['box']['left_easy_title']}" style="width: 40%;"/>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>左侧标题内容</td>
+						<td>
+							<textarea name="left_easy_content" rows="5" cols="" style="width: 40%;">{$arr['box']['left_easy_content']}</textarea>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>右侧大标题</td>
+						<td>
+							<input type="text" name='right_main_title' value="{$arr['box']['right_main_title']}" style="width: 40%;" />
+						</td>
+					</tr>
+					<tr class="info">
+						<td>右侧小标题</td>
+						<td>
+							<input type="text" name='right_des_title' value="{$arr['box']['right_des_title']}" style="width: 40%;" />
+						</td>
+					</tr>
+					<tr class="info">
+						<td>右侧标题内容</td>
+						<td>
+							<script id="one" type="text/plain" style="width:70%;height:300px;" name="article_content"  >{$arr['box']['article_content']}</script>
+				        	<script>
+				            	var ue = UE.getEditor('one');
+				        	</script>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>关键词</td>
+						<td>
+							<input type="hidden" name="new_word_id"  value="{$_GET['new_word_id']}" />
+							<input type="text" name='keyword' value="{$arr['box']['keyword']}" placeholder="输入关键词用#号分割" style="width: 40%;" />
+						</td>
+					</tr>
+					<tr class="info">
+						<td>关键词</td>
+						<td>
+							<input type="text" name='show_title' value="{$arr['box']['show_title']}"  style="width: 40%;" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class='table table-bordered'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">图片上传（大版纳）</th>
+				</tr>
+				<tr class="info">
+					<td style="width: 100px;">上传图片</td>
+					<td lab="uploadFile">
+						<input type="file" name='pic' id='pic'/>
+					    <script type="text/javascript">
+					        $(function() {
+					            $('#pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png;*.gif;*.jpeg;',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('common/upload',array('name'=>mesdia))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='top_big_bananer[]' value='"+imageUrl+"'/></li>";
+					                    $("#uploadList").html(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td id="uploadList">
+							<li style='float: left;'>
+								<img style='height: 100px;' src='__UPLOAD__{$arr['box']['top_big_bananer'][0]}'/>
+								<span>X</span>
+								<input type='hidden' name='top_big_bananer[]' value='{$arr['box']['top_big_bananer'][0]}'/>
+							</li>
+						</foreach>
+					</td>
+				</tr>
+			</table>
+			
+			<table class='table table-bordered'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">图片上传（小版纳）</th>
+				</tr>
+				<tr class="info">
+					<td style="width: 100px;">上传图片</td>
+					<td lab="uploadFile">
+						<input type="file" name='src' id='src'/>
+					    <script type="text/javascript">
+					        $(function() {
+					            $('#src').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png;*.gif;*.jpeg;',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('common/upload',array('name'=>mesdia))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='middel_small_bananer[]' value='"+imageUrl+"'/></li>";
+					                    $("#uploadLists").html(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td id="uploadLists">
+						<li style='float: left;'>
+							<img style='height: 100px;' src='__UPLOAD__{$arr['box']['middel_small_bananer'][0]}'/>
+							<span>X</span>
+							<input type='hidden' name='middel_small_bananer[]' value='{$arr['box']['middel_small_bananer'][0]}'/>
+						</li>
+					</td>
+				</tr>
+			</table>	
+			
+			<table class='table table-bordered'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">图片上传（小版纳）</th>
+				</tr>
+				<tr class="info">
+					<td style="width: 100px;">上传图片</td>
+					<td lab="uploadFile">
+						<input type="file" name='src' id='url'/>
+					    <script type="text/javascript">
+					        $(function() {
+					            $('#url').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png;*.gif;*.jpeg;',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('common/upload',array('name'=>mesdia))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='list_img[]' value='"+imageUrl+"'/></li>";
+					                    $("#uploadLista").html(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td id="uploadLista">
+						<li style='float: left;'>
+							<img style='height: 100px;' src='__UPLOAD__{$arr['box']['list_img'][0]}'/>
+							<span>X</span>
+							<input type='hidden' name='list_img[]' value='{$arr['box']['list_img'][0]}'/>
+						</li>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+		</fieldset>
+	</form>
+
+	</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+//			给图片添加单机事件
+			$("#uploadList li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+//			给图片添加单机事件
+			$("#uploadLists li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			//			给图片添加单机事件
+			$("#uploadLista li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+//			给显示数量添加change事件
+			$("input[name = show_num]").change(function(){
+				var num = $(this).val();
+				if(num>5){
+					alert('最大显示数量为5');
+					$(this).val(5);
+				}else if(num<1){
+					alert('最小显示数量为1');
+					$(this).val(1);
+				}
+			})
+			
+
+			//给分类添加change事件
+			$("#type_tid").change(function(){
+				var type_tid = $(this).val();
+				//发送异步获取对应标签
+				$.ajax({
+					type:"post",
+					url:"{:U('picture/getLables')}",
+					data:{type_tid:type_tid},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata){
+							var str = '';
+							$.each(phpdata, function(k,v) {
+							str += '<input class="custom-checkbox" type="checkbox" data-toggle="checkbox" value="'+ v.lid +'" style="margin-right: 8px;margin-left: 8px;" name="lables[]">'+ v.lname;
+							});
+							
+							$("#lables").html(str);
+						}else{
+							str = '请选择对应分类';
+							$("#lables").html(str);
+						}
+					}
+				});
+			});
+	</script>
+</body>
+</html>

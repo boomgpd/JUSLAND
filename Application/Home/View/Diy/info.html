@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>嘉仕澜德——DIY婚礼——人物选择</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Diy/css/diy_list.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Diy/css/reset.css"/>
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+	</head>
+	<body>
+		<include file="Common/alert_view_style" />
+		<!--照片文字信息 start-->
+		<div class="w">
+			<div class="diy_list_name clearfix">
+				<div class="diy_list_img fl">
+					<img src="__UPLOAD__/{$data['portrait']}" width="530px" height="600px"/>
+				</div>
+				<ul class="diy_list_details fl" diy_marrier_id="{$data['diy_marrier_id']}" table="collect">
+					<li><label>编号：</label><span>{$data['number']}</span></li>
+					<li><label>年龄：</label><span><?php echo date('Y')-$data['age'] ?>岁</span></li>
+					<li><label>从业经验：</label><span>{$data['experience']}</span></li>
+					<li><label>市场价：</label><span>￥{$data['market_price']}</span></li>
+					<li><label>嘉仕澜德：</label><span>￥{$data['price']}</span></li>
+					<in name="data['diy_marrier_id']" value="$collect">
+					<a href="javascript:;" class="details_btn_2 collect" action='del'>取消收藏</a>
+					<else/>
+					<a href="javascript:;" class="details_btn_2 collect" action='add'>收藏婚礼人</a>
+					</in>
+					<a href="#" class="details_btn_1">联系经纪人</a>
+				</ul>
+				<script type="text/javascript">
+					$(function(){
+						$('.collect').click(function(){
+							var id = $(this).parent('ul').attr('diy_marrier_id');
+							var action = $(this).attr('action');
+							var table = $(this).parent('ul').attr('table');
+							This = $(this);
+							if(action == 'add'){
+								var msg = '收藏';
+								var html = '取消收藏';
+								var cut = 'del';
+							}else{
+								var msg = '取消收藏';
+								var html = '收藏婚礼人';
+								var cut = 'add';
+							};
+							$.ajax({
+								url: '{:U("Home/Diy/deal")}',
+								type: 'post',
+								dataType: 'text',
+								data: {id:id,action:action,table:table},
+								success:function(phpData){
+									if(phpData == 'no_login'){
+										window.wxc.xcConfirm('请先登录再操作', window.wxc.xcConfirm.typeEnum.error);
+										return false;
+									};
+									if(phpData){
+										window.wxc.xcConfirm(msg+'成功', window.wxc.xcConfirm.typeEnum.success);
+										This.attr('action',cut).html(html);
+									}else{
+										window.wxc.xcConfirm(msg+'失败', window.wxc.xcConfirm.typeEnum.error);
+									};
+								}
+							});
+						})
+					})
+				</script>
+			</div>
+		</div>
+		<!--照片文字信息 end-->
+		
+		<!--详细信息介绍 start-->
+		<div class="diy_list_recommend clearfix">
+			<div class="recommend_left fl">
+				<h3>热门推荐</h3>
+				<foreach name="chooseData" item="v">
+				<dl>
+					<a href="{:U('info',array('id'=>$v['diy_marrier_id']))}"><dt><img src="__PUBLIC__/Home/Diy/img/diy_list_03.jpg"></dt></a>
+					<dd>编号{$v.number}</dd>
+				</dl>
+				</foreach>
+			</div>
+			<div class="recommend_right fr">
+				<div class="text">
+					<h3>详细介绍</h3>
+					<div>
+						<foreach name="data['remark']" item="v">
+							<p>{$v}</p>
+						</foreach>
+					</div>
+				</div>
+				<div class="opus">
+					<h3>作品展示</h3>
+					<ul>
+						<if condition="!empty($data['showed'][0])">
+						<foreach name="data['showed']" item="v">
+							<li><img src="__UPLOAD__/{$v}" width="700px" height="400px"></li>
+						</foreach>
+						</if>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--详细信息介绍 end-->
+	</body>
+</html>

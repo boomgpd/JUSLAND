@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>商家个人主页</title>
+		<link rel="stylesheet" href="__PUBLIC__/Merchant/css/style.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Merchant/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Merchant/css/bootstrap_lb.css" />
+		<script src="__PUBLIC__/Merchant/js/jquery.min.js"></script>
+		<style type="text/css">
+			.dian{position: relative;left:-80px;}
+			.dian:hover{color: red;}
+		</style>
+	</head>
+
+<body style="Font-size:62.5% ;">
+	<include file="Common/header_two" />
+		<!--导航_start-->
+		<nav class="w">
+			<a href="{:U('index/index')}" class="logo" style="padding-right: 15px;border-right: 2px solid #C13C3D;"><img src="__PUBLIC__/Merchant/img/logo_01.png" width="98%" height="95px"></a>
+			<a href="#" class="logo" style="margin-left: 15px;"><img src="__UPLOAD__{$data['merchant_message']['logo_fang']}" width="98%" height="95px"></a>
+			<ul class="clearfix fr">
+				<li>
+					<a href="#" class="current">店铺首页</a>
+				</li>
+				<li>
+					<a href="#">嘉仕澜德</a>
+				</li>
+				<li>
+					<a href="#">嘉仕澜德</a>
+				</li>
+				<li>
+					<a href="#">嘉仕澜德</a>
+				</li>
+				<li>
+					<a href="#">嘉仕澜德</a>
+				</li>
+			</ul>
+		</nav>
+		<!--导航_end-->
+
+		<!--轮播广告_start-->
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<foreach name="bananer" item='v' key='k'>
+					<if condition="$k eq 0">
+						<li data-target="#carousel-example-generic" data-slide-to="{$k}" class="active"></li>
+						<else />
+						<li data-target="#carousel-example-generic" data-slide-to="{$k}"></li>
+					</if>
+				</foreach>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				<foreach name="bananer" item='v' key='k'>
+					<if condition="$k eq 0">
+						<div class="item active">
+							<a href="{$v['url']}"><img src="__UPLOAD__{$v['pic_src']}" alt="..."></a>
+							<div class="carousel-caption">
+
+							</div>
+						</div>
+						<else />
+						<div class="item">
+							<a href="{$v['url']}"><img src="__UPLOAD__{$v['pic_src']}" alt="..."></a>
+							<div class="carousel-caption">
+
+							</div>
+						</div>
+					</if>
+				</foreach>
+			</div>
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+		<!--轮播广告_end-->
+
+		<!--公司简介_start-->
+		<div class="intro w clearfix">
+			<div class="intro_left fl" style="margin-left: 90px;"> 
+				<video width="450" height="280" autoplay controls="controls">
+					<source src="__PUBLIC__/{$video['video_src']}" type="video/mp4" />
+				</video>
+			</div>
+			<div class="intro_right fr" style="margin-right: 90px;">
+				<div class="intro_right_support clearfix">
+					<ul class="fl">
+						<li style="background: url(__PUBLIC__/Merchant/img/intro_tb_01.png) no-repeat;">支持免费参观<img src="__PUBLIC__/Merchant/img/intro_dyh.png"></li>
+						<li style="margin: 30px 0;background: url(__PUBLIC__/Merchant/img/intro_tb_02.png) no-repeat;">支持满意后付款<img src="__PUBLIC__/Merchant/img/intro_dyh.png"></li>
+						<li style="background: url(__PUBLIC__/Merchant/img/intro_tb_03.png) no-repeat;">支持先行赔付<img src="__PUBLIC__/Merchant/img/intro_dyh.png"></li>
+					</ul>
+					<ol class="fr">
+						<h3>动态评分</h3>
+						<li>设计水平<img src="__PUBLIC__/Merchant/img/grade_01.png">5.0</li>
+						<li>服务质量<img src="__PUBLIC__/Merchant/img/grade_01.png">5.0</li>
+						<li>婚礼质量<img src="__PUBLIC__/Merchant/img/grade_01.png">5.0</li>
+					</ol>
+				</div>
+				<div class="intro_right_word">
+					<h3>公司简介</h3>
+					<p style="text-indent: 2rem;">{$data['merchant_message']['company_des']}</p>
+				</div>
+				<div class="intro_right_btn">
+					<a href="javascript:;">免费申请预约</a>
+					<span>预约电话：<b>400-188-8888</b></span>
+				</div>
+			</div>
+		</div>
+		<!--公司简介_end-->
+		<script>
+		window.onload = function(){
+			var left = (document.body.clientWidth - 520)/2;
+			var top =  ($(window).height() - 440)/2;
+			$(".collection").css({"left":left,"top":top});
+		}	   
+	</script>
+		<!--弹框-->
+			<div class="content8" style="width: 100%;height: 100%;background: #000000;opacity: 0.5;position: fixed;top:0;left:0;display: none;z-index: 100;"></div>
+			<div class="collection" style="position: fixed;display: none;z-index: 101;">
+				<form action="" method="post">
+					<ul>
+						<li><label>姓名</label><input type="text" name="member_name"></li>
+						<li><label>联系电话</label><input type="text" name="phone"></li>
+						<input type="hidden" name="b_name" value="预约看店案例大" />
+						<li><input type="submit" value="立即申请"/></li>
+					</ul>			
+				</form>
+				<a href="javascript:;" class="login_close"><img src="__PUBLIC__/Home/Merchant/images/case/login_close.png"></a>
+			</div>
+		<!--弹框-->
+		<script>
+			window.onload = function(){
+				var left = (document.body.clientWidth - 520)/2;
+				var top =  ($(window).height() - 440)/2;
+				$(".collection").css({"left":left,"top":top});
+			}	   
+		</script>
+		<script type="text/javascript">
+			$('.intro_right_btn a').click(function(){
+				$('.collection').show();9
+			})
+			$('.login_close').click(function(){
+				$('.content8').hide();
+				$('.collection').hide();
+			})
+		</script>
+
+		<!--案例展示_start-->
+		<div class="case w">
+			<p class="recommend_title">{$data['merchant']['m_name']} - 案例展示</p>
+			<img src="__PUBLIC__/Merchant/img/recommend_01.png" class="recommend_hx">
+			<div>
+				<div class="calse_gb clearfix">
+					<dl>
+						<dt><img src="__UPLOAD__{$data['merchant_message']['logo_yuan']}"></dt>
+						<dd>
+							<b>{$data['merchant']['m_name']}</b>
+							<p>{$data['merchant_message']['company_des']}</p>
+						</dd>
+						<!--<dd>
+							<a href="#" class="case_all">查看全部</a>
+							<span class="case_classics">经典案例 →</span>
+						</dd>-->
+					</dl>
+					<div class="flexslider">
+						<ul class="slides">
+							<foreach name="data['merchant_case']" item="v" key='k'>
+								<li>
+									<a href="{:U('merchant/case_show',array('id'=>$v['merchant_case_id']))}" target="_blank" style="background-image:url(__UPLOAD__{$v['img_url'][0]});background-size: 100% 100%;"></a>
+								</li>
+							</foreach>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--案列展示_end-->
+
+		<!--婚礼蛋糕_start-->
+		<div class="team w ">
+			<ul class="clearfix" style="overflow: hidden;">
+				<foreach name="data['merchant_combo']" item='v' key='k'>
+					<if condition="$v['is_show'] eq 1">
+						<a href="{:U('combo_show',array('combo_id'=>$v['merchant_combo_id']))}">
+							<li class="team_img">
+								<img src="__UPLOAD__{$v['img_url'][0]}">
+								<div class="team_text">
+									<b>{$v['title']}</b>
+									<p></p>
+								</div>
+							</li>
+						</a>
+					</if>
+				</foreach>
+			</ul>
+		</div>
+		<!--婚礼蛋糕_end-->
+
+		<!--商家广告/为什么选择我们 _start-->
+		<div style="margin: 10px 0;">
+			<a href="{$adver['adver_url']}"><img src="__UPLOAD__{$adver['pic_src']}" width="100%"></a>
+		</div>
+
+		<!--评论开始-->
+		<div class="comment" style="position: relative;">
+			<div class="new_remark clearfix">
+				<span>新人点评<label>（{$remark_num}）</label></span>
+				<a class="dian" href="{:U('remark_on',array('merchant_id'=>$data['merchant_message']['merchant_id']))}">点评</a>
+				<a href="#">更多 >></a>
+			</div>
+
+			<foreach name="data['merchant_remark']" item='v' key='k'>
+				<div class="remark clearfix">
+					<div class="remark_left">
+						<p>{$v['member_name']}</p>
+					</div>
+					<div class="remark_right">
+						<dl>
+							<dt>
+								<label>{$v['service_type']}</label>
+								<span>搭建空间：
+									<for start="0" end="$v['space_num']">
+										<img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png">
+									</for>
+								</span>
+								<span>服务：
+									<for start="0" end="$v['star_num']">
+										<img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png">
+									</for>
+								</span>
+							</dt>
+							<dd>
+								<p>{$v['content']}</p>
+							</dd>
+							<dd>
+								<foreach name="v['list_img']" item='vv' key='kk'>
+									<if condition="$vv neq ''">
+										<img class="small" src="__UPLOAD__{$vv}" height="100px">
+									</if>
+								</foreach>
+							</dd>
+							<dd style="margin-top: 15px;">2016.08.15 14:09:36</dd>
+						</dl>
+						<ul class="replay">
+							<li><label>商家回复</label></li>
+							<li>
+								<p>{$v['replay_content']}</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</foreach>
+		</div>
+		<!--问答时刻-->
+		<div class="question" style="position: relative;">
+			<div class="question_top clearfix">
+				<span>商户问答</span>
+				<a href="#">更多>></a>
+			</div>
+			<div class="question_center">
+				<foreach name="data['merchant_discuss']" item='v' key='k'>
+					<ul>
+						<li><span>{$v['member_name']}</span>{$v['addtime']}</li>
+						<li>
+							<p>{$v['question_content']}</p>
+						</li>
+						<if condition="$v['replay_content']">
+							<li><span style="color: #EFB26F;;">商户回答</span>{$v['replay_time']}</li>
+							<li>
+								<p>{$v['replay_content']}</p>
+							</li>
+						</if>
+					</ul>
+				</foreach>
+			</div>
+			<div class="question_bottom">
+				<if condition="$_SESSION['member_id']">
+					<p>如果您有任何疑问，请点击
+						<a href="javascript:;" class="apply_question">提问</a>。</p>
+					<else />
+					<p>想要向商家提问，请先
+						<a href="{:U('home/login/login')}">登录</a>或
+						<a href="{:U('home/registe/registe')}">注册</a>。</p>
+				</if>
+			</div>
+			<div class="question_content">
+				<h5>我要提问</h5>
+				<form action="{:U('apply_question')}" method="post">
+					<textarea name="question_content" rows="" cols="" placeholder="请在这里留下您对商户的疑问，我们会为您解答～～"></textarea>
+					<input type="hidden" name="merchant_id" value="{$data['merchant']['merchant_id']}" />
+					<button type="button" class="discuss">发表</button>
+				</form>
+			</div>
+		</div>
+
+		<!--问答时刻-->
+		<!--评论结束-->
+	<include file="Common/bottom" />	
+</body>
+
+	<script src="__PUBLIC__/Merchant/js/bootstrap.min.js"></script>
+	<script src="__PUBLIC__/Merchant/js/jquery.goup.min.js"></script>
+	<script src="__PUBLIC__/Merchant/js/jquery.flexslider-min.js"></script>
+	<script src="__PUBLIC__/Merchant/js/Validform_v5.3.2_min.js"></script>
+	<script type="text/javascript">
+		//返回顶部
+		$(document).ready(function() {
+			$.goup({
+				trigger: 500,
+				bottomOffset: 10,
+				locationOffset: 10,
+				title: '',
+				titleAsText: true
+			});
+		});
+	</script>
+
+	<script>
+		//案例小轮播
+		$(document).ready(function() {
+			$('.flexslider').flexslider({
+				directionNav: true,
+				pauseOnAction: false
+			});
+		});
+	</script>
+
+	<!--<script>
+		//预约弹出框
+		$(function() {
+				$(document).on('click', '.intro_right_btn a', function() {
+					$('.tk_layer').show();
+				})
+				$(document).on('click', '.tk_close', function() {
+					$('.tk_layer').hide();
+				})
+			})
+			//表单验证
+		$(function() {
+			//$(".registerform").Validform();  //就这一行代码！;		
+			$(".registerform").Validform({
+				btnSubmit: ".submit",
+			});
+		})
+	</script>-->
+	<script type="text/javascript">
+		$(".apply_question").click(function(){
+			$(this).parents('.question_bottom').css('display','none');
+			$(".question_content").css('display','block');
+		})
+	
+	
+		$(".question_content form textarea").focus(function(){
+			$(this).stop().animate({height:"80px"},800);
+		})
+		
+		
+		$(".question_content form textarea").blur(function(){
+			$(this).stop().animate({height:"20px"},800);
+		})
+		
+		$("button.discuss").click(function(){
+			var data = {
+				'merchant_id' : $(this).siblings('input[name=merchant_id]').val(),
+				'question_content' : $(this).siblings('textarea').val(),
+			};
+			if(!data.question_content){
+				alert('请先输入问题');
+			}else{
+				$.ajax({
+					type:"post",
+					url:"{:U('apply_question')}",
+					data:data,
+					dataType:'json',
+					success:function(phpdata){
+						alert('提问成功');
+						location.reload([true]);   
+					}
+				});
+			}
+			
+		})
+	</script>
+</html>

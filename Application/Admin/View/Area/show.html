@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="100">序号</th>
+			  <th>地区名称</th>
+			  <th>添加时间</th>
+			  <th width="300" style="text-align: center">操作</th>
+			</tr>
+			
+			<foreach name='data' item='v' key='k'>
+				<tr>
+					<td>{$k+1}</td>
+					<td><input type="text"  id="aname" value="{$v['aname']}" area_id="{$v['area_id']}"/></td>
+					<td>{$v['addtime']}</td>
+					<td>
+						<if condition="$v['type'] neq 3 ">
+							<a href="{:U('show',array('pid'=>$v['area_id']))}" class="btn btn-sm btn-primary">查看子类</a>
+						</if>
+						<a href="javascript:;"  class="btn btn-sm btn-warning edit">编辑</a>
+						<a href="javascript:;"  area_id="{$v['area_id']}" class="btn btn-sm btn-danger del">删除</a>
+					</td>
+				</tr>
+			</foreach>
+			
+			<script type="text/javascript">
+	    	$(".edit").click(function(){
+	    		var aname = $(this).parents('tr').find('#aname').val();
+	    		var area_id   = $(this).parents('tr').find('#aname').attr('area_id');
+	    		$.ajax({
+	    			type:"post",
+	    			url:"{:U('admin/area/edit')}",
+	    			data:{aname:aname,area_id:area_id},
+	    			dataType:'text',
+	    			success:function(phpdata){
+	    				alert(phpdata);
+	    			}
+	    		});
+	    	});
+	    	
+	    	$(".del").click(function(){
+	    		var area_id   = $(this).attr('area_id');
+	    		var This = $(this);
+	    		$.ajax({
+	    			type:"post",
+	    			url:"{:U('admin/area/del')}",
+	    			data:{area_id:area_id},
+	    			dataType:'text',
+	    			success:function(phpdata){
+	    				if(phpdata=='删除成功'){
+	    					This.parents('tr').remove();
+	    				}
+	    				alert(phpdata);
+	    			}
+	    		});
+	    	});
+	    </script>
+		</table>
+	</body>
+</html>

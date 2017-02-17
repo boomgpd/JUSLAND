@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <style type="text/css">
+		/*去掉uploadify上传按钮的边框*/
+	    .uploadify-button { background-color: transparent;border: none;padding: 0;}
+	    .uploadify:hover .uploadify-button {background-color: transparent;}
+    	.hide{display: none;}
+    	body{margin-bottom: 100px;}
+    	li{list-style: none;}
+    	#uploadList li{position: relative;}
+    	#uploadList li span{display: block;width: 25px;height: 15px;font-family: "微软雅黑";font-size: 14px;
+    		background: indianred;color: white;line-height: 15px;font-weight: 700;position: absolute;top: 0;
+    		right: 0;text-align: center;cursor: pointer;}
+    	#uploadListb li{position: relative;}
+    	#uploadListb li span{display: block;width: 25px;height: 15px;font-family: "微软雅黑";font-size: 14px;
+    		background: indianred;color: white;line-height: 15px;font-weight: 700;position: absolute;top: 0;
+    		right: 0;text-align: center;cursor: pointer;}
+    	#uploadListz li{position: relative;}
+    	#uploadListz li span{display: block;width: 25px;height: 15px;font-family: "微软雅黑";font-size: 14px;
+    		background: indianred;color: white;line-height: 15px;font-weight: 700;position: absolute;top: 0;
+    		right: 0;text-align: center;cursor: pointer;}
+    	#uploadListd li{position: relative;}
+    	#uploadListd li span{display: block;width: 25px;height: 15px;font-family: "微软雅黑";font-size: 14px;
+    		background: indianred;color: white;line-height: 15px;font-weight: 700;position: absolute;top: 0;
+    		right: 0;text-align: center;cursor: pointer;}
+	</style> 
+	<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	window.onload = function(){
+		$(".butt1").click(function(){$('.img1').show();$('.img2').hide();$('.img3').hide();$('.img4').hide();})
+		$(".butt2").click(function(){$('.img1').hide();$('.img2').show();$('.img3').hide();$('.img4').hide();})
+		$(".butt3").click(function(){$('.img1').hide();$('.img2').hide();$('.img3').show();$('.img4').hide();})
+		$(".butt4").click(function(){$('.img1').hide();$('.img2').hide();$('.img3').hide();$('.img4').show();})
+	}
+	</script>
+	</head>
+	<body>
+		<div class="alert alert-success">选择首页推荐方式</div>
+			<div style="margin-left: 120px;">
+				<button class="butt1" style="background: #F0C040;border: 0px;width: 200px;height: 50px;">
+					添加轮播<span style="font-size: 15px;">(*最多四个)</span>
+				</button>
+				<button class="butt2" style="background: #A1B6C2;border: 0px;width: 200px;height: 50px;">
+					添加专题<span style="font-size: 15px;">(*最多四个)</span>
+				</button>
+				<button class="butt3" style="background: #B1E2DE;border: 0px;width: 200px;height: 50px;">
+					添加右侧大图<span style="font-size: 15px;">(*最多一个)</span>
+				</button>
+				<button class="butt4" style="background: #D083F1;border: 0px;width: 200px;height: 50px;">
+					添加右侧小图<span style="font-size: 15px;">(*最多一个)</span>
+				</button>
+			</div>
+<!---------------------------------------------------------------------------------------------------------------------------------------->			
+		<form action="" method='post' style="display: block;" class="img1">
+			<div class="input">
+				<input type="hidden" name="new_id" value="" />
+				<input type="hidden" name="news_type" value="" />
+			</div>
+			<input type="hidden" name="is_bananer" value="1" />
+			<fieldset>
+				<legend>添加轮播图</legend>
+				<table class='table table-bordered'>
+					<tr><th colspan="3" class="btn btn-primary">图片上传</th></tr>
+					<tr class="info">
+						<td style="width: 100px;">上传图片</td>
+						<td lab="uploadFile"><input type="file" name='bananer' id='bananer'/></td>
+						<script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+						<script type="text/javascript">
+					        $(function(){
+					            $('#bananer').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'system'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='img_src' value='"+imageUrl+"'/></li>";
+					                    $("#uploadListb").html(li);
+					                }
+					            });
+					        })
+					    </script>
+						<td id="uploadListb"></td>
+					</tr>
+					<tr  class="info">
+						<td>选择类型</td><td>
+							<button class="but" type="button" del="1" style="background: #F0C040;border: 0px;width: 220px;height: 30px;">文字新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+							<button class="but" type="button" del="2" style="background: #A1B6C2;border: 0px;width: 220px;height: 30px;">图文新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+							<button class="but" type="button" del="3" style="background: #B1E2DE;border: 0px;width: 220px;height: 30px;">视频新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+						</td><td></td>
+					</tr>
+				</table>
+				<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+			</fieldset>
+		</form>
+<!---------------------------------------------------------------------------------------------------------------------------------------->			
+		<form action="" method='post' style="display: none;" class="img2">
+			<div class="input">
+				<input type="hidden" name="new_id" value="" />
+				<input type="hidden" name="news_type" value="" />
+			</div>
+			<input type="hidden" name="is_special" value="1" />
+			<fieldset>
+				<legend>添加专题</legend>
+				<table class='table table-bordered'>
+					<tr><th colspan="3" class="btn btn-primary">图片上传</th></tr>
+					<tr class="info">
+						<td>简易描述</td>
+						<td><input type="text" name="title" " placeholder="请输入描述内容" /></td><td></td>
+					</tr>
+					<tr class="info">
+						<td style="width: 100px;">上传图片</td>
+						<td lab="uploadFile"><input type="file" name='zhuan' id='zhuan'/></td>
+						<script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+						<script type="text/javascript">
+					        $(function(){
+					            $('#zhuan').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'system'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='img_src' value='"+imageUrl+"'/></li>";
+					                    $("#uploadListz").html(li);
+					                }
+					            });
+					        })
+					    </script>
+						<td id="uploadListz"></td>
+					</tr>
+					<tr  class="info">
+						<td>选择类型</td><td>
+							<button class="but" type="button" del="1" style="background: #F0C040;border: 0px;width: 220px;height: 30px;">文字新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+							<button class="but" type="button" del="2" style="background: #A1B6C2;border: 0px;width: 220px;height: 30px;">图文新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+							<button class="but" type="button" del="3" style="background: #B1E2DE;border: 0px;width: 220px;height: 30px;">视频新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+						</td><td></td>
+					</tr>
+				</table>
+				<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+			</fieldset>
+		</form>
+<!---------------------------------------------------------------------------------------------------------------------------------------->			
+		<form action="" method='post' style="display: none;" class="img3">
+			<div class="input">
+				<input type="hidden" name="new_id" value="" />
+				<input type="hidden" name="news_type" value="" />
+			</div>
+			<input type="hidden" name="is_height" value="1" />
+			<fieldset>
+				<legend>添加右侧大图</legend>
+				<table class='table table-bordered'>
+					<tr><th colspan="3" class="btn btn-primary">图片上传</th></tr>
+					<tr class="info">
+						<td style="width: 100px;">上传图片</td>
+						<td lab="uploadFile"><input type="file" name='d_pic' id='d_pic'/></td>
+						<script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+						<script type="text/javascript">
+					        $(function(){
+					            $('#d_pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'system'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='img_src' value='"+imageUrl+"'/></li>";
+					                    $("#uploadListd").html(li);
+					                }
+					            });
+					        })
+					    </script>
+						<td id="uploadListd"></td>
+					</tr>
+					<tr  class="info">
+						<td>选择类型</td><td>
+							<button class="but" type="button" del="1" style="background: #F0C040;border: 0px;width: 220px;height: 30px;">文字新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+							<button class="but" type="button" del="2" style="background: #A1B6C2;border: 0px;width: 220px;height: 30px;">图文新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+							<button class="but" type="button" del="3" style="background: #B1E2DE;border: 0px;width: 220px;height: 30px;">视频新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+						</td><td></td>
+					</tr>
+				</table>
+				<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+			</fieldset>
+		</form>
+<!---------------------------------------------------------------------------------------------------------------------------------------->			
+		<form action="" method='post' style="display: none;" class="img4 ">
+			<div class="input">
+				<input type="hidden" name="new_id" value="" />
+				<input type="hidden" name="news_type" value="" />
+			</div>
+			<input type="hidden" name="is_lack" value="1" />
+			<fieldset>
+				<legend>添加右侧小图</legend>
+				<table class='table table-bordered'>
+					<tr><th colspan="3" class="btn btn-primary">图片上传</th></tr>
+					<tr class="info">
+						<td style="width: 100px;">上传图片</td>
+						<td lab="uploadFile"><input type="file" name='pic' id='pic'/></td>
+						<script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+						<script type="text/javascript">
+					        $(function(){
+					            $('#pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'system'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='img_src' value='"+imageUrl+"'/></li>";
+					                    $("#uploadList").html(li);
+					                }
+					            });
+					        })
+					    </script>
+						<td id="uploadList"></td>
+					</tr>
+					<tr  class="info">
+						<td>选择类型</td><td>
+							<button class="but" type="button" del="1" style="background: #F0C040;border: 0px;width: 220px;height: 30px;">文字新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+							<button class="but" type="button" del="2" style="background: #A1B6C2;border: 0px;width: 220px;height: 30px;">图文新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+							<button class="but" type="button" del="3" style="background: #B1E2DE;border: 0px;width: 220px;height: 30px;">视频新闻<span style="font-size: 15px;">(*每次就可以选一个)</span></button>
+						</td><td></td>
+					</tr>
+				</table>
+				<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+			</fieldset>
+		</form>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------->
+    	<div class="bei" style="width: 100%;height: 100%;position: fixed;top:0;left: 0;background: #000000;opacity: 0.5;display: none;"></div>
+    	<div class="dan" style="width: 600px;height: 600px;position: fixed;top: 50px;left: 300px;background: #fff;display: none;">
+			<div class="alert alert-success" style="background: #F0CED0;">选择推荐内容 <span class="x" style="float: right;font-size: 30px;margin-top: -15px;">x</span></div>
+			<div style="width:600px;height: 450px;background: #fff;overflow:scroll;">
+				<table class="table table-hover table22">
+					<tr class="active">
+					  <th width="50">aid</th>
+					  <th>标题</th>
+					  <th width="100">列表图</th>
+					  <th width="200">添加时间</th>
+					</tr>
+				</table>
+			</div>
+			<button class="butt" style="width: 600px;height:48px;margin-top: 20px;">确认</button>
+    	</div>
+    <script type="text/javascript">
+	    	$('.but').click(function(){
+	    		var del = $(this).attr('del');
+	    		$.ajax({
+	    			type:"post",
+	    			url:"{:U('admin/textpicindex/show_list')}",
+	    			data:{del:del},
+	    			dataType:"json",
+	    			success:function(phpdata){
+	    				if(phpdata[0]['new_word_id']){
+	    					var str = '<tr class="active"><input type="hidden" class="type" name="type" value="1" /><th width="50">aid</th><th>标题</th><th width="100">列表图</th><th width="200">添加时间</th></tr>';
+	    					$.each(phpdata,function(k,v){
+		    						str += '<tr calss="remover">';
+		    						str += '<td><input type="radio" name="li" value="'+v.new_word_id+'" />'+k+++'</td>';
+		    						str += '<td>'+v.left_easy_title+'</td>';
+		    						str += '<td><img src="__UPLOAD__'+v.list_img+'" alt="" height="50px"/></td>';
+		    						str += '<td>'+v.addtime+'</td>';
+		    						str += '</tr>';
+	    					})
+								$('.table22').html(str);
+								$('.bei').show();
+								$('.dan').show();
+	    				}else if(phpdata[0]['pic_text_id']){
+	    					var str = '<tr class="active"><input type="hidden" class="type" name="type" value="2" /><th width="50">aid</th><th>标题</th><th width="100">列表图</th><th width="200">添加时间</th></tr>';
+	    					$.each(phpdata,function(k,v){
+		    						str += '<tr calss="remover">';
+		    						str += '<td><input type="radio" name="li" value="'+v.pic_text_id+'" />'+k+++'</td>';
+		    						str += '<td>'+v.title+'</td>';
+		    						str += '<td><img src="__UPLOAD__'+v.list_img+'" alt="" height="50px"/></td>';
+		    						str += '<td>'+v.addtime+'</td>';
+		    						str += '</tr>';
+	    					})
+								$('.table22').html(str);
+								$('.bei').show();
+								$('.dan').show();
+	    				}else if(phpdata[0]['new_video_id']){
+	    					var str = '<tr class="active"><input type="hidden" class="type" name="type" value="3" /><th width="50">aid</th><th>标题</th><th width="100">列表图</th><th width="200">添加时间</th></tr>';
+	    					$.each(phpdata,function(k,v){
+		    						str += '<tr calss="remover">';
+		    						str += '<td><input type="radio" name="li" value="'+v.new_video_id+'" />'+k+++'</td>';
+		    						str += '<td>'+v.video_title+'</td>';
+		    						str += '<td><img src="__UPLOAD__'+v.list_img+'" alt="" height="50px"/></td>';
+		    						str += '<td>'+v.addtime+'</td>';
+		    						str += '</tr>';
+	    					})
+								$('.table22').html(str);
+								$('.bei').show();
+								$('.dan').show();
+	    				}
+	    			}
+	    		});
+	    	})
+	    	$('.x').click(function(){
+		    	$('.bei').hide();
+				$('.dan').hide();
+    		})
+	    	$('.butt').click(function(){
+	    		var id = $('input:radio[name="li"]:checked').val();
+	    		var type = $(".type").val();
+	    		if(id && type){
+	    			str = '';
+	    			str += '<input type="hidden" name="new_id" value="'+id+'" />';
+	    			str += '<input type="hidden" name="news_type" value="'+type+'" />';
+	    			$('form .input').html(str);
+	    			$('.bei').hide();
+					$('.dan').hide();
+	    		}
+	    	})
+//			给图片添加单机事件
+			$("#uploadList li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			$("#uploadListb li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			$("#uploadListz li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			$("#uploadListd li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+	</script>
+	</body>
+</html>

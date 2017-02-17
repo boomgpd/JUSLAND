@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">ID</th>
+			  <th>用户名称</th>
+			  <th>手机号码</th>
+			  <th>
+			  	<select name="is_deal">
+			  		<option value="">处理状态</option>
+			  		<foreach name="is_deal" item='v' key='k'>
+			  			<if condition="$v['is_deal'] eq I('get.is_deal')">
+			  				<option value="{$v['is_deal']}" selected="selected">{$v['deal']}</option>
+			  			<else />
+			  				<option value="{$v['is_deal']}">{$v['deal']}</option>
+			  			</if>
+			  		</foreach>
+			  	</select>
+			  </th>
+			  <th>
+			  	<select name="bespoke_type">
+			  		<option value="">咨询来源</option>
+			  		<foreach name = "bespoke_type" item='v' key='k'>
+				  		<if condition="$v['bespoke_type_id'] eq I('get.bespoke_type')">
+				  			<option value="{$v['bespoke_type_id']}" selected="selected">{$v['b_name']}</option>
+				  		<else />
+				  			<option value="{$v['bespoke_type_id']}">{$v['b_name']}</option>
+				  		</if>
+			  		</foreach>
+			  	</select>
+			  </th>
+			  <th>操作员</th>
+			  <th width="210">操作</th>
+			</tr>
+			<foreach name='data' item='v' key='k'>
+				<tr>
+					<td>{$k+1}</td>
+					<td>{$v['member_name']}</td>
+					<td>{$v['phone']}</td>
+					<td>{$v['deal_name']}</td>
+					<td>{$v['bespoke_type']}</td>
+					<td>
+						<if condition="$v['admin_id']">
+							{$v['admin_name']}
+						<else />
+							未接单
+						</if>
+					</td>
+					<td>
+						<if condition="$v['is_deal'] eq 1">
+							<a href="{:U('rob_bespoke',array('id'=>$v['bespoke_id']))}" class="btn btn-sm btn-danger">待抢单</a>
+						<elseif condition="$v['is_deal'] eq 2" />
+							<span class="btn btn-sm btn-warning">处理中</span>
+						<else />
+							<span class="btn btn-sm btn-primary">已完成</span>
+						</if>
+						<!--<a href="" class="btn btn-sm btn-warning">编辑</a>
+						<a href="" class="btn btn-sm btn-danger">删除</a>-->
+					</td>
+				</tr>
+			</foreach>			
+		</table>
+	</body>
+	<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("select[name=is_deal]").change(function(){
+			go();
+		})
+		
+		$("select[name=bespoke_type]").change(function(){
+			go();
+		})
+		
+		function go(){
+			var	is_deal = $("select[name=is_deal]").val();
+			var	bespoke_type = $("select[name=bespoke_type]").val();
+			window.location.href = "{:U('admin/bespoke/index')}?is_deal="+is_deal+"&bespoke_type="+bespoke_type;
+		}
+	</script>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <style type="text/css">
+	    	#cont{
+	    		border: 0px;
+	    		outline:none;
+	    	}
+	    	#link{
+	    		border: 0px;
+	    		outline:none;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<a href="{:U('add_list')}"><button type="button" class="btn btn-primary">添加首页推荐</button></a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="100">ID</th>
+			  <th width="200">图片</th>
+			  <th width="200">描述</th>
+			  <th>
+			  	<if condition="$_GET['type'] eq 0">
+			  		<select name="type" id="type"><option value="0" selected="selected">全部类型</option><option value="1">文字新闻</option><option value="2">图文新闻</option><option value="3">视频新闻</option></select>
+			  	<elseif condition="$_GET['type'] eq 1" />
+			  		<select name="type" id="type"><option value="0">全部类型</option><option value="1" selected="selected">文字新闻</option><option value="2">图文新闻</option><option value="3">视频新闻</option></select>
+			  	<elseif condition="$_GET['type'] eq 2" />
+			  		<select name="type" id="type"><option value="0">全部类型</option><option value="1">文字新闻</option><option value="2" selected="selected">图文新闻</option><option value="3">视频新闻</option></select>
+			  	<elseif condition="$_GET['type'] eq 3" />
+			  		<select name="type" id="type"><option value="0">全部类型</option><option value="1">文字新闻</option><option value="2">图文新闻</option><option value="3" selected="selected">视频新闻</option></select>
+			  	</if>
+			  </th>
+			  <th>
+			  	<if condition="$_GET['yang'] eq 0">
+			  		<select name="yang" id="yang"><option value="0" selected="selected">全部样式</option><option value="1">轮播样式</option><option value="2">专题样式</option><option value="3">右侧大图</option><option value="4">右侧小图</option></select>
+			  	<elseif condition="$_GET['yang'] eq 1" />
+			  		<select name="yang" id="yang"><option value="0">全部样式</option><option value="1" selected="selected">轮播样式</option><option value="2">专题样式</option><option value="3">右侧大图</option><option value="4">右侧小图</option></select>
+			  	<elseif condition="$_GET['yang'] eq 2" />
+			  		<select name="yang" id="yang"><option value="0">全部样式</option><option value="1">轮播样式</option><option value="2" selected="selected">专题样式</option><option value="3">右侧大图</option><option value="4">右侧小图</option></select>
+			  	<elseif condition="$_GET['yang'] eq 3" />
+			  		<select name="yang" id="yang"><option value="0">全部样式</option><option value="1">轮播样式</option><option value="2">专题样式</option><option value="3" selected="selected">右侧大图</option><option value="4">右侧小图</option></select>
+			  	<elseif condition="$_GET['yang'] eq 4" />
+			  		<select name="yang" id="yang"><option value="0">全部样式</option><option value="1">轮播样式</option><option value="2">专题样式</option><option value="3">右侧大图</option><option value="4" selected="selected">右侧小图</option></select>
+			  	</if>
+			  </th>
+			  <th width="210">操作</th>
+			</tr>
+			<foreach name="arr" item="val" key="key">
+				<tr class="dex">
+					<td>{$key+1}</td>
+					<td><img src="__UPLOAD__{$val['img_src']}" alt="" width="200" height="100px"/></td>
+					<td>{$val['title']}</td>
+					<if condition="$val['news_type'] eq 1">
+						<td>文字新闻</td>
+					<elseif condition="$val['news_type'] eq 2" />
+						<td>图文新闻</td>
+					<elseif condition="$val['news_type'] eq 3" />
+						<td>视频新闻</td>
+					</if>
+					<if condition="$val['is_bananer']">
+						<td>轮播样式</td>
+					<elseif condition="$val['is_special']" />
+						<td>专题样式</td>
+					<elseif condition="$val['is_height']" />
+						<td>右侧大图</td>
+					<elseif condition="$val['is_lack']" />
+						<td>右侧小图</td>
+					</if>
+					<td>
+						<if condition="$val['is_bananer']">
+							<a href="{:U('edit_list',array('new_index_list_id'=>$val['new_index_list_id'],'is_bananer'=>$val['is_bananer']))}" tid="" class="btn btn-sm btn-warning save" >编辑</a>
+						<elseif condition="$val['is_special']" />
+							<a href="{:U('edit_list',array('new_index_list_id'=>$val['new_index_list_id'],'is_special'=>$val['is_special']))}" tid="" class="btn btn-sm btn-warning save" >编辑</a>
+						<elseif condition="$val['is_height']" />
+							<a href="{:U('edit_list',array('new_index_list_id'=>$val['new_index_list_id'],'is_height'=>$val['is_height']))}" tid="" class="btn btn-sm btn-warning save" >编辑</a>
+						<elseif condition="$val['is_lack']" />
+							<a href="{:U('edit_list',array('new_index_list_id'=>$val['new_index_list_id'],'is_lack'=>$val['is_lack']))}" tid="" class="btn btn-sm btn-warning save" >编辑</a>
+						</if>
+						<a href="javascript:;" del="{$val['new_index_list_id']}" class="btn btn-sm btn-danger dele">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		$("#type").change(function(){
+			var type = $(this).val();
+			var urls = "{:U('index_list')}"+"?type="+type;
+			window.location.href=urls;
+		})
+		$("#yang").change(function(){
+			var yang = $(this).val();
+			var urls = "{:U('index_list')}"+"?yang="+yang;
+			window.location.href=urls;
+		})
+// 		$(".save").click(function(){
+//				var cont = $(this).parents('tr').find('#cont').val();
+//				var link_ = $(this).parents('tr').find('#link').val();
+//				var tid = $(this).attr('tid');
+//				$.ajax({
+//					type:"post",
+//					url:"{:U('admin/videos/save_type')}",
+//					data:{cont:cont,tid:tid,link_:link_},
+//					dataType:'text',
+//					success:function(phpdata){
+//	    			
+//					}
+//				});
+//			})
+		$('.dele').click(function(){
+			var del = $(this).attr('del');
+			var This= $(this);
+			$.ajax({
+				type:'post',
+				url:"{:U('admin/textpicindex/del')}",
+				data:{del:del},
+				dataType:'text',
+				success:function(phpdata){
+					if(phpdata){
+						This.parents('tr').remove();
+					}
+				}
+			});
+		})
+		</script>
+	</body>
+</html>

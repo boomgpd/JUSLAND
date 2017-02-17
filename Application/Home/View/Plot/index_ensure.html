@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>嘉仕澜德——结婚保</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/reset.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/index_ensure.css">
+<script src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+</head>
+
+<body>
+<include file="Common/header" />
+<!--Tab start-->
+<div class="tab">
+	<ul>
+    	<li><div class="box"><a href="{:U('index_free')}"><span class="tab_span0 tab_span1">免费上门</span></a></div></li>
+        <li><div class="box"><a href="{:U('index_plot')}"><span class="tab_span0 tab_span2">策划与报价</span></a></div></li>
+        <li><div class="jhb"><a href="#"><span class="tab_span3">结婚保</span></a></div></li>
+        <li><div class="box"><a href="{:U('index_credit')}"><span class="tab_span0 tab_span4">结婚贷</span></a></div></li>
+    </ul>
+</div>
+<!--Tab end-->       
+<!--banner stary-->
+<div>
+	<div class="bannerbox">
+    	<div class="banner">
+        	<img src="__PUBLIC__/Home/img/plot/index_ensure/jhb_banner.png">
+        </div>
+        <div class="banner_zc">
+            <div id="zc_box" class="clearfix">
+                <div class="zhuce_box">
+                    <span class="span1">极速投保，让您全程无忧享受婚礼</span>
+                    <ul class="mt8 clearfix">
+                    	<li class="ml15px"><img src="__PUBLIC__/Home/img/plot/index_ensure/1.png"></li>
+                        <li><span>婚礼监理</span></li>
+                        <li><img src="__PUBLIC__/Home/img/plot/index_ensure/2.png" class="ml10"></li>
+                        <li><span>资金保障</span></li>
+                        <li><img src="__PUBLIC__/Home/img/plot/index_ensure/3.png" class="ml10"></li>
+                        <li><span>快速维权</span></li>
+                    </ul>
+                    <div style="margin-top:6px;">
+                       <form action="" method="post" class="form1 form2 mt17">
+                        	<input type="hidden" name="b_name" value="免费上门" />
+                            <div class="text">
+                                <input type="text" name="member_name" placeholder="您的称呼">
+                            </div>
+                            <div class="text">
+                                <input type="text" name="phone" placeholder="手机号码">
+                            </div>
+                            <div class="clearfix mt14">
+                                <select id="sheng" name="area_id[]" onChange="changeProvince('shen','city','town');" class="select fl" >
+                                    <option>省/市</option>
+                                    <foreach name="data['area']" item="v" key="k">
+                                    	<option value="{$v['area_id']}">{$v['aname']}</option>
+                                    </foreach>
+                                </select>
+                                <select id="city" name="area_id[]" onChange="changeTown('shen','city','town');" class="select fr">
+                                    <option>市/地区</option>
+                                    <option>选项二</option>
+                                </select>                                                                                          
+                            </div>
+                             <div class="hunqi">
+                            	<span style="position: relative;top: -10px;">婚期：</span>
+                            	<input type="tetx" name="wedding[]" id="" value="" style="width: 47px;height: 20px;position: relative;top: -10px;"/>
+                                <span style="position: relative;top: -10px;">年</span>
+                            	<input type="text" name="wedding[]" id="" value="" style="width: 30px;height: 20px;position: relative;top: -10px;"/>
+                                <span style="position: relative;top: -10px;">月</span>
+                            	<input type="text" name="wedding[]" id="" value="" style="width: 30px;height: 20px;position: relative;top: -10px;"/>
+                                <span style="position: relative;top: -10px;">日</span>
+                            </div>
+	                    <!--</form>
+	                    <form action="" method="post" class="form2 mt17">-->
+                        	<div>
+                                <input type="checkbox" checked="checked" id=" checkbox fl" style="width: 15px;height: 15px;">
+                                <span style="margin-left:2px;position: relative;top: -3px;">我已阅读并接受<a href="#" style="color:#79b6c8; text-decoration:none;">《嘉仕澜德用户服务协议》</a></span>
+                            </div>
+                            <div class="mt20px fl clearfix">
+                            <input type="submit" value="免费申请" class="login_an">      
+                        </form>
+                        <p class="ml15px mt20 p1">嘉仕澜德提供的该项<span class="span2">免费服务，绝
+                        对不产生任何费用</span>，为了您的合法利益及我们
+                        的品牌口碑，您的隐私将会绝对保密。</p>
+                    </div>
+                </div>   
+            </div>
+        </div> 
+    </div>
+    
+</div>
+<!--banner end-->
+
+<!--content1 start-->
+<div class="bannerbox1">
+	<div class="banner">
+    	<img src="__PUBLIC__/Home/img/plot/index_ensure/jhb_n1.png">
+    </div>
+</div>
+<!--content1 end-->
+
+<!--content2 start-->
+<div class="k">
+	<div class="content2 w">
+    	<div class="shuju clearfix">
+        	<div class="box">
+            	<span><span>20168</span>位已服务新人</span>
+            </div>
+            <div class="box">
+            	<span><span>20168</span>次完成验收服务</span>
+            </div>
+            <div class="box">
+            	<span><span>99.8%</span>纠纷解决满意率</span>
+            </div>
+        </div>
+        <span class="span3">为什么要选择结婚保？</span>
+        <div class="biaoti">
+        	<img src="__PUBLIC__/Home/img/plot/index_ensure/bz1.png">
+        </div>
+    </div>
+    <div class="rw">
+    	<img src="__PUBLIC__/Home/img/plot/index_ensure/bz1_human.png">
+    </div>
+    <div class="daoju w">
+    	<div class="ryjg">
+        	<h1><strong>人员监管</strong></h1>
+            <span>对每一名婚礼服务人员信息备案及本人签字，服务节点监督。</span>
+        </div>
+    	<div class="djjg">
+        	<h1><strong>道具监管</strong></h1>
+            <span>对每一项婚礼道具全程监查，确保在规定时间内完成。如道具为租赁形式</br>须提供与第三方供应商的租赁协议。</span>
+        </div>
+        
+    </div>
+    
+</div>
+
+<!--content2 end-->
+<!--content3 start-->
+
+<!--content3 end-->
+<!--content4 start-->
+<div class="bannerbox3">
+	<div class="banner">
+    	<img src="__PUBLIC__/Home/img/plot/index_ensure/baozhang2.png">
+    </div>
+</div>
+<!--content4 end-->
+<div class="bannerbox2">
+	<div class="banner">
+    	<img src="__PUBLIC__/Home/img/plot/index_ensure/baozhang3.png">
+    </div>
+</div>
+
+<div class="bj5">
+	<div class="c5">
+    	<h1>目前结婚保服务已经开放100多个城市</h1>
+        <span>北京、大连、哈尔滨、上海、广州、南京、曼谷、深圳、北京、大连、哈尔滨、上海、广州、南京、曼谷、深圳、北京、大连、哈尔滨、上海、广州、上海、广州、广州、南京、曼谷、深圳等</span>
+        <a href="javascript:;" class="a2">免费申请结婚保</a>
+    </div>
+</div>
+<!--footer start-->
+<div class="footer">
+			<div class="footer_top w">
+				<ul class="footer_chaining fl">
+					<li class="blogroll fl" style="margin-top:30px;margin-left: 60px;font-size: 18px;">友情链接</li>
+					<li><a href="#" style="margin-left: 40px;">阿里巴巴</a></li>
+					<li><a href="#">百度一下</a></li>
+					<li><a href="#">腾讯QQ</a></li>
+					<li><a href="#">北京银行</a></li>
+					<li><a href="#">97婚嫁</a></li>
+				</ul>
+				<div class="footer_vx fl">
+					<dl style="margin-right: 50px;">
+						<dt>关注微信</dt>
+						<dd><img src="__PUBLIC__/Home/img/plot/index_ensure/index_vx.png"></dd>
+					</dl>
+					<dl>
+						<dt>下载APP</dt>
+						<dd><img src="__PUBLIC__/Home/img/plot/index_ensure/index_vx.png"></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="footer_bottom w">
+				<p><a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">意见反馈</a> | <a href="#">高薪聘请</a> | <a href="#">法律声明</a></p>
+				<p>免责声明：本网站部分内容由用户自行上传，如权利人发现存在误传其作品情形，请及时与本站联系。</p>
+				<p>© 2016 北京京折科技有限公司有限公司  保留所有权利</p>
+				<p>京ICP备14039745号-1</p>
+			</div>
+		</div>
+<!--footer end-->
+</body>
+<script type="text/javascript">
+        $("#sheng").change(function(){
+            var area_id = $(this).val();
+            $.ajax({
+				type:"post",
+				url:"{:U('waterfall/index')}",
+				data:{area_id:area_id},
+				dataType:'json',
+				success:function(phpdata){
+					if(phpdata){
+						var str = '<select id="city" name="city" class="select fr"><option>市/地区</option>';
+						$.each(phpdata,function(k,v){
+						 	str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+					    });
+						str += '</select>';
+						$('#city').html(str);
+					}else{
+														
+					}
+				}
+			});
+    	})
+    </script>
+</html>

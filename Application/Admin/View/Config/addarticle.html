@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <!--<link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">-->
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+		/*去掉uploadify上传按钮的边框*/
+	    .uploadify-button { background-color: transparent;border: none;padding: 0;}
+	    .uploadify:hover .uploadify-button {background-color: transparent;}
+    	.hide{display: none;}
+    	body{margin-bottom: 100px;}
+    	li{list-style: none;}
+    	#uploadList li{position: relative;}
+    	#uploadList li span{display: block;width: 25px;height: 15px;font-family: "微软雅黑";font-size: 14px;
+    		background: indianred;color: white;line-height: 15px;font-weight: 700;position: absolute;top: 0;
+    		right: 0;text-align: center;cursor: pointer;}
+	</style> 
+	<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	window.onload = function(){
+		$("select.sele").change(function(){
+				var val = $(this).val();
+				if(val==1){
+					$(".img").show();
+					$('.cont').hide();
+				}else if(val==2){
+					$(".img").hide();
+					$('.cont').show();
+				}
+			})
+	}
+	</script>
+	</head>
+	<body>
+		<div class="alert alert-success">添加站点配置</div>
+		添加类型：<select name="leixin" style="width: 40%;" class="sele">
+					<option value="">选择站点配置类型</option>
+					<option value="1" >站点配置图片类型</option>
+					<option value="2" >站点配置文字类型</option>
+		</select>
+		<!--添加'文字'站点类型的form表单-->
+		<form action="check" method="post" style="display: block;"class="cont">
+			<div class="form-group">
+				<label for="exampleInputEmail1">站点配置名称</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入标题名称"  name="attr_name">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">站点配置内容</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入菜单链接路径" name="attr_value">
+			</div>
+			<div class="form-group">
+			所属页面：<select name="site_config_type_id" style="width: 40%;">
+						<foreach name = 'pageData' item = 'v'>
+							<option value="{$v.site_config_type_id}">{$v.remark}</option>
+						</foreach>
+					</select>
+		</div>
+			<input type="submit" class="btn btn-primary btn-block" value="确定" />
+		</form>
+		
+		<!--添加'图片'站点类型的form表单-->
+		<form action="check" method='post' style="display: none;" class="img">
+		<fieldset>
+			<legend>添加轮播图</legend>
+
+			<table class='table table-bordered'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">图片上传</th>
+				</tr>
+				<tr class="info">
+						<td>配置名称</td>
+						<td>
+							<input type="text" name="attr_name" " placeholder="请输入站点名称" />
+						</td>
+						<td></td>
+					</tr>
+				<tr class="info">
+					<td style="width: 100px;">上传图片</td>
+					<td lab="uploadFile">
+						<input type="file" name='pic' id='pic'/>
+					    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+	<script type="text/javascript">
+					        $(function(){
+					            $('#pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'system'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='attr_value' value='"+imageUrl+"'/></li>";
+					                    $("#uploadList").prepend(li);
+					                }
+					            });
+					        })
+					    </script>
+					</td>
+					<td id="uploadList"></td>
+				</tr>
+			</table>
+			<div class="form-group">
+			所属页面：<select name="site_config_type_id" style="width: 40%;">
+						<foreach name = 'pageData' item = 'v'>
+							<option value="{$v.site_config_type_id}">{$v.remark}</option>
+						</foreach>
+					</select>
+			<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+		</fieldset>
+	</form>
+    <script type="text/javascript">
+//			给图片添加单机事件
+			$("#uploadList li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+	</script>
+	</body>
+</html>

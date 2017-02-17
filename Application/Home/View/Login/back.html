@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+	</head>
+	<body>
+			<form action="" method="post">
+			用&nbsp;户&nbsp;名：<input type="text" name="member_name" id="" value="" /><br />
+			密&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" id="" value="" /><br />
+			验&nbsp;证&nbsp;码：<input type="text" name="code" id="" value="" />
+			<img src="{:U('Common/code')}" id="code" alt="" /><a href="#" id="dian">看不清,换一张</a><br />		
+			<input type="submit" name="" id="" value="登录" />
+			</form>
+			
+			
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.js"></script>
+		<script type="text/javascript">	
+			$("#dian").click(function(){
+		    	$("#code").attr('src', "{:U('Common/code')}");
+			})
+		</script>
+	</body>
+</html>

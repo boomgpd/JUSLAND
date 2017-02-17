@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pubu</title>
+<link rel="stylesheet" href="__PUBLIC__/Home/css/reset.css" />
+<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+<style>
+	#main .pin{width: 225px;height: auto;padding: 15px 0px 0px 15px;float: left;position: relative;}
+    #main .pin .box{width: 205px;height: auto;padding: 10px;background: #FFF;border: 1px solid #CCC;box-shadow: 0px 0px 6px #CCC;}
+    #main .pin .box img{width: 205px;}
+    .single_hide{position: absolute;top: 10px;z-index: 999;width: 100%;padding: 15px 0}
+    .hide_right{float: right;margin-right: 23px;}
+    .hide_right a{display:block;width: 30px;height: 20px;padding-top:10px;color: #fff;border:1px solid #C8C8C8;border-radius: 5px;}
+    .hide_right a.zan_no{background: url(__PUBLIC__/Home/img/new/list/zan_no.png) center no-repeat;background-color: #FAFAFA;}
+    .hide_right a.zan_no:hover{background: url(__PUBLIC__/Home/img/new/list/zan_yes.png) center no-repeat;background-color: #FAFAFA;}
+    .hide_right a.zan_yes{background: url(__PUBLIC__/Home/img/new/list/zan_yes.png) center no-repeat;background-color: #FAFAFA;}
+    .zf_zan li{padding-left:15px;text-align: right;float: left;margin:10px 10px 10px 0;}
+    .zf_zan .zf{background: url(__PUBLIC__/Home/img/new/list/zf.png) left center no-repeat;}
+    .zf_zan .zan{background: url(__PUBLIC__/Home/img/new/list/zan_no.png) left center no-repeat;}
+    .zf_zan li span{color: #999;}
+    .user{margin:-10px;padding:15px;color: #999;border-top: 1px solid #ccc;background: #f3f3f3;}
+    .user .tx{float: left;width: 34px;height: 34px;background-image: url(__PUBLIC__/Home/img/new/list/tx.jpg);background-size:100% 100%;}
+    .user_name{float: left;margin-left:10px;height: 34px;line-height: 1.5;}
+    .user_name a{color: #9E7E6B;margin-right: 10px;}
+    
+    /*分类导航*/
+	.video_nav li{float:left;margin:30px 0 15px;}
+	.video_nav li a{display:block;width:285px;text-align:center;height:100px;line-height:100px;color:#fff;font-size:16px;margin-left:15px;}
+	
+</style>
+
+</head>
+<body>
+	<include file="Common/alert_view_style" />
+	<include file="Common/header" />
+	<!--分类导航-->
+	<ul class="w video_nav clearfix">
+		<li><a href="{:U('list_data',array('q'=>$q))}" style="background:url(__PUBLIC__/Home/img/new/list/video_nav_01.png)">综合</a></li>
+		<li><a href="{:U('list_data',array('type'=>1,'q'=>$q))}" style="background:url(__PUBLIC__/Home/img/new/list/video_nav_02.png)">文字</a></li>
+		<li><a href="{:U('list_data',array('type'=>2,'q'=>$q))}" style="background:url(__PUBLIC__/Home/img/new/list/video_nav_03.png)">图片</a></li>
+		<li><a href="{:U('list_data',array('type'=>3,'q'=>$q))}" style="background:url(__PUBLIC__/Home/img/new/list/video_nav_04.png)">视频</a></li>
+	</ul>
+	<div id="main">
+		<foreach name="data" item="val" key="key">
+		    <div class="pin">
+		    	<div class="single_hide clearfix">
+		    		<if condition="$val['new_word_id']">
+		    			<in name="val['new_word_id']" value="$text">
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_yes" tid="{$val['new_word_id']}" type="1"></a>
+		    				</div>
+		    			<else />
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_no" tid="{$val['new_word_id']}" type="1"></a>
+		    				</div>
+		    			</in>
+		    		<elseif condition="$val['pic_text_id']"/>
+		    			<in name="val['pic_text_id']" value="$img_text">
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_yes" tid="{$val['pic_text_id']}" type="2"></a>
+		    				</div>
+		    			<else />
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_no" tid="{$val['pic_text_id']}" type="2"></a>
+		    				</div>
+		    			</in>
+		    		<elseif condition="$val['new_video_id']"/>
+		    			<in name="val['new_video_id']" value="$vodeos">
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_yes" tid="{$val['new_video_id']}" type="3"></a>
+		    				</div>
+		    			<else />
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_no" tid="{$val['new_video_id']}" type="3"></a>
+		    				</div>
+		    			</in>
+		    		</if>
+		    	</div>
+		        <div class="box">
+		        	<if condition="$val['new_word_id']">
+			            <a href="{:U('text',array('id'=>$val['new_word_id'],'type'=>1))}"><img src="__UPLOAD__{$val['list_img']}"></a>
+		        	<elseif condition="$val['pic_text_id']"/>
+		        		<a href="{:U('img_text',array('id'=>$val['pic_text_id'],'type'=>2))}"><img src="__UPLOAD__{$val['list_img']}"></a>
+		        	<elseif condition="$val['new_video_id']"/>
+		        		<a href="{:U('videos',array('id'=>$val['new_video_id'],'type'=>3))}"><img src="__UPLOAD__{$val['list_img']}"></a>
+		        	</if>
+		            <div style="padding: 10px;">
+		        		<span>新闻标题——限制一行</span>
+		        		<ul class="zf_zan clearfix">
+		        			<li class="zan"><span>10</span></li>
+		        		</ul>
+		       		</div>
+		       		<div class="user clearfix">
+		       			<a class="tx"></a>
+		       			<div class="user_name">
+		       				<span>编辑：<a href="#">郭沛东</a></span><br />
+		       				<span>发布日期：<a href="#">2016-9-23</a></span>
+		       			</div>
+		       		</div>
+		        </div>
+		    </div>
+		</foreach>
+	</div>	
+	<img src="__PUBLIC__/Home/img/waterfall/loading_end.png" id="ending" style="margin-bottom:0px;margin-left:50%;display: none;">
+	<img src="__PUBLIC__/Home/img/waterfall/gif.gif" id="loading" style="margin-bottom:0;margin-left:50%;display: none;">
+	<script type="text/javascript" src='__PUBLIC__/Home/js/waterfall.js'></script>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/masonry.js"></script>
+	<script type="text/javascript">
+	/**
+	 * 点赞功能
+	 */
+	$('.hide_right a').click(function(){
+		var id = $(this).attr('tid');
+		var type = $(this).attr('type');
+		var This =$(this);
+		$.ajax({
+			type:"post",
+			url:"{:U('chank_hlep')}",
+			data:{id:id,type:type},
+			dataType:"json",
+			success: function(phpdata){
+				if(phpdata==null){
+					window.wxc.xcConfirm('您还未登录，请登录后再点赞！', window.wxc.xcConfirm.typeEnum.confirm);
+				}else{
+					if(phpdata.type){
+						This.addClass('zan_yes') .removeClass('zan_no');
+						window.wxc.xcConfirm('点赞成功', window.wxc.xcConfirm.typeEnum.success);
+					}else{
+						This.addClass('zan_no') .removeClass('zan_yes');
+						window.wxc.xcConfirm('取消点赞', window.wxc.xcConfirm.typeEnum.success);
+					}
+				}
+			}
+		});
+	})			
+	window.onload = function(){
+		waterfall('main', 'pin');
+		var ajaxState = true;
+		//定义全局变量控制,获取当前显示页数
+//					no_padding_left();
+//					}
+		var page_num = 2;
+	
+					
+					/**
+					 * 创建分屏加载
+					 */
+		$(window).scroll(function() {
+			var page_height = $(document).height(); //是获取整个页面的高度
+			var wind_height = $(window).height(); //是获取当前也就是浏览器所能看到的页面的那部分的高度
+			var bottom_height = $(document).height() - $(window).height();
+			var now_height = $(document).scrollTop();
+			if(now_height >= bottom_height) {
+				step_page();
+			}
+	
+		});
+	/**
+	* 创建异步加载分页方法
+	*/
+		function step_page() {
+			$.ajax({
+				type: "post",
+				url: "{:U('home/media/loading')}",
+				data: {page_num: page_num},
+				dataType: 'json',
+				beforeSend: function() {
+					$("#loading").css('display', 'block');
+				},
+				success: function(phpdata) {
+					if(phpdata){
+						$("#main").append(phpdata);
+						Media('main', 'pin');
+					}else{
+						$("#ending").css('display', 'block');
+					}
+					var num = $("#main .pin").length - 1;
+					var pos_h = parseInt($("#main .pin").eq(num).css('top')) + parseInt($("#main .pin").eq(num).height() + 120) + 'px';
+					$("#main").css('height',pos_h);
+				},
+				complete: function() {
+					$("#loading").css('display', 'none');
+					ajaxState = true;
+					page_num++;
+				}
+			});
+		}
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+		<!-- Loading Bootstrap -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+		<!-- Loading Flat UI -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+		<link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.7.2.min.js"></script>
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+		<!--[if lt IE 9]>
+		<script src="dist/js/vendor/html5shiv.js"></script>
+		<script src="dist/js/vendor/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<form action="" method="post">
+			<div class="alert alert-success">
+				添加角色
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">角色名称</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入角色名称"  name="name">
+			</div>
+			<p class="btn btn-primary">
+				节点属性
+			</p>
+			<table class="table table-bordered table-hover" id='attr' class="info">
+				<tr class="info">
+					<td width="25%">
+						<span >
+							请选择系统:
+						</span>
+						<select class="sys" level="1">
+							<option value="0">-请选择-</option>
+							<foreach name="data" key="k" item="v">
+								<option value="{$v.id}" >{$v.title}</option>
+							</foreach>
+						</select>
+					</td>
+					<td width="25%">
+						<span >
+							请选择模块:
+						</span>
+						<select class="module" level="2">
+								<option value="0">-请选择-</option>
+								<option value="{$v.id}" >{$v.name}</option>
+						</select>
+					</td>
+					<td width="25%">
+						<span >
+							请选择控制器:
+						</span>
+						<select class="con" level="3">
+								<option value="0">-请选择-</option>
+								<option value="{$v.id}" >{$v.remark}</option>
+						</select>
+					</td>
+					<td width="25%">
+						<span >
+							请选择方法:
+						</span>
+						<select class="act" level="4">
+								<option value="0">-请选择-</option>
+						</select>
+					</td>
+					<td>
+						<span class="btn btn-success add">增加节点</span>
+					</td>
+				</tr>
+			</table>
+			<div class="form-group">
+				<label for="exampleInputEmail1">角色描述</label>
+				<textarea name="remark" rows="5" cols=""  class="form-control" placeholder="请输入角色描述"></textarea>
+			</div>
+			<button class="btn btn-primary btn-block" type="submit">
+			确定
+			</button>
+		</form>
+		<span id="demo" style="display:none">
+			<foreach name="data" key="k"  item="v">
+				<option value="{$v.id}">{$v.title}</option>
+			</foreach>
+		</span>
+
+		<!--异步查询方法-->
+		<script type="text/javascript">
+			$(function(){
+				var start = '<option value="0">-请选择-</option>';
+
+				$("select").live('change',function(){
+					var val = $(this).val();
+					var level = $(this).attr('level');
+					var tr = $(this).parents('tr');
+					if(level == '4' &&　val != 0 && val != ''){
+						var sys = tr.find('.sys').val();
+						var module = tr.find('.module').val();
+						var con = tr.find('.con').val();
+						var name = 'data['+sys+']['+module+']['+con+'][]';
+						tr.find('.act').attr('name',name);
+					}else{
+						tr.find('select').attr('name','');
+					};
+					This = $(this);
+					$.ajax({
+						type:"post",
+						url:"{:U('get_data')}",
+						data:{val:val,level:level},
+						dataType:'json',
+						success:function(phpData){
+							if(phpData){
+								var html = each(phpData);
+								switch(level){
+									case '1':
+									This.parents('tr').find('.module').html(html);
+									break;
+									case '2':
+									This.parents('tr').find('.con').html(html);
+									break;
+									case '3':
+									This.parents('tr').find('.act').html(html);
+									break;
+								};
+							}else{
+								switch(level){
+									case '1':
+									This.parents('tr').find('.module').html(start);
+									This.parents('tr').find('.con').html(start);
+									This.parents('tr').find('.act').html(start);
+									break;
+									case '2':
+									This.parents('tr').find('.con').html(start);
+									This.parents('tr').find('.act').html(start);
+									break;
+									case '3':
+									This.parents('tr').find('.act').html(start);
+									break;
+								};
+							};
+						}
+					});
+				});
+
+				
+				//添加
+				$('.add').live('click',function(){
+					var demo = $('#demo').html();
+					var parent = $(this).parents('tr');
+					var clone = $(this).parents('tr').clone();
+					clone.find('.add').removeClass('btn-success add').addClass('btn-danger del').html('删除节点');
+					clone.find('select').html(start);
+					clone.find('.sys').html(start+demo);
+					parent.after(clone);
+				});
+				
+				//删除
+				$('.del').live('click',function(){
+					$(this).parents('tr').remove();
+				});
+
+				//处理数据
+				function each(data){
+					var str = '';
+					str += start;
+					$.each(data,function(k,v) {
+						 str += '<option value="'+v.id+'">'+v.title+'</option>';
+					});
+					return str;
+				}
+			});
+		</script>
+		
+		
+	</body>
+</html>

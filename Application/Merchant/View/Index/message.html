@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>商家基本信息上传</title>
+
+	<link rel="stylesheet" href="__PUBLIC__/Admin/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+	
+	<style type="text/css">
+		/*去掉uploadify上传按钮的边框*/
+	    .uploadify-button {
+	        background-color: transparent;
+	        border: none;
+	        padding: 0;
+	    }
+	    .uploadify:hover .uploadify-button {
+	        background-color: transparent;
+    	}
+    	.hide{
+    		display: none;
+    	}
+    	body{
+    		margin-bottom: 100px;
+    	}
+    	li{
+    		list-style: none;
+    	}
+    	#uploadList li{
+    		position: relative;
+    	}
+    	#uploadList li span{
+    		display: block;
+    		width: 25px;
+    		height: 15px;
+    		font-family: "微软雅黑";
+    		font-size: 14px;
+    		background: indianred;
+    		color: white;
+    		line-height: 15px;
+    		font-weight: 700;
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+	</style> 
+	
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span12">
+
+	<form action="{:U('edit')}" method='post' enctype="multipart/form-data">
+		<fieldset>
+			<legend>商家基本信息上传</legend>
+			<table class='table table-bordered table-hover'>
+				<thead>
+					<tr>
+						<th colspan="2" class="btn btn-primary">基本信息</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info">
+						<td>公司名称</td>
+						<td>
+							<input type="text" name='m_name' value="{$merchant['m_name']}" style="width: 40%;" />
+						</td>
+					</tr>
+					<tr class="info">
+						<td>负责人姓名</td>
+						<td>
+							<input type="text" name='leagal_person' value="{$merchant['leagal_person']}" style="width: 40%;" />
+						</td>
+					</tr>
+					<tr class="info">
+						<td>手机号码</td>
+						<td>
+							<input type="text" name='mobile_phone' value="{$merchant['mobile_phone']}" style="width: 40%;"/>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>座机号码</td>
+						<td>
+							<input type="text" name='phone' value="{$merchant['phone']}" style="width: 40%;" placeholder="请输入关键词，以#分割开"/>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>公司邮箱</td>
+						<td>
+							<input type="text" name='email' value="{$merchant['email']}" style="width: 40%;"placeholder="请输入点赞数量"/>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>所属地区</td>
+						<td>
+							<select name="area[]" id="province">
+								<option>-请选择省份-</option>
+								<foreach name="area['province']" item='v' key='k'>
+									<if condition="$v['area_id'] eq $merchant['area'][0]">
+										<option value="{$v['area_id']}" selected="selected">{$v['aname']}</option>
+									<else />
+										<option value="{$v['area_id']}">{$v['aname']}</option>
+									</if>
+								</foreach>
+							</select>
+							<select name="area[]" id="city">
+								<option>-请选择城市-</option>
+								<foreach name="area['city']" item='v' key='k'>
+									<if condition="$v['area_id'] eq $merchant['area'][1]">
+										<option value="{$v['area_id']}" selected="selected">{$v['aname']}</option>
+									<else />
+										<option value="{$v['area_id']}">{$v['aname']}</option>
+									</if>
+								</foreach>
+							</select>
+							<select name="area[]" id="part">
+								<option>-请选择区县-</option>
+								<foreach name="area['part']" item='v' key='k'>
+									<if condition="$v['area_id'] eq $merchant['area'][2]">
+										<option value="{$v['area_id']}" selected="selected">{$v['aname']}</option>
+									<else />
+										<option value="{$v['area_id']}">{$v['aname']}</option>
+									</if>
+								</foreach>
+							</select>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+				
+			<table class='table table-bordered'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">图片上传</th>
+				</tr>
+				<tr class="info">
+					<td style="width: 100px;">轮播图上传</td>
+					<td lab="uploadFile">
+						<input type="file" name='pic' id='pic'/>
+					    <script type="text/javascript">
+					        $(function() {
+					            $('#pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('upload')}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='width: 100px; height: 100px;' src='__ROOT__"+imageUrl+"'/><span>X</span><input type='hidden' name='bananer[]' value='__ROOT__"+imageUrl+"'/></li>";
+					                    $("#uploadList").prepend(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td id="uploadList"></td>
+				</tr>
+				<tr class="info">
+					<td style="width: 100px;">商家logo</td>
+					<td lab="uploadFile">
+						<input type="file" name='pic' id='logo'/>
+					    <script type="text/javascript">
+					        $(function() {
+					            $('#logo').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('upload_logo')}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='width: 100px; height: 100px;' src='__ROOT__"+imageUrl+"'/><span>X</span><input type='hidden' name='logo_url' value='__ROOT__"+imageUrl+"'/></li>";
+					                    $("#upload").html(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td id="upload"></td>
+				</tr>
+			</table>	
+				
+				
+			<table class='table table-bordered table-hover'>
+				<thead>
+					<tr>
+						<th colspan="2" class="btn btn-primary">详细信息</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info">
+						<td>开门时间</td>
+						<td>
+							<input type="text" name='start_sale' value="{$merchant['leagal_person']}" style="width: 40%;" />
+						</td>
+					</tr>
+					<tr class="info">
+						<td>闭馆时间</td>
+						<td>
+							<input type="text" name='end_sale' value="{$merchant['mobile_phone']}" style="width: 40%;"/>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>公司建简易描述</td>
+						<td>
+							<textarea name="merchant_des" rows="" cols="" style="width: 40%;height: 150px;" placeholder="建议字数50~100字"></textarea>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>品牌描述</td>
+						<td>
+							<textarea name="brand_detailed" rows="" cols="" style="width: 40%;height: 150px;" placeholder="建议字数50~100字"></textarea>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>关于婚礼</td>
+						<td>
+							<textarea name="about_wedding" rows="" cols="" style="width: 40%;height: 150px;" placeholder="建议字数50~100字"></textarea>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>关于公司</td>
+						<td>
+							<textarea name="about_company" rows="" cols="" style="width: 40%;height: 150px;" placeholder="建议字数50~100字"></textarea>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>关于团队</td>
+						<td>
+							<textarea name="about_team" rows="" cols="" style="width: 40%;height: 150px;" placeholder="建议字数50~100字"></textarea>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>关于服务</td>
+						<td>
+							<textarea name="about_server" rows="" cols="" style="width: 40%;height: 150px;" placeholder="建议字数50~100字"></textarea>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>关于理念</td>
+						<td>
+							<textarea name="about_belief" rows="" cols="" style="width: 40%;height: 150px;" placeholder="建议字数50~100字"></textarea>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>签单奖励</td>
+						<td>
+							<textarea name="activity" rows="" cols="" style="width: 40%;height: 150px;" placeholder="建议字数50~100字"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+		</fieldset>
+	</form>
+
+	</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+//			给图片添加单机事件
+			$("#uploadList li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+//			给图片添加单机事件
+			$("#upload li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			
+			//			给省份添加change事件
+			$("#province").change(function(){
+				var pid = $(this).val();
+				step('city',pid);
+			})
+			
+			$("#city").change(function(){
+				var pid = $(this).val();
+				step('part',pid);
+			})
+		
+//			创建获取地区异步方法
+			function step(name,pid){
+				$.ajax({
+					type:"post",
+					url:"{:U('step_area')}",
+					data:{pid:pid},
+					dataType:'json',
+					success:function(phpdata){
+						var str = '<option value="">请选择</option>';
+						$.each(phpdata, function(k,v) {
+							str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+						});
+						$("#"+name+"").html(str);
+					}
+				});
+			}
+
+	</script>
+</body>
+</html>

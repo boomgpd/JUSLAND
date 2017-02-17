@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+    	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+	    <script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    	<script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor1_4_3/ueditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor1_4_3/ueditor.all.min.js"> </script>
+		<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor1_4_3/lang/zh-cn/zh-cn.js"></script>
+	    <style type="text/css">
+			/*去掉uploadify上传按钮的边框*/
+		    .uploadify-button {background-color: transparent;border: none;padding: 0;}
+		    .uploadify:hover .uploadify-button {background-color: transparent;}
+	    	.hide{display: none;}
+	    	body{margin-bottom: 100px;}
+	    	li{list-style: none;margin-left:5px;margin-top: 5px;position: relative;}
+	    	li span.cha{display: block;width: 25px;height: 15px;font-family: "微软雅黑";font-size: 14px;background: indianred;color: white;line-height: 15px;font-weight: 700;position: absolute;top: 0;right: 0;text-align: center;cursor: pointer;}
+		</style> 
+	</head>
+	<body>
+		<form action="" method="post" enctype="multipart/form-data">
+		<div class="alert alert-success">添加商品</div>
+		<table class='table table-bordered table-hover'>
+			<thead>
+				<tr>
+					<th colspan="2" class="btn btn-primary">基本信息</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="info">
+					<td>商品名称</td>
+					<td>
+						<input type="text" name='gname' value="" style="width: 40%;" placeholder="请输入商品名称" />
+					</td>
+				</tr>
+				
+				<tr class="info merchant">
+					<td>商品分类</td>
+					<td>
+						<select name="category_id" style="width: 40%;">
+							<option value="0">请选择分类</option>
+							<foreach name='category' item='v' key='k'>
+								<option value="{$v['cid']}" level="2">{$v['cname']}</option>
+								<if condition="$v['sonData']">
+									<foreach name="v['sonData']" item='vv' key='kk'>
+										<if condition="($kk+1) eq count($v['sonData'])">
+											<option value="{$vv['cid']}" level="3">∟ &nbsp;{$vv['cname']}</option>
+										<else />
+											<option value="{$vv['cid']}" level="3">─ &nbsp;{$vv['cname']}</option>
+										</if>
+										
+									</foreach>
+								</if>
+							</foreach>
+						</select>
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>计量单位</td>
+					<td>
+						<input type="text" name='unit' value="" style="width: 40%;" placeholder="请输入计量单位" />
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>市场价格</td>
+					<td>
+						<input type="text" name='marketprice' value="" style="width: 40%;" placeholder="请输入市场价格" />
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>会员价格</td>
+					<td>
+						<input type="text" name='shopprice' value="" style="width: 40%;" placeholder="请输入会员价格" />
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>点击量</td>
+					<td>
+						<input type="text" name='click' value="" style="width: 40%;" placeholder="请输入点赞数量" />
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>商品描述</td>
+					<td>
+						<input type="text" name='des' value="" style="width: 40%;" placeholder="请输商品描述,字数推荐为30-50字之间" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!--网站链接-->
+		<table class='table table-bordered table-hover ppp url'>	
+			<thead>
+				<tr>
+					<th colspan="2" class="btn btn-primary">网站链接</th>
+				</tr>
+			</thead>
+			<tbody id="url">
+				<tr class="info merchant">
+					<td style="width: 20%;">添加网站链接</td>
+					<td style="width: 70%;">
+						<input type="text" name="url[]"  value="" placeholder="请输入网站链接"/>
+					</td>
+					<td style="width: 20%;"><button type="button" class="btn btn-info addurl">增加链接</button></td>
+				</tr>
+			</tbody>
+		</table>
+		<!--网站链接-->
+
+		<p class="btn btn-primary">商品标签</p>
+		<div class="form-group">
+			<foreach name="label" key="k" item="v">
+				<label class="checkbox checkbox-inline">
+					<input class="custom-checkbox" type="checkbox" name="label[]" value="{$v['id']}"/>
+					<span class="icons">
+						<span class="icon-unchecked"></span>
+						<span class="icon-checked"></span>
+					</span>{$v.name}</label>
+			</foreach>
+		</div>
+		<p class="btn btn-primary">商品规格</p>
+		<div class="form-group" id="spec">
+		</div>
+		
+		<table class='table table-bordered table-hover'>	
+			<thead>
+				<tr>
+					<th colspan="2" class="btn btn-primary">商品列表图</th>
+				</tr>
+			</thead>
+			<tbody id="spec">
+				<tr class="info">
+					<td style="width: 20%;">列表图片(图片比例为280*280)</td>
+					<td style="width: 40%;">
+						<input type="file" name="pic" id="pic" value="" />
+						<script type="text/javascript">
+					        $(function() {
+					            $('#pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'shop_list_img'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 10,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':100000,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span class='cha'>X</span><input type='hidden' name='pic' value='"+imageUrl+"'/></li>";
+					                    $("#pic_img").html(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td style="width: 40%;" id="pic_img"></td>
+				</tr>
+				
+				<tr class="info">
+					<td style="width: 20%;">图片展示（比例为540*540）</td>
+					<td style="width: 40%;">
+						<input type="file" name="show_pic" id="show_pic" value="" />
+						<script type="text/javascript">
+					        $(function() {
+					            $('#show_pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'shop_detail_img'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 10,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10000,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl[1]+"'/><span class='cha'>X</span><input type='hidden' name='big[]' value='"+imageUrl[0]+"'/><input type='hidden' name='medium[]' value='"+imageUrl[1]+"'/></li>";
+					                    $("#show_pic_img").append(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td style="width: 40%;" id="show_pic_img"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<table class='table table-bordered table-hover ppp spec'>	
+			<thead>
+				<tr>
+					<th colspan="2" class="btn btn-primary">商品详情</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="info merchant">
+					<td style="width: 20%;">商品分类</td>
+					<td style="width: 80%;">
+						<script id="one" type="text/plain" style="width:100%;height:500px;" name="details" ></script>
+    					<script>
+        				 	var ue = UE.getEditor('one');
+    					</script>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		
+		<button class="btn btn-primary btn-block" type="submit"> 确定 </button>
+	</form>
+		
+		<script type="text/javascript">
+			$("select[name=category_id]").change(function(){
+				getAttr();
+			});
+			function getAttr(){
+				var level = $("select[name=category_id]").find('option:selected').attr('level');
+				if(level == 2){
+					alert('二级分类不能添加商品，请勾选对应的三级分类');
+					return false;
+				}
+				var category_id = $("select[name=category_id]").val();
+				if(category_id == 0) return false;
+				$.ajax({
+					type:"get",
+					url:"{:U('admin/shopGoods/get_attr')}",
+					async:true,
+					data:{category_id:category_id},
+					dataType:'json',
+					success:function(phpdata){
+						$("#spec").html(phpdata.attr);
+					},
+					error:function(error){
+						alert(error);
+					}
+				});
+			}
+			
+			$("li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			
+			$("#url .addurl").click(function(){
+				var str = '<tr class="info"><td style="width:20%;"></td><td style="width:70%;">';
+				str += '<input type="text" name="url[]"  value="" placeholder="请输入网站链接"/>';
+				str += '</td><td style="width:20%;"><button type="button" class="btn btn-danger del_url">删除链接</button></td></tr>'
+				$(this).parents('tr').after(str);
+			})
+			
+			$("#url").on('click',' .del_url',function(){
+				$(this).parents('tr').remove();
+			})
+			
+		</script>
+	</body>
+</html>
+

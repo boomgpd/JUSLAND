@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+	<a href="{:U('add_index')}" class="btn btn-sm btn-info">添加特惠</a>
+	<form class="navbar-form navbar-left" action="" method="post" >
+    <div class="form-group">
+    	搜索：
+      	<input type="text" class="form-control" placeholder="" name="keyword">
+    </div>
+    	<button type="submit" class="btn btn-default">搜索</button>
+ 	</form>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th>主键</th>
+			  <th>产品名称</th>
+			  <th>开始时间</th>
+			  <th>结束时间</th>
+			  <th>操作</th>
+			</tr>
+			<foreach name="data" item='v' key='k'>
+				<tr>
+					<td>{$k+1}</td>
+					<td>{$v['p_name']}</td>
+					<td><?php echo date('Y-m-d',$v['start_time'])?></td>
+					<td><?php echo date('Y-m-d',$v['end_time'])?></td>
+					<td>
+						<a href="{:U('edit_odds',array('id'=>$v['p_p_id']))}" class="btn btn-sm btn-success">编辑</a>
+						<a href="javascript:;" pid="{$v['p_p_id']}" class="btn btn-sm btn-danger del">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script type="text/javascript">
+			$(".del").click(function(){
+				var p_id = $(this).attr('pid');
+				var This = $(this).parents('tr');
+				$.ajax({
+					type:"post",
+					url:"{:U('del_odds')}",
+					data:{id:p_id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata.type){
+							This.remove();
+							alert(phpdata.content);
+						}else{
+							alert(phpdata.content);
+						};
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

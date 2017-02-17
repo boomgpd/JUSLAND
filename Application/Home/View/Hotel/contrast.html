@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>酒店对比页</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/hotel/contrast/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/hotel/contrast/css/contrast.css" />
+		<script type="text/javascript" src="__PUBLIC__/Home/hotel/contrast/js/jquery-3.1.1.min.js" ></script>
+	</head>
+	<body>
+		<div class="main_top">
+			<!--商家图片-->
+			<ul class="w merchant clearfix">
+				<li><img src="__PUBLIC__/Home/hotel/contrast/img/index_logo.png" ></li>
+				<foreach name="att" item="val" key="key">
+					<li>
+						<img src="__UPLOAD__{$val['list_img']}"width="100%" height="100%">
+						<a href="javascript:;" class="merchant_close">
+							<span>{$val['hotel_id']}</span>
+							<i class="quxiao" id="{$val['p_p_id']}"><img src="__PUBLIC__/Home/hotel/contrast/img/close.png"></i>
+						</a>
+					</li>
+				</foreach>
+				<!-- <li>
+					<img src="__PUBLIC__/Home/hotel/contrast/img/merchant_02.jpg">
+					<a href="javascript:;" class="merchant_close">
+						<span>希尔顿酒店</span>
+						<i><img src="__PUBLIC__/Home/hotel/contrast/img/close.png"></i>
+					</a>
+				</li> -->
+				<!--<li>
+					<img src="__PUBLIC__/Home/hotel/contrast/img/merchant_03.jpg">
+					<a href="javascript:;" class="merchant_close">
+						<span>香格里拉酒店</span>
+						<i><img src="__PUBLIC__/Home/hotel/contrast/img/close.png"></i>
+					</a>
+				</li>-->
+				<!-- <li>
+					<a href="#"><img src="__PUBLIC__/Home/hotel/contrast/img/add.png"></a>
+				</li> -->
+			</ul>
+			<script type="text/javascript">
+	        	$('.quxiao').click(function(){
+	        		var id = $(this).attr('id');
+	        		var obj = "{:U('conget')}/id/"+id;
+	        		var urls = obj.replace('.html','');
+	        		location.href=urls;
+	        	})
+	        </script>
+			<!--对比分类名称-->
+			<ul class="classify w clearfix">
+				<li class="current"><a href="javascript:;">基本信息</a></li>
+				<li><a href="javascript:;">设备信息</a></li>
+				<li><a href="javascript:;">服务信息</a></li>
+				<li><a href="javascript:;">其他信息</a></li>
+			</ul>
+		</div>
+		<!--表格-->
+		<div class="main_bottom w">
+			<table border="1" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="4">基本信息</td>
+				</tr>
+				<tr>
+					<td>酒店名称</td>
+					<td>北京饭店</td>
+					<td>希尔顿酒店</td>
+					<td>香格里拉酒店</td>
+				</tr>
+				<tr>
+					<td>地址</td>
+					<td>北京市朝阳区</td>
+					<td>北京市朝阳区</td>
+					<td>北京市朝阳区</td>
+				</tr>
+				<tr>
+					<td>宴会厅名称/楼层</td>
+					<td>国宾厅/2F</td>
+					<td>国宾厅/2F</td>
+					<td>国宾厅/2F</td>
+				</tr>
+				<foreach name="basic['bas']" item="val" key="key">
+			        <tr>
+						<td>{$val['p_a_name']}</td>
+						<foreach name="val['value']" item="v" key="k">
+			            	<td>{$v}</td>
+			            </foreach>
+					</tr>
+			    </foreach>
+			</table>
+			<table border="1" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="4">设备信息</td>
+				</tr>
+				
+				<foreach name="basic['fav']" item="val" key="key">
+			        <tr>
+						<td>{$val['p_a_name']}</td>
+						<foreach name="val['value']" item="v" key="k">
+			            	<td>{$v}</td>
+			            </foreach>
+					</tr>
+			    </foreach>
+			</table>
+			<table border="1" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="4">服务信息</td>
+				</tr>
+				
+				<foreach name="basic['req']" item="val" key="key">
+			        <tr>
+						<td>{$val['p_a_name']}</td>
+						<foreach name="val['value']" item="v" key="k">
+			            	<td>{$v}</td>
+			            </foreach>
+					</tr>
+			    </foreach>
+			</table>
+			<table border="1" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="4">其他信息</td>
+				</tr>
+				
+				<foreach name="basic['reqs']" item="val" key="key">
+			        <tr>
+						<td>{$val['p_a_name']}</td>
+						<foreach name="val['value']" item="v" key="k">
+			            	<td>{$v}</td>
+			            </foreach>
+					</tr>
+			    </foreach>
+			</table>
+		</div>
+	</body>
+	
+	<script>
+		$('ul.classify li').click(function(){
+			var index = $(this).index();
+			var top = $('.main_bottom table').eq(index).offset().top;
+			var win =  $(document).scrollTop(); 
+			if(win > top){
+    			$('body,html').animate({'scrollTop':win-top-324},1000)
+			}else{
+    			$('body,html').animate({'scrollTop':top-324},1000)
+			}
+			
+		})
+		var w = document.documentElement.clientWidth;
+		var fixed_left = (w-1200)/2;
+		$(".main_top").css("left",fixed_left);
+	</script>
+</html>

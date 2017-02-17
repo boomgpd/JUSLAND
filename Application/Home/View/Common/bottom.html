@@ -1,0 +1,33 @@
+<div class="footer clearfix">
+			<div class="footer_top w">
+				<ul class="footer_chaining fl">
+					<li class="blogroll fl" style="margin-top:30px;margin-left: 60px;font-size: 18px;padding-right:40px ;">友情链接</li>
+					<foreach name="bottom['friend']" item="val" key="key">
+						<li><a href="{$val['friend_url']}" >{$val['friend_name']}</a></li>
+					</foreach>
+				</ul>
+				<div class="footer_vx fl">
+					<dl style="margin-right: 50px;">
+						<dt>关注微信</dt>
+						<dd><img src="__UPLOAD__{$bottom['code'][0]}"></dd>
+					</dl>
+					<dl>
+						<dt>下载APP</dt>
+						<dd><img src="__UPLOAD__{$bottom['code'][1]}"></dd>
+				</div>
+			</div>
+			<div class="footer_bottom w">
+				<p>
+					<for start="0" end="count($bottom['home'])">
+						<if condition="$i eq count($bottom['home'])-1">
+							&nbsp;<a href="javascript:;">{$bottom['home'][$i]}</a>
+						<else />
+							<a href="javascript:;">{$bottom['home'][$i]}</a>	| 	
+						</if>
+					</for>
+				</p>
+				<foreach name="bottom['copyright']" item="val" key="key">
+					<p>{$val}</p>
+				</foreach>
+			</div>
+		</div>

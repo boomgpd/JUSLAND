@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	#friend_name{
+	    		border: 0px;
+	    		outline: none;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<a href="{:U('add_article')}"><button class="btn btn-info">添加站点配置</button></a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">ID</th>
+			  <th>站点配置名称/位置</th>
+			  <th>站点配置内容</th>
+			  <th width="210">操作</th>
+			</tr>
+			<foreach name="data['friend']" item="value" key="key">
+				<tr class="dex">
+					<td>{$key+1}</td>
+					<td><input type="text" name="friend_name" id="friend_name" value="{$value['friend_name']}" /></td>
+					<td><input type="text" name="friend_value" id="friend_url" value="{$value['friend_url']}" /></td>
+					<td>
+						<a href="javascript:;" tid="{$value['friend_id']}" class="btn btn-sm btn-warning save" >编辑</a>
+						<a href="javascript:;" del="{$value['friend_id']}" class="btn btn-sm btn-danger dele">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		$(".save").click(function(){
+				var friend_name = $(this).parents('tr').find('#friend_name').val();
+				var friend_url = $(this).parents('tr').find('#friend_url').val();
+				var tid = $(this).attr('tid');
+				$.ajax({
+					type:"post",
+					url:"{:U('admin/friend/save_friend')}",
+					data:{friend_name:friend_name,tid:tid,friend_url:friend_url},
+					dataType:'text',
+					success:function(phpdata){
+						if(phpdata){
+							var str = '<tr class="dex"><td>{$key+1}</td><td>';
+								str += '<input type="text" name="friend_name" id="friend_name" value="'+phpdata.friend_name+'" />';
+								str += '</td><td>';
+								str += '<input type="text" name="friend_value" id="friend_url" value="'+phpdata.friend_url+'" />';
+								str += '</td><td>';
+								str += '<a href="javascript:;" tid="'+phpdata.friend_id+'" class="btn btn-sm btn-warning save" >编辑</a>';
+								str += '<a href="javascript:;" del="'+phpdata.friend_id+'" class="btn btn-sm btn-danger dele">删除</a>';
+								str += '</td></tr>';
+								$('.save').find('tr').html(str);
+						}
+	    			}
+				});
+			})
+		$('.dele').click(function(){
+			var del = $(this).attr('del');
+			$.ajax({
+				type:'post',
+				url:"{:U('admin/friend/del_friend')}",
+				data:{del:del},
+				dataType:'text',
+				success:function(phpdata){
+					if(phpdata){
+						$('.dele').parents('tr').remove();
+					}
+				}
+			});
+		})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/xuqng/qing.css"/>
+		<link rel="stylesheet" href="__PUBLIC__/Home/xuqng/css/style.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/xuqng/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/xuqng/css/pgwslideshow.css" />
+		<script type="text/javascript" src="__PUBLIC__/Home/xuqng/js/jquery.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/Home/xuqng/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){	
+	$(".zoom,.ilike,.like").hide();
+	
+	/*$(".zoom").each(function(){
+		var src=$(this).siblings("img").attr("src");
+		$(this).attr({href:src});
+	});
+*/
+
+	
+	$("#waterfall li").mouseover(function(){
+		$(this).addClass("hover");
+		$(this).find(".zoom,.ilike,.like").show();
+	});
+	$("#waterfall li").mouseout(function(){
+		$(this).removeClass("hover");
+		$(this).find(".zoom,.ilike,.like").hide();
+	});
+})
+</script>
+	</head>
+	<body>
+		<!--header start-->
+		<div class="header">
+			<div class="w clearfix">
+				<div class="header_left fl">
+					<span><img src="__PUBLIC__/Home/xuqng/images/index_dw.png" /></span><span class="c_gray">北京</span><span><a href="#" class="c_blue">[切换]</a></span>
+				</div>
+				<div class="header_right fr">
+					<if condition=" $_SESSION['member_id'] ">
+						<span><a href="#">{$data['member']['member_name']}</a></span>
+						<span>
+							<a href="#"><img src="__ROOT__/{$data['member']['headimg']}" class="tutu" style="width: 30px;height: 30px;"/></a>
+						</a>
+					<else />
+						<span><a href="{:U('Login/login')}">登录</a></span>
+						<span><a href="{:U('Registe/registe')}">注册</a></span>
+					</if>
+					<span style="color: #999;">咨询电话：400-800-1888</span>
+				</div>
+			</div>
+		</div>
+	<!--header end-->
+	
+	<!--nav start-->
+		<div class="nav w">
+			<div class="nav_one clearfix">
+				<a href="#" class="fl"><img src="__PUBLIC__/Home/xuqng/images/index_logo.png"></a>
+				<form method="get" action="#" class="fl">
+					<select class="fl">
+						<option>热门搜索</option>
+						<option>婚礼人员</option>
+						<option>定制道具</option>
+						<option>婚庆公司</option>
+					</select>
+					<input class="fl" type="text" value="" placeholder="婚礼灵感 婚庆公司 免费策划 免费报价"/>
+					<a href="#" class="nav_button fl"></a>
+				</form>	
+				<div class="fl">
+					<a href="#" class="tb_app">APP</a>
+					<a href="#" class="tb_app">APP</a>
+					<a href="#" class="tb_app">APP</a>
+					<a href="#" class="tb_app">APP</a>
+				</div>
+			</div>
+			<ul class="fl">
+				<li><a href="{:U('Waterfall/index')}" class="current">首页</a></li>
+				<li><a href="#">空间灵感</a></li>
+				<li><a href="#">策划与报价</a></li>
+				<li><a href="#">结婚攻略▼</a></li>
+				<li><a href="#">结婚品牌</a></li>
+				<li><a href="#">DIY计划▼</a></li>
+				<li><a href="#">结婚商城</a></li>
+			</ul>
+			<div class="nav_free fr">
+				<a href="#">免费策划</a>
+				<a href="#">免费报价</a>
+			</div>
+		</div>
+	<!--bav end-->
+		<!--展示栏  开始-->
+		<div class="content w">
+			<div class="jq22-content bgcolor-3">
+				<ul class="pgwSlideshow">
+					<foreach name="re['url']" item="v">
+						<li><img src="{$v}" alt="" class="imag"></li>
+					</foreach>
+				</ul>
+		</div>
+		</div>
+		<div class="w" style="height: 20px;background-color: #f5f5f5;border: 1px solid #e0e0e0;border-top: 0;"></div>
+	<!--展示栏  结束-->
+	<!--采集画面   开始-->
+					<div class="back"></div>
+					<div class="form">
+						
+						<div class="db">
+							<span class="q1">转采</span>
+							<span class="q2">×</span>
+						</div>
+						<div class="db_z">
+							<div class="open_img">
+										<img src="" alt="" width="100%"/>
+							</div>
+							<div class="board_cont">
+									<select name="board_board_id" id="opt_board">
+										<option value="">请选择</option>
+										<option value=""></option>
+									</select>
+									<input type="text" name="title" id="alter_cint" value="" />
+									<input type="hidden" name="picture_p_id" id="" value="" />
+							</div>
+						</div>
+						<div class="bummot">
+							<button class="bu_l">创建画板</button>
+							<input type="submit" value="采下来" class="bu_r"/>
+						</div>
+					</div>
+					<div class="found">
+						<div class="db">
+							<span class="q3">创建画板</span>
+							<span class="q4">×</span>
+						</div>
+						<input type="text" name="board_name" id="board_name"/>
+						<input type="button" name="" id="chji" value="创建" />
+					</div>
+			<!--采集画面   结束-->
+		<!--评论栏   开始-->
+		<div class="PL">
+			<div class="PL_1200">
+				<div class="left_pl">
+					<div class="PL_an">
+						<div>
+						<button class="zoom1" board_list_id="{$re['board_list_id']}">收集</button>
+						<button class="licke">喜欢</button>
+						</div>
+					</div>
+					<div class="cont1">
+						<div class="ren">
+							<a href=""><img src="__ROOT__/{$data['member']['headimg']}" alt="" width="100%"height="100%"/></a>
+							<div class="q1">
+								<div style="color: #4e4d4d;font-size: 25px;">{$re['member']}</div>
+								<div style="color: #a8a8a8;font-size: 15px;">收藏于:20分钟前</div>
+							</div>
+						</div>
+						<div class="pl_ju">
+							诗缔婚礼，让所有人都受益
+						</div>
+						<div class="wu">
+							<span class="ss">{$re['like']}喜欢</span>
+							<foreach name="re['member']" item="v">
+									<div class="a1">
+										<a href="" style="margin-top: -20px;">
+											<img src="__ROOT__/{$v['headimg']}" alt="">
+											<span style="margin-left: 15px;position: relative;top: -10px;">{$v['member_name']}</span>
+										</a>
+									</div>
+							</foreach>
+							
+						</div>
+					</div>
+				</div>
+				<div class="rigth_pl">
+					广告
+				</div>
+			</div>
+		</div>	
+		<!--评论栏   结束-->
+		<div class="tiao">
+			<div class="tiao_1200">
+				该收集也在以下模块
+			</div>
+		</div>
+<div id="main">
+	<ul id="waterfall">
+    	<foreach name="data['board_list']" item='v' key='k'>
+	        <li>
+	        	<div class="img_block">
+	        		<foreach name="v['box']['url']" item='value' key='key'>
+	            		<a href="{:U('qing',array('board_list_id'=>$v['box']['board_list_id']))}" ><img src="{$value}" /></a>
+	            	</foreach>
+	                <a href="#"  title="测试标题" board_list_id="{$v['box']['board_list_id']}"  class="zoom">GET</a>
+	                <a href="#" tids="{$v['box']['board_list_id']}" class="ilike">我喜欢</a>
+	          </div>
+	          <div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div>
+	          <div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div>
+	          <div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div>
+	          <div class="ya"></div><div class="ya"></div><div class="ya"></div><div class="ya"></div>
+	            <h3>{$v['box']['title']}</h3>
+	          <p style="background: #E0E5E5;height: 40px;">
+	          	<img src="__ROOT__/{$v['member']['headimg']}" alt="" />
+	          	<a href="">{$v['member']['member_name']}</a> 采集到  <a href="">{$v['box']['board']['board_name']}</a>
+	          </p>
+			</li>
+        </foreach>
+    </ul>
+	<div class="clear"></div>
+	<div style="visibility:hidden" id="loading" class="loading"><p><img src="__PUBLIC__/Home/waterfall/images/loading.gif" /><img src="__PUBLIC__/Home/waterfall/images/load.gif" /></p></div>
+</div>
+<div class="geng">
+			<div class="button">
+				<button>加载更多</button>
+			</div>
+		</div>
+<script type="text/javascript" src="__PUBLIC__/Home/xuqng/js/pgwslideshow.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/waterfall/js/lightbox.js" defer="defer"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/waterfall/js/jquery.masonry.min.js" defer="defer"></script>
+<script type="text/javascript">
+
+$(function(){
+	var $waterfall = $('#waterfall');
+	$waterfall.masonry({
+		columnWidth: 248.5
+	});
+});
+$(document).ready(function() {
+	$('.pgwSlideshow').pgwSlideshow({
+		transitionEffect:'fading',
+		autoSlide:true
+	});
+});
+	//显示采集页面的js
+	$('.zoom1').click(function(){
+		$('.back').show();
+		$('.form').show();
+	})
+	$('.zoom').click(function(){
+		$('.back').show();
+		$('.form').show();
+	})
+	$('.q2').click(function(){
+		$('.back').hide();
+		$('.form').hide();
+	})
+	$('.bu_l').click(function(){
+		$('.found').show();
+	})
+	$('.q4').click(function(){
+		$('.found').hide();
+	})
+	
+	$('.zoom1').click(function(){
+		var board_list_id = $(this).attr('board_list_id');
+//		alert(board_list_id);
+		$.ajax({
+			type:"post",
+			url:"{:U('Waterfall/perfect')}",
+			data:{board_list_id:board_list_id},
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata){
+					var str = '<div class="db_z"><div class="open_img">';
+						$.each(phpdata.url, function(k,v) {
+							str += '<img src="'+phpdata.url[0]+'" alt="" height="100%"/>';
+						});
+						str += '</div><div class="board_cont"><select name="board_board_id" id="opt_board"><option value="">请选择</option>';
+						$.each(phpdata.board, function(k1,v1) {	
+						str += '<option value="'+v1.board_id+'">'+v1.board_name+'</option>';
+					});	
+					str += '</select>';
+					str += '<input type="text" name="title" id="alter_cint" value="'+phpdata.title+'" />';
+					str += '<input type="hidden" name="picture_p_id" id="" value="'+phpdata.p_id+'" />';
+					str += '</div></div>';
+					$('.db_z').html(str);
+				}else{
+					
+				}	
+			}
+		});
+	})
+	$('.zoom').click(function(){
+		var p_id = $(this).attr('p_id');
+		var board_list_id = $(this).attr('board_list_id');
+		$.ajax({
+			type:"post",
+			url:"{:U('Waterfall/perfect')}",
+			data:{p_id:p_id,board_list_id:board_list_id},
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata){
+					var str = '<div class="db_z"><div class="open_img">';
+						$.each(phpdata.url, function(k,v) {
+							str += '<img src="'+phpdata.url[0]+'" alt="" height="100%"/>';
+						});
+						str += '</div><div class="board_cont"><select name="board_board_id" id="opt_board"><option value="">请选择</option>';
+						$.each(phpdata.board, function(k1,v1) {	
+						str += '<option value="'+v1.board_id+'">'+v1.board_name+'</option>';
+					});	
+					str += '</select>';
+					str += '<input type="text" name="title" id="alter_cint" value="'+phpdata.title+'" />';
+					str += '<input type="hidden" name="picture_p_id" id="" value="'+phpdata.p_id+'" />';
+					str += '</div></div>';
+					$('.db_z').html(str);
+				}else{
+					
+				}	
+			}
+		});
+	})
+	//		采集图片的ajax
+$('input:submit').click(function(){
+			var picture_p_id  = $("input[name=picture_p_id]").val();
+			var board_board_id  = $("select[name=board_board_id]").val();
+			var title  = $("input[name=title]").val();
+			$.ajax({
+				type:"post",
+				url:"{:U('Waterfall/collect')}",
+				data:{picture_p_id:picture_p_id,board_board_id:board_board_id,title:title},
+				dataType:'json',
+				success:function(phpdata){
+					if(phpdata.type){
+/*						var str = '<li><div class="img_block">';
+							$.each(phpdata.url, function(k,v) {
+								str += '<img src="'+v+'">'
+							});
+							str += ' <a href="#"  title="测试标题" board_list_id="'+phpdata.board_list.board_list_id+'" class="zoom">GET</a>';
+							str += '<a href="#" class="ilike">我喜欢</a></div><h3>'+phpdata.board_list.title+'</h3>';
+	        				str += '<div class="iNum"><span>1</span><a href="#">4</a></div> <p>'+phpdata.member.member_name+'</p></li>';
+						$(".to").after(str);*/
+						$('.back').hide();
+						$('.form').hide();
+						$('.found').hide();
+					}else{
+						alert(phpdata.content);
+					}
+				}
+			});
+		})
+	
+		</script>
+	</body>
+</html>

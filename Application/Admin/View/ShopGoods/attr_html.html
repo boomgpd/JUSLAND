@@ -1,0 +1,8 @@
+<foreach name="attr" item='vv' key='kk'>
+	<label class="checkbox checkbox-inline">
+		<input class="custom-checkbox" type="checkbox" name="spec_id[]" value="{$vv['s_id']}"/>
+		<span class="icons">
+			<span class="icon-unchecked"></span>
+			<span class="icon-checked"></span>
+		</span>{$vv['spec_name']}</label>
+</foreach>

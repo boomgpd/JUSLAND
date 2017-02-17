@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	td{
+	    		border-right:1px solid #DDDDDD;
+	    	}
+	    	
+	    	table{
+	    		border: 1px solid #DDDDDD;
+	    	}
+	    	input{
+	    		border: none;
+	    	}
+	    	
+	    	span{
+	    		display: none;
+	    	}
+	    	span.true{
+	    		font-size: 10px;
+	    		color: green;
+	    		opacity: 0.7;
+	    	}
+	    	
+	    	span.false{
+	    		font-size: 10px;
+	    		color: red;
+	    		opacity: 0.7;
+	    	}
+	    	
+	    	span.null{
+	    		font-size: 10px;
+	    		color: orange;
+	    		opacity: 0.7;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<form action="" method="post">
+			<table class="table table-hover">
+				<tr class="active">
+				  <th width="30%" style="border-right:1px solid #DDDDDD;">属性名称</th>
+				  <th width="70%">属性值</th>
+				</tr>
+			
+					<tr>
+						<td>原密码</td>
+						<td>
+							<input type="password" name="old_pwd" value="" placeholder="请输入原密码"/>
+							<span class="false">原密码输入有误</span>
+							<span class="true" id="right_pwd">原密码输入正确</span>
+							<span class="null">原密码不能为空</span>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>新密码</td>
+						<td>
+							<input type="password" name="new_pwd" value="" placeholder="请输入6位数新密码"/>
+							<span class="false">请按密码格式书写</span>
+							<span class="true">认证通过</span>
+							<span class="null">新密码不能为空</span>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>重复密码</td>
+						<td>
+							<input type="password" name="reput_pwd" value="" placeholder="重复新密码"/>
+							<span class="false">重复密码与新密码不一致</span>
+							<span class="true">认证通过</span>
+						</td>
+					</tr>
+					
+			</table>
+			<button class="btn btn-primary btn-block" id="sure" type="button"> 确定 </button>
+		</form>
+		<script type="text/javascript">
+//			给验证原密码是否符合要求
+			$("input").change(function(){
+				var data = $(this).val();
+				var name = $(this).attr('name');
+				var re = check_pwd(data,name);
+				$(this).parents('tr').find('span.'+re).css('display','block').siblings('span').css('display','none');
+			})
+			
+//			验证原密码是否正确方法
+			function check_pwd(data,name){
+				if(!data){
+					return 'null';
+				}else if(data.length!=6){
+					return 'false';
+				}else if(name == 'old_pwd'){
+					step(data);
+					if($("#right_pwd").css('display') == 'block'){
+						return 'true';
+					}else{
+						return 'false';
+					}
+				}else if(name == 'reput_pwd'){
+					return check_reput_pwd();
+				}else{
+					return true;
+				}
+			}
+			
+//			创建异步判定原密码是否正确
+			function step(data){
+				$.ajax({
+					type:"post",
+					url:"{:U('login/check_old_pwd')}",
+					data:{old_pwd:data},
+					dataType:'json',
+					success:function(phpdata){
+						$("input[name=old_pwd]").parents('tr').find('span.'+phpdata).css('display','block').siblings('span').css('display','none');
+					}
+				});
+			}
+			
+//			判定两次密码是否一致
+			function check_reput_pwd(){
+				var new_pwd = $("input[name=new_pwd]").val();
+				var reput_pwd = $("input[name=reput_pwd]").val();
+				if(new_pwd == reput_pwd){
+					return 'true';
+				}else{
+					return 'false';
+				}
+			}
+			
+//			给提交按钮添加单击事件
+			$("#sure").click(function(){
+				var old_pwd = $("input[name=old_pwd]").val();
+				var new_pwd = $("input[name=new_pwd]").val();
+				var reput_pwd = $("input[name=reput_pwd]").val();
+				if(check_pwd(old_pwd,'old_pwd') == 'false'){
+					alert('请确认输入信息准确完整');
+				}else if(check_pwd(new_pwd,'new_pwd') == 'false'){
+					alert('请确认输入信息准确完整');
+				}else if(check_pwd(reput_pwd,'reput_pwd') == 'false'){
+					alert('请确认输入信息准确完整');
+				}else{
+					$("form").submit();
+				}
+			})
+			
+		</script>
+	</body>
+</html>

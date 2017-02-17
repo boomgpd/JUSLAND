@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>JUSLAND——灵感库</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/index/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/waterfall_index.css" />
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.main{width: 1200px;margin: 0 auto;}
+			.main_son{width: 240px;height: auto;float: left;}
+			.pin{padding: 15px 0 0 15px;position: relative;}
+			.pin_son{width: 205px;height: auto;padding: 10px;}
+			.pin .box{width: 205px;height: auto;padding: 10px;background: #FFF;border: 1px solid #CCC;box-shadow: 0px 0px 6px #CCC;}
+			.pin .box img{margin-bottom: 2px}
+			.lg_nav{width: 1200px;margin: 30px auto;}
+			.lg_nav li{float: left;margin-left: 15px;}
+			.lg_nav li a{display: inline-block;width: 225px;height:103px;font-size: 22px;text-align:center;line-height:103px;color: #fff;text-transform:uppercase;}
+			.lg_nav li a:hover{border-radius:10px;background-color: rgba(0,0,0,.2);/*font-size: 26px;transition: font-size .3s;-moz-transition: font-size .3s;-o-transition: font-size .3s;-webkit-transition: font-size .3s;*/}
+			.lg_nav li:nth-child(1){background-image: url(__PUBLIC__/Home/img/waterfall/list/1.png);}
+			.lg_nav li:nth-child(2){background-image: url(__PUBLIC__/Home/img/waterfall/list/2.png);}
+			.lg_nav li:nth-child(3){background-image: url(__PUBLIC__/Home/img/waterfall/list/3.png);}
+			.lg_nav li:nth-child(4){background-image: url(__PUBLIC__/Home/img/waterfall/list/5.png);}
+			.lg_nav li:nth-child(5){background-image: url(__PUBLIC__/Home/img/waterfall/list/4.png);}
+			/*.lg_nav li:nth-child(1){background-image: url(__PUBLIC__/Home/img/waterfall/list/1.png);}
+			.lg_nav li:nth-child(2){background-image: url(__PUBLIC__/Home/img/waterfall/list/2.png);}
+			.lg_nav li:nth-child(3){background-image: url(__PUBLIC__/Home/img/waterfall/list/3.png);}
+			.lg_nav li:nth-child(4){background-image: url(__PUBLIC__/Home/img/waterfall/list/4.png);}
+			.lg_nav li:nth-child(5){background-image: url(__PUBLIC__/Home/img/waterfall/list/5.png);}*/
+		</style>
+	</head>
+	<body>
+	<include file="Common/alert_view_style" />
+	<include file="Common/header" />
+	<div class="tk">
+			<div class="tk_top">
+				<span class="fl">转采</span>
+				<a href="javascript:;" class="tk_close fr">
+					<img src="__PUBLIC__/Home/img/waterfall/tk_close.png">
+				</a>
+			</div>
+			<form class="tk_cnt clearfix" id="collect">
+				<div class="tk_cnt_left">
+					<img src="">
+					<div class="tk_cnt_left_bj"></div>
+				</div>
+				<div class="tk_cnt_right">
+					<div class="tk_cnt_right_one">
+						<select>
+							<option></option>
+						</select>
+					</div>
+					<div class="tk_cnt_right_two">
+						<textarea name="title" ></textarea>
+					</div>
+				</div>
+			</form>
+			<div class="tk_bot">
+				<a href="javascript:;" class="tk_bot_add">添加画板</a>
+				<a href="#" class="tk_bot_down">采下来</a>
+			</div>
+		</div>
+		<!--添加画板-->
+		<div class="tk_add">
+			<div class="tk_top">
+				<span class="fl">添加画板</span>
+				<a href="javascript:;" class="tk_close1 fr">
+					<img src="__PUBLIC__/Home/img/waterfall/tk_close.png">
+				</a>
+			</div>
+			<div class="tk_input">
+				<span>名称：</span><input type="text" name="board_name" placeholder="请输入画板名称" />
+			</div>
+			<div class="tk_bot">
+				<a href="#" class="tk_bot_down">添加画板</a>
+			</div>
+		</div>
+		<ul class="lg_nav clearfix">
+			<foreach name="type" item="v" key="key">
+				<li>
+					<a href="javascript:;" class="english">{$v['English_name']}</a>
+					<a href="{:U('index',array('type'=>$v['tid']))}" class="chinese" style="display: none;">{$v['tname']}</a>
+				</li>
+			</foreach>
+		</ul>
+		<div class="main clearfix">
+			<div class="main_son">
+				<div class="pin">
+					<div class="quote">
+						<h3>免费报价</h3>
+						<p class="c_blue">只需上传婚礼图片就可获得精准报价</p>
+						<form action="{:U('waterfall/insp_make')}" method="post" enctype="multipart/form-data" >
+							<input type="text" name="member_name" placeholder="您的称呼" />
+							<input type="text" name="phone" placeholder="手机号码" />
+							<select class="area_omit" name="area_id[]">
+								<option>省/市</option>
+								<foreach name="data['area']" item="values" key="keys">
+									<option value="{$values['area_id']}">{$values['aname']}</option>
+								</foreach>
+							</select>
+							<select style="margin-left: 8px;" class="area_city" name="area_id[]">
+								<option>市/地区</option>
+								<option value=""></option>
+							</select>
+							<input type="hidden" id="imgs" name="url">
+							<a href="javascript:;" class="upload">
+							<input type="file" name="photo1">点击这里上传图片</a>
+							<input type="checkbox" style="vertical-align: middle;" checked="checked" /> <span> 阅读并接受<a href="#" class="c_blue">《婚礼问题条款》</a></span>
+							<input type="submit" value="立即免费申请结婚保" />
+						</form>
+						<p>嘉仕澜德专业策划师会在24小时内根据您上传的图片为您免费评估报价</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="main_son remove">
+
+			</div>
+			
+			<div class="main_son remove">
+
+			</div>
+			
+			<div class="main_son remove">
+
+			</div>
+			
+			<div class="main_son remove">
+
+			</div>
+		</div>
+		<img src="__PUBLIC__/Home/img/waterfall/gif.gif" id="loading" style="margin-bottom:0;margin-left:50%;display: none;">
+			<img src="__PUBLIC__/Home/img/waterfall/loading_end.png" id="ending" style="margin-bottom:0px;margin-left:50%;display: none;">
+
+			<script type="text/javascript" src="__PUBLIC__/Home/js/masonry.js" defer="defer"></script>
+			<script type="text/javascript" defer="defer">
+				$(".lg_nav li").mouseover(function(){
+					$(this).children("a.english").hide().siblings("a.chinese").show();
+				})
+				$(".lg_nav li").mouseout(function(){
+					$(this).children("a.chinese").hide().siblings("a.english").show();
+				})
+				window.onload = function() {
+
+					var ajaxState = true;
+					//定义全局变量控制,获取当前显示页数
+//					no_padding_left();
+					}
+					var page_num = 1;
+					var page_type = "<?php echo $_GET['type']?>";
+					step_page();
+					function getNum(one){
+						var start = one.lastIndexOf('startmaxheight')+14;
+						var end = one.lastIndexOf('endmaxheight')-start;
+						var maxheight = parseFloat(one.substr(start,end));
+						var height = main_son[0];
+						var num = 0;
+						for(var i = 0;i < $('.main_son').length;i++){
+							if(height > main_son[i]){
+								height = main_son[i];
+								num = i;
+							};
+						};
+						main_son[num] = main_son[num] + maxheight;
+						return num;
+					}
+					//main_son初始高度
+					var main_son = [];
+					for(var i = 0;i < $('.main_son').length;i++){
+						main_son.push(parseFloat($('.main_son').eq(i).height())); 
+					};
+					
+//					//切换分类
+//					$('.qie').click(function(){
+//						page_type = $(this).attr('type_tid');
+//						step_page();
+//					})
+					/**
+					 * 创建异步加载分页方法
+					 */
+					function step_page() {
+						ajaxState = false;
+						$.ajax({
+							type: "post",
+							url: "{:U('home/waterfall/loading',array('q'=>$q))}",
+							data: {
+								page_num: page_num,page_type:page_type
+							},
+							dataType: 'json',
+							beforeSend: function() {
+								$("#loading").css('display', 'block');
+							},
+							success: function(phpdata) {
+								if(phpdata != 0){
+									$.each(phpdata,function(k,v) {
+										var num = getNum(v);
+										$('.main_son').eq(num).append(v);
+									});
+								}else{
+									var num = $('.main_son').length;
+									$('.main_son').eq(num-1).append('到底了，哈哈');
+								}
+								
+							},
+							complete: function() {
+								$("#loading").css('display', 'none');
+								ajaxState = true;
+								page_num++;
+							}
+						});
+					};
+					/**
+					 * 创建分屏加载
+					 */
+					$(window).scroll(function() {
+						var page_height = $(document).height(); //是获取整个页面的高度
+						var wind_height = $(window).height(); //是获取当前也就是浏览器所能看到的页面的那部分的高度
+						var bottom_height = $(document).height() - $(window).height();
+						var now_height = $(document).scrollTop();
+						if(now_height >= bottom_height && ajaxState) {
+							step_page();
+						}
+	
+					});
+					
+	//				function no_padding_left(){
+	//					var num = $(".pin").length;
+	//					for(var i=0; i<num; i++){
+	//						if(i%5 == 0){
+	//							alert(i);
+	//							$(".pin").css('padding-left','none');
+	//						}
+	//					}
+	//				}
+					
+					
+	
+					/**
+					 * 城市互联异步
+					 */
+					$(".area_omit").change(function() {
+						var area_id = $("select.area_omit").val();
+						$.ajax({
+							type: "post",
+							url: "{:U('waterfall/index')}",
+							data: {
+								area_id: area_id
+							},
+							dataType: 'json',
+							success: function(phpdata) {
+								if(phpdata) {
+									var str = '<select style="margin-left: 8px;" class="area_city" name="area_id[]"><option>市/地区</option>';
+									$.each(phpdata, function(k, v) {
+										str += '<option value="' + v.area_id + '">' + v.aname + '</option>';
+									});
+									str += '</select>';
+									$('.area_city').html(str);
+								}
+							}
+						});
+					})
+	
+					//点赞的ajax
+					$('.main_son').on('click','.hide_right .click', function() {
+						var board_list_id = $(this).attr('tids');
+						var P_id = $(this).attr('tida');
+						var This = $(this);
+						$.ajax({
+							type: "post",
+							url: "{:U('Help/help')}",
+							data: {
+								board_list_id: board_list_id,
+								P_id: P_id
+							},
+							dataType: 'json',
+							success: function(phpdata) {
+								if(!phpdata) {
+									window.wxc.xcConfirm('您还未登录，请登录后再点赞！', window.wxc.xcConfirm.typeEnum.confirm);
+								} else {
+									if(phpdata.type) {
+										window.wxc.xcConfirm('点赞成功', window.wxc.xcConfirm.typeEnum.success);
+										This.removeClass('zan_no').addClass('zan_yes');
+									} else {
+										window.wxc.xcConfirm('取消点赞', window.wxc.xcConfirm.typeEnum.success);
+										This.removeClass('zan_yes').addClass('zan_no');
+									}
+									This.parents('.pin').find('.zf_zan .zan').html(phpdata.num);
+								}
+	
+							}
+						});
+					})
+	
+					/**
+					 * 创建转载ajax
+					 */
+					$('.main_son').on('click','.hide_left a', function() {
+						var p_id = $(this).attr('p_id');
+						var board_list_id = $(this).attr('board_list_id');
+						var This;
+						$.ajax({
+							type: "post",
+							url: "{:U('perfect')}",
+							data: {
+								p_id: p_id,
+								board_list_id: board_list_id
+							},
+							dataType: 'json',
+							success: function(phpdata) {
+								if(!phpdata.p_id) {
+									window.wxc.xcConfirm(phpdata.content, window.wxc.xcConfirm.typeEnum.confirm);
+								}else{
+									var str = '<div class="tk_top"><span class="fl">转采</span><a href="javascropt:;"  class="tk_close fr"><img src="__PUBLIC__/Home/img/waterfall/tk_close.png"></a></div><form class="tk_cnt clearfix" id="collect"><div class="tk_cnt_left">';
+									str += '<img src="__UPLOAD__' + phpdata.img_url[0] + '">';
+									str += '<input type="hidden" name="p_id" id="p_id" value="'+phpdata.p_id+'" />';
+									str += '<div class="tk_cnt_left_bj"></div></div><div class="tk_cnt_right"><div class="tk_cnt_right_one"><select name="board_id">';
+									if(phpdata.board) {
+										$.each(phpdata.board, function(k,v) {
+											str += '<option value="'+v.board_id+'">' + v.board_name + '</option>';
+										});
+									} else {
+										str += '<option>您还没有画板</option>';
+									}
+									str += '</select></div><div class="tk_cnt_right_two">';
+									str += '<textarea name="title" >' + phpdata.title + '</textarea>';
+									str += '</div></div></form><div class="tk_bot"><a href="#" class="tk_bot_add">添加画板</a><a href="#" class="tk_bot_down">采下来</a></div>';
+									$('.tk').html(str);
+									$('.tk').show();
+								}
+							}
+						});
+					});
+	
+					//采集图片的ajax
+				$('.tk').on('click','.tk_bot_down',function() {
+					var title = $('textarea[name=title]').val();
+					var picture_p_id = $('input[name=p_id]').val();
+					var board_id = $('select[name=board_id]').val();
+					$.ajax({
+						type: "post",
+						url: "{:U('collect')}",
+						data: {title:title,picture_p_id:picture_p_id,board_id:board_id},
+						dataType: 'json',
+						success: function(phpdata) {
+							if(phpdata.type == 1) {
+								$('.tk').hide();
+									window.wxc.xcConfirm('采集完成', window.wxc.xcConfirm.typeEnum.success);
+							} else {
+									window.wxc.xcConfirm('采集失败', window.wxc.xcConfirm.typeEnum.error);
+							}
+						}
+					});
+				})
+				$(".tk").on('click','.tk_close',function() {
+					$(".tk").hide();
+				})
+				$(".tk").on('click','.tk_bot_add',function() {
+					$(".tk_add").show();
+				})
+				
+				//添加画板的ajax
+				$('.tk_close1').click(function(){
+					$('.tk_add').hide();
+				})
+				$(".tk_bot_down").click(function(){
+					var board_name = $('input[name=board_name]').val();
+					$.ajax({
+						type:"post",
+						url:"{:U('addboard')}",
+						data:{board_name:board_name},
+						dataType: 'json',
+						success: function(phpdata) {
+							if(phpdata){
+								var str = '<option value="'+phpdata.board_id+'" >' + phpdata.board_name + '</option>';
+//								var str = '<div class="tk_cnt_right_one"><select name="board_id">';
+//								$.each(phpdata, function(k,v) {
+//									str += '<option value="'+v.board_id+'">' + v.board_name + '</option>';
+//								});
+//									str += '</select></div>';
+								$('select[name=board_id]').append(str);
+								$('.tk_cnt_right_one select').val(phpdata.board_id);
+								$('.tk_add').hide();
+							}
+						}
+					});
+				})
+	</script>
+	</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>	    	
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th>cid</th>
+			  <th>分类名称</th>
+			  <td>跳转链接</td>
+			  <th width="30%">操作</th>
+			</tr>
+			<foreach name="data" item='v' key='k'>
+				<tr>
+					<td>{$k+1}</td>
+					<td><input type="text" name="name"  value="{$v['name']}"/></td>
+					<td></td>
+					<td w_id="{$v['w_id']}">
+						<a href="javascript:;" class="btn btn-sm btn-primary add_son">添加子菜单</a>
+						<a href="javascript:;" class="btn btn-sm btn-warning save">保存</a>
+					</td>
+				</tr>
+				<foreach name="v['sub_button']" item='vv' key='kk'>
+					<tr>
+						<td>——{$kk+1}</td>
+						<td><input type="text" name="name" value="{$vv['name']}"/></td>
+						<td><input type="text" name="url" value="{$vv['url']}"/></td>
+						<td w_id="{$vv['w_id']}">
+							<a href="javascript:;" class="btn btn-sm btn-warning save">保存</a>
+							<a href="javascript:;" class="btn btn-sm btn-danger del_list">删除</a>
+						</td>
+					</tr>
+				</foreach>
+			</foreach>
+		</table>
+	</body>
+	<script type="text/javascript">
+		$(".add_son").click(function(){
+			var This = $(this).parents('tr');
+			var pid = $(this).parents('td').attr('w_id')
+			/*验证子菜单是否超过上限*/
+			$.ajax({
+				type:"post",
+				url:"{:U('check_son_num')}",
+				data:{'w_id':pid},
+				dataType:'json',
+				success:function(phpdata){
+					if(phpdata){
+						var str = '<tr><td>——'+phpdata+'</td>';
+						str += '<td><input type="text" name="name" value=""/></td>';
+						str	+= '<td><input type="text" name="url" value=""/></td>';			
+						str	+= '<td pid="'+pid+'"><a href="javascript:;" class="btn btn-sm btn-info add">添加</a> ';
+						str	+= '<a href="javascript:;" class="btn btn-sm btn-danger del null">删除</a></td></tr>';
+						This.after(str);
+					}else{
+						alert('子菜单已达到上限');
+					}
+				}
+			});
+		})	
+			/*删除空表格*/
+			$(document).on('click','.del.null',function(){
+				$(this).parents('tr').remove();
+			})
+			
+			/*创建删除菜单栏方法*/
+			$(".del_list").click(function(){
+				var w_id = $(this).parents('td').attr('w_id');
+				alert(w_id);
+				$.ajax({
+					type:"post",
+					url:"{:U('del')}",
+					data:{'w_id':w_id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata == 'true'){
+							alert('删除成功');
+							window.location.reload();
+						}else{
+							alert('删除失败');
+						}
+					}
+				});
+			})
+			
+			/*创建编辑菜单栏方法*/
+			$(".save").click(function(){
+				var This = $(this).parents();
+				var data = {
+					'name'	: 	This.find('input[name=name]').val(),
+					'url'	:	This.find('input[name=url]').val(),
+					'type'	:	'view',
+					'w_id'	:	$(this).parent('td').attr('w_id')
+				};
+				
+				if(data.name == '' || data.url == ''){
+					alert('请确认信息填写完整');
+					return false;
+				}else{
+					$.ajax({
+						type:"post",
+						url:"{:U('edit')}",
+						data:data,
+						dataType:'json',
+						success:function(phpdata){
+							if(phpdata == 'true'){
+								alert('编辑成功');
+								window.location.reload();
+							}else{
+								alert('编辑失败');
+							}
+						}
+					});
+				}
+			})
+			
+			/*创建添加子菜单方法*/
+			$(document).on('click','.add',function(){
+				var This = $(this).parents();
+				var data = {
+					'name'	: 	This.find('input[name=name]').val(),
+					'url'	:	This.find('input[name=url]').val(),
+					'type'	:	'view',
+					'pid'	:	$(this).parent('td').attr('pid')
+				};
+				
+				if(data.name == '' || data.url == ''){
+					alert('请确认信息填写完整');
+					return false;
+				}else{
+					$.ajax({
+						type:"post",
+						url:"{:U('add_son')}",
+						data:data,
+						dataType:'json',
+						success:function(phpdata){
+							if(phpdata == 'true'){
+								alert('添加成功');
+								window.location.reload();
+							}else{
+								alert('添加失败');
+							}
+						}
+					});
+				}
+				
+			})
+	</script>
+</html>

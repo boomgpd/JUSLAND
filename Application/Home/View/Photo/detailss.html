@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/photo/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/photo/css/details.css" />
+		<script type="text/javascript" src="__PUBLIC__/Home/photo/js/jquery-3.1.1.min.js" ></script>
+	</head>
+	<body>
+		<include file="Common/header_two" />
+		<!--顶部-->
+		<div class="photo_top">
+			<ul class="photo_nav clearfix">
+				<li><a href="javascript:;" class="current">套餐描述</a></li>
+				<li><a href="javascript:;">摄影服务</a></li>
+				<li><a href="javascript:;">服装造型</a></li>
+				<li><a href="javascript:;">拍摄成品</a></li>
+				<li style="margin: 0;"><a href="javascript:;">赠品其他</a></li>
+			</ul>
+			<ul class="photo_top_cot">
+				<foreach name="data['tab'][1]" key="k" item="v">
+					<li class="clearfix">
+						<div class="li_left" style="width: 15%">{$v.p_a_name}</div>
+						<div class="li_right" style="width: 85%">
+							<span>{$v.p_a_value}</span>
+						</div>
+					</li>
+				</foreach>
+				<a href="javascript:;" class="close"></a>
+			</ul>
+			<ul class="photo_top_cot" style="display: none;">
+				<foreach name="data['tab'][2]" key="k" item="v">
+					<li class="clearfix">
+						<div class="li_left"style="width: 15%">{$v.p_a_name}</div>
+						<div class="li_right" style="width: 85%">
+							<span>{$v.p_a_value}</span>
+						</div>
+					</li>
+				</foreach>
+				<a href="javascript:;" class="close"></a>
+			</ul>
+			<ul class="photo_top_cot" style="display: none;">
+				<foreach name="data['tab'][3]" key="k" item="v">
+					<li class="clearfix">
+						<div class="li_left" style="width: 15%">{$v.p_a_name}</div>
+						<div class="li_right" style="width: 85%">
+							<span>{$v.p_a_value}</span>
+						</div>
+					</li>
+				</foreach>
+				<a href="javascript:;" class="close"></a>
+			</ul>
+			<ul class="photo_top_cot" style="display: none;">
+				<foreach name="data['tab'][4]" key="k" item="v">
+					<li class="clearfix">
+						<div class="li_left" style="width: 15%">{$v.p_a_name}</div>
+						<div class="li_right" style="width: 85%">
+							<span>{$v.p_a_value}</span>
+						</div>
+					</li>
+				</foreach>
+				<a href="javascript:;" class="close"></a>
+			</ul>
+			<ul class="photo_top_cot" style="display: none;">
+				<foreach name="data['tab'][5]" key="k" item="v">
+					<li class="clearfix">
+						<div class="li_left" style="width: 15%">{$v.p_a_name}</div>
+						<div class="li_right" style="width: 85%">
+							<span>{$v.p_a_value}</span>
+						</div>
+					</li>
+				</foreach>
+				<a href="javascript:;" class="close"></a>
+			</ul>
+		</div>
+		<!--end-->
+		
+		<!--左侧-->
+		<div class="photo_left">
+			
+			<div class="photo_left_cot">
+			<foreach name="data['picture']" key="k" item="v">
+				<div class="img">
+					<img src="__UPLOAD__/{$v}" />
+				</div>
+			</foreach>
+			</div>
+			
+		</div>
+		<!--end-->
+		
+		<!--右侧-->
+		<div class="photo_right" style="background-image: url(__UPLOAD__/{$data['clogo']});background-repeat: no-repeat;background-size: 100% 100%;">
+			<div style="width:50%;position: fixed;bottom: 20%;">
+				<div class="photo_right_son">
+					<a href="javascript:;" class="reserve">预约套系</a>
+				</div>
+			</div>
+			
+		</div>
+		
+		<!--end-->
+		<!--弹窗-->
+		<div class="collection" style="display:none;">
+			<form action="" method="post">
+				<ul class="clearfix">
+					<li><label>姓名</label><input type="text" name="make_name" placeholder="例：张三"></li>
+					<li><label>电话</label><input type="text"  name="make_phone" placeholder="例：13*********"><span class="xin" style="color: red;display:none;">*</span></li>
+					<li>
+						<label>婚期</label><input type="text" name="make_widing_day" placeholder="例：某年某月某日">
+						<div><input type="checkbox" name="make_widing_day" value="婚期未确定"><span style="vertical-align: middle;color: #999;">婚期未确定</span></div>
+					</li>
+					<li><label>备注</label><input type="text"  name="make_PS" placeholder="例：喜欢欧美风"></li>
+				</ul>	
+				<input type="hidden" name="p_p_id" value="{$_GET['id']}" />
+				<input type="button" class="sub" value="立即申请"/>
+			</form>
+			<a href="#" class="login_close"><img src="__PUBLIC__/Home/photo/img/login_close.png"></a>
+		</div>
+		<script type="text/javascript">
+			$('input[name=make_phone]').change(function(){
+				var phone = /^1[34578]\d{9}$/ ;
+				if(phone.test($(this).val())){
+					$('.sub').attr('type','submit');
+					$('.xin').hide();
+				}else{
+					$('.xin').show();
+					$('.sub').click(function(){
+						alert('您的手机号不可用，请重新输入！');
+					})
+				}
+			})
+		</script>
+		<!--底部-->
+		<div class="photo_bot">
+			<p>COPYRIGHT © 2005 北京诗缔艺恒文化传播有限公司 ALL RIGHTS RESERVED 京ICP备14039745号-1</p>
+		</div>
+		<!--end-->
+	</body>
+	
+<script>
+//坐上导航tab切换
+	$(".photo_nav a").click(function(){
+		$(this).addClass("current").parent().siblings().find("a").removeClass("current");
+	})
+	$(function(){
+		var $tab=$(".photo_nav li");
+		var $tab_end=$(".photo_top_cot");
+		$tab.click(function(){
+			var $this=$(this);
+			var $inx=$this.index();
+			$tab_end.css("display","none");
+			$tab_end.eq($inx).css("display","block")
+		});
+	})
+//关闭按钮
+	$(".photo_top_cot .close").click(function(){
+		$(this).parents("ul").hide();
+	})
+	$('.reserve').click(function(){
+		$('.collection').show();
+	})
+	window.onload = function(){
+		var left = (document.body.clientWidth - 520)/2;
+		var top =  ($(window).height() - 440)/2;
+		$(".collection").css({"left":left,"top":top});
+	}	 
+	$(".login_close").click(function(){
+		$(this).parent(".collection").hide();
+	})
+</script>
+<script>
+//右侧高度
+	var height = $(window).height();
+	$(".photo_right").css("height",height);
+</script>
+</html>

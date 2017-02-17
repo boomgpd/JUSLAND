@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/Merchant/css/tuwen.css" />
+	</head>
+	<body>
+		<span class="zi">商家套餐修改》</span>
+		<hr />
+		<div class="kuang">
+			<foreach name="data" item='v'>
+				<div class="img">
+					<if condition="$v['is_show'] eq 1">
+						<input type="checkbox" name="" id="" sort="{$v['sort']}" value="{$v['merchant_combo_id']}" checked="checked"/>
+					<else />
+						<input type="checkbox" name="" id="" sort="{$v['sort']}" value="{$v['merchant_combo_id']}" />
+					</if>
+					
+					<div class="san"></div>
+					<img src="__UPLOAD__{$v['img_url'][0]}" alt="" width="80" height="80"/>
+					<p>{$v['title']}</p>
+				</div>
+			</foreach>
+		</div>
+		
+		<form action="" method="post">
+		<div class="show">
+			<ul>
+				<foreach name="data" item='v'>
+					<if condition="$v['is_show'] eq 1">
+						<li class="imger">
+							<div class="x">×</div>
+							<img src="__UPLOAD__{$v['img_url'][0]}" alt="" width="80"; height="80"/>
+							<p class="p2">{$v['title']}</p>
+							<input type="text"  value="{$v['sort']}"  name="{$v['merchant_combo_id']}" class="input"/>
+						</li>
+					</if>
+				</foreach>
+			</ul>
+				
+		</div>
+			<input type="submit" value="保存" class="bao"/>
+			<a href="" class="qu">取消</a>
+		</form>
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				
+				
+				$('div.x').live('click',function(){
+					var id = $(this).parents('.imger').find('input').attr('name');
+					$(this).parents(".imger").remove();
+					$(".kuang").find('input[value = '+id+']').removeAttr('checked');
+				})
+				
+				
+				$(".kuang .img input").change(function(){
+					var val = $(this).attr('checked');
+					var id = $(this).val();
+					var img_url = $(this).parents('div.img').find('img').attr('src');
+					var title = $(this).parents('div.img').find('p').html();
+					var sort =$(this).attr('sort');
+					var num = $("li.imger").length;
+					if(val && num<4){
+						var str = '<li class="imger"><div class="x">×</div>';
+							str += '<img src="'+img_url+'" alt="" width="80"; height="80"/>';
+							str += '<p class="p2">'+title+'</p>';
+							str += '<input type="text"  value="'+sort+'" name = "'+id+'" class="input"/></li>';
+							$(".show ul").after(str);
+					}else if(val && num>3){
+						alert('前台页面套餐最多展示4个');
+						$(this).removeAttr('checked');
+					}else{
+						$("div.show").find("input[name = "+id+"]").parents('li.imger').remove();
+					}
+					
+				})
+			}
+		</script>
+	</body>
+</html>

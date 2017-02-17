@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>嘉仕澜德——结婚就上嘉仕澜德</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/index/css/index.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/index/css/reset.css" />
+		<script type="text/javascript" src="__PUBLIC__/Home/index/js/jquery.js"></script>
+	</head>
+	<body>
+	<!--header start-->
+		<include file="Common/header" />
+	<!--nav end-->
+	
+	<!--content start-->
+		<div class="content clearfix">
+			<ul class="fl">
+				<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_content_left_01.jpg"></a></li>
+				<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_content_left_02.jpg"></a></li>
+				<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_content_left_01.jpg"></a></li>
+				<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_content_left_03.jpg"></a></li>
+				<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_content_left_05.jpg"></a></li>
+			</ul>		
+			<div class="content_big fl">
+				<img src="__UPLOAD__{$data['config'][2]['attr_value']}" width="100%">
+			</div>
+			<div class="content_nav fl">
+				<img src="__PUBLIC__/Home/index/img/index/index_content_nav.jpg" width="100%">
+				<h3 style="position: absolute;top: 5%;font-size: 14px;width: 100%;text-align: center;">六大服务政策</h3>
+				<a href="{:U('home/plot/index_free')}" style="position: absolute;top: 30%;">{$data['menu'][0]['menu_cont']}</a>
+				<a href="{:U('home/plot/index_ensure')}" style="position: absolute;top: 30%;left: 50%;">{$data['menu'][1]['menu_cont']}</a>
+				<a href="{:U('home/plot/index_computer')}" style="position: absolute;top: 55%;">{$data['menu'][2]['menu_cont']}</a>
+				<a href="{:U('home/plot/index_credit')}" style="position: absolute;top: 55%;left: 50%;">{$data['menu'][3]['menu_cont']}</a>
+				<a href="javascript:;" style="position: absolute;top: 80%;">{$data['menu'][4]['menu_cont']}</a>
+				<a href="javascript:;" style="position: absolute;top: 80%;left: 50%;">{$data['menu'][5]['menu_cont']}</a>
+			</div>	
+		</div>
+	<!--content end-->
+	
+	<!--sort start-->
+		<!--sort start-->
+		<ul class="sort">
+			<li>
+				<a href="javascript:;" class="sort_en">Wedding Service</a>
+				<a href="javascript:;" class="sort_cn" style="display: none;">婚礼服务</a>
+			</li>
+			<li>
+				<a href="javascript:;" class="sort_en">Wedding Company</a>
+				<a href="javascript:;" class="sort_cn" style="display: none;">婚庆公司</a>
+			</li>
+			<li>
+				<a href="javascript:;" class="sort_en">Wedding House</a>
+				<a href="javascript:;" class="sort_cn" style="display: none;">婚礼酒店</a>
+			</li>
+			<li>
+				<a href="javascript:;" class="sort_en">Wedding Photography</a>
+				<a href="javascript:;" class="sort_cn" style="display: none;">婚纱摄影</a>
+			</li>
+		</ul>
+		<script>
+			$(".sort li").mouseover(function(){
+				$(this).children("a.sort_en").hide().siblings("a.sort_cn").show();
+			})
+			$(".sort li").mouseout(function(){
+				$(this).children("a.sort_cn").hide().siblings("a.sort_en").show();
+			})
+		</script>
+<!--sort end-->
+	<!--sort end-->
+	
+	<!--banner start-->
+		<div class="banner w clearfix">
+			<div class="banner_left fl">
+				
+				<div class="gratis" style="display: block;">
+					<p class="clearfix"><a href="javascript:;" class="gratis_current">免费策划</a><a href="javascript:;">免费报价</a></p>
+					<p class="gratis_one">已有 <span class="c_blue">98765</span> 位结婚新人申请了免费服务</p>
+					<form action="{:U('insp_plot')}" method="post">
+						<ul>	
+							<li class="register">10秒登记，免费获取专业婚礼方案</li>
+							<li class="m_b_20"><input type="text" name="member_name" placeholder="您的名字" /></li>
+							<li ><input type="hidden" name="b_name" value="首页策划" /></li>
+							<li class="m_b_20">
+								<select class="area_omit" name="area_id[]">
+										<option>省/市</option>
+									<foreach name="data['area']" item="values" key="keys">
+										<option value="{$values['area_id']}">{$values['aname']}</option>
+									</foreach>
+								</select>
+								<select style="margin-left: 8px;" class="area_city" name="area_id[]">
+									<option>市/地区</option>
+									<option value=""></option>
+								</select>
+							</li>
+							<li class="m_b_20"><input type="text" name="phone" placeholder="您的手机号码" /></li>
+							<li class="register"><input type="checkbox" style="vertical-align: top; " checked="checked"> 我已阅读并接受<a href="javascript:;" class="c_blue">《婚礼问题条款》</a></li>
+							<li><input type="submit" value="立即申请"></li>
+						</ul>						
+					</form>
+				</div>
+				
+				<div class="gratis">
+					<p class="clearfix"><a href="javascript:;">免费策划</a><a href="javascript:;" class="gratis_current">免费报价</a></p>
+					<p class="gratis_one">已有 <span class="c_blue">98765</span> 位结婚新人申请了免费服务</p>
+					<form action="{:U('insp_plot')}" method="post">
+						<ul>	
+							<li class="register">10秒登记，免费获取婚礼报价</li>
+							<li class="m_b_20"><input type="text" name="member_name" placeholder="您的名字" /></li>
+							<li ><input type="hidden" name="b_name" value="首页报价" /></li>
+							<li class="m_b_20">
+								<select class="area_omit" name="area_id[]">
+										<option>省/市</option>
+									<foreach name="data['area']" item="values" key="keys">
+										<option value="{$values['area_id']}">{$values['aname']}</option>
+									</foreach>
+								</select>
+								<select style="margin-left: 8px;" class="area_city" name="area_id[]">
+									<option>市/地区</option>
+									<option value=""></option>
+								</select>
+							</li>
+							<li class="m_b_20"><input type="text" name="phone" placeholder="您的手机号码" /></li>
+							<li class="register"><input type="checkbox" style="vertical-align: top;" checked="checked"> 我已阅读并接受<a href="javascript:;" class="c_blue">《婚礼问题条款》</a></li>
+							<li><input type="submit" value="立即申请"></li>
+						</ul>						
+					</form>
+				</div>
+			</div>
+			<div class="banner_right fr">
+				<ul class="clearfix">
+					<foreach name="data['ban_give']" item="value" key="key">
+						<li>
+							<a href="javascript:;"><img src="__ROOT__/Uploads/{$value['pic_src']}" width="699" height="370"></a>
+						</li>
+					</foreach>
+				</ul>
+				<div class="banner_yuan"></div>
+				<img/index/ src="__PUBLIC__/Home/index/img/index/index_banner_prev.png" class="banner_prev">
+				<img/index/ src="__PUBLIC__/Home/index/img/index/index_banner_next.png" class="banner_next">
+			</div>
+		</div>
+	<!--banner end-->
+	
+	<!--广告位-->
+	<div style="width:1200px;margin: 0 auto;">
+		<img src="__UPLOAD__{$data['adver'][0]['pic_src']}" alt="" style="width: 100%;">
+	</div>
+	
+	<!--inspiration start-->
+	<div class="inspiration w clearfix">
+		<div class="inspiration_top">
+			<h3 align="center"><a href="{:U('home/waterfall/index',array('web_type'=>'d2F0ZXJmYWxs'))}">灵感库</a></h3>
+			<p align="center" style="color: #999;font-size: 16px;">已有<span class="c_blue">35981349</span>位婚礼人找到灵感</p>
+		</div>
+		<ul class="inspiration_content">
+			<li><a href="javascript:;" style="background-color: #DDEDF1;">婚礼</a></li>
+			<li><a href="javascript:;" style="background-color: #BCDAE3;">婚纱摄影</a></li>
+			<li><a href="javascript:;" style="background-color: #9BC8D6;">结婚礼服</a></li>
+			<li><a href="javascript:;" style="background-color: #79B6C8;">甜品</a></li>
+		</ul>
+		<foreach name="data['list_show']" item="v_one" key="k">
+			<if condition="$k eq 0">
+				<div class="inspiration_bot clearfix" >
+			<else/>
+				<div class="inspiration_bot clearfix" style="display:none ;">
+			</if>
+				<foreach name='v_one' item='v_two' key='kk'>
+					<if condition="$kk eq 1">
+						<ul style="margin: 0 3px;">
+					<else />
+						<ul>
+					</if>
+						<if condition="$kk eq 2">
+							<li>
+								<a href="{$v_two['adver']['adver_url']}"><img src="__UPLOAD__{$v_two['adver']['pic_src']}" style="width: 398px;height: 691px;" alt="{$v_two['adver']['adver_name']}"></a>
+							</li>
+						</if>
+						<foreach name="v_two['picture']" item='v_three' key='kkk'>
+							<li>
+								<a href="{:U('home/waterfall/qing',array('p_id'=>$v_three['picture_id']))}"><img src="__UPLOAD__{$v_three['img_src']}" style="width: 398px;height: 229px;"></a>
+								<p>{$v_three['title']}</p>
+							</li>
+						</foreach>
+						<if condition="$kk eq 0">
+							<li>
+								<a href="{$v_two['adver']['adver_url']}"><img src="__UPLOAD__{$v_two['adver']['pic_src']}" style="width: 398px;height: 691px;" alt="{$v_two['adver']['adver_name']}"></a>
+							</li>
+						</if>
+					</ul>
+				</foreach>
+			</div>
+		</foreach>
+	</div>
+	<!--inspiration end-->
+	
+	<!--广告位-->
+	<div style="width:1200px;margin: 0 auto;">
+		<img src="__UPLOAD__{$data['adver'][1]['pic_src']}" alt="广告位">
+	</div>
+	
+	<!--strategy start-->
+	<div class="strategy clearfix">
+		<div class="strategy_top clearfix">
+			<div class="strategy_top_left fl">
+				<img src="__UPLOAD__{$data['config'][3]['attr_value']}">
+			</div>
+			<div class="strategy_top_banner fl">
+				<!--<if condition="$data['media'][bananer]">
+				</if>-->
+				<ul class="strategy_top_banner_one">
+					<foreach name="data['media']['bananer']" item="val" key="key">
+						<if condition="$key eq 0">
+							<if condition="$val['news_type'] eq 1">
+								<li class="current"><a href="{:U('home/media/text',array('id'=>$val['new_id'],'type'=>1))}"><img src="__UPLOAD__{$val['img_src']}" width="461" height="642"></a></li>
+							<elseif condition="$val['news_type'] eq 2" />
+								<li class="current"><a href="{:U('home/media/img_text',array('id'=>$val['new_id'],'type'=>2))}"><img src="__UPLOAD__{$val['img_src']}" width="461" height="642"></a></li>
+							<elseif condition="$val['news_type'] eq 3" />
+								<li class="current"><a href="{:U('home/media/videos',array('id'=>$val['new_id'],'type'=>3))}"><img src="__UPLOAD__{$val['img_src']}" width="461" height="642"></a></li>
+							</if>
+						<else />
+							<if condition="$val['news_type'] eq 1">
+								<li><a href="{:U('home/media/text',array('id'=>$val['new_id'],'type'=>1))}"><img src="__UPLOAD__{$val['img_src']}" width="461" height="642"></a></li>
+							<elseif condition="$val['news_type'] eq 2" />
+								<li><a href="{:U('home/media/img_text',array('id'=>$val['new_id'],'type'=>2))}"><img src="__UPLOAD__{$val['img_src']}" width="461" height="642"></a></li>
+							<elseif condition="$val['news_type'] eq 3" />	
+								<li><a href="{:U('home/media/videos',array('id'=>$val['new_id'],'type'=>3))}"><img src="__UPLOAD__{$val['img_src']}" width="461" height="642"></a></li>
+							</if>
+						</if>
+					</foreach>
+				</ul>
+					<ul class="strategy_top_banner_two clearfix">
+						<li style="border: 2px solid #79B6C8;"><img src="__UPLOAD__{$data['media']['bananer'][0]['img_src']}" width="80px"height="111px"></li>
+						<li style="border: 2px solid #afa5a4;"><img src="__UPLOAD__{$data['media']['bananer'][1]['img_src']}" width="80px"height="111px"></li>
+						<li style="border: 2px solid #afa5a4;"><img src="__UPLOAD__{$data['media']['bananer'][2]['img_src']}" width="80px"height="111px"></li>
+						<li style="margin: 0;border: 2px solid #afa5a4;"><img src="__UPLOAD__{$data['media']['bananer'][3]['img_src']}" width="80px"height="111px"></li>
+					</ul>
+			</div>
+			<div class="strategy_top_right fl">
+				<div class="strategy_top_right_one">
+					<a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/strategy_top_02.jpg"></a>
+					<ul class="fr">
+						<li><a href="javascript:;" style="background-image: url(__PUBLIC__/Home/index/img/index/strategy_tb_01.jpg);">活动咨询</a></li>
+						<li><a href="javascript:;" style="background-image: url(__PUBLIC__/Home/index/img/index/strategy_tb_02.jpg);">活动反馈</a></li>
+						<li><a href="javascript:;" style="background-image: url(__PUBLIC__/Home/index/img/index/strategy_tb_03.jpg);">活动报名</a></li>
+						<li><a href="javascript:;" style="background-image: url(__PUBLIC__/Home/index/img/index/strategy_tb_04.jpg);color: #fff;">更多活动</a></li>
+					</ul>
+				</div>
+				<div class="strategy_top_right_two">
+					<if condition="$data['media']['height']['news_type'] eq 1">
+						<a href="{:U('home/media/text',array('id'=>$val['new_id'],'type'=>1))}"><img src="__UPLOAD__{$data['media']['height']['img_src']}"></a>
+					<elseif condition="$data['media']['height']['news_type'] eq 2" />
+						<a href="{:U('home/media/img_text',array('id'=>$val['new_id'],'type'=>2))}"><img src="__UPLOAD__{$data['media']['height']['img_src']}"></a>
+					<elseif condition="$data['media']['height']['news_type'] eq 3" />	
+						<a href="{:U('home/media/videos',array('id'=>$val['new_id'],'type'=>3))}"><img src="__UPLOAD__{$data['media']['height']['img_src']}"></a>
+					</if>
+				</div>
+				<div class="strategy_top_right_the">
+					<if condition="$data['media']['lack']['news_type'] eq 1">
+						<a href="{:U('home/media/text',array('id'=>$val['new_id'],'type'=>1))}"><img src="__UPLOAD__{$data['media']['lack']['img_src']}"></a>
+					<elseif condition="$data['media']['lack']['news_type'] eq 2" />
+						<a href="{:U('home/media/img_text',array('id'=>$val['new_id'],'type'=>2))}"><img src="__UPLOAD__{$data['media']['lack']['img_src']}"></a>
+					<elseif condition="$data['media']['lack']['news_type'] eq 3" />	
+						<a href="{:U('home/media/videos',array('id'=>$val['new_id'],'type'=>3))}"><img src="__UPLOAD__{$data['media']['lack']['img_src']}"></a>
+					</if>
+				</div>
+			</div>
+		</div>
+		<div class="strategy_bot">
+			<ul>
+				<foreach name="data['media']['special']" item="val" key="key">
+					<if condition="$key eq 3">
+						<if condition="$val['news_type'] eq 1">
+							<li style="margin: 0;"><a href="{:U('home/media/text',array('id'=>$val['new_id'],'type'=>1))}"><img src="__UPLOAD__{$val['img_src']}" width="290" height="146"></a></li>
+						<elseif condition="$val['news_type'] eq 2" />
+							<li style="margin: 0;"><a href="{:U('home/media/img_text',array('id'=>$val['new_id'],'type'=>2))}"><img src="__UPLOAD__{$val['img_src']}" width="290" height="146"></a></li>
+						<elseif condition="$val['news_type'] eq 3" />	
+							<li style="margin: 0;"><a href="{:U('home/media/videos',array('id'=>$val['new_id'],'type'=>3))}"><img src="__UPLOAD__{$val['img_src']}" width="290" height="146"></a></li>
+						</if>
+					<else />
+						<if condition="$val['news_type'] eq 1">
+							<li><a href="{:U('home/media/text',array('id'=>$val['new_id'],'type'=>1))}"><img src="__UPLOAD__{$val['img_src']}" width="290" height="146"></a></li>
+						<elseif condition="$val['news_type'] eq 2" />
+							<li><a href="{:U('home/media/img_text',array('id'=>$val['new_id'],'type'=>2))}"><img src="__UPLOAD__{$val['img_src']}" width="290" height="146"></a></li>
+						<elseif condition="$val['news_type'] eq 3" />	
+							<li><a href="{:U('home/media/videos',array('id'=>$val['new_id'],'type'=>3))}"><img src="__UPLOAD__{$val['img_src']}" width="290" height="146"></a></li>
+						</if>
+					</if>
+				</foreach>
+			</ul>
+		</div>
+	</div>
+	<!--strategy end-->
+	
+	<!--广告位-->
+	<div style="width:1200px;margin: 0 auto;">
+		<img src="__UPLOAD__{$data['adver'][2]['pic_src']}" alt="广告位">
+	</div>
+	
+	<!--merchant start-->
+	<div class="merchant clearfix">
+		<div class="merchant_left">
+			<div class="merchant_left_one">
+				<h3>婚礼榜</h3>
+				<p align="center">已为<span class="c_blue">944208</span>位新人提供婚礼服务</p>
+			</div>
+			<ul class="merchant_ranking">
+				<li class="rank clearfix">
+					<img src="__PUBLIC__/Home/index/img/index/ranking_left_02.jpg" class="rank_logo fl">
+					<ul class="fl">
+						<li>TOP1——诗缔婚礼</li>
+						<li>客户满意度:<span>★★★★★</span></li>
+						<li><a href="javascript:;">查看详情</a></li>
+					</ul>			
+				</li>
+				<li class="rank clearfix">
+					<img src="__PUBLIC__/Home/index/img/index/ranking_left_03.jpg" class="rank_logo fr">
+					<ul class="fl">
+						<li>TOP2——婚礼纪</li>
+						<li>客户满意度:<span>★★★★☆</span></li>
+						<li><a href="javascript:;">查看详情</a></li>
+					</ul>			
+				</li>
+				<li class="rank clearfix">
+					<img src="__PUBLIC__/Home/index/img/index/ranking_left_04.jpg" class="rank_logo fl">
+					<ul class="fl">
+						<li>TOP3——百合</li>
+						<li>客户满意度:<span>★★★★☆</span></li>
+						<li><a href="javascript:;">查看详情</a></li>
+					</ul>			
+				</li>
+				<li class="rank clearfix">
+					<img src="__PUBLIC__/Home/index/img/index/ranking_left_05.jpg" class="rank_logo fr">
+					<ul class="fl">
+						<li>TOP4——婚派</li>
+						<li>客户满意度:<span>★★★★☆</span></li>
+						<li><a href="javascript:;">查看详情</a></li>
+					</ul>			
+				</li>
+				<li class="rank clearfix">
+					<img src="__PUBLIC__/Home/index/img/index/ranking_left_06.jpg" class="rank_logo fl">
+					<ul class="fl">
+						<li>TOP5——到喜啦</li>
+						<li>客户满意度:<span>★★★☆☆</span></li>
+						<li><a href="javascript:;">查看详情</a></li>
+					</ul>			
+				</li>
+				<li class="rank clearfix" style="border: 0;">
+					<img src="__PUBLIC__/Home/index/img/index/ranking_left_03.jpg" class="rank_logo fr">
+					<ul class="fl">
+						<li>TOP6——你猜</li>
+						<li>客户满意度:<span>★★★☆☆</span></li>
+						<li><a href="javascript:;">查看详情</a></li>
+					</ul>			
+				</li>
+			</ul>
+		</div>
+		<div class="merchant_right">
+			<div class="merchant_right_top clearfix">
+				<div class="merchant_ceo fl">
+					<ul>
+						<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_ceo_01.jpg"></a></li>
+						<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_ceo_02.jpg"></a></li>
+						<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_ceo_03.jpg"></a></li>
+					</ul>
+					<img src="__PUBLIC__/Home/index/img/index/index_ceo_04.jpg" style="margin-left: 5px;">
+				</div>
+				<div class="help_find fr">
+					<div>
+						<h3>帮我找公司</h3>
+						<p align="center">已有 <span class="c_blue">98765</span>位结婚新人找到了合适公司</p>
+						<form action="{:U('insp_plot')}" method="post">
+							<span>10秒免费登记，坐等婚庆公司联系您</span>			
+							<input type="text" name="member_name" placeholder="您的名字"  style="margin-top: 10px;"/>
+							<input type="hidden" name="b_name" value="首页找公司"/>
+							<select class="area_omit1" name="area_id[]">
+									<option>省/市</option>
+								<foreach name="data['area']" item="values" key="keys">
+									<option value="{$values['area_id']}">{$values['aname']}</option>
+								</foreach>
+							</select>
+							<select style="margin-left: 26px;" class="area_city" name="area_id[]">
+								<option>市/地区</option>
+								<option value=""></option>
+							</select>
+							<input type="text" name="phone" placeholder="您的手机号码" style="margin-bottom: 20px;"/>
+							<input type="checkbox" style="vertical-align: middle;" checked="checked"/> 我已阅读并接受<a href="javascript:;" class="c_blue">《婚礼问题条款》</a>
+							<input type="submit" value="免费帮您推荐靠谱婚庆公司" />
+						</form>
+					</div> 
+				</div>
+			</div>
+			<div class="merchant_right_bot">
+				<ul>
+					<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/merchant_centent_01.jpg"></a></li>
+					<li><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/merchant_centent_02.jpg"></a></li>
+					<li style="border: 0;"><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/merchant_centent_03.jpg"></a></li>
+				</ul>
+				<a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/merchant_centent_04.jpg" width="837px" height="156px"></a>
+			</div>		
+		</div>
+	</div>
+	<!--merchant end-->
+	
+	<!--广告位-->
+	<div style="width:1200px;margin: 0 auto;">
+		<img src="__UPLOAD__{$data['adver'][3]['pic_src']}" alt="广告位">
+	</div>
+	
+	<!--DIY start-->
+	<div class="people_diy">
+		<div class="people_diy_top">
+			<p>DIY计划——选择你喜欢的婚礼人员、道具、演绎...<a href="javascript:;" class="fr c_blue">查看全部 > </a></p>	
+		</div>
+		<div class="people_diy_bot clearfix">
+			<!--<ul class="fl">
+				<li><a href="javascript:;"><img src="__UPLOAD__{$data['config'][4]['attr_value']}"></a></li>
+				<li><a href="javascript:;"><img src="__UPLOAD__{$data['config'][5]['attr_value']}"></a></li>
+			</ul>-->
+			
+			<ul class="people_diy_left">
+				<li><a href="javascript:;"><img src="__UPLOAD__{$data['config'][4]['attr_value']}"></a></li>
+				<li><a href="javascript:;"><img src="__UPLOAD__{$data['config'][5]['attr_value']}"></a></li>
+			</ul>
+
+			<div class="people_diy_right">
+				<ul class="fl">
+					<li><a href="javascript:;"><img src="__PUBLIC__/Home/img/index/diy_people_01.jpg"></a></li>
+					<li><a href="javascript:;"><img src="__PUBLIC__/Home/img/index/diy_people_02.jpg"></a></li>
+					<li><a href="javascript:;"><img src="__PUBLIC__/Home/img/index/diy_people_03.jpg"></a></li>
+					<li style="margin-right: 0;"><a href="javascript:;"><img src="__PUBLIC__/Home/img/index/diy_people_04.jpg"></a></li>
+					<li><a href="javascript:;"><img src="__PUBLIC__/Home/img/index/diy_people_05.jpg"></a></li>
+					<li><a href="javascript:;"><img src="__PUBLIC__/Home/img/index/diy_people_06.jpg"></a></li>
+					<li><a href="javascript:;"><img src="__PUBLIC__/Home/img/index/diy_people_07.jpg"></a></li>
+					<li style="margin-right: 0;"><a href="javascript:;"><img src="__PUBLIC__/Home/img/index/diy_people_08.jpg"></a></li>
+				</ul>					
+			</div>
+
+			<!--<div class="people_diy_right">
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/people_diy_03.jpg" width="150px" height="150px"></a></dt>
+					<dd>婚礼主持人  路颜</dd>
+					<dd><span class="c_orange">2999元</span> <del class="c_gray">3999元</del></dd>
+					<dd class="c_gray">1.5万人评价</dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/people_diy_04.jpg" width="150px" height="150px"></a></dt>
+					<dd>婚礼主持人  路颜</dd>
+					<dd><span class="c_orange">2999元</span> <del class="c_gray">3999元</del></dd>
+					<dd class="c_gray">1.5万人评价</dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/people_diy_05.jpg" width="150px" height="150px"></a></dt>
+					<dd>婚礼主持人  路颜</dd>
+					<dd><span class="c_orange">2999元</span> <del class="c_gray">3999元</del></dd>
+					<dd class="c_gray">1.5万人评价</dd>
+				</dl>
+				<dl style="margin: 0;">
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/people_diy_06.jpg" width="150px" height="150px"></a></dt>
+					<dd>婚礼主持人  路颜</dd>
+					<dd><span class="c_orange">2999元</span> <del class="c_gray">3999元</del></dd>
+					<dd class="c_gray">1.5万人评价</dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/people_diy_06.jpg" width="150px" height="150px"></a></dt>
+					<dd>婚礼主持人  路颜</dd>
+					<dd><span class="c_orange">2999元</span> <del class="c_gray">3999元</del></dd>
+					<dd class="c_gray">1.5万人评价</dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/people_diy_03.jpg" width="150px" height="150px"></a></dt>
+					<dd>婚礼主持人  路颜</dd>
+					<dd><span class="c_orange">2999元</span> <del class="c_gray">3999元</del></dd>
+					<dd class="c_gray">1.5万人评价</dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/people_diy_04.jpg" width="150px" height="150px"></a></dt>
+					<dd>婚礼主持人  路颜</dd>
+					<dd><span class="c_orange">2999元</span> <del class="c_gray">3999元</del></dd>
+					<dd class="c_gray">1.5万人评价</dd>
+				</dl>
+				<div class="prop_diy fl">
+					<h5>定制道具</h5>
+					<span class="c_orange">129元</span>
+					<a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/people_diy_07.jpg"/></a>
+				</div>
+				<div class="prop_diy fl">
+					<h5>定制花艺</h5>
+					<span class="c_orange">99元</span>
+					<a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/people_diy_08.jpg"/></a>	
+				</div>				
+			</div>-->
+		</div>
+	</div>
+	<!--DIY end-->
+
+	<!--广告位-->
+	<div style="width:1200px;margin: 0 auto;">
+		<img src="__UPLOAD__{$data['adver'][4]['pic_src']}" alt="广告位" >
+	</div>
+	
+	<!--shop start-->
+	<div class="shop">
+		<div class="shop_top">
+			<p>嘉品——嘉仕澜德婚礼用品<a href="javascript:;" class="fr c_blue">查看全部 > </a></p>	
+		</div>
+		<div class="clearfix">
+			<a href="javascript:;"><img src="__UPLOAD__{$data['config'][6]['attr_value']}" class="fl" style="margin-right: 10px;"/></a>
+			<div class="shop_right">
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_shop_02.jpg" width="150px" height="150px"></a></dt>
+					<dd>红色请柬 传统版</dd>
+					<dd class="c_gray">红色既代表喜庆的又彰显奢华大气</dd>
+					<dd><span class="c_orange">2999元</span></dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_shop_03.jpg" width="150px" height="150px"></a></dt>
+					<dd>红色请柬 传统版</dd>
+					<dd class="c_gray">红色既代表喜庆的又彰显奢华大气</dd>
+					<dd><span class="c_orange">2999元</span></dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_shop_04.jpg" width="150px" height="150px"></a></dt>
+					<dd>红色请柬 传统版</dd>
+					<dd class="c_gray">红色既代表喜庆的又彰显奢华大气</dd>
+					<dd><span class="c_orange">2999元</span></dd>
+				</dl>
+				<dl style="margin: 0;">
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_shop_05.jpg" width="150px" height="150px"></a></dt>
+					<dd>红色请柬 传统版</dd>
+					<dd class="c_gray">红色既代表喜庆的又彰显奢华大气</dd>
+					<dd><span class="c_orange">2999元</span></dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_shop_06.jpg" width="150px" height="150px"></a></dt>
+					<dd>红色请柬 传统版</dd>
+					<dd class="c_gray">红色既代表喜庆的又彰显奢华大气</dd>
+					<dd><span class="c_orange">2999元</span></dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_shop_07.jpg" width="150px" height="150px"></a></dt>
+					<dd>红色请柬 传统版</dd>
+					<dd class="c_gray">红色既代表喜庆的又彰显奢华大气</dd>
+					<dd><span class="c_orange">2999元</span></dd>
+				</dl>
+				<dl>
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_shop_08.jpg" width="150px" height="150px"></a></dt>
+					<dd>红色请柬 传统版</dd>
+					<dd class="c_gray">红色既代表喜庆的又彰显奢华大气</dd>
+					<dd><span class="c_orange">2999元</span></dd>
+				</dl>
+				<dl style="margin: 0;">
+					<dt><a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/index_shop_09.jpg" width="150px" height="150px"></a></dt>
+					<dd>红色请柬 传统版</dd>
+					<dd class="c_gray">红色既代表喜庆的又彰显奢华大气</dd>
+					<dd><span class="c_orange">2999元</span></dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	<!--shop end-->
+	
+	<!--hide_free start-->
+	<div class="index_suspend">
+		<div class="hide_free_left" style="position: fixed;left: 0;bottom: 50px; display: none;z-index: 110;">
+			<a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/hide_free_04.png"></a>
+		</div>
+		<div class="hide_free">
+			<div class="hide_content w">
+				<img src="__PUBLIC__/Home/index/img/index/hide_free_01.png" class="hide_people">
+				<div>			
+					<form id="myform" action="" method="post">
+						<div class="hide_input">
+							<input type="text" name="member_name" placeholder="您的称呼"/>
+							<input type="hidden" name="b_name" value="首页标价"/>
+							<select class="area_omit2" name="area_id[]">
+										<option>省/市</option>
+									<foreach name="data['area']" item="values" key="keys">
+										<option value="{$values['area_id']}">{$values['aname']}</option>
+									</foreach>
+								</select>
+								<select class="area_city" name="area_id[]">
+									<option>市/地区</option>
+									<option value=""></option>
+								</select>
+							<input type="text" name="phone" placeholder="填写您的手机号码，获取预算明细"/>				
+						</div>
+						<a href="javascript:;" class="hide_count">开始<br />计算</a>
+					</form>
+					<script type="text/javascript">
+						$('.hide_count').click(function(){
+							var data = $('#myform').serialize();
+							console.log(data);
+							$.ajax({
+								type:'post',
+								url:"{:U('insp_plot')}",
+								data:data,
+								dataType:'json',
+								success:function(phpdata){
+									if(phpdata){
+										var str = '<p>您的结婚预算约<span>'+phpdata.zong+'</span>万元</p>';
+											str += '<ul><li>婚宴预算：<span>'+phpdata.index_wedding+'</span>元</li>';
+											str += '<li>婚宴预算：<span>'+phpdata.index_gowns+'</span>元</li>';
+											str += '<li>婚宴预算：<span>'+phpdata.index_honey+'</span>元</li>';
+											str += '<li>婚宴预算：<span>'+phpdata.index_shoot+'</span>元</li>';
+											str += '<li>婚宴预算：<span>'+phpdata.index_ring+'</span>元</li>';
+											str += '<li>婚宴预算：<span>'+phpdata.index_else+'</span>元</li></ul>';
+											$('.hide_budget').html(str);
+									}
+								}
+							});
+						})
+					</script>
+					<div class="hide_budget">
+						<p>您的结婚预算约<span>0</span>万元</p>
+						<ul>
+							<li>婚宴预算：<span>0</span>元</li>
+							<li>摄影预算：<span>0</span>元</li>
+							<li>礼服预算：<span>0</span>元 </li>
+							<li>钻戒预算：<span>0</span>元</li>
+							<li>蜜月预算：<span>0</span>元</li>
+							<li>其他预算：<span>0</span>元</li>
+						</ul>				
+					</div>
+				</div>
+				<img src="__PUBLIC__/Home/index/img/index/hide_free_02.png" class="hide_vx">
+				<img src="__PUBLIC__/Home/index/img/index/hide_free_03.png" class="hide_close">
+			</div>	
+		</div>
+		
+	<script>
+		$(document).scroll(function(){
+			var db=$(document).scrollTop();
+			var top=$(".hide_free").css("display");
+			if(db>1000 && top=="none"){
+				$(".hide_free_left").show();
+			}
+			else{
+				$(".hide_free_left").hide();
+			}
+		})
+		$(".hide_free_left").click(function(){
+			$(".hide_free_left").hide().siblings(".hide_free").show();
+		});
+		$(".hide_close").click(function(){
+			$(".hide_free").hide().siblings(".hide_free_left").show();
+		});
+	</script>
+	<!--hide_free end-->
+	
+	<!--回到顶部 start-->
+	<a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/fh_top.png" class="fh_top" style="position: fixed;right: 5px;bottom: 5px;display: none;"></a>
+	<!--回到顶部 end-->
+	<include file="Common/bottom" />
+</body>
+	<script>
+	//banner部分免费策划/报价切换
+        $(function(){
+            var $tab=$(".gratis p a");
+            var $tab_end=$(".gratis");
+            $tab.click(function(){
+                var $this=$(this);
+                var $inx=$this.index();
+                $tab_end.css("display","none");
+                $tab_end.eq($inx).css("display","block")
+            });
+        })
+   </script>
+   <script>
+	//banner轮播
+		$(document).ready(function(){
+			//设置宽度
+			function width(){
+				$(".banner_right ul").css({width:$(".banner_right ul li").length*100+"%"});
+			}
+			width();
+			//生成页码
+			var $dl = $(".banner_right ul li");
+			for(var i=1;i<=$dl.length;i++){
+				$(".banner_yuan").append("<span></span>");
+			};
+			//图片页码对应
+			var $span=$(".banner_yuan span");
+			$span.index("span");
+			$span.eq(0).addClass("banner_current");
+			var num = 0;
+			var bigNum = $(".banner_right ul li").length-1;
+			function run(){
+					if(num<bigNum){
+						num=num+1;
+						var add=699*num;
+						$(".banner_right ul").stop().animate({right:add},500);
+						$(".banner_yuan span").eq(num).addClass("banner_current").siblings("span").removeClass("banner_current");
+					}else{
+						num=0;
+						$(".banner_right ul").css('right','0');
+						$(".banner_yuan span").eq(num).addClass("banner_current").siblings("span").removeClass("banner_current");
+					}					
+			}
+			var time = setInterval(run,2000);
+			$span.on("click",function(){
+				$(this).addClass("banner_current").siblings("span").removeClass("banner_current");
+				num=$(this).index();
+				var add=699*num;
+				$(".banner_right ul").stop().animate({right:add},500);
+			});		
+			//点击按钮
+			$(".banner_next").on("click",function(){
+				clearInterval(time);
+				if(num<bigNum){
+					num=num+1;
+				}
+				else{
+					num=0;
+				}
+				$(".banner_yuan span").eq(num).triggerHandler("click");
+				
+				time = setInterval(run,2000);
+			});
+			$(".banner_prev").on("click",function(){
+				clearInterval(time);
+				var a=$(".banner_current").index();
+				var last=a-1;
+				$(".banner_yuan span").eq(last).triggerHandler("click");
+				time = setInterval(run,2000);
+			});
+		})
+	</script>
+	<script>
+	//灵感库tab切换
+        $(function(){
+            var $tab=$(".inspiration_content li");
+            var $tab_end=$(".inspiration_bot");
+            $tab.click(function(){
+                var $this=$(this);
+                var $inx=$this.index();
+                $tab_end.css("display","none");
+                $tab_end.eq($inx).css("display","block")
+            });
+        })
+   </script>
+	<script>
+	//嘉TV 轮播 显示隐藏
+		$(".strategy_top_banner_two li").click(function(){
+			var num = $(this).index();
+			$(this).css('border','2px solid #79B6C8').siblings('li').css('border','2px solid #AFA5A4');
+			$(".strategy_top_banner_one li").eq(num).addClass('current').siblings('li').removeClass('current');
+		});			
+	</script>
+	<script type="text/javascript">
+	//返回顶部
+		$(document).scroll(function(){
+			var sc=$(document).scrollTop();
+			if(sc>100){
+				$(".fh_top").show();
+			}
+			else{
+				$(".fh_top").hide();
+			}
+		})
+		$(function(){
+			$(".fh_top").click(function() {
+		    	$("body,html").animate({scrollTop:0}, 500);
+			}); 
+		})
+	</script>
+	<script type="text/javascript">
+		$(".area_omit").change(function(){
+				var area_id = $("select.area_omit").val();
+				$.ajax({
+					type:"post",
+					url:"{:U('waterfall/index')}",
+					data:{area_id:area_id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata){
+							var str = '<select style="margin-left: 8px;" class="area_city" name="area_id[]"><option>市/地区</option>';
+							$.each(phpdata,function(k,v){
+								str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+							});
+								str += '</select>';
+						$('.area_city').html(str);
+						}else{
+							
+						}
+					}
+				});
+			})
+	</script>
+	<script type="text/javascript">
+		$(".area_omit1").change(function(){
+				var area_id = $("select.area_omit1").val();
+				$.ajax({
+					type:"post",
+					url:"{:U('waterfall/index')}",
+					data:{area_id:area_id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata){
+							var str = '<select style="margin-left: 8px;" class="area_city" name="area_id[]"><option>市/地区</option>';
+							$.each(phpdata,function(k,v){
+								str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+							});
+								str += '</select>';
+						$('.area_city').html(str);
+						}else{
+							
+						}
+					}
+				});
+			})
+	</script>
+	<script type="text/javascript">
+		$(".area_omit2").change(function(){
+				var area_id = $("select.area_omit2").val();
+				$.ajax({
+					type:"post",
+					url:"{:U('waterfall/index')}",
+					data:{area_id:area_id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata){
+							var str = '<select style="margin-left: 8px;" class="area_city" name="area_id[]"><option>市/地区</option>';
+							$.each(phpdata,function(k,v){
+								str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+							});
+								str += '</select>';
+						$('.area_city').html(str);
+						}else{
+							
+						}
+					}
+				});
+			})
+	</script>
+</html>

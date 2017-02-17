@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/minti/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/minti/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/minti/Flat/docs/assets/css/demo.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/minti/Flat/img/favicon.ico">
+	</head>
+	<body>
+		<button><a href="{:U('add')}">添加图文</a></button>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">aid</th>
+			  <th>标题</th>
+			  <th>列表图</th>
+			  <th>添加时间</th>
+			  <th>操作</th>
+			</tr>
+			<foreach name="arr" item="v" key="k">
+				<tr calss="remover">
+					<td>{$k+1}</td>
+					<td>{$v['box']['title']}</td>
+					<td><img src="__UPLOAD__{$v['box']['list_img']}" alt="" height="50px"/></td>
+					<td>{$v['box']['addtime']}</td>
+					<td>
+						<a href="{:U('index_class',array('pic_text_id'=>$v['box']['pic_text_id']))}" class="btn btn-sm btn-warning">查看图文</a>
+						<a href="{:U('save',array('pic_text_id'=>$v['box']['pic_text_id']))}" class="btn btn-sm btn-warning">编辑</a>
+						<a href="" del="{$v['box']['pic_text_id']}" class="btn btn-sm btn-danger dele">删除</a>
+						<a href="{:U('News/add',array('pic_text_id'=>$v['box']['pic_text_id']))}" class="btn btn-info recom" style="width: 102px;height: 36px;">首页推荐</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('.dele').click(function(){
+				var del = $(this).attr('del');
+				$.ajax({
+					type:'post',
+					url:"{:U('admin/pictext/del')}",
+					data:{del:del},
+					dataType:'text',
+					success:function(phpdata){
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

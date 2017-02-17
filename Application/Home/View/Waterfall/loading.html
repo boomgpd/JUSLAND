@@ -1,0 +1,57 @@
+<foreach name="data" item='v' key='k'>
+    <div class="pin">
+    	<div class="single_hide clearfix">
+    		<div class="hide_left">
+    			<a href="javascript:;" p_id="{$v['box']['p_id']}">GET</a>
+    		</div>
+    		<if condition="!$_SESSION['member_id']">
+    			<div class="hide_right">
+    				<a href="javascript:;" class="zan_no click"></a>
+    			</div>
+			<else />
+				<in name="v['box']['p_id']" value="$data['member']['picture_click']">
+					<div class="hide_right">
+    					<a href="javascript:;" tida="{$v['box']['p_id']}" class="zan_yes click"></a>
+    				</div>
+				<else />
+					<div class="hide_right">
+    					<a href="javascript:;" tida="{$v['box']['p_id']}" class="zan_no click"></a>
+    				</div>
+				</in>
+			</if>
+    	</div>
+    	
+        <div class="box">
+            <a href="{:U('qing',array('p_id'=>$v['box']['p_id']))}" target="_blank">
+            	<foreach name="v['box']['url']" item='value' key='key'>
+            		<img src="__UPLOAD__{$value['path']}" width="205px" startmaxheight{$value['size']}endmaxheight>
+            	</foreach>
+            </a>
+            <div style="padding: 10px;">
+            	<foreach name="v['box']['keyword']" item='vv' key='kk'>
+            		<if condition="$kk eq 0">
+            			<span>{$vv}</span>
+            		<else />
+            			<span>#{$vv}</span>
+            		</if>
+        		</foreach>
+        		<ul class="zf_zan clearfix">
+        			<li class="zf"><span>{$v['box']['click_num']}</span></li>
+        			<li class="zan"><span>{$v['box']['collect_num']}</span></li>
+        		</ul>
+       		</div>
+       		<div class="user clearfix">
+       			<if condition="$v['box']['merchant_logo']">
+       				<a class="tx"><img src="__UPLOAD__{$v['box']['merchant_logo']}" style="background: none;width: 34px;height: 34px;"/></a>
+       			<else />
+       				<a class="tx"></a>
+       			</if>
+       			<div class="user_name" style=" width: 150px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+       				<span><a href="#" title="{$v['box']['merchant_name']}">{$v['box']['merchant_name']}</a>品牌</span><br />
+       				<span><a href="#" title="{$v['box']['title']}">{$v['box']['title']}</a></span>
+       			</div>
+       		</div>
+        </div>
+</div>
+chaifen
+</foreach>

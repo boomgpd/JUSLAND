@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <!-- Loading Flat UI -->
+    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<a href="{:U('attr_add',array('id' => $tid))}" class="btn btn-sm btn-primary">添加属性</a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="10%">属性名</th>
+			  <th width="10%">类别</th>
+			  <th width="50%">属性值</th>
+			  <th width="20%">操作</th>
+			</tr>
+			<foreach name="data" key="k" item="v">
+			<tr>
+				<td>{$v['taname']}</td>
+				<eq name="v['class']" value="1">
+				<td>属性</td>
+				<else/>
+				<td>规格</td>
+				</eq>
+				<td>{$v['tavalue']}</td>
+				<td>
+					<a href="javascript:if(confirm('确认编辑吗？成功后如有更改请重新编辑对应的商品')) location.href='{:U('attr_edit',array('id' => $v['taid']))}';" class="btn btn-sm btn-warning">编辑</a>
+					<a href="javascript: if(confirm('确认删除？成功后如有更改请重新编辑对应的商品')) location.href='{:U('attr_del',array('id' => $v['taid']))}';" class="btn btn-sm btn-danger">删除</a>
+				</td>
+			</tr>
+			</foreach>
+		</table>
+	</body>
+</html>

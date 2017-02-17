@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+		<link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+		<link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+		<style type="text/css">
+			.uploadify-button {
+				background-color: transparent;
+				border: none;
+				padding: 0;
+			}
+			
+			.uploadify:hover .uploadify-button {
+				background-color: transparent;
+			}
+			
+			.hide {
+				display: none;
+			}
+			
+			body {
+				margin-bottom: 100px;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			#uploadList li {
+				position: relative;
+			}
+			
+			#uploadList li span {
+				display: block;
+				width: 25px;
+				height: 15px;
+				font-family: "微软雅黑";
+				font-size: 14px;
+				background: indianred;
+				color: white;
+				line-height: 15px;
+				font-weight: 700;
+				position: absolute;
+				top: 0;
+				right: 0;
+				text-align: center;
+				cursor: pointer;
+			}
+		</style>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				$("select.sele").change(function() {
+					var val = $(this).val();
+					if(val == '限时特惠') {
+						$.ajax({
+							type:'post',
+							url:"{:U('add_list')}"
+							data:{val:val},
+							dataType:'json',
+							success:function(phpdata){
+								$('.cont1').show();
+								$('.cont2').hide();
+								$('.cont3').hide();
+							}
+						})
+					} else if(val == '结婚分期') {
+						$(".cont1").hide();
+						$('.cont2').show();
+						$('.cont3').hide();
+					}else if(val == '热销风格' || val == '国内热推' || val == '国外热门') {
+						$(".cont1").hide();
+						$('.cont2').hide();
+						$('.cont3').show();
+					}
+				})
+			}
+		</script>
+	</head>
+	<body>
+		<div class="alert alert-success">添加推荐商品</div>
+		添加类型：
+		<select name="leixin" style="width: 40%;" class="sele">
+			<option value="">选择推荐类型</option>
+			<option value="限时特惠">限时特惠</option>
+			<option value="结婚分期">结婚分期</option>
+			<option value="热销风格">热销风格</option>
+			<option value="国内热推">国内热推</option>
+			<option value="国外热门">国外热门</option>
+		</select>
+		<!--添加'文字'站点类型的form表单-->
+		<form action="check" method="post" style="display: block;" class="cont1">
+			<div class="form-group">
+				<label for="exampleInputEmail1">推荐标题</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入标题名称" name="attr_name">
+			</div>
+			<div class="form-group content1">
+				<label for="exampleInputEmail1">限时推荐时长</label>
+				<input id="exampleInputEmail1" class="form-control" type="datetime-local" placeholder="请输入菜单链接路径" name="photo_time">
+			</div>
+			<input type="submit" class="btn btn-primary btn-block" value="确定" />
+		</form>
+		
+		<form action="check" method="post" style="display: none;" class="cont2">
+			<div class="form-group">
+				<label for="exampleInputEmail1">推荐标题</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入标题名称" name="attr_name">
+			</div>
+			<div class="form-group content2">
+				<label for="exampleInputEmail1">结婚分期次数</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="只可以填数字" name="">
+			</div>
+			<input type="submit" class="btn btn-primary btn-block" value="确定" />
+		</form>
+		
+		<form action="check" method="post" style="display: none;" class="cont3">
+			<div class="form-group">
+				<label for="exampleInputEmail1">推荐标题</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入标题名称" name="attr_name">
+			</div>
+			<div class="form-group content3">
+				<label for="exampleInputEmail1">选择分类</label>
+				<select name="p_c_id" id="">
+					<option value="">请选择一级分类</option>
+					<foreach name="data['list']" item="val" key="key">
+						<option value="{$val['p_c_id']}">{$val['cname']}</option>
+					</foreach>
+				</select>
+				<select name="p_c_id_er" id="">
+					<option value="">请选择二级分类</option>
+				</select>
+			</div>
+			<input type="submit" class="btn btn-primary btn-block" value="确定" />
+		</form>
+		
+	</body>
+
+</html>

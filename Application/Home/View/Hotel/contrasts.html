@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>对比</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/comparison_style.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/bottom.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/reset.css">
+<script src="__PUBLIC__/Home/hotel/js/jquery-1.11.2.min.js"></script>
+<style type="text/css">
+	.quxiao{
+		position: absolute;
+		top: 0px;
+	}
+</style>
+</head>
+
+<body>
+	<include file="Common/header_two" />
+<div class="w">
+<table id="table" class="w">
+	<tbody class="w">
+    	<tr class="top_w1" style="position:fixed; top:42px; z-index:99; background-color:#fff;">
+        	<th class="top_content">
+            	<a href="" class="jiben">全部信息</a>
+                <a href="#jiben" class="jiben jiben2">基本信息</a>
+                <a href="#youhui" class="youhui">优惠信息</a>
+                <a href="#jiudian" class="yaoqiu">酒店要求</a>
+            </th>
+            <foreach name="att" item="val" key="key">
+	            <td class="top_content">
+	            	<img src="__UPLOAD__{$val['list_img']}">
+	            	<img class="quxiao" src="__PUBLIC__/img/x.png" alt="" id="{$val['p_p_id']}" style="width: 40px;height: 40px;"/>
+	                <span class="hotel_name">{$val['hotel_id']}</span>
+	            </td>
+	        </foreach>
+        </tr>
+        <script type="text/javascript">
+        	$('.quxiao').click(function(){
+        		var id = $(this).attr('id');
+        		var obj = "{:U('conget')}/id/"+id;
+        		var urls = obj.replace('.html','');
+        		location.href=urls;
+        	})
+        </script>
+        <div style="width:100%; height:248px;"></div>
+        <tr class="inf-con information">
+        	<th colspan="4" class="biaoti" id="jiben">基本信息</th>   
+        </tr>
+ 		<foreach name="basic['bas']" item="val" key="key">
+	        <tr class="inf-con">
+	        	<th class="inf-con_content color">{$val['p_a_name']}</th>
+	        	<foreach name="val['value']" item="v" key="k">
+	            	<td class="inf-con_content">{$v}</td>
+	            </foreach>
+	        </tr>
+	    </foreach>
+        <tr class="inf-con information">
+        	<th colspan="4" class="biaoti" id="youhui">优惠信息</th>   
+        </tr>
+        <foreach name="basic['fav']" item="val" key="key">
+	        <tr class="inf-con">
+	        	<th class="inf-con_content color">{$val['p_a_name']}</th>
+	        	<foreach name="val['value']" item="v" key="k">
+	            	<td class="inf-con_content">{$v}</td>
+	            </foreach>
+	        </tr>
+	    </foreach>
+        <tr class="inf-con information" id="jiudian">
+        	<th colspan="4" class="biaoti">酒店要求</th>   
+        </tr>
+        <foreach name="basic['req']" item="val" key="key">
+	        <tr class="inf-con">
+	        	<th class="inf-con_content color">{$val['p_a_name']}</th>
+	        	<foreach name="val['value']" item="v" key="k">
+	            	<td class="inf-con_content">{$v}</td>
+	            </foreach>
+	        </tr>
+	    </foreach>
+    </tbody>
+</table>
+</div>
+<include file="Common/bottom" />
+</body>
+<script>
+	$(".jiben2").click(function(){
+		$("html,body").animate({scrollTop:"0px"},800);
+	})
+	$(".youhui").click(function(){
+		$("html,body").animate({scrollTop:"500px"},800);
+	})
+	$(".yaoqiu").click(function(){
+		$("html,body").animate({scrollTop:"1000px"},800);
+	})
+	
+</script>
+</html>

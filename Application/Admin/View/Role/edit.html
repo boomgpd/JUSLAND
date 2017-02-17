@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+		<!-- Loading Bootstrap -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+		<!-- Loading Flat UI -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+		<link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.7.2.min.js"></script>
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+		<!--[if lt IE 9]>
+		<script src="dist/js/vendor/html5shiv.js"></script>
+		<script src="dist/js/vendor/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<form action="" method="post">
+			<div class="alert alert-success">
+				修改角色
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">角色名称</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入角色名称" required="" name="name" value="{$roleData['name']}">
+			</div>
+			<p class="btn btn-primary">
+				节点属性
+			</p>
+			<table class="table table-bordered table-hover" id='attr' class="info">
+				<foreach name="nodeData" item='v' key = 'k'>
+				<tr class="info">
+					<td width="40%">
+						<span >
+							请选择控制器:
+						</span>
+						<select name="" class="ctl" style="padding-left:20%;padding-right:20%;margin-left:10%;">
+							<foreach name = "ctlData" item = 'vv'>
+								<option value="{$vv.id}" <if condition="$v['controller']['id'] eq $vv[id]"> selected="selected" </if>  >{$vv.remark}</option>
+							</foreach>
+						</select>
+					</td>
+					<td class="act" width="40%">
+						<span >
+							请选择方法:
+						</span>
+						<select name="node[{$v['controller']['id']}][]"  style="padding-left:20%;padding-right:20%;margin-left:10%;">
+							<foreach name = "v.actData" item = 'vv'>
+								<option value="{$vv.id}" <if condition="$v['id'] eq $vv['id']">  selected="selected" </if> >{$vv.remark}</option>
+							</foreach>
+						</select>
+					</td>
+					<td>
+						<if condition="$k eq 0">
+						<span class="btn btn-success add">增加节点</span>
+						<else />
+						<span class="btn btn-danger del">删除节点</span>
+						</if>
+					</td>
+				</tr>
+				</foreach>
+			</table>
+			<div class="form-group">
+				<label for="exampleInputEmail1">角色描述</label>
+				<textarea name="remark" rows="5" cols=""  class="form-control" placeholder="请输入角色描述">{$roleData['remark']}</textarea>
+			</div>
+			<input type="hidden" name="id" value="{$roleData['id']}">
+			<button class="btn btn-primary btn-block" type="submit">
+			确定
+			</button>
+		</form>
+		<!--异步查询方法-->
+		<script type="text/javascript">
+			$(function(){
+				$(".ctl").live('change',function(){
+					var id = $(this).val();
+					This = $(this);
+					$.ajax({
+						type:"post",
+						url:"{:U('getAction')}",
+						data:{id:id},
+						dataType:'json',
+						success:function(phpData){
+							var dom = '';
+							if(!phpData || phpData == ''){
+								This.parent('td').siblings('.act').find('select').html(dom);
+								alert('该控制器下没有方法');
+								return;
+							};
+							var name = "node["+phpData[0].pid+"][]";
+							$.each(phpData,function(k,v){
+								dom += "<option value="+v.id+">"+v.name+"</option>";
+							});
+							This.parent('td').siblings('.act').find('select').attr('name',name).html(dom);
+						}
+					});
+				})
+			});
+		</script>
+		
+		<!--添加删除节点-->
+		<script type="text/javascript">
+			$(function(){
+				//添加
+				$('.add').live('click',function(){
+					//点击的父级tr
+					var parent = $(this).parents('tr');
+					//克隆
+					var clone = parent.clone();
+					//修改class
+					clone.find('.add').removeClass('btn-success add').addClass('btn-danger del').html('删除节点');
+					//追加
+					$(this).parents('table').append(clone);
+				});
+				
+				//删除
+				$('.del').live('click',function(){
+					$(this).parents('tr').remove();
+				})
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	#cont{
+	    		border: 0px;
+	    		outline:none;
+	    	}
+	    	#link{
+	    		border: 0px;
+	    		outline:none;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<form action="" method="post">
+			<a href="{:U('add_range')}"><button type="button" class="btn btn-primary">添加价格区间</button></a>
+			<input type="submit" value="保存" class="btn btn-primary"/>
+			<table class="table table-hover">
+				<tr class="active">
+				  <th width="30">ID</th>
+				  <th>价格范围</th>
+				  <th>排序</th>
+				  <th width="210">操作</th>
+				</tr>
+				<foreach name="data" item="v" key="k">
+					<tr class="dex">
+						<td>{$k+1}</td>
+						<td><input type="text" name="price_part[]" tid="" id="cont" value="{$v['price_part']}" /></td>
+						<td>
+							<input type="hidden" name="server_price_id[]" id="server_price_id" value="{$v['server_price_id']}" />
+							<input type="text" name="sort[]" tid="" id="link" value="{$v['sort']}" />
+						</td>
+						<td>
+							<a href="javascript:;" del="{$v['server_price_id']}" class="btn btn-sm btn-danger dele">删除</a>
+						</td>
+					</tr>
+				</foreach>
+			</table>
+		</form>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+		$('.dele').click(function(){
+			var del = $(this).attr('del');
+			var This = $(this);
+			$.ajax({
+				type:'post',
+				url:"{:U('admin/merchant/rice_range')}",
+				data:{del:del},
+				dataType:'text',
+				success:function(phpdata){
+					if(phpdata){
+						This.parents('tr').remove();
+					}
+				}
+			});
+		})
+		</script>
+	</body>
+</html>

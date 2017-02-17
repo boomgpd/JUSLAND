@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/reset.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/style_jisuanqi.css">
+<script src="js/jquery.js"></script>
+</head>
+
+<body>
+<include file="Common/header_two" />
+<!--content start-->
+
+<div class="wai">
+	<div class="box">
+    	<div class="left fl">
+        	<div class="left_up">
+            	<h1 class="fl">婚礼计算器</h1><span class="span1">今天已有 <span class="weishu">2497</span> 位业主获取了婚礼预算</span>
+                <form class="forms" action="" method="post">
+                	<div style="margin-top:50px;">
+                    	<h2 class="fl">所在城市:<span>*</span></h2>
+                        <select id="sheng" name="area_id[]" onChange="changeProvince('shen','city','town');" class="select1 s_center fl" >
+                            <option>省/市</option>
+                            <foreach name="data['area']" item="val" key="key">
+                                <option value="{$val['area_id']}">{$val['aname']}</option>
+                            </foreach>
+                        </select>
+                        <select id="city" name="area_id[]" onChange="changeTown('shen','city','town');" class="select1 fl s_center">
+                            <option>市/地区</option>
+                            <option>选项二</option>
+                        </select>                        
+                    </div>
+		            <div>
+		                <h2 class="fl">婚礼形态:<span>*</span></h2>
+		                <select id="sheng" name="count_type_prica_id[]" onChange="changeTown('shen','city','town');"  class="select2 s_center fl" >
+		                    <option>请选择</option>
+                    		<foreach name="data['count']" item="v" key="key">
+                    			<if condition="$v['type'] eq 1">
+		                        	<option value="{$v['count_type_prica_id']}">{$v['type_name']}</option>
+                    			</if>
+                   	 		</foreach>
+		                </select>
+		            </div>
+                    <div>
+                    	<h2 class="fl">服务范畴:<span>*</span></h2>
+                        <select id="sheng" name="count_type_prica_id[]" onChange="changeProvince('shen','city','town');" class="select2 s_center fl" >
+                        <option>请选择</option>
+                    		<foreach name="data['count']" item="v" key="key">
+                    			<if condition="$v['type'] eq 2">
+		                        	<option value="{$v['count_type_prica_id']}">{$v['type_name']}</option>
+                    			</if>
+                   	 		</foreach>
+                        </select>
+                    </div>
+                    <div>
+                    	<h2 class="fl">婚礼要求:<span>*</span></h2>
+                        <select id="sheng" name="count_type_prica_id[]" onChange="changeProvince('shen','city','town');" class="select2 s_center fl" >
+                            <option>请选择</option>
+                    		<foreach name="data['count']" item="v" key="key">
+                    			<if condition="$v['type'] eq 3">
+		                        	<option value="{$v['count_type_prica_id']}">{$v['type_name']}</option>
+                    			</if>
+                   	 		</foreach>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="right fr">
+        	<div class="right_left"><a href="javascript:;" class="pola">结算报价</a></div>
+            <div class="right_right">
+            	<h1>您的婚礼服务预算约<span class="span2">0</span>万元</h1>
+                <p style="margin-top:39px;">装饰空间：<span class="span-zhuangshi">0元</span></p>
+                <p>服务人员：<span class="span-fuwu">0元</span></p>
+                <p>影像花艺后期＋其他：<span class="span-yingxiang">0元</span></p>
+                <p>策划费：0元</p>
+                <p>设计费：0元</p>
+                <p>全程监理费：0元</p>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+	.cc{
+		position: relative;left: 50px;
+	}
+</style>
+<script type="text/javascript">
+	$('.pola').click(function(){
+		var data = $('.forms').serialize();
+		$.ajax({
+			type:'post',
+			url:"{:U('chenk')}",
+			data:data,
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata){
+					var str = '<h1  style="position: relative;left: 50px;">您的婚礼服务预算约<span class="span2">'+phpdata.zhong+'</span>万元</h1>';
+						str += '<p style="margin-top:39px;margin-left:60px;">装饰空间：<span class="span-zhuangshi">'+phpdata.detail.detail_space+'万元</span></p>';
+						str += '<p style="margin-left:60px;">服务人员：<span class="span-fuwu">'+phpdata.detail.detail_service+'万元</span></p>';
+						str += '<p style="margin-left:60px;"> 影像花艺后期＋其他：<span class="span-yingxiang">'+phpdata.detail.detail_floricul+'万元</span></p>';
+						str += '<p style="margin-left:60px;">策划费：'+phpdata.detail.detail_plot+'万元</p>';
+						str += '<p style="margin-left:60px;">设计费：'+phpdata.detail.detail_design+'万元</p>';
+						str += '<p style="margin-left:60px;">全程监理费：'+phpdata.detail.detail_super+'万元</p>';
+						$('.wai .right .right_right').html(str);
+				}
+			}
+		});
+	})
+</script>
+
+<!--footer start-->
+		<div class="footer clearfix">
+			<div class="footer_top w">
+				<ul class="footer_chaining fl">
+					<li class="blogroll fl" style="margin-top:30px;margin-left: 60px;font-size: 18px;">友情链接</li>
+					<li><a href="#" style="margin-left: 40px;">阿里巴巴</a></li>
+					<li><a href="#">百度一下</a></li>
+					<li><a href="#">腾讯QQ</a></li>
+					<li><a href="#">北京银行</a></li>
+					<li><a href="#">97婚嫁</a></li>
+				</ul>
+				<div class="footer_vx fl">
+					<dl style="margin-right: 50px;">
+						<dt>关注微信</dt>
+						<dd><img src="__PUBLIC__/Home/img/plot/index_computer/index_vx.png"></dd>
+					</dl>
+					<dl>
+						<dt>下载APP</dt>
+						<dd><img src="__PUBLIC__/Home/img/plot/index_computer/index_vx.png"></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="footer_bottom w">
+				<p><a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">意见反馈</a> | <a href="#">高薪聘请</a> | <a href="#">法律声明</a></p>
+				<p>免责声明：本网站部分内容由用户自行上传，如权利人发现存在误传其作品情形，请及时与本站联系。</p>
+				<p>© 2016 北京京折科技有限公司有限公司  保留所有权利</p>
+				<p>京ICP备14039745号-1</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#sheng').change(function(){
+				var area_id = $(this).val();
+				$.ajax({
+					type:"post",
+					url:"{:U('index_computer')}",
+					data:{area_id:area_id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata){
+							var str = '<option>市/地区</option>';
+							$.each(phpdata,function(k,v){
+								str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+							});
+							$('#city').html(str);
+						}
+					}
+				});
+			})
+		</script>
+</body>
+</html>

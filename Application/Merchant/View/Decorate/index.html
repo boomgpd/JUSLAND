@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>商家个人主页</title>
+		<link rel="stylesheet" href="__PUBLIC__/Merchant/css/style.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Merchant/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Merchant/css/wenku.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Merchant/css/slip.css" />
+		<style type="text/css">
+			#cover{
+				width: 100%;
+				height: 100%;
+				background: black;
+				opacity: 0.4;
+				position: fixed;
+				left: 0;
+				top: 0;
+				z-index: 1000;
+			}
+			
+			.logo_fang{
+				width: 300px;
+				height: 95px;
+				position: absolute;
+				left: 215px;
+				top: 0;
+				border: 3px solid orangered;
+			}
+			.logo_fang .al{
+				width: 300px;
+				height: 95px;
+				background: white;
+				opacity: 0.4;
+			}
+			.logo_fang .anniu{
+				padding-left:19px;
+				padding-right:19px;
+				background: #fe9c3d;
+				border:  1px solid #eb5e00;
+				line-height: 40px;
+				height: 40px;
+				font-size: 14px;
+				color: white;
+				position: absolute;
+				right: 1px;
+				top: 1px;
+				border-radius: 3px;
+			}
+			
+			#center{
+				width: 1200px;
+				height: 3500px;
+				overflow: hidden;
+				margin: 0 auto;
+				position: absolute;
+				top: 0;
+				z-index: 1001;
+			}
+			
+			.logo_fang .anniu:hover{
+				background: #fb6808;
+			}
+			
+			.logo_fang .des{
+				display: block;
+				height: 40px;
+				width: 220px;
+				text-indent: 2rem;
+				font-size: 14px;
+				line-height: 16px;
+				position: absolute;
+				bottom: 8px;
+				margin-left: 15px;
+				color: white;
+				background: #FE9C3D;
+				padding: 0px 19px;
+				line-height: 20px;
+				opacity: 0.9;
+			}
+			
+			.merchant_message .al{
+				width: 295px;
+				height: 380px;
+				position: absolute;
+				background: white;
+				opacity: 0.2;
+			}
+			.merchant_message{
+				width: 295px;
+				height: 380px;
+				position: absolute;
+				z-index: 1001;
+				border: 3px solid orangered;
+			}
+			
+			.merchant_message .anniu{
+				padding-left:19px;
+				padding-right:19px;
+				background: #fe9c3d;
+				border:1px solid #eb5e00;
+				line-height: 40px;
+				height: 40px;
+				font-size: 14px;
+				color: white;
+				position: absolute;
+				right: 1px;
+				top: 1px;
+				border-radius: 3px;
+			}
+			
+			.merchant_message .anniu:hover{
+				background: #fb6808;
+			}
+			
+			.merchant_message .des{
+				display: block;
+				height: 40px;
+				width: 220px;
+				text-indent: 2rem;
+				font-size: 14px;
+				line-height: 16px;
+				position: absolute;
+				top: 180px;
+				margin-left: 15px;
+				color: white;
+				background: #FE9C3D;
+				padding: 0px 19px;
+				line-height: 20px;
+				opacity: 0.9;
+			}
+			
+			.merchant_case{
+				width: 884px;
+				height: 485px;
+				position: absolute;
+				z-index: 1001;
+				border: 3px solid orangered;
+			}
+			
+			.merchant_case .anniu{
+				padding-left:19px;
+				padding-right:19px;
+				background: #fe9c3d;
+				border:  1px solid #eb5e00;
+				line-height: 40px;
+				height: 40px;
+				font-size: 14px;
+				color: white;
+				position: absolute;
+				right: 1px;
+				top: 1px;
+				border-radius: 3px;
+			}
+			
+			.merchant_case .anniu:hover{
+				background: #fb6808;
+			}
+			
+			.merchant_case .des{
+				display: block;
+				height: 40px;
+				width: 220px;
+				text-indent: 2rem;
+				font-size: 14px;
+				line-height: 16px;
+				position: absolute;
+				top: 90px;
+				right: 15px;
+				color: white;
+				background: #FE9C3D;
+				padding: 0px 19px;
+				line-height: 20px;
+				opacity: 0.9;
+			}
+			
+			.merchant_combo{
+				width: 1194px;
+				height: 444px;
+				position: absolute;
+				z-index: 1001;
+				border: 3px solid orangered;
+			}
+			
+			.merchant_combo .anniu{
+				padding-left:19px;
+				padding-right:19px;
+				background: #fe9c3d;
+				border:  1px solid #eb5e00;
+				line-height: 40px;
+				height: 40px;
+				font-size: 14px;
+				color: white;
+				position: absolute;
+				right: 1px;
+				top: 1px;
+				border-radius: 3px;
+			}
+			
+			.merchant_combo .des{
+				display: block;
+				height: 40px;
+				width: 220px;
+				text-indent: 2rem;
+				font-size: 14px;
+				line-height: 16px;
+				position: absolute;
+				top: 90px;
+				right: 1px;
+				color: white;
+				background: #FE9C3D;
+				line-height: 20px;
+				margin: 0;
+				opacity: 0.9;
+			}
+			
+			.merchant_des .anniu:hover{
+				background: #fb6808;
+			}
+			
+			
+			.merchant_combo .anniu:hover{
+				background: #fb6808;
+			}
+			
+			.merchant_company{
+				width: 30%;
+				height: 80px;
+				position: absolute;
+				left: 35%;
+				z-index: 1001;
+				border: 3px solid orangered;
+			}
+			
+			.merchant_company .anniu{
+				padding-left:19px;
+				padding-right:19px;
+				background: #fe9c3d;
+				border:  1px solid #eb5e00;
+				line-height: 40px;
+				height: 40px;
+				font-size: 14px;
+				color: white;
+				position: absolute;
+				right: 1px;
+				top: 1px;
+				border-radius: 3px;
+			}
+			
+			.merchant_company .anniu:hover{
+				background: #fb6808;
+			}
+			
+			
+			.merchant_remark{
+				width: 100%;
+				height: 220px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1001;
+				border: 3px solid orangered;
+			}
+			
+			.merchant_remark .anniu{
+				padding-left:19px;
+				padding-right:19px;
+				background: #fe9c3d;
+				border:  1px solid #eb5e00;
+				line-height: 40px;
+				height: 40px;
+				font-size: 14px;
+				color: white;
+				position: absolute;
+				right: 1px;
+				top: 1px;
+				border-radius: 3px;
+			}
+			
+			.merchant_remark .anniu:hover{
+				background: #fb6808;
+			}
+		</style>
+	</head>
+	<body >
+		<div id="cover"></div>
+		<nav class="w">
+			<div id="center">
+			<div class="logo_fang">
+				<div class="al"></div>
+				<a href="{:U('change_logo_fang')}" class="anniu">编辑顶部logo</a>
+				<p class="des">顶部logo，建议尺寸为200 *95，等比例缩放</span>
+			</div>
+		</div>
+			<a href="#" class="logo" style="padding-right: 15px;border-right: 2px solid #C13C3D;"><img src="__PUBLIC__/Merchant/img/logo_01.png" width="98%" height="95px"></a>
+			<a href="#" class="logo" style="margin-left: 15px;"><img src="__UPLOAD__{$data['merchant_message']['logo_fang']}" width="98%" height="95px"></a>
+			<ul class="clearfix fr">
+				<li><a href="#" class="current">店铺首页</a></li>
+				<li><a href="#">嘉仕澜德</a></li>
+				<li><a href="#">嘉仕澜德</a></li>
+				<li><a href="#">嘉仕澜德</a></li>
+				<li><a href="#">嘉仕澜德</a></li>
+			</ul>
+		</nav>
+		<!--导航_end-->
+		
+		<!--轮播广告_start-->
+		<div class="callbacks_container">
+		    <ul class="rslides" id="slider" style="width: 100%;">
+		        <li>
+		          <img src="__PUBLIC__/Merchant/img/banner_001.jpg" alt="">
+		          <p class="caption"></p>
+		        </li>
+		        <li>
+		          <img src="__PUBLIC__/Merchant/img/banner_002.jpg" alt="">
+		          <p class="caption"></p>
+		        </li>
+		    </ul>		    
+		</div>
+		<!--轮播广告_end-->
+        
+<!--后加的公司简介开始-->
+
+<div class="wenku">
+	<div class="mp4">
+		<video src="__PUBLIC__/Merchant/xiongchumo.mp4" class="mp5"  controls>
+		</video>
+	</div>
+	<div class="brief">
+		<div class="assess">
+			<div class="assess_left">
+				<ul>
+					<li>
+						<img src="__PUBLIC__/Merchant/img/gongsijianjie_xiaotubiao_01.png" alt="" /><span>支持免费参观</span><img src="__PUBLIC__/Merchant/img/gongsijianjie_dayuhao.png" alt="" class="jiantou"/>
+					</li>
+					<li>
+						<img src="__PUBLIC__/Merchant/img/gongsijianjie_xiaotubiao_02.png" alt="" /><span>支持满意后付款</span><img src="__PUBLIC__/Merchant/img/gongsijianjie_dayuhao.png" alt="" class="jiantou"/>
+					</li>
+					<li>
+						<img src="__PUBLIC__/Merchant/img/gongsijianjie_xiaotubiao_03.png" alt="" /><span>支持先行赔付</span><img src="__PUBLIC__/Merchant/img/gongsijianjie_dayuhao.png" alt="" class="jiantou"/>
+					</li>
+				</ul>
+			</div>
+			<div class="assess_rigth">
+				<ul>
+					<li class="dong">
+						动态评分
+					</li>
+					<li class="ping">
+						设计水平&nbsp;&nbsp;<img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>&nbsp;&nbsp;5.0
+					</li>
+					<li class="ping">
+						服务态度&nbsp;&nbsp;<img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>&nbsp;&nbsp;5.0
+					</li>
+					<li class="ping">
+						婚礼质量&nbsp;&nbsp;<img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>
+							  <img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png" alt="" class="xin"/>&nbsp;&nbsp;5.0
+					</li>
+					<li class="ping">
+						
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="present">
+			<span class="biaoti">公司简介</span><br />
+			<span class="jieshao">对每一项婚礼道具全程监查，确保在规定时间内完成。如道具为凭租形式需提供与第三方供应商的凭租协议。</span><br />
+			<button>免费申请预约</button>
+			<span class="yu">预约电话：</span>
+			<span class="yue">010-858-9734</span>
+		</div>
+	</div>
+</div>
+
+		
+		<!--预约弹出框_start-->
+		<div class="tk_layer">
+			<div class="small">
+				<form class="registerform" method="post" action="">
+					<table width="100%" style="table-layout:fixed;">
+						<tr>
+							<td class="label">Name:</td>
+							<td><input type="text" value="" name="name" class="inputxt" datatype="s2-6" errormsg="姓名至少2个字,最多6个字！"/></td>
+							<td><div class="Validform_checktip"></div></td>
+						</tr>
+						<tr>
+							<td class="label">Tel:</td>
+							<td><input type="text" value="" name="tel" class="inputxt" datatype="m" errormsg="请正确输入您的手机号码！"/></td>
+							<td><div class="Validform_checktip"></div></td>
+						</tr>
+						<tr style="margin-top: 10px;">
+							<td width="230px" height="30px"></td>
+							<td style="margin-top: 20px;"><input type="submit" value="预    约" class="submit"/></td>
+						</tr>
+					</table>
+					<a href="#" class="tk_close">X</a>
+				</form>
+			</div>			
+		</div>
+		<!--预约弹出框_结束-->		
+		
+		<!--案例展示_start-->
+		<div class="case w" style="position: relative;"> 
+			<!--<div class="merchant_company">
+				<div class="al"></div>
+				<a href="{:U('change_logo_yuan')}" class="anniu">修改企业名称</a>
+				<p class="des">商家基本信息,圆形logo建议大小为400*400</span>
+			</div>-->
+			<p class="recommend_title">{$data['merchant']['m_name']} - 案例展示</p>
+			<img src="__PUBLIC__/Merchant/img/recommend_01.png" class="recommend_hx">
+				<div class="calse_gb clearfix">
+					<div class="merchant_message">
+						<div class="al"></div>
+						<a href="{:U('change_merchant_message')}" class="anniu">基本信息修改</a>
+						<p class="des">商家基本信息,圆形logo建议大小为400*400（最小图片尺寸）</span>
+					</div>
+					
+					<div class="merchant_des">
+						<!--<div class="al"></div>
+						<a href="{:U('change_logo_yuan')}" class="anniu">公司简介修改</a>
+						<p class="des">商家基本信息,圆形logo建议大小为400*400</span>-->
+					</div>
+					<dl>
+						<dt><img src="__UPLOAD__{$data['merchant_message']['logo_yuan']}"></dt>
+						<dd>
+							<b>{$data['merchant']['m_name']}婚礼</b>
+							<p>{$data['merchant_message']['company_des']}</p>						
+						</dd>
+						<!--<dd>
+							<a href="#" class="case_all">查看全部</a>
+							<span class="case_classics">经典案例 →</span>
+						</dd>-->
+					</dl>
+					<div class="flexslider">
+						<div class="merchant_case">
+							<div class="al"></div>
+							<a href="{:U('show_merchant_case')}" class="anniu">商家案例展示</a>
+							<p class="des">图片大小logo建议大小为890*490（建议为最小图片尺寸）</span>
+						</div>
+						<ul class="slides">
+							<foreach name="data['merchant_case']" item="v" key='k'>
+								<li>
+									<a href="http://www.xfcctv.com/stinary/12085.html" target="_blank" style="background-image:url(__UPLOAD__{$v['img_url'][0]});background-size: 100% 100%;"></a>
+								</li>
+							</foreach>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--案列展示_end-->
+		
+		<!--婚礼蛋糕_start-->
+		<div class="team w ">
+			<div class="merchant_combo">
+				<div class="al"></div>
+				<a href="{:U('show_merchant_combo')}" class="anniu">商家套餐修改</a>
+				<p class="des">建议套餐首张图片大小比例为300*450（建议为最小图片尺寸）</p>
+			</div>
+			<ul class="clearfix"style="overflow: hidden;">
+				<foreach name="data['merchant_combo']" item='v' key='k'>
+						<li class="team_img">	
+				            <img src="__UPLOAD__{$v['img_url'][0]}">  
+				            <div class="team_text">
+				                <b>{$v['title']}</b>
+				                <p></p>
+				            </div>
+				        </li>
+		        </foreach>
+			</ul>
+		</div>
+		<!--婚礼蛋糕_end-->
+		
+		<!--商家广告/为什么选择我们 _start-->
+		<div style="margin: 10px 0;">
+			<img src="__PUBLIC__/Merchant/img/guanggao.jpg" width="100%">
+		</div>
+	<!--评论开始-->
+		<div class="comment" style="position: relative;">
+			<div class="merchant_remark">
+					<div class="al"></div>
+					<a href="{:U('change_merchant_remark')}" class="anniu">回复点评</a>
+			</div>
+			<div class="new_remark clearfix">
+				<span>新人点评<label>（{$remark_num}）</label></span>
+				<a href="#">更多 >></a>
+			</div>
+			
+			<foreach name="data['merchant_remark']" item='v' key='k'>
+				<div class="remark clearfix">
+					<div class="remark_left">
+						<p>{$v['member_name']}</p>
+					</div>
+					<div class="remark_right">
+						<dl>
+							<dt>
+								<label>{$v['service_type']}</label>
+								<span>搭建空间：
+									<for start="0" end="$v['space_num']">
+										<img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png">
+									</for>
+								</span>
+								<span>服务：
+									<for start="0" end="$v['star_num']">
+										<img src="__PUBLIC__/Merchant/img/gongsijianjie_wujiaoxing.png">
+									</for>
+								</span>
+							</dt>
+							<dd>
+								<p>{$v['content']}</p>
+							</dd>
+							<dd>
+								<foreach name="v['list_img']" item='vv' key='kk'>
+									<if condition="$vv">
+										<img src="__UPLOAD__{$vv}" height="100px">
+									</if>
+								</foreach>
+							</dd>
+							<dd style="margin: 0;">2016.08.15 14:09:36</dd>
+						</dl>
+						<ul class="replay">
+							<li><label>商家</label><span>回复</span></li>
+							<li><p>{$v['replay_content']}</p></li>
+						</ul>
+					</div>
+				</div>	
+			</foreach>
+		</div>
+		<!--问答时刻-->
+		<div class="question" style="position: relative;">
+			<div class="merchant_remark" style="height: 200px;">
+					<div class="al"></div>
+					<a href="{:U('change_merchant_discuss')}" class="anniu">回复问题</a>
+			</div>
+			<div class="question_top clearfix">
+				<span>商户问答</span>
+				<a href="#">更多>></a>
+			</div>
+			<div class="question_center">
+				<foreach name="data['merchant_discuss']" item='v' key='k'>
+					<ul>
+						<li><span>{$v['member_name']}</span>{$v['addtime']}</li>
+						<li><p>{$v['question_content']}</p></li>
+						<li><span style="color: #EFB26F;;">商户回答</span>{$v['replay_time']}</li>
+						<li><p>{$v['replay_content']}</p></li>
+					</ul>
+				</foreach>
+			</div>
+			<div class="question_bottom">
+				<p>想要向商家提问，请先<a href="#">登录</a>或<a href="#">注册</a>。</p>
+				<!--<p>如果您有任何疑问，请点击<a href="#">提问</a>。</p>-->
+			</div>
+		</div>
+		<!--评论结束-->
+		
+	</body>
+	<script src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+	
+	
+</html>

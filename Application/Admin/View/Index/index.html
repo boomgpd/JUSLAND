@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>STINARY | MARRY</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="__PUBLIC__/Admin/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="__PUBLIC__/Admin/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+<link href="__PUBLIC__/Admin/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+<!-- BEGIN THEME STYLES -->
+<link href="__PUBLIC__/Admin/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
+
+<link href="__PUBLIC__/Admin/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+<link href="__PUBLIC__/Admin/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+<!-- END THEME STYLES -->
+<link rel="shortcut icon" href="favicon.ico"/>
+ <base target="iframe"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<!-- DOC: Apply "page-header-fixed-mobile" and "page-footer-fixed-mobile" class to body element to force fixed header or footer in mobile devices -->
+<!-- DOC: Apply "page-sidebar-closed" class to the body and "page-sidebar-menu-closed" class to the sidebar menu element to hide the sidebar by default -->
+<!-- DOC: Apply "page-sidebar-hide" class to the body to make the sidebar completely hidden on toggle -->
+<!-- DOC: Apply "page-sidebar-closed-hide-logo" class to the body element to make the logo hidden on sidebar toggle -->
+<!-- DOC: Apply "page-sidebar-hide" class to body element to completely hide the sidebar on sidebar toggle -->
+<!-- DOC: Apply "page-sidebar-fixed" class to have fixed sidebar -->
+<!-- DOC: Apply "page-footer-fixed" class to the body element to have fixed footer -->
+<!-- DOC: Apply "page-sidebar-reversed" class to put the sidebar on the right side -->
+<!-- DOC: Apply "page-full-width" class to the body element to have full width page without the sidebar menu -->
+<style type="text/css">
+	.navbar-fixed-top .top{
+		padding-left: 5px;
+		padding-right: 5px;
+		height: 35px;
+		position: absolute;
+		bottom: 0px;
+		left: 230px;
+	}
+	.navbar-fixed-top .top span{
+		display: block;
+		padding-left: 5px;
+		padding-right: 5px;
+		height: 35px;
+		background: #00C6FF;
+		border-radius:10px;
+		font-family: "微软雅黑";
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 35px;
+		color: white;
+		text-align: center;
+		margin-right: 15px;
+		float: left;
+		cursor: pointer;
+	}
+	.navbar-collapse .left {
+		display: none;
+	}
+</style>
+<script type="text/javascript" src="__PUBLIC__/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//给span标签添加单机事件
+		$(".navbar-fixed-top .top span").click(function(){
+			var n=$(this).index();
+			$(".navbar-collapse .left ").eq(n).css('display','block').siblings('.left').css('display','none');
+		})
+	})
+	
+</script>
+<body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+	<!-- BEGIN HEADER INNER -->
+	<div class="page-header-inner">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			<a href="index.html">
+			<img src="__PUBLIC__/Admin/assets/admin/layout/img/logo.png" alt="logo" class="logo-default" style="width: 150px;"/>
+			</a>
+			<div class="menu-toggler sidebar-toggler hide">
+			</div>
+		</div>
+		<div class="top">
+		<span class="guanli">后台操作</span>
+		<span class="guanli">商家管理</span>
+		<span class="guanli">基本管理</span>
+		<span class="guanli">商城管理</span>
+		<eq name="auth" value='true'>
+		<span class="guanli">管理员权限</span>
+		<span class="guanli">微信管理</span>
+		</eq>
+		</div>
+		<!-- END LOGO -->
+		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+		</a>
+		<!-- END RESPONSIVE MENU TOGGLER -->
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<div class="top-menu">
+			<ul class="nav navbar-nav pull-right">
+				<li class="dropdown dropdown-user">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<img alt="" class="img-circle" src="__PUBLIC__/Admin/assets/admin/layout/img/avatar3_small.jpg"/>
+					<span class="username username-hide-on-mobile">
+					<?php echo $_SESSION['admin_name']?> </span>
+					<i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-default">
+						<li>
+							<a href="{:U('login/selfCenter')}">
+							<i class="icon-key"></i>个人中心</a>
+						</li>
+						<li>
+							<a href="{:U('login/outLogin')}" target="_self">
+							<i class="icon-key"></i>退出</a>
+						</li>
+					</ul>
+				</li>
+				<!-- END USER LOGIN DROPDOWN -->
+			</ul>
+		</div>
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+	<!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN SIDEBAR -->
+	<div class="page-sidebar-wrapper">
+		<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+		<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+		<div class="page-sidebar navbar-collapse collapse">
+			<!-- BEGIN SIDEBAR MENU -->
+			<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+			<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+			<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+			<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+			<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+			<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+			<!-- 后台操作开始 -->
+			<div class="left" style="display: block;">
+				<ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+				<li class="start active open">
+					<a href="javascript:;">
+					<i class="icon-home"></i>
+					<span class="title">后台操作</span>
+					<span class="selected"></span>
+					<span class="arrow open"></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('welcome')}">
+							后台欢迎</a>
+							<a href="{:U('Home/Index/index')}" target="_blank">
+							前台首页</a>
+						</li>
+					</ul>
+				</li>
+				</ul>
+			</div>
+			<!-- 后台操作结束 -->
+
+			<!-- 商家管理开始 -->
+			<div class="left" >
+				<ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+					<li>
+						<a href="javascript:;">
+						<i class="icon-list"></i>
+						<span class="title">地区管理</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="{:U('area/add',array('type'=>city))}">
+								添加城市</a>
+							</li>
+							<li>
+								<a href="{:U('area/show')}">
+								地区列表</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="icon-home"></i>
+							<span class="title">婚礼商家管理</span>
+							<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="{:U('merchant/add')}">
+								添加商家</a>
+							</li>
+							<li>
+								<a href="{:U('merchant/index')}">
+								商家列表</a>
+							</li>
+							<li>
+								<a href="{:U('merchant/apply')}">
+								商家审核</a>
+							</li>
+							<li>
+								<a href="{:U('merchant/remark')}">
+								商家点评</a>
+							</li>
+							<li>
+								<a href="{:U('merchant/discuss')}">
+								商家问答</a>
+							</li>
+							<li>
+								<a href="{:U('merchant/rice_range')}">
+								价格区间</a>
+							</li>
+							<li>
+								<a href="{:U('merchant/choose')}">
+								首页推荐</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="icon-home"></i>
+							<span class="title">影楼商家管理</span>
+							<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="{:U('photo/index')}">商家列表</a>
+							</li>
+							<li>
+								<a href="{:U('photo/apply')}">
+								商家审核</a>
+							</li>
+							<li>
+								<a href="{:U('PhotoCategory/index')}">
+								影楼分类</a>
+							</li>
+							<li>
+								<a href="{:U('Photorecom/index')}">
+								影楼推荐</a>
+							</li>
+							<li>
+								<a href="{:U('Photorecom/index_class')}">
+								活动推荐</a>
+							</li>
+							<li>
+								<a href="{:U('Photorecom/index_sell')}">
+								畅销推荐</a>
+							</li>
+							<li>
+								<a href="{:U('Photo/make')}">
+								影楼预约</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="icon-home"></i>
+							<span class="title">酒楼商家管理</span>
+							<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="{:U('hotel/index')}">商家列表</a>
+							</li>
+							<li>
+								<a href="{:U('hotel/apply')}">商家审核</a>
+							</li>
+							<li>
+								<a href="{:U('HotelCategory/index')}">酒楼分类</a>
+							</li>
+							<li>
+								<a href="{:U('Hotelrecom/index_class')}">首页推荐</a>
+							</li>
+							<li>
+								<a href="{:U('Hotel/tad')}">规格列表</a>
+							</li>
+							<li>
+								<a href="{:U('Hotel/make')}">酒楼预约</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!-- 商家管理结束 -->
+
+			<!-- 基本管理开始 -->
+			<div class="left" >
+				<ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+				<li>
+					<a href="__PUBLIC__/javascript:;">
+					<i class="icon-settings"></i>
+					<span class="title">瀑布类型管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('Type/addtag')}">
+							添加类型</a>
+						</li>
+						<li>
+							<a href="{:U('Type/Tag')}">
+							类型列表</a>
+						</li>
+						<li>
+							<a href="{:U('picture/add',array('type'=>1))}">
+							添加瀑布流</a>
+						</li>
+						
+						<li>
+							<a href="{:U('picture/add',array('type'=>0))}">
+							未注册瀑布流</a>
+						</li>
+						
+						<li>
+							<a href="{:U('picture/index')}">
+							查看瀑布流列表</a>
+						</li>
+						<li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-diamond"></i>
+					<span class="title">图片管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('bananer/index')}">
+							轮播图管理</a>
+						</li>
+						<li>
+							<a href="{:U('picture/index_list')}">
+							首页推荐图</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-briefcase"></i>
+					<span class="title">广告位管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('adver/adver_type')}">
+							广告类型管理</a>
+						</li>
+						<li>
+							<a href="{:U('adver/adver')}">
+							广告管理</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-briefcase"></i>
+					<span class="title">预约管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('admin/bespoke/index')}">
+							预约列表</a>
+						</li>
+						<li>
+							<a href="{:U('admin/bespoke/self_center')}">
+							往日客户</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-briefcase"></i>
+					<span class="title">菜单管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('admin/Menu/add_article')}">
+							添加菜单</a>
+						</li>
+						<li>
+							<a href="{:U('admin/Menu/menu')}">
+							菜单列表</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-briefcase"></i>
+					<span class="title">婚礼人管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('admin/Marrier/index')}">
+							婚礼人列表</a>
+						</li>
+						<li>
+							<a href="{:U('admin/Marrier/apply')}">
+							婚礼人审核</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-briefcase"></i>
+					<span class="title">站点配置</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('admin/Page/add')}">
+							页面类型添加</a>
+						</li>
+						<li>
+							<a href="{:U('admin/Page/index')}">
+							页面类型列表</a>
+						</li>
+						<li>
+							<a href="{:U('admin/Config/index')}">
+							普通配置列表</a>
+						</li>
+						<li>
+							<a href="{:U('admin/Friend/index')}">
+							友情链接配置列表</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-briefcase"></i>
+					<span class="title">媒体</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('Mesdia/add')}">
+							添加文字新闻</a>
+						</li>
+						<li>
+							<a href="{:U('Mesdia/index')}">
+							文字新闻列表</a>
+						</li>
+						<li>
+							<a href="{:U('videos/index_type')}">
+							视频分类列表</a>
+						</li>
+						<li>
+							<a href="{:U('videos/index')}">
+							视频新闻列表</a>
+						</li>
+						<li>
+							<a href="{:U('Pictext/index')}">
+							图文新闻列表</a>
+						</li>
+						<li>
+							<a href="{:U('textpicindex/index')}">
+							媒体首页推荐</a>
+						</li>
+						<li>
+							<a href="{:U('news/index')}">
+							推荐清单</a>
+						</li>
+						<li>
+							<a href="{:U('textpicindex/index_list')}">
+							首页推荐列表</a>
+						</li>
+					</ul>
+				</li>
+				</ul>
+			</div>
+			<!-- 基本管理结束 -->
+
+			<!-- 商品管理开始 -->
+			<div class="left" >
+				<ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+					<li>
+						<a href="javascript:;">
+						<i class="icon-list"></i>
+						<span class="title">类型管理</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="{:U('Admin/ShopType/index')}">
+								类型列表</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+						<i class="icon-list"></i>
+						<span class="title">分类及推荐管理</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="{:U('Admin/ShopCate/index')}">
+								分类列表</a>
+							</li>
+							<li>
+								<a href="{:U('Admin/ShopFcate/index')}">
+								首推分类</a>
+							</li>
+							<li>
+								<a href="{:U('Admin/ShopCcate/index')}">
+								推荐分类</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+						<i class="icon-list"></i>
+						<span class="title">标签、规格管理</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="{:U('Admin/ShopLabel/index')}">
+								标签列表</a>
+							</li>
+							<li>
+								<a href="{:U('Admin/activitylabel/index')}">
+								活动标签</a>
+							</li>
+							<li>
+								<a href="{:U('Admin/ShopSpec/index')}">
+								规格列表</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+						<i class="icon-list"></i>
+						<span class="title">商品管理</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="{:U('Admin/shopGoods/list_cate_add')}">
+								添加商品</a>
+							</li>
+							<li>
+								<a href="{:U('Admin/shopGoods/list_cate_show')}">
+								商品列表</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+						<i class="icon-list"></i>
+						<span class="title">订单管理</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="{:U('Admin/ShopOrder/ems_index')}">
+								快递类型管理</a>
+							</li>
+							<li>
+								<a href="{:U('Admin/ShopOrder/index',array('order_status'=>0))}">
+								待添加邮费订单</a>
+							</li>
+							<li>
+								<a href="{:U('Admin/ShopOrder/index',array('order_status'=>1))}">
+								待添加快递单号订单</a>
+							</li>
+							<li>
+								<a href="{:U('Admin/ShopOrder/index',array('order_status'=>2))}">
+								已处理订单</a>
+							</li>
+						</ul>
+					</li> 
+				</ul>
+			</div>
+			<!-- 商品管理结束 -->
+
+			<eq name="auth" value='true'>
+			<!-- 超级管理开始 -->
+			<div class="left" >
+				<ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+				<li>
+					<a href="javascript:;">
+					<i class="icon-list"></i>
+					<span class="title">用户管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('Admin/Admin/add')}">
+							添加用户</a>
+						</li>
+						<li>
+							<a href="{:U('Admin/Admin/index')}">
+							用户列表</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-list"></i>
+					<span class="title">角色管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('Admin/Role/add')}">
+							添加角色</a>
+						</li>
+						<li>
+							<a href="{:U('Admin/Role/index')}">
+							角色列表</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-rocket"></i>
+					<span class="title">节点管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('Admin/Node/index')}">
+							控制器列表</a>
+						</li>
+						<li>
+							<a href="{:U('Admin/Node/addCtl')}">
+							添加控制器</a>
+						</li>
+						<li>
+							<a href="{:U('Admin/Node/addAct')}">
+							添加方法</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+					<i class="icon-rocket"></i>
+					<span class="title">商家权限管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('Admin/Merpower/sys_list')}">
+							权限列表</a>
+						</li>
+						<li>
+							<a href="{:U('Admin/Merrole/index')}">
+							角色列表</a>
+						</li>
+					</ul>
+				</li>
+				</ul>
+			</div>
+			<div class="left" >
+				<ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+				<li>
+					<a href="javascript:;">
+					<i class="icon-list"></i>
+					<span class="title">微信菜单管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{:U('Admin/Wechat/showMenu')}">菜单列表</a>
+						</li>
+					</ul>
+				</li>
+				</ul>
+			</div>
+			<!-- 超级管理结束 -->
+			</eq>
+			<!-- END SIDEBAR MENU -->
+		</div>
+	</div>
+	<!-- END SIDEBAR -->
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			<iframe src="{:U('welcome')}" frameborder="0" style="height:100%;width:100%;" name="iframe"></iframe>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+	<div class="page-footer-inner">
+		 2014 &copy; Metronic by keenthemes. <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+	</div>
+	<div class="scroll-to-top">
+		<i class="icon-arrow-up"></i>
+	</div>
+</div>
+<div class="remind">
+	<div class="top">
+		<span class="cha" onclick="dis_show()">x</span>
+	</div>
+	<p>
+		您有新的消息未处理
+		<a href="{:U('admin/bespoke/index')}" onclick="dis_show()">请点击查看</a>
+	</p>
+</div>
+<style type="text/css">
+	.remind{position: fixed;right: 0px;bottom: 0px;width: 350px;height: 250px;border: 1px solid #9999cc;background: #D6D9DD;display: none;}
+	.remind .top{width: 100%;height: 40px;background: #364150;border-bottom:1px solid #DDDDDD ;}
+	.remind .top .cha{float: right;display:block;width:40px;height:40px;text-align:center;line-height: 30px;cursor: pointer;font-size: 30px;background: #9f55e3;}
+	.remind p{width: 100%;height: 20px;text-indent: 2rem;margin-top: 15px;}
+</style>
+<!-- END FOOTER -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="__PUBLIC__/Admin/assets/global/plugins/respond.min.js"></script>
+<script src="__PUBLIC__/Admin/assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script src="__PUBLIC__/Admin/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+<script src="__PUBLIC__/Admin/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Admin/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Admin/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="__PUBLIC__/Admin/assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Admin/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+
+
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+jQuery(document).ready(function() {    
+   Metronic.init(); // init metronic core componets
+   Layout.init(); // init layout
+  
+   
+});
+</script>
+<script type="text/javascript">
+	var height = $(document).height();
+	$('iframe').height(height + 50);
+</script>
+<!-- END JAVASCRIPTS -->
+
+<script type="text/javascript">
+	function step(){
+		$.ajax({
+			type:"post",
+			url:"{:U('admin/bespoke/step')}",
+			data:{data:'1'},
+			dataType:'json',
+			success:function(phpdata){
+				var str = '<div class="top">\
+						<span class="cha" onclick="dis_show()">x</span>\
+					</div>';
+				if(phpdata.type == 0){
+					$(".remind").html(str).fadeOut(2000);
+					return false;
+				};
+				$.each(phpdata.data,function(k,v) {
+					if(v.num > 0){
+					 	str += '<p>有'+v.num+v.msg+'<a href="'+v.url+'" onclick="dis_show()">请点击查看</a></p>';
+					};
+				});
+				$(".remind").html(str).fadeIn(2000);
+			}
+		});
+	}
+	step();
+	setInterval(step,10000);
+	
+//	$(".remind .top .cha").click(function(){
+//		$(this).parents('div.remind').fadeOut(2000);
+//	})
+	
+	function dis_show(){
+		$('div.remind').fadeOut(2000);
+	}
+	
+	
+</script>
+</body>
+<!-- END BODY -->
+</html>

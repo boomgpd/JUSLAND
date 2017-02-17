@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	div.top{
+	    		width: 100%;
+	    		height: 40px;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<a href="{:U('index',array('order_status'=>$_GET['order_status']))}">订单首页</a>><a href="{:U('info',array('id'=>$order['oid']))}">{$order['number']}订单</a>
+		<div class="top">
+			<form action="" method="post" class="form-inline taobao" role="form">
+				<!--淘宝订单号:<input type="text" name="taobao_order" value="" />-->
+			   	淘宝订单号: <input type="text" name="taobao_order_id" class="form-control" placeholder="淘宝订单号">&nbsp;&nbsp;
+			   	邮费: <input type="number" name="postage" class="form-control" placeholder="邮费">&nbsp;&nbsp;
+			  	<button type="button" class="btn btn-success save_taobao_order_num">提交</button>
+			</form>
+		</div>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th>序号</th>
+			  <th>商品名称</th>
+			  <th>淘宝订单号</th>
+			  <th>规格</th>
+			  <th>单价</th>
+			  <th>数量</th>
+			  <th>小记</th>
+			  <th>备注</th>
+			  <th>快递号</th>
+			  <th>邮费</th>
+			  <th width="200">操作</th>
+			</tr>
+			<foreach name='data' item='v' key='k'>
+				<tr key="{$v.olid}">
+					<if condition="$v['status'] eq 0 AND $v['tb_id'] eq 0">
+						<td><input type="checkbox" name="olid[]" value="{$v['olid']}" />{$k+1}</td>  
+					<else />
+						<td>{$k+1}</td>
+					</if>
+					
+					<td>{$v.gname}</td>
+					<td>
+						<if condition="$v['taobao_order_num'] neq 0">
+							{$v.taobao_order_num}
+						<else />
+							暂未分配
+						</if>
+					</td>
+					<td>{$v.spec}</td>
+					<td>{$v.price}</td>
+					<td>{$v.num}</td>
+					<td>{$v.subtotal}</td>
+					<td>{$v.explain}</td>
+					<td>{$v.ems_number}</td>
+					<td>
+						<if condition="$v['taobao_order_num'] neq 0">
+							<if condition="$v['postage'] eq 0">
+								包邮
+							<else />
+								{$v.postage}
+							</if>
+							
+						<else />
+							暂未分配
+						</if>
+						<!--<switch name="v['status']">
+							<case value="0">未付款</case>
+							<case value="1">待发货</case>
+							<case value="2">待收货</case>
+							<case value="3">待评价</case>
+							<case value="4">完成</case>
+							<case value="5">交易关闭</case>
+						</switch>-->
+					</td>
+					<td>
+						<a href="{:U('go',array('id'=>$v['olid']))}" class="btn btn-sm btn-success" target="_blank">查看宝贝</a>
+						<eq name="v['status']" value="1">
+							<a href="{:U('edit',array('id'=>$v['olid']))}" class="btn btn-sm btn-info">编辑</a>
+						</eq>
+					</td>
+				</tr>
+			</foreach>
+			<!--<if condition="$order['status'] eq 0">
+				<tr>
+					<td colspan="2">淘宝订单号</td>
+					<td colspan="3"><input type="text" name="ems_number"></td>
+					<td colspan="2">快递单号</td>
+					<td colspan="3"><input type="text" name="ems_number"></td>
+					<td colspan="1"><a href="javascript:;" class="btn btn-sm btn-info deliver">发货</a></td>
+				</tr>
+			<elseif condition="$order['status'] eq 1" />
+				<tr>
+					<td colspan="2">淘宝订单号</td>
+					<td colspan="3"><input type="text" name="ems_number"></td>
+					<td colspan="2">快递单号</td>
+					<td colspan="3"><input type="text" name="ems_number"></td>
+					<td colspan="1"><a href="javascript:;" class="btn btn-sm btn-info deliver">发货</a></td>
+				</tr>
+			<else />
+				<tr>
+					<td colspan="2">淘宝订单号</td>
+					<td colspan="3"><input type="text" name="ems_number"></td>
+					<td colspan="2">快递单号</td>
+					<td colspan="3"><input type="text" name="ems_number"></td>
+					<td colspan="1"><a href="javascript:;" class="btn btn-sm btn-info deliver">发货</a></td>
+				</tr>
+			</if>-->
+		</table>
+	</body>
+	<script type="text/javascript">
+			$(".deliver").click(function(){
+				if(!confirm('确认已发货?')){
+					return false;
+				};
+				var val = $("input[name='ems_number']").val();
+				if(val == ''){
+					alert('请输入快递号');return;
+				};
+				$.ajax({
+					url:"{:U('deliver')}",
+					type: 'post',
+					dataType: 'json',
+					data: {val:val},
+					success:function(phpdata){
+						if(phpdata.type == 0){
+							alert('操作失败');
+							obj.find("input[name='tb_number']").val('');
+						}else{
+							location.reload();
+						};
+					}
+				});
+			});
+			
+			/**
+			 * 创建异步提交
+			 */
+			$(".save_taobao_order_num").click(function(){
+				var num = $("input[type=checkbox][name]:checked").length;
+				var taobao_order_id = $("form.taobao input[name=taobao_order_id]").val();
+				var postage = $("form.taobao input[name=postage]").val();
+				if(!taobao_order_id){
+					alert('请先填写对应的淘宝订单号');return;
+				}
+				if(!postage){
+					postage = 0;
+				}
+				var arr = Array();
+				for(var i=0;i<num;i++){
+					arr.push($("input[type=checkbox][name]:checked").eq(i).val());
+				}
+    				var data = {
+					'taobao_order_num' : taobao_order_id,
+					'postage'	:	postage,
+					'olid'		:	arr,
+					'oid'		:	<?php echo $_GET['id']?>,
+				};
+				$.ajax({
+					type:"post",
+					url:"{:U('add_taobao')}",
+					data:data,
+					dataType:'json',
+					success:function(phpdata){
+						alert(phpdata.content);
+						if(phpdata.type){
+							for(var i=0;i<num;i++){
+								$("input[type=checkbox][name]:checked").eq(i).parents('tr').find('td').eq(2).html(data.taobao_order_num);
+								$("input[type=checkbox][name]:checked").eq(i).parents('tr').find('td').eq(9).html(data.postage);
+							}
+							$("input[type=checkbox][name]:checked").remove();
+						}
+					}
+				});
+			})
+			
+	</script>
+</html>

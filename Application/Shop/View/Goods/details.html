@@ -1,0 +1,432 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>嘉仕澜德——产品详情页</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Shop/css/details.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Shop/css/reset.css">
+	<link href="__PUBLIC__/Shop/css/new_file.css" rel="stylesheet">
+	<script src="__PUBLIC__/Shop/js/jquery-3.1.1.min.js"></script>
+	<script src="__PUBLIC__/Shop/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		div.nrall_bj.w p{ 
+			width: 800px;
+			margin: 0 auto;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+		
+		div.nrall_bj.w p img{
+			width:800px;
+		}
+		.chicun ul .on a{
+			color:#79b6c8;
+			border:1px #c30008 solid;
+			background:url(__PUBLIC__/Shop/img/yes_g.png) no-repeat right bottom;
+		}
+		.about{margin: 0 auto 20px;width: 998px;border: 1px solid #e5e5e5;}
+		.about .title{line-height: 38px;margin-left: 20px;color: #B70305;}
+		.about ul li{float: left;margin: 20px 34px;}
+		.about ul li img{width: 130px;height: 130px;}
+		.about ul li p{text-align: center;line-height: 20px;color: #ACACAC;}
+		.youlian{width:600px;}
+		.youlian_box{width:550px;}
+		.youlian_box .youlian_box_up .name{ display:block;color:#333;font-size:14px; font-family:"微软雅黑"; float:left; width:50px; margin-top:15px;}
+		.youlian_box .youlian_box_up ul{ width:400px; float:left;}
+		.youlian_box_up ul li{width:133px; float:left; margin-top:15px;}
+		.youlian_box_up ul li a{ display:block;width:133px; height:14px;}
+		.youlian_box_up ul li a .img{ display:block; width:14px; height:14px; float:left;}
+		.youlian_box_up ul li a .img img{ display:block; width:14px; height:14px; float:left;}
+		.youlian_box_up ul li a:hover .img img{margin-top:-3px; transition:.1s;}
+		.youlian_box_up ul li a span{ display:block; font-size:12px; color:#666; float:left; margin-left:15px;}
+		.fly_item {
+		    border:1px solid #000;width:38px;height:38px;overflow:hidden;position:absolute;visibility:hidden;opacity:.5;filter:alpha(opacity=50);
+		}
+	</style>
+</head>
+
+<body>
+	<include file="Common/header_two" />
+	<include file="Common/right" />
+	<include file="Public/Tool/sys_alert/index.html" />
+	<gid style="display:none">{$data['gid']}</gid>
+	<div class="tk_img">
+		<a href="javascript:;" class="close fr"><img src="__PUBLIC__/Shop/img/dateils_img/close.png"></a>
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height: 100%;">
+		    <!-- Indicators -->
+			<ol class="carousel-indicators">
+				<foreach name="data['big']" key="k" item="v">
+			    <li data-target="#carousel-example-generic" data-slide-to="{$k}" <eq name="k" value="0">class="active"</eq> ></li>
+			    </foreach>
+			</ol>
+			
+		  	<!-- Wrapper for slides -->
+		  	<div class="carousel-inner" role="listbox">
+		  		<foreach name="data['big']" key="k" item="v">
+		    	<div class="item <eq name='k' value='0'>active</eq> ">
+			      	<img src="__UPLOAD__{$v}" width="500" height="500" alt="..." style="margin: 0 auto;">
+			    </div>
+			    </foreach>
+			</div>
+	
+			 <!-- Controls -->
+			 <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+				</a>
+			    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			 </a>
+		</div>
+	</div>
+	<div class="zt">
+		<img src="__PUBLIC__/Shop/img/dateils_img/logo.png" style="display:block; margin:0 auto;">
+		<!--content start-->
+		<div class="introduce clearfix">
+			<div class="introduce_left fl" id="img">
+		    	<img src="__UPLOAD__{$data['medium'][0]}" width="440" height="440" >
+		        <!--<a href="#" class="tuku">查看图库</a>-->
+		    </div>
+		    <div class="introduce_right fr">
+		    	<p class="title">{$data['gname']}</p>
+		        <span class="xiangqing">{$data['des']}</br></br>多种{$specss}可供您选择。</br></br>嘉仕澜徳为您提供最低价、最优质的服务。
+				</span>
+		        <div class="money">
+		        	<span class="money_left"> <del>市场价: <span>{$data['marketprice']}</span></del></span>
+		            <span class="money_right">会员价: <span class="hpjg">{$data['shopprice']}</span></span>
+		        </div>
+		        <foreach name="specs" key="k" item="v">
+			        <p class="color1" style="color:#333333; font-size:22px; margin:50px 0 0 50px;">{$v.spec_name}分类</p>
+			        <!--<p class="color2" style="color:#555555; font-size:14px; margin:20px 0 0 50px;">选个你喜欢的{$v.specname}吧？</p>-->
+			        <if condition="!empty($v['attr'][0]['ga_img'])">
+			        	<div class="xuanze">
+				        	<ul class="xuanze_ul clearfix">
+				        		<foreach name="v['attr']" key="kk" item="vv">
+				            		<li class="xuanze_li"><a href="javascript:;" class="spec a cut_img" sid="{$vv['gaid']}" title="{$vv.gavalue}" img="__UPLOAD__{$vv['ga_img']}" style="background:url('__UPLOAD__{$vv['ga_img_small']}') no-repeat;background-size:100% 100%;"></a></li>
+				        		</foreach>
+				            </ul>
+			        	</div>
+			        <else/>
+			        	<div class="chicun">
+				        	<ul class="clearfix">
+				        		<foreach name="v['attr']" key="kk" item="vv">
+				            		<li><a href="javascript:;" class="spec a" sid="{$vv['gaid']}">{$vv.gavalue}</a></li>
+				            	</foreach>
+				            </ul>
+			        	</div>
+			        </if>
+		        </foreach>
+		        <div class="shuliang clearfix" style="margin:20px 0 0 50px;">
+		        	<p class="fl">数量</p>
+		        	<a href="javascript:;" class="count_min fl">-</a>
+		            <input type="text" value="1" class="text text-amount fl" data-max="21" data-now="2" autocomplete="off">
+		            <a href="javascript:;" class="count_add fl">+</a>
+		            <span class="kucun ml">热度<span class="num">{$data['click']}</span></span>
+		            <span class="kucun ml">货号<span class="num">{$data['gnumber']}</span></span>
+	        	</div>
+	        	<div class="anniu">
+                	<a href="javascript:;" class="anniu_goumai" id="once">立即购买</a>
+                    <a href="javascript:;" class="anniu_tianjia ml15 addcar" id="add_cart ">添加至购物车</a>
+                    <img src="__UPLOAD__{$data['medium'][0]}" class="img" width="80" height="80" style="display: none;">
+                </div>
+	        	<div class="youlian clearfix">
+					<div class="youlian_box fr">
+						<foreach name="temp" item="val" key="key">
+							<if condition="$key eq 0">
+								<div class="youlian_box_up clearfix">
+						        	<span class="name">承诺</span>
+						            <ul>
+							<elseif condition="$key eq 1" />
+								<div class="youlian_box_up clearfix">
+						        	<span class="name">支持</span>
+						            <ul>
+							</if>
+								<foreach name="val" item="v" key="k">
+									<li>
+					                	<a href="javascript:;" class="clearfix">
+					                    	<div class="img"><img src="__UPLOAD__{$v['a_l_img']}"></div>
+					                        <span title="{$v['a_l_desc']}">{$v['a_l_name']}</span>
+					                    </a>
+					                </li>
+					            </foreach>	
+			            	</ul>
+			        	</div>
+						</foreach>	
+				        </div> 
+				    </div>
+				</div>
+		    </div>
+		    <script type="text/javascript">
+		    	$('.cut_img').click(function(){
+		    		var img = $(this).attr('img');
+		    		$('.introduce_left').find('img').attr('src',img);
+		    	});
+		    </script>
+		    <script src="__PUBLIC__/jquery.fly.min.js"></script>
+		    <script type="text/javascript">
+		    	$(function(){
+		    		var length = $('.color1').length;
+		    		$('.spec').click(function(){
+		    			$(this).parent('li').addClass('on').siblings('li').removeClass('on');
+		    			ajax();
+		    		});
+		    		$('.text.text-amount.fl').blur(function() {
+						var val = $(this).val();
+						var reg = /^[0-9]*[1-9][0-9]*$/;
+						if(!reg.test(val)){
+							$(this).val(1);
+						};
+						ajax();
+					});
+					$(".count_add").click(function(){ 
+						var t=$(this).parent().find("input[type=text]"); 
+						t.val(parseInt(t.val())+1);
+						ajax();
+					}) 
+					$(".count_min").click(function(){
+						var t=$(this).parent().find('input[type=text]'); 
+						t.val(parseInt(t.val())-1) ;
+						if(parseInt(t.val())<1){
+							t.val(1); 
+						};
+						ajax();
+					});
+
+		    		function get_sids(num){
+		    			var sids = '';
+		    			for(var i = 0;i < num;i++){
+		    				sids += '|'+$('.on').eq(i).find('.spec').attr('sid');
+		    			};
+		    			sids = sids.replace('|','');
+		    			return sids;
+		    		};
+
+					function ajax(){
+						var num = $('.on').length;
+		    			if(num != length){
+		    				return false;
+		    			};
+		    			var sids = get_sids(num);
+		    			var gid = $('gid').html();
+		    			var num = $('.text-amount.text').val();
+		    			$.ajax({
+		    				url:'{:U("Goods/get_data")}',
+		    				type:'post',
+		    				dataType:'json',
+		    				data: {sids:sids,gid:gid,num:num},
+		    				success:function(phpdata){
+		    					console.log(phpdata);
+		    					if(phpdata.type == 'error'){
+		    						alert(phpdata.msg);
+		    						$('.money .money_left span').html(0);
+		    						$('.hpjg').html(0);
+		    					}else{
+		    						$('.money .money_left span').html(phpdata.market);
+		    						$('.hpjg').eq(0).html(phpdata.price);
+		    						$('.hpjg').eq(1).html(phpdata.total);
+		    					};
+		    				}
+		    			});
+					}
+
+					function tkshow(){
+						var left = (document.documentElement.clientWidth - $(".tk").width())/2;
+						var top =  (document.documentElement.clientHeight - $(".tk").height())/2;
+						$('#box').css('display','block');
+						$(".tk").css({"left":left,"top":top});
+					}
+					var offset = $("#end").offset(); //结束的地方的元素
+					$('.addcar').click(function(event){
+						var addcar = $(this);
+						var img = addcar.parent().find('img').attr('src');
+						var flyer = $('<img class="u-flyer" src="'+img+'" width="80" height="80">');
+		    			var num = $('.on').length;
+		    			if(num != length){
+		    				alert('请选择商品规格');
+		    				back_top(200);
+		    				return false;
+		    			};
+		    			var sids = get_sids(num);
+		    			var gid = $('gid').html();
+		    			var num = $('.text-amount.text').val();
+		    			$.ajax({
+		    				url:'{:U("Goods/add_cart")}',
+		    				type:'post',
+		    				dataType:'json',
+		    				data: {sids:sids,gid:gid,num:num},
+		    				success:function(phpdata){
+		    					if(phpdata.type == 'error'){
+		    						alert(phpdata.msg);
+		    					}else{
+		    						flyer.fly({
+										start: {
+											left: event.screenX,
+											top: event.screenY
+										},
+										end: {
+											left: offset.left,
+											top: 250,
+											width: 0,
+											height: 0
+										},
+										onEnd: function(){
+											var cart_num = $('.cart_cot label').html();
+							    			cart_num = parseInt(cart_num)+1;
+							    			$('.cart_cot label').html(cart_num);
+											this.destory();
+										}
+									});
+		    					};
+		    				}
+		    			});
+		    		});
+			    	$('#once').click(function(){
+			    		var num = $('.on').length;
+		    			if(num != length){
+		    				alert('请选择商品规格');
+		    				back_top(200);
+		    				return false;
+		    			};
+		    			var sids = get_sids(num);
+		    			var gid = $('gid').html();	
+		    			var num = $('.text-amount.text').val();
+		    			var href = "{:U('order/index')}/sids/"+sids+"/gid/"+gid+"/num/"+num;
+		    			var obj = href.replace('.html', '');
+		    			location.href = obj; 
+			    	})
+		    	});
+		    </script>
+		</div>
+		
+		<div class="hengtiao" style="width:100%; height:2px; background:#c0c0c0; margin-top:50px;">
+		<p style="font-size:26px; color:#333333; display:block; width:1000px; height:137px; margin:0 auto; text-align:center; line-height:136px; margin-top:30px;">产品内容</p>
+		<div class="nrall">
+			<div class="nrall_bj">
+				<notempty name="linked">
+				<div class="about">
+					<p class="title">套餐内单品</p>
+					<ul class="clearfix">
+						<foreach name="linked" key="k" item="v">
+							<li>
+								<a href="{:U('details',array('id'=>$v['gid']))}" title="{$v['gname']}">
+									<img src="__ROOT__/Uploads/{$v['pic']}">
+								</a>
+								<p style="width: auto;">价格<span>￥{$v['shopprice']}元</span></p>
+							</li>
+						</foreach>
+					</ul>
+				</div>
+				</notempty>
+		    	{$data['details']}
+		    </div>
+		    <script>
+		    	$('.nrall img').removeAttr('title');
+		    </script>
+		    <div class="nrall_content">
+		    	<div class="nrall_content_wenzi clearfix">
+		        	<div class="left fl">
+		            	<!--<a href="#" class="a1 abj mt20">获得购买帮助</a>-->
+		            	<!--<a href="javascript:;" class="a1 abj mt20" target="_blank" style="margin-top: 40px;">点击咨询</a>-->
+		                <!--<a href="{:U('cose')}" target="_blank" class="a1">开始交流</a>-->
+		            </div>
+		            <!--<div class="right fr clearfix">
+		            	<a href="javascript:;" class="jiage fl">¥ <span class="hpjg">0.00</span></a>
+		                <a href="javascript:;" class="tianjia fr" id="add_cart">添加至购物车</a>
+		            </div>-->
+		        </div>
+				<!--<a href="javascript:;" class="back_top" style="display:none;position: fixed;bottom: 140px;right: 12px;" onclick="back_top()"><img src="__PUBLIC__/Shop/img/dateils_img/back_top.png"/></a>-->
+		    </div>
+		</div>
+		<!--content end-->
+	</div>
+	<!-- <div id="box">
+		<div class="tk">
+			<p class="ok">加入购物车成功</p>
+			<p class="cot">购物车共<span>1</span>种，数量为<span>2</span>,商品共计：<span>￥666</span>。</p>
+			<a href="javascript:;" class="continue" onclick="tkhide()">继续购物</a>
+			<a href="{:U('Goods/cart')}" class="account">去购物车结算</a>
+		</div>
+	</div> -->
+</body>
+	<style type="text/css">
+	/*购物车开始*/
+	.tk{width: 393px;height: 159px;position:fixed;background: url(__PUBLIC__/Shop/img/bg.png) no-repeat;}
+	.ok{height: 40px;line-height: 40px;text-align: center;font-size: 16px;color: #3c3c3c;}
+	.cot{text-align: center;margin: 25px 0;}
+	.continue,.account{margin:0 auto;display:inline-block;padding: 10px 20px;background-color: #79B6C8;color: #fff;border-radius: 5px;border: 0;font-size: 16px;}
+	.continue{margin-left: 75px;}
+	/*购物车结束*/
+
+	#box{
+		width: 100%;
+		height:100%;
+		position: fixed;
+		z-index: 1002;
+		top:0px;left:0px;
+		display: none;
+		background-color: rgba(0,0,0,0.5);
+	}
+	</style>
+
+<script>
+	$(".abj").click(function(){
+		var is_merchant = "<?php echo $_SESSION['merchant_id']?>";
+		if(is_merchant){
+			window.open("{:U('cose')}");  
+		}else{
+			wp_confirm('您还没有登录，去登陆吗？',"http://wp.c-wia.com/Main/login/login.html?backname=http://wp.c-wia.com/index.php/Shop/Goods/details/id/140.html?");
+		}
+	})
+	function tkhide(){
+		$('#box').css('display','none');
+	};
+	var tkimg_height = document.documentElement.clientHeight;
+	$(".tk_img").css("height",tkimg_height);
+	$(".tuku").click(function(){
+		$(".tk_img").show().siblings(".zt").hide();
+		var m_t = $(window).height()-$(".carousel-inner .item img").height();
+ 	    $(".carousel-inner .item").css("margin-top",m_t/2);
+	})
+	$(".close").click(function(){
+		$(".tk_img").hide().siblings(".zt").show();
+	});
+	var img_t = 170;
+	var t = $('div.hengtiao').offset().top - img_t - $('#img').height();
+	$(document).scroll(function(){
+		var scrT = $(document).scrollTop();
+		var tt = img_t + t;
+		
+//		左侧图片跟随事件
+		if(scrT > img_t && scrT < tt){
+			$('#img').css({'position':'fixed','top':'0px'});
+		}else if(scrT > tt){
+			$('#img').css({'position':'relative','top':t+'px'});
+		}else if(scrT < tt){
+			$('#img').css({'position':'relative','top':'0px'});
+		}
+		
+//		出现返回顶部事件
+		if(scrT<1000){
+			$(".back_top").css('display','none');
+		}else{
+			$(".back_top").css('display','block');
+		}
+	});
+	
+	window.onload = function(){ 
+//		$("div.nrall_bj.w p span").css({'background':'#f7f7f7'});
+//		$("div.nrall_bj.w p").css({'background':'#f7f7f7','margin':'0 auto'});
+	}
+	
+	function back_top(height){
+		if(!height){
+			height = 0;
+		}
+		$('html, body').animate({scrollTop:height}, 'slow');
+	}
+	
+</script>
+</html>

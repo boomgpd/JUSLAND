@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/hotel-list_style.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/new_file.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/bottom.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/reset.css">
+<script src="__PUBLIC__/Home/hotel/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/hotel/js/bootstrap.min.js" ></script>
+<style type="text/css">
+	.num{
+		width: 20px;
+		height: 20px;
+		border-top-left-radius:20px ;
+		border-top-right-radius:20px ;
+		border-bottom-left-radius:20px ;
+		background: red;
+		position: relative;
+		top: -10px;
+		left: -10px;
+		line-height: 20px;
+		color: #fff;
+	}
+</style>
+</head>
+
+<body>
+	<include file="Common/header" />
+<!--top start-->
+		<div id="carousel-example-generic" class="carousel slide clearfix" data-ride="carousel">
+		    <!--轮播图标记
+			<ol class="carousel-indicators">
+			    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			</ol>-->
+			
+		  	<!--轮播图片-->
+		  	<div class="carousel-inner" role="listbox">
+		    	<div class="item active">
+			      	<img src="__PUBLIC__/Home/hotel/img/banner1.png" alt="...">
+			      	<div class="carousel-caption"></div>
+			    </div>
+			    <div class="item">
+			      	<img src="__PUBLIC__/Home/hotel/img/banner2.png" alt="...">
+			     	 <div class="carousel-caption"></div>
+			    </div>
+			    <div class="item">
+			      	<img src="__PUBLIC__/Home/hotel/img/banner3.png" alt="...">
+			     	 <div class="carousel-caption"></div>
+			    </div>
+			</div>
+	
+			<!--两侧按钮-->
+			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			</a>
+			
+			<!--条件筛选-->
+			<div style="width: 100%;position: absolute;bottom: 40px;">
+				<ul class="condition clearfix">
+					<li><a href="javascript:;">位置</a></li>
+					<li><a href="javascript:;">类型</a></li>
+					<li><a href="javascript:;">预算</a></li>
+                    <li><a href="javascript:;">桌数</a></li>
+					<li style="margin-right: 0;"><a href="javascript:;">特色</a></li>
+				</ul>
+				<ul class="condition_cot clearfix" style="display: none;">
+                	<li><a href="javascript:;">全部</a></li>
+                	<foreach name="data['area']" item="val" key="key">
+                   		<li><a href="{:U('hotel_list',array('page'=>$_GET['page'],'area_id'=>$val['area_id'],'desc'=>$_GET['desc']))}">{$val['aname']}</a></li>
+                    </foreach>
+					<a href="javascript:;" class="more">更多</a>
+				</ul>
+                <foreach name="data['hotel_type']" item="val" key="key">
+                	<?php
+                		$temp = $arr;
+                		$temp[$key] = 0;
+                	?>
+					<ul class="condition_cot clearfix" style="display: none;">
+						<if condition=" $arr[$key] eq 0">
+							<li><a href="{:U('hotel_list',array('page'=>$_GET['page'],'desc'=>implode('_',$temp),'area_id'=>$_GET['area_id']))}" style="background:rgba(255,255,255,.6);">全部</a></li>
+						<else />
+							<li><a href="{:U('hotel_list',array('page'=>$_GET['page'],'desc'=>implode('_',$temp),'area_id'=>$_GET['area_id']))}">全部</a></li>
+						</if>
+						<foreach name="val" item="v" key="k">
+							<?php $temp[$key] = $v; ?>
+							<if condition=" $arr[$key] eq $v">
+								<li><a href="{:U('hotel_list',array('page'=>$_GET['page'],'desc'=>implode('_',$temp),'area_id'=>$_GET['area_id']))}" style="background:rgba(255,255,255,.6);">{$v}</a></li>
+							<else />	
+								<li><a href="{:U('hotel_list',array('page'=>$_GET['page'],'desc'=>implode('_',$temp),'area_id'=>$_GET['area_id']))}">{$v}</a></li>	
+							</if>
+						</foreach>
+					</ul>
+				</foreach>
+			</div>
+		</div>
+<!--top end-->
+<!--content start-->
+<div class="box">
+	<ul class="box_ul1" style="text-align: center;">
+		<if condition="$data['goods'] eq FALSE">
+			<img src="__PUBLIC__/img/404.jpg" style="margin: 0 auto;"/>
+		<else />
+			<foreach name="data['goods']" item="val" key="key">
+			    	<li class="box_ul1_li1">
+				        <a href="{:U('details',array('id'=>$val['p_p_id']))}" class="all">
+				        	<div class="box_content clearfix">
+				            	<div class="content_left content_w fl">
+				                	<p class="title ml80">{$val['hotel_id']['h_name']}</p>
+				                    <p class="p2 ml80">WEDDING</p>
+				                    <p class="weizhi ml80">{$val['hotel_id']['provience']}{$val['hotel_id']['city']}</p>
+				                    <ul class="clearfix">
+				                    	<li>
+				                        	<p>宴会厅名称</p>
+				                            <span>{$val['p_name']}</span>
+				                        </li>
+				                        <foreach name="val['attr']" item="v" key="k">
+					                        <li>
+					                        	<p>{$v['name']}</p>
+					                            <span>{$v[$k]['hotel_value']}</span>
+					                        </li>
+				                        </foreach>
+				                    </ul>
+				                    <p class="money ml80">￥{$val['price']}/桌</p>
+				                </div>
+				                <div class="content_right content_w fr">
+				                    <img src="__UPLOAD__{$val['list_img']}">
+				                    <a href="#" class="duibi">
+				                    	<if condition="$_SESSION['ids'][0] eq $val['p_p_id']['id']">
+				                    		<input type="checkbox" name="id" value="{$val['p_p_id']}" checked="checked"/>
+					                    	<span>对比</span>
+				                    	<elseif condition="$_SESSION['ids'][1] eq $val['p_p_id']['id']" />
+				                    		<input type="checkbox" name="id" value="{$val['p_p_id']}" checked="checked"/>
+					                    	<span>对比</span>
+				                    	<elseif condition="$_SESSION['ids'][2] eq $val['p_p_id']['id']" />
+				                    		<input type="checkbox" name="id" value="{$val['p_p_id']}" checked="checked"/>
+					                    	<span>对比</span>
+				                    	<else />
+					                    	<input type="checkbox" name="id" value="{$val['p_p_id']}" />
+					                    	<span>对比</span>
+				                    	</if>
+				                    </a>
+				                </div>
+				            </div>
+				        </a>
+			        </li>
+	        </foreach>
+		</if>
+    </ul>
+</div>
+<div class="page" style="text-align: center;">
+<span class="uppage anniu"><a href="{:U('hotel_list',array('page'=>$_GET['page']-1,'desc'=>$_GET['desc'],'area_id'=>$_GET['area_id']))}">上一页</a></span>
+<for start="1" end="$data['goods'][0]['count']+1">
+	<if condition="$_GET['page'] eq $i">
+		<span class="pageCount nowpage"><a href="{:U('hotel_list',array('page'=>$i,'desc'=>$_GET['desc'],'area_id'=>$_GET['area_id']))}">{$i}</a></span>
+	<elseif condition="!$_GET['page'] && $i eq 1" />
+		<span class="pageCount nowpage"><a href="{:U('hotel_list',array('page'=>$i,'desc'=>$_GET['desc'],'area_id'=>$_GET['area_id']))}">{$i}</a></span>
+	<else />
+		<span class="pageCount"><a href="{:U('hotel_list',array('page'=>$i,'desc'=>$_GET['desc'],'area_id'=>$_GET['area_id']))}">{$i}</a></span>
+	</if>
+</for>
+<span class="downpage anniu"><a href="{:U('hotel_list',array('page'=>$_GET['page']+1,'desc'=>$_GET['desc'],'area_id'=>$_GET['area_id']))}">下一页</a></span>
+</div>
+<a href="{:U('contrast')}" id="dban"><div class="num"><?php echo count($_SESSION['ids']); ?></div>对比</a>
+<include file="Common/bottom" />
+</body>
+<script>
+//对比js
+	$('input[name=id]').click(function(){
+		if($(this).is(":checked")){
+			var action = 'add';
+			var ids = $(this).val();
+		}else{
+			var action = 'del';
+			var ids = $(this).val();
+		}
+		var This = $(this);
+		$.ajax({
+			type:'post',
+			url:"{:U('check')}",
+			data:{action:action,ids:ids},
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata.type){
+					var str = phpdata.conent;
+					$('.num').html(str);
+				}else{
+					alert(phpdata.conent);
+					This.prop('checked',false);
+				}
+			}
+		});
+	})
+//条件筛选
+	$(function(){
+		var $tab=$(".condition li");
+		var $tab_end=$(".condition_cot");
+		$tab.click(function(){
+			var $this=$(this);
+			var $inx=$this.index();
+			$tab_end.css("display","none");
+			$tab_end.eq($inx).css("display","block")
+		});
+	})
+//确认选择
+	$(".condition_cot li a").click(function(){
+		$(this).parents(".condition_cot").hide();
+		var a_pro = $(this).html();
+		var num = $(this).parents(".condition_cot").index();
+		$(".condition li").eq(num-1).html(a_pro);
+	})
+</script>
+<script>
+//	var banner_height = $(".carousel-inner > .item > img").height();
+//	$(".footers").css("height",banner_height);
+//	var footer_height = $(".footers").height();
+//	var footer_cot_height = $(".footer_cot").height();
+//	var mt = (footer_height - footer_cot_height)/2;
+//	$(".footer_cot").css("padding-top",mt);'
+</script>
+</html>

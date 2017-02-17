@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>商城支付页面</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Shop/css/pay-style.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Shop/css/reset.css">
+<script src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+<script src="__PUBLIC__/jquery.qrcode.min.js"></script>
+</head>
+<style type="text/css">
+.content_zhifu li a img{
+    display:block;
+    padding-left:40px;
+    background:url(__PUBLIC__/Shop/img/baidian.png) no-repeat left center;
+}
+div.sixDigitPassword i.active {
+    background-image: url("https://t.alipayobjects.com/images/rmsweb/T1nYJhXalXXXXXXXXX.gif");
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+div.sixDigitPassword {cursor: text;background: #fff;outline: none;position: relative;padding: 8px 0;height: 14px;border: 1px solid #cccccc;border-radius: 2px;}
+div.sixDigitPassword i {float: left;display: block;padding: 4px 0;height: 7px;border-left: 1px solid #cccccc;}
+div.sixDigitPassword b {display: block;margin: 0 auto;width: 7px;height: 7px;overflow: hidden;visibility: hidden;background-image: url("https://t.alipayobjects.com/tfscom/T1sl0fXcBnXXXXXXXX.png");}
+div.sixDigitPassword span {position: absolute;display: block;left: 0px;top: -1px;height: 30px;border: 1px solid rgba(82, 168, 236, .8);border: 1px solid #00ffff\9;border-radius: 2px;visibility: hidden;-webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.75), 0 0 8px rgba(82, 168, 236, 0.6);box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);}
+.content_zhifu li a .lan{background:url(__PUBLIC__/Shop/img/landian.png) no-repeat left center; transition:1s;}
+.content_zhifu li a .lv{background:url(__PUBLIC__/Shop/img/lvdian.png) no-repeat left center; transition:1s;}
+.content_zhifu li a .ba{background:url(__PUBLIC__/Shop/img/huangdian.png) no-repeat left center; transition:1s;}
+.edit_link a{color: #0ae;}
+.edit_link:hover{text-decoration: underline;}
+.sub{height:32px;color: #fff;border: 1px solid #0ae; background-color: #0ae;display: inline-block;text-align: center;text-decoration: none;vertical-align: middle;cursor: pointer;font-size: 14px;font-family: inherit;font-weight: 700;border-radius: 2px;padding: 0 20px;background-image: none;}
+.sub:hover{background-color: #00a3d2;}
+</style>
+<body>
+<!--进度条开始-->
+    	<include file="Common/header_two" />
+<div class="top w clearfix">
+	<img src="__PUBLIC__/Shop/img/pay_logo.png" class="ml93">
+    <img src="__PUBLIC__/Shop/img/pay_jindutiao.png" class="ml66">
+</div>
+<!--内容开始-->
+<div class="content">
+	<span class="content_biaoti">您已成功提交订单</span>
+    <div class="content_transverse"></div><!--transverse:横线-->
+    <span class="content_reminder">感谢您在嘉仕澜徳商城购物，订单已提交成功，请您在24小时内完成支付，否则订单将会被自动取消！</span>
+    <div class="content_zongji clearfix">
+    	<span class="ml190 mt16">订单编号：</span>
+        <span class="number mt16">{$data.number}</span>
+        <span class="big ml298">总计</span>
+        <span class="big ml40">¥{$data.total}</span>
+    </div>
+	<div class="content_transverse"></div><!--transverse:横线-->
+    <if condition="$data['tb_status'] eq 1">
+	    <span class="content_biaoti">请选择以下支付方式付款</span>
+	    <div class="content_transverse"></div><!--transverse:横线-->
+	    <ul class="content_zhifu clearfix">
+	    	<li>
+	        	<a href="javascript:;" class="zhifubao">
+	            	<img src="__PUBLIC__/Shop/img/zhifubao.png" class="lan">
+	            </a>
+	        </li>
+	        <li>
+	        	<a href="javascript:;" class="weixin">
+	            	<img src="__PUBLIC__/Shop/img/weixin.png">
+	            </a>
+	        </li>
+	        <li>
+	        	<a href="javascript:;" class="balance">
+	            	<img src="__PUBLIC__/Shop/img/yuebao.png" height="27px">
+	            </a>
+	        </li>
+	    </ul>
+	    <div class="content_erweimabox zhifuma on clearfix" style="width: 900px;">
+	    	<a href="{:U('pay',array('number'=>$data['number']))}" class="zhifu" target="_blank" style="display: block;width: 200px;height: 40px;background: #79b6c8;font-size:18px;border-radius: 5px;line-height: 40px;text-align: center;color: #fff;margin: 10px auto;margin-top: 65px;">点击支付</a>
+	    </div>
+	    <div class="content_erweimabox weixinma clearfix" style="width: 900px;">
+	    	<div class="left erweima"><!-- <img src="__PUBLIC__/Shop/img/erweima.png"> --></div>
+	        <div class="left shuxian"></div>
+	        <div class="left wenzi">
+	        	<p style="margin-top:88px;">微信支付</p>
+	            <p>请使用手机微信扫描二维码完成支付</>
+	        </div>
+	    </div>
+	    <div class="content_erweimabox balances clearfix " style="width: 900px;display: none;">
+		    <span style="display: block;padding: 10px;font-size: 14px;margin-left: 350px;">余额宝支付密码:</span>
+	    	<div class="sixDigitPassword" tabindex="0" style="width: 180px;margin-left: 350px;">
+	    		<i class="" style="width: 29px; border-color: transparent;">
+	    			<b style="visibility: hidden;"></b>
+	    		</i>
+	    		<i class="" style="width: 29px;">
+	    			<b style="visibility: hidden;"></b>
+	    		</i>
+	    		<i class="" style="width: 29px;">
+	    			<b style="visibility: hidden;"></b>
+	    		</i>
+	    		<i class="" style="width: 29px;">
+	    			<b style="visibility: hidden;"></b>
+	    		</i>
+	    		<i class="" style="width: 29px;">
+	    			<b style="visibility: hidden;"></b>
+	    		</i>
+	    		<i class="" style="width: 29px;">
+	    			<b style="visibility: hidden;"></b>
+	    		</i>
+	    		<span style="width: 29px; visibility: hidden; left: 0;"></span>
+	    	</div>
+	    	<span class="edit_link" style="line-height: 28px;margin-left: 20px;">
+          		<a target="_blank" href="http://wp.c-wia.com/main/Forget/index.html">忘记密码？</a>        
+	    	</span>
+	    	<div style="clear:both;margin-left: 350px;">
+			    <p style="color: #b2b2b2;padding:10px 0;">请输入6位数字支付密码</p>
+	    	</div>
+	    	<div>
+		    	<button class="sub" style="clear:both;margin-left: 350px;" oid="{$data['oid']}">确认付款</button>
+	    	</div>
+	    </div>
+    <else />
+    	<span class="content_biaoti">您的订单物流费用暂未核实，请<a href="http://wpa.qq.com/msgrd?v=3&uin=2032142893&site=qq&menu=yes" target="_blank" style="color: orange;">点击</a>联系客服进行核实</span>
+	    <div class="content_transverse"></div><!--transverse:横线-->
+    </if>
+</div>
+    	<include file="Common/bottom" />
+</body>
+<script>
+$(function(){
+    $(".zhifubao").click(function(){
+        $(".content_zhifu li .zhifubao img").addClass("lan");
+        $(".content_zhifu li .balance img").removeClass("ba");
+        $(".content_zhifu li .weixin img").removeClass("lv");
+        $(".content .zhifuma").addClass("on");
+        $(".content .weixinma").removeClass("on");
+        $(".content .balances").css("display","none");
+    })
+     $(".balance").click(function(){
+        $(".content_zhifu li .balance img").addClass("ba");
+        $(".content_zhifu li .zhifubao img").removeClass("lan");
+        $(".content_zhifu li .weixin img").removeClass("lv");
+        $(".content .balances").css("display","block");
+        $(".content .zhifuma").removeClass("on");
+        $(".content .weixinma").removeClass("on");
+    })
+    $(".weixin").click(function(){
+        time = setInterval(ajax,2500);
+        $(".content_zhifu li .weixin img").addClass("lv");
+        $(".content_zhifu li .balance img").removeClass("ba");
+        $(".content_zhifu li .zhifubao img").removeClass("lan");
+        $(".content .weixinma").addClass("on");
+        $(".content .balances").css("display","none");
+        $(".content .zhifuma").removeClass("on");   
+    })
+    $('.left.erweima').qrcode({
+        width:168,
+        height:168,
+        text:"{$code}",
+    });
+    function ajax(){
+        $.ajax({
+            url: "{:U('Pay/refer')}",
+            type: 'post',
+            dataType: 'json',
+            async: false,
+            data: {number:"<?php echo $data['number']?>"},
+            success:function(phpdata){
+                switch(phpdata.type){
+                    case 100:
+                        clearInterval(time);break;
+                    case 103:
+                        alert('支付成功!');
+                        location.href = "{:U('Index/index')}";break;
+                }
+            }
+        });
+    };
+		
+})
+</script>
+
+//输入密码特效
+<script type="text/javascript">
+var pwd = '';/*visible hidden*/
+$('.sixDigitPassword').blur(function(){
+	var lenght = $(this).find('i').length;
+	var left = 0;
+	for (var i=0;i<lenght;i++) {
+		if(i>0){
+			left += 30;
+		}
+		var class_active = $(this).find('i').eq(i).hasClass('active');
+		if(class_active){
+			$(this).find('i').eq(i).removeClass('active');
+			$(this).find('span').css({'left':left,'visibility':'hidden'});
+			break;
+		}
+	}
+})
+$('.sixDigitPassword').click(function(){
+	var lenght = $(this).find('i').length;
+	var left = 0;
+	for (var i=0;i<lenght;i++) {
+		if(i>0){
+			left += 30;
+		}
+		var class_active = $(this).find('i').eq(i).find('b').css('visibility');
+		if(class_active == 'hidden'){
+			$(this).find('i').eq(i).addClass('active');
+			$(this).find('span').css({'left':left,'visibility':'visible'});
+			break;
+		}
+	}
+})
+var arr_key = new Array('48','49','50','51','52','53','54','55','56','57','96','97','98','99','100','101','102','103','104','105');
+var arr_value = new Array('0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9');
+$('.sixDigitPassword').keydown(function(event) {
+	var keyCode = event.keyCode;
+	if(keyCode>47 && keyCode<57 || keyCode>95 && keyCode<106 || keyCode==8){
+		if(keyCode==8){
+			var dele = pwd.length;
+			if(dele !=0){
+				pwd = pwd.substring(0,dele-1);
+			}
+			var lenghtss = $('.sixDigitPassword').find('i').length;
+			var left = 0;
+			for (var i=0;i<lenghtss;i++) {
+				if(i>0){
+					left += 30;
+				}
+				var class_active = $('.sixDigitPassword').find('i').eq(i).hasClass('active');
+				if(i==5 && !class_active){
+					$('.sixDigitPassword').find('i').eq(i).addClass('active');
+					$('.sixDigitPassword').find('i').eq(i).find('b').css('visibility','hidden');
+					$('.sixDigitPassword').find('span').css({'left':left,'visibility':'visible'});
+					break;
+				}else if(i==0 && class_active){
+					$('.sixDigitPassword').find('i').eq(i).addClass('active');
+					$('.sixDigitPassword').find('span').css({'left':0,'visibility':'visible'});
+					break;
+				}else{
+					if(i!=0 && class_active){
+						$('.sixDigitPassword').find('i').eq(i).removeClass('active');
+						$('.sixDigitPassword').find('i').eq(i-1).addClass('active');
+						$('.sixDigitPassword').find('i').eq(i-1).find('b').css('visibility','hidden');
+						$('.sixDigitPassword').find('span').css({'left':left-30,'visibility':'visible'});
+						break;
+					}
+				}
+			}
+		}else{
+			var lenght = arr_key.length;
+			var len = pwd.length;
+			if(len<6){
+				for (var i = 0; i<lenght; i++) {
+					if(arr_key[i]==keyCode){
+						pwd += arr_value[i];
+						var lenghts = $('.sixDigitPassword').find('i').length;
+						var left = 0;
+						for (var j=0;j<lenghts;j++) {
+							if(j>0){
+								left += 30;
+							}
+							var class_active = $('.sixDigitPassword').find('i').eq(j).find('b').css('visibility');
+							if(class_active == 'hidden'){
+								$('.sixDigitPassword').find('i').eq(j).removeClass('active');
+								$('.sixDigitPassword').find('i').eq(j+1).addClass('active');
+								$('.sixDigitPassword').find('i').eq(j).find('b').css('visibility','visible');
+								if(j==5){
+									$('.sixDigitPassword').find('span').css({'visibility':'hidden'});
+								}else{
+									$('.sixDigitPassword').find('span').css({'left':left+30,'visibility':'visible'});
+								}
+								break;
+							}
+						}
+						break;
+					}
+				}
+			}
+		}
+	}
+})
+$(document).keydown(function(e){   
+   var keyEvent;   
+   if(e.keyCode==8){   
+       var d=e.srcElement||e.target;   
+        if(d.tagName.toUpperCase()=='INPUT'||d.tagName.toUpperCase()=='TEXTAREA'){   
+            keyEvent=d.readOnly||d.disabled;   
+        }else{   
+            keyEvent=true;   
+        }   
+    }else{   
+        keyEvent=false;   
+    }   
+    if(keyEvent){   
+        e.preventDefault();   
+    }   
+});   
+$('.sub').click(function(){
+	var oid = $(this).attr('oid');
+	var length = pwd.length;
+	if(!pwd){
+		alert('请输入支付密码');
+	}else if(length != 6){
+		alert('请输入6位支付密码');
+	}else if(pwd && length== 6){
+		$.ajax({
+			type:"post",
+			url:"{:U('balance')}",
+			data:{oid:oid,pwd:pwd},
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata.type==100){
+					alert(phpdata.content);
+					location.href="http://wp.c-wia.com/shop/selfcenter/index/status/0.html";
+				}else if(phpdata.type==404){
+					alert(phpdata.content);
+				}
+			}
+		});
+	}
+})
+</script>
+</html>

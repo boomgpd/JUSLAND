@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">ID</th>
+			  <th>案例名称</th>
+			  <th>添加时间</th>
+			  <th>点击量</th>
+			  <th>关键词</th>
+			  <th>图片</th>
+			  <th>操作</th>
+			</tr>
+			<foreach name="data" item='v' key='k'>
+				<tr>
+					<td>{$k+1}</td>
+					<td>{$v['title']}</td>
+					<td>{$v['addtime']}</td>
+					<td>{$v['click_num']}</td>
+					<td>{$v['keyword']}</td>
+					<td><img src="__UPLOAD__{$v['img_url'][0]}"  style="width:150px;"/></td>
+					<td>
+						<a href="{:U('edit_case',array('case_id'=>$v['merchant_case_id']))}" class="btn btn-sm btn-warning">编辑</a>
+						<a href="{:U('case_del',array('case_id'=>$v['merchant_case_id']))}" class="btn btn-sm btn-danger">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>hotel details</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/hotel-details_style.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/reset.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/swiper.min.css">
+<script src="__PUBLIC__/Home/hotel/js/jquery-1.11.2.min.js"></script>
+<script src="__PUBLIC__/Home/hotel/js/swiper.min.js"></script>
+</head>
+
+<body>
+<!--总开始-->
+<include file="Common/header_two" />
+<div class="content clearfix">
+	<div class="left fl">
+    	<div class="left_top">
+        	<img src="__PUBLIC__/Home/hotel/imgs/1.png" style="margin:26px 0 0 26px;">
+        </div>
+        <div class="left_content">
+        	<div class="left_content_name">
+            	<span class="name">{$root['h_name']}__({$data['p_name']})</span>
+            </div>
+            <span class="years db">2016</span>
+            <div class="left_content_carousel huikuang">
+                <!-- Swiper -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                    	<foreach name="data['picture']" item="val" key="key">
+                        	<div class="swiper-slide"><img src="__UPLOAD__{$val}" width="500px" height="375px"></div>
+                        </foreach>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>            	
+            </div>
+            
+            <div class="details">
+            	<div class="details_title">
+                	<span class="english">HOTEL DETAILS</span>
+                    <h2>酒店详情</h2>
+                </div>
+                <div class="details_content huikuang">
+                	<div class="content_wenzi">
+                    	<img src="__PUBLIC__/Home/hotel/imgs/xiangqing_bj.png" style="width:100%;" class="details_background">
+                        <div class="wenzi">
+                            <p class="p1 pt70">￥ <span class="money">{$data['price']}</span> /桌</p>
+                            </br>
+                            <p>商家地址：<span>{$area['shen']}{$area['city']}</span></p>
+                            </br>
+                            <p>商家类型：<span>{$type['cname']}   |  容纳：{$data['p_type']}   |   厅数：1</span></p>
+                            </br>
+                            <p>场地特色：<span> {$data['p_area']}
+                     		</span>  </p>
+                 		</div>
+                    </div>
+                </div>
+                <ul class="details_tab">
+                	<li class="li1"><a href="javascript:;" class="tab_title">查看图片</a></li>
+                    <li class="li2"><a href="javascript:;" class="tab_title">详细信息</a></li>
+                </ul>
+                <!--<h2 class="j">云海宴会厅</h2>-->
+                <div class="ting huikuang">
+                	<foreach name="data['h_show']" item="val" key="key">
+                		<if condition="$key eq 0">
+		                	<img src="__UPLOAD__{$val}" style="marign-top:0;display: block;">
+            			<else />
+            				<img src="__UPLOAD__{$val}" style="display: block;">
+                		</if>
+                	</foreach>
+                </div>
+                <div class="details2 huikuang"  style="display: none;">
+                	<div class="bj clearfix">
+                        <div class="details2_left fl">
+                        	<foreach name="add" item="val" key="key">
+                            	<p>{$val}</p>
+                        	</foreach>
+                        </div>
+                        <div class="details2_right fl">
+                        	<foreach name="att" item="val" key="key">
+                            	<p>{$val}</p>
+                        	</foreach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="right fr">
+    	<div id="right_content">
+            <img src="__PUBLIC__/Home/hotel/imgs/youce.png">
+            <a href="javascript:;" class="anniu">预约酒店</a>
+        </div>
+    </div>
+    <div class="collection" style="display: none;">
+			<form action="" method="post">
+				<ul class="clearfix">
+					<li><label>姓名</label><input type="text" name="make_name" placeholder="例：张三"></li>
+					<li><label>电话</label><input type="text" name="make_phone" placeholder="例：13XXXXXXXXX"><span class="xin" style="color: red;display:none;">*</span></li>
+					<li><label>结婚日期</label><input type="text" name="make_widing_day" placeholder="例：XX年XX月"></li>
+					<li><label>备注</label><input type="text" name="make_PS"  placeholder="例：喜欢欧美风"></li>
+				</ul>	
+				<input type="hidden" name="p_p_id" value="{$_GET['id']}" />
+				<input type="button" class="sub" value="立即申请"/>
+			</form>
+			<a href="#" class="login_close"><img src="__PUBLIC__/Home/hotel/img/login_close.png"></a>
+		</div>
+</div>
+<!--总结束-->
+<script type="text/javascript">
+	$('input[name=make_phone]').change(function(){
+		var phone = /^1[34578]\d{9}$/ ;
+		if(phone.test($(this).val())){
+			$('.sub').attr('type','submit');
+			$('.xin').hide();
+		}else{
+			$('.xin').show();
+			$('.sub').click(function(){
+				alert('您的手机号不可用，请重新输入！');
+			})
+		}
+	})
+	window.onload = function(){
+		var left = (document.body.clientWidth - 520)/2;
+		var top =  ($(window).height() - 440)/2;
+		$(".collection").css({"left":left,"top":top});
+	}	 
+	$(".login_close").click(function(){
+		$(this).parent(".collection").hide();
+	})
+	$('.anniu').click(function(){
+		$('.collection').show();
+	})
+</script>
+</body>
+
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30,
+		autoplay:2000,
+		autoplayDisableOnInteraction : false,
+    });
+    $(function(){
+	$(".li1").click(function(){
+		$('.ting').show();
+		$('.details2').hide();
+	})
+	$(".li2").click(function(){
+		$('.ting').hide();
+		$('.details2').show();
+	})
+})
+    </script>
+</html>

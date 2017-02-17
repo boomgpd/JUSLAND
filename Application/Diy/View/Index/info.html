@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>嘉仕澜德——DIY婚礼——人物选择</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Diy/css/diy_list.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Diy/css/reset.css"/>
+	</head>
+	<body>
+		<!--照片文字信息 start-->
+		<div class="w">
+			<div class="diy_list_name clearfix">
+				<div class="diy_list_img fl">
+					<img src="__UPLOAD__/{$data['portrait']}" width="530px" height="600px"/>
+				</div>
+				<ul class="diy_list_details fl">
+					<li><label>编号：</label><span>{$data['number']}</span></li>
+					<li><label>年龄：</label><span>{$data['age']}岁</span></li>
+					<li><label>从业经验：</label><span>{$data['experience']}</span></li>
+					<li><label>市场价：</label><span>￥{$data['market_price']}</span></li>
+					<li><label>嘉仕澜德：</label><span>￥{$data['price']}</span></li>
+					<a href="#" class="details_btn">联系经纪人</a>
+				</ul>
+			</div>
+		</div>
+		<!--照片文字信息 end-->
+		
+		<!--详细信息介绍 start-->
+		<div class="diy_list_recommend clearfix">
+			<div class="recommend_right fr" style="width:100%">
+				<div class="text">
+					<h3>详细介绍</h3>
+					<div>
+						<foreach name="data['remark']" item="v">
+							<p>{$v}</p>
+						</foreach>
+					</div>
+				</div>
+				<div class="opus">
+					<h3>作品展示</h3>
+					<ul>
+						<foreach name="data['showed']" item="v">
+							<li><img src="__UPLOAD__/{$v}" width="700px" height="400px"></li>
+						</foreach>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--详细信息介绍 end-->
+	</body>
+</html>

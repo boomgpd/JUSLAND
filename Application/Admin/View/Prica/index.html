@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<a href="{:U('add')}"><button class="btn btn-info">添加城市预算</button></a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">ID</th>
+			  <th>省份/省</th>
+			  <th>城市/区</th>
+			  <th>时间</th>
+			  <th width="210">操作</th>
+			</tr>
+			<foreach name="data" item="val" key="key">
+				<tr class="dex">
+					<td>{$key+1}</td>
+					<td>{$val['area_id']}</td>
+					<td>{$val['area_city']}</td>
+					<td>{$val['addtime']}</td>
+					<td>
+						<a href="{:U('edit',array('index_area_prica_id'=>$val['index_area_prica_id']))}" tid="" class="btn btn-sm btn-warning save" >编辑</a>
+						<a href="javascript:;" del="{$val['index_area_prica_id']}" class="btn btn-sm btn-danger dele">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+		$('.dele').click(function(){
+			var del = $(this).attr('del');
+			var This = $(this);
+			$.ajax({
+				type:'post',
+				url:"{:U('delc')}",
+				data:{del:del},
+				dataType:'text',
+				success:function(phpdata){
+					if(phpdata){
+						This.parents('tr').remove();
+					}
+				}
+			});
+		})
+		</script>
+	</body>
+</html>

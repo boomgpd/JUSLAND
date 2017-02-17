@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pubu</title>
+<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Home/Diy/images/reset.css" />
+<link rel="stylesheet" href="__PUBLIC__/Home/css/diy_lists.css">
+</head>
+<body>
+<include file='Common/header'/>
+<include file="Common/alert_view_style" />
+	<!--导航 start-->
+	<div class="w diy_nav">
+		<ul class="clearfix">
+			<li><a href="{:U('lists',array('type_id'=>1))}" style="background-image: url(__PUBLIC__/Home/Diy/images/DIY_zh.jpg);">主持人</a></li>
+			<li><a href="{:U('lists',array('type_id'=>2))}" style="background-image: url(__PUBLIC__/Home/Diy/images/DIY_hz.jpg);">化妆师</a></li>
+			<li><a href="{:U('lists',array('type_id'=>3))}" style="background-image: url(__PUBLIC__/Home/Diy/images/DIY_sy.jpg);">摄影师</a></li>
+			<li><a href="{:U('lists',array('type_id'=>4))}" style="background-image: url(__PUBLIC__/Home/Diy/images/DIY_sx.jpg);">摄像师</a></li>
+			<li><a href="{:U('lists',array('type_id'=>5))}" style="background-image: url(__PUBLIC__/Home/Diy/images/DIY_hy.jpg);">花艺师</a></li>
+			<li><a href="{:U('lists',array('type_id'=>6))}" style="background-image: url(__PUBLIC__/Home/Diy/images/DIY_kj.jpg);">空间搭建</a></li>
+		</ul>
+	</div>	
+	<!--导航 end-->
+	
+	<!--为您推荐 start-->
+	<div style="text-align: center;position: relative;width: 1170px;margin:0 auto;padding: 20px 0 5px;">
+		<span style="display: block;position: absolute;top: 28px;left:0;width: 44%;border-top: 1px solid #ededed;"></span>
+		<span style="color: #999;font-size: 16px;">为您推荐</span>
+		<span style="display: block;position: absolute;top: 28px;right:0;width: 44%;border-top: 1px solid #ededed;"></span>
+	</div>
+	<!--为您推荐 end-->
+	<empty name='data'>
+	<div style="width:1200px;margin:0 auto"><img src="__PUBLIC__/Home/Diy/images/not_diy.jpg" alt=""></div>
+	<else/>
+	<div id="main">	
+		<!--婚礼经纪人 start-->
+		<!-- <div class="pin">	
+			<div class="quote">
+				<h3>婚礼经纪人</h3>
+				<p class="c_blue">1对1全程服务，真正解决婚礼问题</p>
+				<form>
+					<input type="text" placeholder="您的称呼"/>	
+					<input type="text" placeholder="手机号码"/>
+					<select>
+						<option>省/市</option>
+					</select>
+					<select style="margin-left: 8px;">
+						<option>市/地区</option>
+					</select>
+					<input type="checkbox" style="vertical-align: middle;" checked="checked"/> <span> 阅读并接受<a href="#" class="c_blue">《婚礼问题条款》</a></span>
+					<input type="submit" value="免费申请" />
+				</form>
+				<p>嘉仕澜德专业婚礼经纪人会在24小时内与您取得联系。</p>
+			</div>
+		</div> -->
+		<!--婚礼经纪人 start-->
+		<div class="pin">	
+			<div class="quote">
+				<h3>婚礼经纪人</h3>
+				<p align="center" class="c_blue">1对1全程服务，真正解决婚礼问题</p>
+				<form>
+					<input type="text" placeholder="您的称呼"/>	
+					<input type="text" placeholder="手机号码"/>
+					<select>
+						<option>省/市</option>
+					</select>
+					<select>
+						<option>市/地区</option>
+					</select>
+					<div class="clause"><input type="checkbox" checked="checked"/> <span>阅读并接受<a href="#" class="c_blue">《婚礼问题条款》</a></span></div>
+					<input type="submit" value="免费申请"/>
+				</form>
+				<p class="c_gray">嘉仕澜德专业婚礼经纪人会在24小时内与您取得联系。</p>
+			</div>
+		</div>
+		<!--婚礼经纪人 end-->
+		<script type="text/javascript">
+			$(function(){
+				//收藏和喜欢
+				$('.cut').click(function(){
+					var id = $(this).parents('.pin').attr('diy_marrier_id');
+					var action = $(this).attr('action');
+					var table = $(this).attr('table');
+					This = $(this);
+					//定义两个表的弹出信息和title信息
+					if(table == 'collect'){
+						var msg = '收藏';
+						var title = '收藏';
+					}else if(table == 'love'){
+						var msg = '点赞';
+						var title = '喜欢';
+					};
+					//定义添加和删除时的信息
+					if(action == 'add'){
+						var title = '取消'+title;
+						var cut = 'del';
+						var html = 'OFF';
+						var del_class =  'zan_no';
+						var add_class = 'zan_yes';
+					}else if(action == 'del'){
+						var msg = '取消'+msg; 
+						var cut = 'add';
+						var html = 'GET';
+						var del_class =  'zan_yes';
+						var add_class = 'zan_no';
+					};
+					$.ajax({
+						url: '{:U('Home/Diy/deal')}',
+						type: 'post',
+						dataType: 'text',
+						data: {id:id,action:action,table:table},
+						success:function(phpData){
+							if(phpData == 'no_login'){
+								window.wxc.xcConfirm('请先登录再操作', window.wxc.xcConfirm.typeEnum.error);
+								return false;
+							};
+							if(phpData){
+								window.wxc.xcConfirm(msg+'成功', window.wxc.xcConfirm.typeEnum.success);
+								if(table == 'collect'){
+									This.attr({'action':cut,'title':title}).html(html);
+								}else if(table == 'love'){
+									This.attr({'action':cut,'title':title}).removeClass(del_class).addClass(add_class);
+								};
+							}else{
+								window.wxc.xcConfirm(msg+'失败', window.wxc.xcConfirm.typeEnum.error);
+							};
+						}
+					})	
+				});
+
+
+			})
+		</script>
+		<!--婚礼经纪人 end-->
+		<foreach name='data' item="v">
+	    <div class="pin" diy_marrier_id="{$v['diy_marrier_id']}">
+	    	<div class="single_hide clearfix">
+	    		<div class="hide_left">
+	    			<in name="v['diy_marrier_id']" value='$collect'>
+	    			<a href="javascript:;" title="取消收藏" class="cut" action='del' table='collect'>OFF</a>
+	    			<else/>
+	    			<a href="javascript:;" title="收藏" class="cut" action='add' table='collect'>GET</a>
+	    			</in>
+	    		</div>
+	    		<div class="hide_right">
+	    			<in name="v['diy_marrier_id']" value='$love'>
+	    			<a href="javascript:;" class="zan_yes cut" title="取消喜欢" action='del' table='love'></a>
+	    			<else/>
+	    			<a href="javascript:;" class="zan_no cut" title="喜欢" action='add' table='love'></a>
+	    			</in>
+	    		</div>
+	    	</div>
+	        <div class="box">
+	            <a href="{:U('info',array('id'=>$v['diy_marrier_id']))}"><img src="__UPLOAD__{$v['portrait']}" height="238px"></a>
+	            <div style="padding: 10px;">
+	        		<span>婚礼</span><span>#唯美</span><span>#小清新</span>
+	        		<ul class="zf_zan clearfix">
+	        			<li class="zf"><span>10</span></li>
+	        			<li class="zan"><span>10</span></li>
+	        		</ul>
+	       		</div>
+	       		<div class="user clearfix">
+	       			<a class="tx" href="{:U('info',array('id'=>$v['diy_marrier_id']))}" style="background:url(__UPLOAD__{$v['logo']});"></a>
+	       			<div class="user_name">
+	       				<span><a href="#">{$v['name']}</a>采集到</span><br />
+	       				<span><a href="#">画板未命名</a></span>
+	       			</div>
+	       		</div>
+	        </div>
+	    </div>
+	    </foreach>
+	</div>
+	</empty>
+	<style type="text/css">
+	.ppp{
+		margin:0 auto;
+		text-align: center;
+	}
+	.fen{
+		display: inline-block;
+	}
+	.fen a{
+		padding-top: 13px;
+		padding-bottom: 13px;
+		padding-left: 19px;
+		padding-right: 19px;
+		border: 1px solid #ededed;
+		float: left;
+		font-size: 12px;
+		color: #747474;
+	}
+	.fen span{ background:#6185a2;padding-top: 13px;
+		padding-bottom: 13px;
+		padding-left: 19px;
+		padding-right: 19px;
+		border: 1px solid #ededed;
+		float: left;
+		font-size: 12px;
+		color: white;}
+	.fen .page_des{
+		background-color: white;
+		color:black;
+		border:0px;
+	}
+	</style>
+	<if condition="$page_type neq 0">
+	<div class="ppp">
+	<div class="fen">{$show}</div>
+	</div>
+	</if>
+	<script type="text/javascript">
+	$(function(){
+		var num = $('.pin').length;
+		for(var i = 0;i<num;i++){
+			if(i%5 == 0){
+				$('.pin').eq(i).css({'padding-left':'0px'});
+			};
+		};
+	})
+	</script>
+	<include file='Common/footer'/>
+</body>
+</html>

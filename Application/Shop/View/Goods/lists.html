@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>嘉仕澜德——商城列表页</title>
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/list.css" />
+		<script type="text/javascript" src="__PUBLIC__/Shop/js/jquery-3.1.1.min.js" ></script>
+	</head>
+	<style type="text/css">
+		.smlnav_bot_zi_hide{
+			display: none;
+		}
+		.gname:hover{
+			color:#EFB26F;
+		}
+		.list_bignav li{
+			margin: 0 77px;
+		}
+	</style>
+	<body>
+		<include file="Common/header" />
+		<include file="Common/right" />
+		<!--顶部LOGO 开始-->
+		<div class="top_logo">
+			<img src="__PUBLIC__/Shop/img/list_img/list_logo.png">
+		</div>
+		<!--顶部LOGO 结束-->
+		
+		<!--大分类导航 开始-->
+		<ul class="list_bignav clearfix">
+			<!--<li><a href="{:U('shop/index/index')}" style="background: url(__PUBLIC__/Shop/img/list_img/list_01.jpg);">首页</a></li>-->
+			<foreach name="top_cate" key="k" item="v">
+				<li <eq name="k" value="2">style="margin-right: 0;"</eq> ><a href="{:U('index/index',array('name'=>$v['cname']))}" style="background: url(__PUBLIC__/Shop/img/list_img/list_0{$k+2}.jpg);">{$v.cname}</a></li>
+			</foreach>
+		</ul>
+		<!--大分类导航 结束-->
+		
+		<!--所有分类导航 开始-->
+		<div class="list_smlnav w">
+			<!--面包屑导航-->
+			<div class="list_smlnav_top clearfix">
+				<a href="javascript:;">所有分类</a> > <a href="javascript:;" class="c_blue">{$cate.cname}</a>
+			</div>
+			<!--所有分类-->
+			<div class="list_smlnav_bot">
+				<div class="smlnav_bot_zi clearfix">
+					<div class="name fl">相关分类：</div>
+					<ul class="fl">
+						<foreach name="cates" key="k" item="v">
+							<li><a href="{:U('lists',array('cid'=>$v['cid']))}" <eq name="cate['cid']" value="$v['cid']">class="current"</eq>>{$v.cname}</a></li>
+						</foreach>
+						<a href="javascript:;" class="more">更多</a>
+						<a href="javascript:;" class="hide" style="display: none;">隐藏</a>
+					</ul>
+				</div>
+				<foreach name="spec" key="k" item="v">
+					<?php $temp = $param?>
+					<div class="smlnav_bot_zi clearfix <gt name='k' value='1'>smlnav_bot_zi_hide</gt> ">
+						<div class="name fl">{$v['spec_name']}：</div>
+						<ul class="fl">
+							<?php $temp[$k] = 0?>
+							<li><a href="{:U('lists',array('cid'=>$cate['cid'],'param'=>implode('_',$temp)))}" <eq name="param[$k]" value="0">class="current"</eq> >全部</a></li>
+							<foreach name="v['attr']" key="kk" item="vv">
+								<?php $temp[$k] = $vv['gaid']?>
+								<li><a href="{:U('lists',array('cid'=>$cate['cid'],'param'=>implode('_',$temp)))}" <eq name="param[$k]" value="$vv['gaid']">class="current"</eq> >{$vv.gavalue}</a></li>
+							</foreach>
+						</ul>
+					</div>
+				</foreach>
+				<!-- class="current" -->
+				<!-- <div class="smlnav_bot_zi clearfix smlnav_bot_zi_hide" style="display: none;">
+					<div class="name fl">隐藏数据：</div>
+					<ul class="fl">
+						<li><a href="javascript:;" class="current">全部</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+					</ul>
+				</div>
+				<div class="smlnav_bot_zi clearfix smlnav_bot_zi_hide" style="display: none;">
+					<div class="name fl">隐藏数据：</div>
+					<ul class="fl">
+						<li><a href="javascript:;" class="current">全部</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+						<li><a href="javascript:;">看不见</a></li>
+					</ul>
+				</div> -->
+				<a href="javascript:;" class="smlnav_more">显示更多</a>
+				<a href="javascript:;" class="smlnav_hide" style="display: none;">收起筛选</a>
+			</div>
+		</div>
+		<!--所有分类导航 结束-->
+		
+		<!--排序 开始-->
+		<ul class="list_sort w clearfix" style="margin: 30px auto 15px;">
+			<?php 
+				$temp_two = $get;
+				unset($temp_two['click']);
+				unset($temp_two['sales_num']);
+				unset($temp_two['order_price']);
+			?>
+			<li><a href="{:U('lists',$temp_two)}" <if condition="!$_GET['click'] && !$_GET['sales_num'] && !isset($_GET['order_price'])"> class="current" </if>>综合排序</a></li>
+			
+			<?php 
+				$temp_two = $get;
+				$temp_two['click'] = 1;
+				unset($temp_two['sales_num']);
+				unset($temp_two['order_price']);
+			?>
+			<li><a href="{:U('lists',$temp_two)}" <if condition="$_GET['click'] eq 1"> class="current" </if> >人气</a></li>
+			
+			<?php 
+				$temp_two = $get;
+				unset($temp_two['click']);
+				$temp_two['sales_num'] = 1;
+				unset($temp_two['order_price']);
+			?>
+			<li><a href="{:U('lists',$temp_two)}" <if condition="$_GET['sales_num'] eq 1"> class="current" </if>>销量</a></li>
+			<if condition="$_GET['order_price'] eq 0">
+				<?php 
+					$temp_two = $get;
+					unset($temp_two['click']);
+					unset($temp_two['sales_num']);
+					$temp_two['order_price'] = 1;
+				?>
+				<li><a href="{:U('lists',$temp_two)}" <if condition="isset($_GET['order_price'])"> class="current" </if>>价格</a></li>
+			<else />
+				<?php 
+					$temp_two = $get;
+					unset($temp_two['click']);
+					unset($temp_two['sales_num']);
+					$temp_two['order_price'] = 0;
+				?>
+				<li><a href="{:U('lists',array('cid'=>$cate['cid'],'param'=>implode('_',$param),'order_price'=>0))}" <if condition="isset($_GET['order_price'])"> class="current" </if>>价格</a></li>
+			</if>
+			<div class="qujian fl">
+				<?php $temp_two = $get;?>
+				<form action="" method="post">
+					<input type="text" name="small_price" placeholder="￥{$temp_two['small_price']}"/>
+					-
+					<input type="text" name="big_price" placeholder="￥{$temp_two['big_price']}"/>
+					<a href="javascript:;" class="yes submint">确认</a>
+				</form>
+			</div>
+			<div class="seek fr">
+				<if condition="isset($temp_two['goods_name'])">
+					<input type="text" name="goods_name" placeholder="{$temp_two['goods_name']}" onkeyup="showMsg()"/>
+				<else />
+					<input type="text" name="goods_name" placeholder="输入搜索宝贝名称" onkeyup="showMsg()"/>
+				</if>
+				<a href="javascript:;" class="submint g_name"><img src="__PUBLIC__/Shop/img/list_img/seek.png"></a>
+			</div>
+		</ul>
+		<!--排序 结束-->
+
+		<!--主体内容 开始-->
+		<div class="list_cot clearfix">
+			<if condition="$goods_data">
+				<foreach name="goods_data" key="k" item="v">
+					<dl <?php $k = $k + 1; if($k % 4 == 0){?> style="margin-right:0px;" <?php }?> >
+						<dt><a href="{:U('details',array('id'=>$v['gid']))}"><img src="__UPLOAD__{$v['pic']}" width="280" height="280"></a></dt>
+						<dd>
+							<p><a href="{:U('details',array('id'=>$v['gid']))}" class="gname">{$v.gname}</a></p>
+							<b>￥{$v.shopprice}</b><span>热度:{$v.click}</span>
+						</dd>
+					</dl>
+				</foreach>
+			<else />
+					<img src="__PUBLIC__/img/404.jpg" alt="" />
+			</if>
+		</div>
+		<!--主题内容 结束-->
+		
+		<!--分页 开始-->
+		<if condition="$page['page_type']">
+			<div class="list_page w" style="margin-bottom: 20px;">
+				<?php $temp_two = $get;?>
+				<if condition="$page['page_number'] gt 1">
+					<?php $temp_two['page'] = 1;?>
+					<a href="{:U('lists',$temp_two)}" class="turning page">首页</a>
+					<?php $temp_two['page'] = $page['page_number']-1;?>
+					<a href="{:U('lists',$temp_two)}" class="turning page">< 上一页</a>
+				</if>
+				
+				<if condition="$page['page_number'] gt 3">
+					...
+				</if>
+				<for start="$page['page_number'] - $page['page_left']" end="$page['page_number']">
+					<?php $temp_two['page'] = $i;?>
+					<a href="{:U('lists',$temp_two)}" class="num page">{$i}</a>
+				</for>
+				<?php $temp_two['page'] = $page['page_number'];?>
+				<a href="{:U('lists',$temp_two)}" class="num current page">{$page['page_number']}</a>
+				<for start="$page['page_number'] + 1" end="$page['page_number']+$page['page_right']+1">
+					<?php $temp_two['page'] = $i;?>
+					<a href="{:U('lists',$temp_two)}" class="num page">{$i}</a>
+				</for>
+				<if condition="($page['num'] - $page['page_number']) gt 3">
+					...
+				</if>
+				<if condition="$page['page_number'] lt $page['num']">
+					<?php $temp_two['page'] = $page['page_number'] + 1;?>
+					<a href="{:U('lists',$temp_two)}" class="turning page">下一页 ></a>
+					<?php $temp_two['page'] = $page['num'];?>
+					<a href="{:U('lists',$temp_two)}" class="turning page">尾页</a>
+				</if>
+				共<span>{$page['num']}页</span>，到第<input type="text" name="page"/>页
+				<a href="{:U('lists',$get)}" class="page_yes">确认</a>
+			</div>
+		</if>
+		
+		<!--分页 结束-->
+		<include file="Common/bottom" /> 
+	</body>
+<script>
+//所有分类显示隐藏更多
+	$(".smlnav_bot_zi ul .more").click(function(){
+		$(this).hide().siblings(".hide").show();
+		$(this).parent("ul").css("height","auto");
+	});
+	$(".smlnav_bot_zi ul .hide").click(function(){
+		$(this).hide().siblings(".more").show();
+		$(this).parent("ul").css("height","24px");
+	});
+	
+	/**
+	 * 输入页码跳转
+	 */
+	$(".page_yes").click(function(){
+		var page_num = parseInt($("input[name=page]").val());
+		var href = "{:U('lists',$get)}";
+		<?php 
+			$temp_two = $get;
+			unset($temp_two['page']);
+			$temp_two = json_encode($temp_two);
+		?>
+		var name = '';
+		var value = '';
+		var get = {$temp_two};
+		if(name){
+			var str = ''+name+'/'+value+'/page'+'/'+page_num+'.html';
+		}else{
+			var str = '/page'+'/'+page_num+'.html';
+		}
+
+		href = href.replace('.html',str);
+		$(this).attr('href',href);
+	})
+	
+	/**
+	 * 创建提交按钮事件
+	 */
+	$(".submint").click(function(){
+		$(this).parent('form').submit();
+	})
+	
+//	商品搜索
+	$(".submint.g_name").click(function(){
+		<?php 
+			$temp_two = $get;
+			unset($temp_two['page']);
+			$temp_two = json_encode($temp_two);
+		?>
+		var goods_name = $('input[name=goods_name]').val();
+		var url_name= "<?php echo U('shop/goods/lists')?>"+"?cid="+"{$_GET['cid']}"+"&goods_name="+goods_name;
+		window.location.href = url_name;
+	})
+//	商品搜索	
+	function showMsg(){
+		var code = event.keyCode;
+		if(code == 13){
+			<?php 
+			$temp_two = $get;
+			unset($temp_two['page']);
+			$temp_two = json_encode($temp_two);
+		?>
+			var goods_name = $('input[name=goods_name]').val();
+			var url_name= "<?php echo U('shop/goods/lists')?>"+"?cid="+"{$_GET['cid']}"+"&goods_name="+goods_name;
+			window.location.href = url_name;
+		}
+	}
+	
+</script>
+<script>
+	$(".smlnav_more").click(function(){
+		$(this).hide().siblings(".smlnav_hide").show().siblings(".smlnav_bot_zi_hide").show();
+	});
+	$(".smlnav_hide").click(function(){
+		$(this).hide().siblings(".smlnav_more").show().siblings(".smlnav_bot_zi_hide").hide();
+	});
+</script>
+<script>
+//排序
+	$(".list_sort li a").click(function(){
+		$(this).addClass("current").parent("li").siblings("li").find("a").removeClass("current");
+	});
+</script>
+<script>
+//分页页数按钮
+	$(".list_page .num").click(function(){
+		$(this).addClass("current").siblings("a.num").removeClass("current");
+	})
+</script>
+</html>

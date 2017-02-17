@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	div.top{
+	    		width: 100%;
+	    		height: 40px;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<a href="{:U('index',array('order_status'=>$_GET['order_status']))}">订单首页</a> >
+		<a href="{:U('info',array('id'=>$order['oid']))}">{$order['number']}订单</a> >
+		<span id="">添加快递单号</span>
+		<div class="top">
+			<form action="" method="post" class="form-inline taobao" role="form">
+				<!--淘宝订单号:<input type="text" name="taobao_order" value="" />-->
+			   	快递类型: <select name="ems_type_id" class="form-control">
+			   				<option value="0"> -勾选快递类型- </option>
+			   				<foreach name="ems" item='v' key='k'>
+			   					<option value="{$v['id']}">{$v['title']}</option>
+			   				</foreach>
+			   			</select>&nbsp;&nbsp;
+			   	快递单号: <input type="text" name="ems_number" class="form-control" placeholder="填写快递单号">&nbsp;&nbsp;
+			  	<button type="button" class="btn btn-success save_taobao_order_num">提交</button>
+			</form>
+		</div>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th>序号</th>
+			  <th>淘宝订单号</th>
+			  <th>快递类型</th>
+			  <th>快递号</th>
+			  <th>邮费</th>
+			</tr>
+			<foreach name="data" item='v' key='k'>
+				<tr>
+					<td>
+						<if condition="$v['ems_number'] eq 0">
+							<input type="radio" name="tb_order_id" value="{$v['tb_order_id']}" />
+						</if>
+						{$k+1}
+					</td>
+					<td>{$v['taobao_order_num']}</td>
+					<if condition="$v['ems_number'] neq 0">
+						<td>{$v['ems_type_id']}</td>
+						<td>{$v['taobao_order_num']}</td>
+					<else />
+						<td>暂未分配</td>
+						<td>暂未分配</td>
+					</if>
+					<td>
+						<if condition="$v['taobao_order_num'] neq 0">
+							<if condition="$v['postage'] neq 0">
+								{$v['postage']}
+							<else />
+								包邮
+							</if>
+						<else />
+							暂未分配
+						</if>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+	</body>
+	<script type="text/javascript">
+			/**
+			 * 创建异步提交
+			 */
+			$(".save_taobao_order_num").click(function(){
+				var num = $("input[type=checkbox][name]:checked").length;
+				var ems_type_id = $("form.taobao select[name=ems_type_id]").val();
+				var ems_number = $("form.taobao input[name=ems_number]").val();
+				if(!ems_number){
+					alert('请先填写对应的快递单号');return;
+				}
+				if(!ems_type_id){
+					alert('请先选择对应快递类型');return;
+				}
+				var tb_order_id =$("input[type=radio][name]:checked").val();
+				var data = {
+					'ems_type_id' : ems_type_id,
+					'ems_number'  :	ems_number,
+					'tb_order_id' :	tb_order_id,
+				};
+				$.ajax({
+					type:"post",
+					url:"{:U('tb_ems_add')}",
+					data:data,
+					dataType:'json',
+					success:function(phpdata){
+						alert(phpdata.content);
+						if(phpdata.type){
+							$("input[type=radio][name]:checked").parents('tr').find('td').eq(2).html(phpdata.ems_type);
+							$("input[type=radio][name]:checked").parents('tr').find('td').eq(3).html(ems_number);
+							$("input[type=radio][name]:checked").remove();
+						}
+					}
+				});
+			})
+			
+	</script>
+</html>

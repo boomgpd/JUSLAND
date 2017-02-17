@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册页面</title>
+		<style type="text/css">
+			body{
+				padding-top: 50px;
+			}
+			.shou{
+				display: block;
+			}
+			.you{
+				display: none;
+			}
+			
+			#al{
+				width: 520px;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			input{
+				margin-bottom: 5px;
+			}
+			
+			#merchant{
+				display: none;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="al">
+			<div class="top">
+				<button type="button" class="member">用户登录</button>
+				<button type="button" class="merchant">商家登录</button>
+			</div>
+			<div id="merchant" style="margin-top: 20px;">
+				<form action="" method="post">
+					公司名称：		          <input type="text" name="m_name" id="" value="" placeholder="注册时公司名称"/><br/>
+					密码：&nbsp; &nbsp;<input type="text" name="password" id="" value="" placeholder="密码为申请人手机号后6位"/><br/>
+					验证码：&nbsp;           <input type="text" name="code" id="" value="" />
+					<img src="{:U('Common/code')}" class="code" alt="" /><a href="javascript:;" class="dian">看不清——换一张</a><br />		
+					<br/><button type="button" class="submit">登录</button>
+				</form>
+			</div>
+			<div id="member" style="margin-top: 20px;">
+				<form action="" method="post">
+				用&nbsp;户&nbsp;名：<input type="text" name="member_name" id="" value="" /><br />
+				密&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" id="" value="" /><br />
+				验&nbsp;证&nbsp;码：<input type="text" name="code" id="" value="" />
+				<img src="{:U('Common/code')}" class="code" alt="" /><a href="javascript:;" class="dian">看不清——换一张</a><br />		
+				<button type="button" class="submit">登录</button>
+				</form>
+			</div>
+		</div>	
+		
+		
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript">
+//			二维码看不清更换方法
+			$(".dian").click(function(){
+				$(this).siblings('img.code').attr('src', "{:U('Common/code')}");
+			})
+			
+			//注册用户tab切换
+			$(".member").click(function(){
+				$("#member").css('display','block');
+				$("#merchant").css('display','none');
+				$("#member").find("img.code").attr('src', "{:U('Common/code')}");
+			})
+			
+			$(".merchant").click(function(){
+				$("#merchant").css('display','block');
+				$("#member").css('display','none');
+				$("#merchant").find("img.code").attr('src', "{:U('Common/code')}");
+			})
+			
+//			创建登录异步比对
+			$(".submit").click(function(){
+				var data = $(this).parents('form').serialize();
+				$.ajax({
+					type:"post",
+					url:"{:U('check_pass')}",
+					data:data,
+					dataType:'json',
+					success:function(phpdata){
+						var url_area = '';
+						if(phpdata.type == 100){
+							if(phpdata.idenitity == 'member'){
+								url_area = "{:U('index/index')}";
+							}else{
+								url_area = "{:U('merchant/index/index')}";
+							}
+							window.location.href = url_area;
+						}else{
+							alert(phpdata.content);
+						}
+					}
+				});
+			})
+			
+//			创建异步方法
+				
+			
+		</script>
+	</body>
+</html>

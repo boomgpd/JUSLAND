@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>编辑页</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/draw/css/save.css">
+	</head>
+	<body>
+		<include file="Common/header" />
+		<!--编辑栏设定开始-->
+		<div class="sava">
+			<div class="save_z">
+				<div class="s1">
+					<div class="s1_xian">
+							<h1>编辑画板 /</h1><h2>{$re['board_name']}</h2>
+					</div>
+				</div>
+				<form action="" method="post">
+					<div class="biao">
+						<span>标题</span> <input type="text" name="board_name" id="" value="{$re['board_name']}" />
+					</div>
+					<div class="san">
+						<span>删除</span> <button><a href="{:U('delete', array('board_id'=>$re['board_id']))}">删除画板</a></button>
+					</div>
+					<input type="submit"  class="submit" value="保存设置"/>
+				</form>
+			</div>
+		</div>
+		<!--编辑栏设定结束-->
+	</body>
+</html>

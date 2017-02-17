@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <style type="text/css">
+	    	img{
+	    		width: 150px;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<a href="{:U('add')}" class="btn btn-info">添加属性名</a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="10%">序号</th>
+			  <th width="15%">属性名</th>
+			  <th width="25%">添加时间</th>
+			  <th width="20%" >操作</th>
+			</tr>
+			<foreach name="data" item='v' key='k'>
+				<tr>
+					<td>{$k+1}</td>
+					<td><input type="text" name="p_a_name" value="{$v['p_a_name']}" /></td>
+					<td>{$v['addtime']}</td>
+					<td>
+						<if condition="$v['is_list'] eq 1">
+							<a href="javascript:;" islist="{$v['p_p_a_id']}" class="btn btn-sm btn-info over_list">已显示</a>
+						<else />
+							<a href="javascript:;" islist="{$v['p_p_a_id']}" class="btn btn-sm btn-primary is_list">显示列表</a>
+						</if>
+						<a href="javascript:;" edit="{$v['p_p_a_id']}" class="btn btn-sm btn-primary edit">编辑</a>
+						<a href="javascript:;" dele="{$v['p_p_a_id']}" class="btn btn-sm btn-danger dele">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('.is_list').click(function(){
+				var id = $(this).attr('islist');
+				var urls = "{:U('list_is')}/id/"+id;
+				var urlss = urls.replace('.html','');
+				location.href=urlss;
+				
+			})
+			$('.over_list').click(function(){
+				var id = $(this).attr('islist');
+				var urls = "{:U('list_over')}/id/"+id;
+				var urlss = urls.replace('.html','');
+				location.href=urlss;
+				
+			})
+			$('.edit').click(function(){
+				var name = $(this).parents('tr').find('input[name=p_a_name]').val();
+				var id = $(this).attr('edit');
+				$.ajax({
+					type:'post',
+					url:"{:U('edit')}",
+					data:{name:name,id:id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata){
+							alert('编辑成功');
+						}else{
+							alert('编辑失败');
+						}
+					}
+				});
+			})
+			$('.dele').click(function(){
+				var id = $(this).attr('dele');
+				var This = $(this);
+				$.ajax({
+					type:'post',
+					url:"{:U('dele')}",
+					data:{id:id},
+					dataTyape:'json',
+					success:function(phpdata){
+						if(phpdata){
+							alert('删除成功');
+							This.parents('tr').remove();
+						}
+					}
+				});
+				
+			})
+		</script>
+	</body>
+</html>

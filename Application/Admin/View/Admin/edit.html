@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+		<!-- Loading Bootstrap -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+		<!-- Loading Flat UI -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+		<link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+		<link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.7.2.min.js"></script>
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+		<!--[if lt IE 9]>
+		<script src="dist/js/vendor/html5shiv.js"></script>
+		<script src="dist/js/vendor/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<form action="" method="post">
+			<div class="alert alert-success">
+				修改用户
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">用户名称</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入用户名称"  disabled ='disabled' value="{$data['admin_name']}" style="color:red">
+			</div>
+			
+			<div class="form-group" id="" >
+				<label for="exampleInputEmail1" style="display: none;" class="password">用户密码</label>
+				<span class="btn btn-success show_pwd">修改密码</span>
+				<input id="exampleInputEmail1" class="form-control password" type="password" placeholder="请输入新密码" style="display: none;" >
+			</div>
+			<script type="text/javascript">
+				$(function(){
+					$('.show_pwd').click(function(){
+						$(this).css({display:'none'});
+						$('.password').css({display:'block'}).attr('name','password');
+					});
+				})
+			</script>
+			<p class="btn btn-primary add_role">
+				分配角色
+			</p>
+			<table class="table table-bordered table-hover" id='attr' class="info">
+				<foreach name = "data.role" key = 'k' item = 'v'>
+				<tr class="info">
+					<td width="50%">
+						<span id="">
+							请选择角色:
+						</span>
+						<select name="role[]" class="" style="padding-left:20%;padding-right: 20%;margin-left:10%">
+							<foreach name = "roleData" item = 'vv'>
+								<option value="{$vv.id}" <if condition="$v['id'] eq $vv['id']"> selected="selected" </if> >{$vv.name}</option>
+							</foreach>
+						</select>
+					</td>
+					<td class="msg" width="40%">
+						<span id="">
+							角色描述:
+						</span>
+						<input type="" name="" id="" value="{$v['remark']}" style="margin-left:10%;"/>
+					</td>
+					<td>
+						<if condition="$k eq 0">
+						<span class="btn btn-success add">增加角色</span>
+						<else />
+						<span class="btn btn-danger del">删除角色</span>
+						</if>
+					</td>
+				</tr>
+				</foreach>
+			</table>
+			<input type="hidden" name="admin_id" value="{$data['admin_id']}">
+			<button class="btn btn-primary btn-block" type="submit">
+			确定
+			</button>
+		</form>
+		
+
+		<script type="text/javascript">
+			$(function(){
+				//获得描述
+				$("select[name='role[]']").live('change',function(){
+					var This = $(this); 
+					var id = $(this).val();
+					$.ajax({
+						type:'post',
+						url:"{:U('getRemark')}",
+						data:{id:id},
+						dataType:'text',
+						success:function(phpData){
+							This.parent('td').siblings('.msg').find('input').val(phpData);
+						}
+					});
+				});
+				
+				
+				//添加角色
+				$('.add').live('click',function(){
+					//点击的父级tr
+					var parent = $(this).parents('tr');
+					//克隆
+					var clone = parent.clone();
+					//追加
+					parent.after(clone);
+				});
+
+				//没有角色时添加角色
+				$('.add_role').click(function(){
+					$.ajax({
+						type:'post',
+						url:"{:U('add_role')}",
+						dataType:'text',
+						success:function(phpData){
+							if(phpData){
+								$('.table').append(phpData);
+							}else{
+								alert('没有角色,请去添加');
+							};
+						}
+					})
+				});
+				
+				//删除
+				$('.del').live('click',function(){
+					$(this).parents('tr').remove();
+				})
+			});
+		</script>
+	</body>
+</html>

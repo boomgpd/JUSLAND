@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	.form-control{
+	    		width: 1000px;
+	    	}
+	    	span{
+	    		float: right;
+	    		margin-top: -40px;
+	    		margin-right: 100px;
+	    		font-weight: bold;
+	    		font-size: 25px;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<div class="alert alert-success">修改首页预算报价</div>
+		<form action="" method="post">
+			<div class="form-group">
+				<label for="exampleInputEmail1">省份</label>
+				<select name="area_id[]" id='province' class="form-control" required="required">
+					<option value="{$arr['area_id']['area_id']}">{$arr['area_id']['aname']}</option>
+					<foreach name="data" item="val" key="key">
+						<option value="{$val['area_id']}">{$val['aname']}</option>
+					</foreach>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">城市</label>
+				<select name="area_id[]" id="city" class="form-control" required="required">
+					<option value="{$arr['area_ids']['area_id']}">{$arr['area_ids']['aname']}</option>
+					<foreach name="arr['area_city']" item="val" key="key">
+						<option value="{$val['area_id']}">{$val['aname']}</option>
+					</foreach>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">装饰空间</label>
+				<input id="exampleInputEmail1" required="required" value="{$arr['detail_space']}" class="form-control" type="text" required="" name="detail_space"><span>元</span>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">服务人员</label>
+				<input id="exampleInputEmail1" required="required" value="{$arr['detail_service']}" class="form-control" type="text" name="detail_service"><span>元</span>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">影像花艺后期＋其他</label>
+				<input id="exampleInputEmail1" required="required" value="{$arr['detail_floricul']}" class="form-control" type="text" required="" name="detail_floricul"><span>元</span>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">策划费</label>
+				<input id="exampleInputEmail1" required="required" value="{$arr['detail_plot']}" class="form-control" type="text" required="" name="detail_plot"><span>元</span>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">设计费</label>
+				<input id="exampleInputEmail1" required="required" value="{$arr['detail_design']}" class="form-control" type="text" required="" name="detail_design"><span>元</span>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">全程监理费</label>
+				<input id="exampleInputEmail1" required="required" value="{$arr['detail_super']}" class="form-control" type="text" required="" name="detail_super"><span>元</span>
+			</div>
+			<input type="hidden" name="detail_area_prica_id" value="{$_GET['detail_area_prica_id']}" />
+			<button class="btn btn-primary btn-block" type="submit"> 确定 </button>
+		</form>
+		<script type="text/javascript">
+		//城市的ajax
+			$('#province').change(function(){
+					var area_id = $(this).val();
+					$.ajax({
+						type:'post',
+						url:"{:U('edit_list')}",
+						data:{area_id:area_id},
+						dataType:'json',
+						success:function(phpdata){
+							if(phpdata){
+								var str = '<option value="">请选择</option>';
+								$.each(phpdata, function(k,v) {
+									str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+								});
+								$('#city').html(str);
+							}
+						}
+					});
+				})
+//			给省份添加change事件
+			$("#province").change(function(){
+				var pid = $(this).val();
+				step('city',pid);
+			})
+			
+			$("#city").change(function(){
+				var pid = $(this).val();
+				step('part',pid);
+			})
+		
+//			创建获取地区异步方法
+			function step(name,pid){
+				$.ajax({
+					type:"post",
+					url:"{:U('step_area')}",
+					data:{pid:pid},
+					dataType:'json',
+					success:function(phpdata){
+						var str = '<option value="">请选择</option>';
+						$.each(phpdata, function(k,v) {
+							str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+						});
+						$("#"+name+"").html(str);
+					}
+				});
+			}
+			
+			step('province');
+		</script>
+	</body>
+</html>

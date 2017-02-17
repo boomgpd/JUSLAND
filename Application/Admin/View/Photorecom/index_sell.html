@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <style type="text/css">
+			.inp{
+				border: 0px;
+				outline:none
+			}	    	
+	    </style>
+	</head>
+	<body>
+		<a href="{:U('add_sell')}" class="btn btn-sm btn-danger">添加畅销推荐</a>
+		<table class="table table-hover" style="margin-top: 15px;">
+			<tr class="active">
+			  	<td width="10%">ID</td>
+			  	<td width="30%">商品名</td>
+			 	<td width="200">标题</td>
+			 	<td width="200">描述</td>
+			 	<td width="200">操作</td>
+			</tr>
+			<form action="{:U('save')}" method="post">
+				<foreach name='data' item='v' key='k'>
+					<tr>
+						<td>{$k+1}</td>
+						<td>{$v['p_p_id']}</td>
+						<td><input type="text" name="sell_title" id="" value="{$v['sell_title']}" /></td>
+						<td><input type="text" name="sell_desc" id="" value="{$v['sell_desc']}" /></td>
+						<td>
+							<a href="javascript:;" save="{$v['sell_id']}" class="btn btn-sm btn-danger edit">编辑</a>
+							<a href="javascript:;" dele="{$v['sell_id']}" class="btn btn-sm btn-danger dele">下线</a>
+						</td>
+					</tr>
+				</foreach>
+			</form>
+			
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+			$(".edit").click(function(){
+	    		var id = $(this).attr('save');
+	    		var sell_title = $(this).parents('tr').find('input[name=sell_title]').val();
+	    		var sell_desc = $(this).parents('tr').find('input[name=sell_desc]').val();
+	    		$.ajax({
+	    			type:"post",
+	    			url:"{:U('edit_sell')}",
+	    			data:{id:id,sell_title:sell_title,sell_desc:sell_desc},
+	    			dataType:'text',
+	    			success:function(phpdata){
+	    				if(phpdata){
+		    				alert('编辑成功');
+	    				}
+	    			}
+	    		});
+	    	});
+			$('.dele').click(function(){
+			var del = $(this).attr('dele');
+			var This = $(this);
+			$.ajax({
+				type:'post',
+				url:"{:U('dele_sell')}",
+				data:{del:del},
+				dataType:'text',
+				success:function(phpdata){
+					if(phpdata != 0){
+						alert('删除成功');
+						This.parents('tr').remove();
+					}
+				}
+			});
+		})
+	}
+		</script>
+	</body>
+</html>

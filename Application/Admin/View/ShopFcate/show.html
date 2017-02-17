@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="__PUBLIC__/Shop/css/index.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Shop/css/reset.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Shop/css/new_file.css" />
+	<script type="text/javascript" src="__PUBLIC__/Shop/js/jquery-3.1.1.min.js" ></script>
+	<script type="text/javascript" src="__PUBLIC__/Shop/js/bootstrap.min.js" ></script>
+</head>
+<body>
+	<style type="text/css">
+		.tk_par:hover a:nth-child(2){
+			display: block;
+		}
+		.div{
+			text-align: center;
+			background-color: orange;
+			width:284px;height:284px;
+		}
+		.sml{
+			width:186px;
+			height:186px;
+		}
+		.del{
+			display: block;
+			padding: 10px;
+			text-align: center;
+			background-color: red;
+			position:absolute;right:0px;top:0px;
+		}
+	</style>
+		<ul class="two_screen_cot">
+			<li class="clearfix">
+				<div class="left fl">
+					<div class="tk_par" style="margin-bottom: 25px;">
+						<empty name="data[1]">
+							<a href="javascript:;">
+								<div class="div"></div>
+							</a>
+							<a href="{:U('goods_list',array('id'=>$id,'sort'=>1))}" class="tk tk_med">
+								<p></p>
+								<p>点击编辑</p>
+								<p></p>
+							</a>
+						<else/>
+							<a href="javascript:;">
+								<img src="__UPLOAD__{$data[1]['img']}" width="284" height="284">
+							</a>
+							<a href="{:U('goods_edit',array('id'=>$id,'gid'=>$data[1]['gid']))}" class="tk tk_med">
+								<p>{$data[1]['one']}</p>
+								<p>{$data[1]['two']}</p>
+								<p>￥{$data[1]['shopprice']}</p>
+							</a>
+							<a href="javascript: if(confirm('确认删除吗?')) location.href='{:U('goods_del',array('id'=>$id,'gid'=>$data[1]['gid']))}';" class="del">删除</a>
+						</empty>
+					</div>
+					<div class="tk_par">
+						<empty name="data[2]">
+							<a href="javascript:;">
+								<div class="div"></div>
+							</a>
+							<a href="{:U('goods_list',array('id'=>$id,'sort'=>2))}" class="tk tk_med">
+								<p></p>
+								<p>点击编辑</p>
+								<p></p>
+							</a>
+						<else/>
+							<a href="javascript:;">
+								<img src="__UPLOAD__{$data[2]['img']}"  width="284" height="284">
+							</a>
+							<a href="{:U('goods_edit',array('id'=>$id,'gid'=>$data[2]['gid']))}" class="tk tk_med">
+								<p>{$data[2]['one']}</p>
+								<p>{$data[2]['two']}</p>
+								<p>￥{$data[2]['shopprice']}</p>
+							</a>
+							<a href="javascript: if(confirm('确认删除吗?')) location.href='{:U('goods_del',array('id'=>$id,'gid'=>$data[2]['gid']))}';" class="del">删除</a>
+						</empty>
+					</div>
+				</div>
+				<div class="mid fl">
+					<div class="tk_par fl">
+						<empty name="data[3]">
+							<a href="javascript:;">
+								<div class="div" style="width:592px;height:380px;"></div>
+							</a>
+							<a href="{:U('goods_list',array('id'=>$id,'sort'=>3))}" class="tk tk_big">
+								<p></p>
+								<p>点击编辑</p>
+								<p></p>
+							</a>
+						<else/>
+							<a href="javascript:;">
+								<img src="__UPLOAD__{$data[3]['img']}" width="592" height="380">
+							</a>
+							<a href="{:U('goods_edit',array('id'=>$id,'gid'=>$data[3]['gid']))}" class="tk tk_big">
+								<p>{$data[3]['one']}</p>
+								<p>{$data[3]['two']}</p>
+								<p>￥{$data[3]['shopprice']}</p>
+							</a>
+							<a href="javascript: if(confirm('确认删除吗?')) location.href='{:U('goods_del',array('id'=>$id,'gid'=>$data[3]['gid']))}';" class="del">删除</a>
+						</empty>
+					</div>
+					<div class="fl m_r_17 tk_par">
+						<empty name="data[4]">
+							<a href="javascript:;">
+								<div class="div sml"></div>
+							</a>
+							<a href="{:U('goods_list',array('id'=>$id,'sort'=>4))}" class="tk tk_sml">
+								<p></p>
+								<p>点击编辑</p>
+								<p></p>
+							</a>
+						<else/>
+							<a href="javascript:;">
+								<img src="__UPLOAD__{$data[4]['img']}" width="186" height="186">
+							</a>
+							<a href="{:U('goods_edit',array('id'=>$id,'gid'=>$data[4]['gid']))}" class="tk tk_sml">
+								<p>{$data[4]['one']}</p>
+								<p>{$data[4]['two']}</p>
+								<p>￥{$data[4]['shopprice']}</p>
+							</a>
+							<a href="javascript: if(confirm('确认删除吗?')) location.href='{:U('goods_del',array('id'=>$id,'gid'=>$data[4]['gid']))}';" class="del">删除</a>
+						</empty>
+					</div>
+					<div class="fl m_r_17 tk_par">
+						<empty name="data[5]">
+							<a href="javascript:;">
+								<div class="div sml"></div>
+							</a>
+							<a href="{:U('goods_list',array('id'=>$id,'sort'=>5))}" class="tk tk_sml">
+								<p></p>
+								<p>点击编辑</p>
+								<p></p>
+							</a>
+						<else/>
+							<a href="javascript:;">
+								<img src="__UPLOAD__{$data[5]['img']}"  width="186" height="186">
+							</a>
+							<a href="{:U('goods_edit',array('id'=>$id,'gid'=>$data[5]['gid']))}" class="tk tk_sml">
+								<p>{$data[5]['one']}</p>
+								<p>{$data[5]['two']}</p>
+								<p>￥{$data[5]['shopprice']}</p>
+							</a>
+							<a href="javascript: if(confirm('确认删除吗?')) location.href='{:U('goods_del',array('id'=>$id,'gid'=>$data[5]['gid']))}';" class="del">删除</a>
+						</empty>
+					</div>
+					<div class="fl tk_par" style="margin-top: 26px;">
+						<empty name="data[6]">
+							<a href="javascript:;">
+								<div class="div sml"></div>
+							</a>
+							<a href="{:U('goods_list',array('id'=>$id,'sort'=>6))}" class="tk tk_sml">
+								<p></p>
+								<p>点击编辑</p>
+								<p></p>
+							</a>
+						<else/>
+							<a href="javascript:;">
+								<img src="__UPLOAD__{$data[6]['img']}" width="186" height="186">
+							</a>
+							<a href="{:U('goods_edit',array('id'=>$id,'gid'=>$data[6]['gid']))}" class="tk tk_sml">
+								<p>{$data[6]['one']}</p>
+								<p>{$data[6]['two']}</p>
+								<p>￥{$data[6]['shopprice']}</p>
+							</a>
+							<a href="javascript: if(confirm('确认删除吗?')) location.href='{:U('goods_del',array('id'=>$id,'gid'=>$data[6]['gid']))}';" class="del">删除</a>
+						</empty>
+					</div>
+				</div>
+				<div class="right fl">
+					<div class="tk_par" style="margin-bottom: 25px;">
+						<empty name="data[7]">
+							<a href="javascript:;">
+								<div class="div"></div>
+							</a>
+							<a href="{:U('goods_list',array('id'=>$id,'sort'=>7))}" class="tk tk_med">
+								<p></p>
+								<p>点击编辑</p>
+								<p></p>
+							</a>
+						<else/>
+							<a href="javascript:;">
+								<img src="__UPLOAD__{$data[7]['img']}" width="284" height="284">
+							</a>
+							<a href="{:U('goods_edit',array('id'=>$id,'gid'=>$data[7]['gid']))}" class="tk tk_med">
+								<p>{$data[7]['one']}</p>
+								<p>{$data[7]['two']}</p>
+								<p>￥{$data[7]['shopprice']}</p>
+							</a>
+							<a href="javascript: if(confirm('确认删除吗?')) location.href='{:U('goods_del',array('id'=>$id,'gid'=>$data[7]['gid']))}';" class="del">删除</a>
+						</empty>
+					</div>
+					<div class="tk_par">
+						<empty name="data[8]">
+							<a href="javascript:;">
+								<div class="div"></div>
+							</a>
+							<a href="{:U('goods_list',array('id'=>$id,'sort'=>8))}" class="tk tk_med">
+								<p></p>
+								<p>点击编辑</p>
+								<p></p>
+							</a>
+						<else/>
+							<a href="javascript:;">
+								<img src="__UPLOAD__{$data[8]['img']}" width="284" height="284">
+							</a>
+							<a href="{:U('goods_edit',array('id'=>$id,'gid'=>$data[8]['gid']))}" class="tk tk_med">
+								<p>{$data[8]['one']}</p>
+								<p>{$data[8]['two']}</p>
+								<p>￥{$data[8]['shopprice']}</p>
+							</a>
+							<a href="javascript: if(confirm('确认删除吗?')) location.href='{:U('goods_del',array('id'=>$id,'gid'=>$data[8]['gid']))}';" class="del">删除</a>
+						</empty>
+					</div>
+				</div>
+			</li>
+		</ul>
+</body>
+</html>

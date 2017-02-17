@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>酒店影楼详情页</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/hotel/details/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/hotel/details/css/style.css" />
+		<script type="text/javascript" src="__PUBLIC__/Home/hotel/details/js/jquery-3.1.1.min.js" ></script>
+		<script type="text/javascript" src="__PUBLIC__/Home/hotel/details/js/divscroll.js" ></script>
+	</head>
+	<body>
+		<div class="main clearfix">
+			<!--左侧-->
+			<div class="main_left">
+				<div class="item">
+					<!--视频-->
+					<div class="video">
+						<video src="__PUBLIC__/Home/hotel/details/videos/hunli.mp4" controls autoplay loop></video>
+					</div>
+					
+					<!--酒店资料-->
+					<div class="data">
+						<!--基本信息-->
+						<div class="basic">
+							<h3>基本信息</h3>
+							<ul class="basic_cot">
+								<li>
+									<label>酒店名称：</label>
+									<span>{$root['h_name']}</span>
+								</li>
+								<li>
+									<label>地址：</label>
+									<span>{$area['shen']}{$area['city']}</span>
+								</li>
+								<li>
+									<label>宴会厅名称/楼层：</label>
+									<span>{$data['p_name']}</span>
+								</li>
+								<foreach name="add" item="v" key="k">
+									<if  condition="$v['level'] eq 1">
+										<li>
+											<label>{$v[p_a_name]}:</label>
+											<span>{$att[$k][hotel_value]}</span>
+										</li>
+									</if>
+								</foreach>
+								<!-- <li>
+									<label>最小承接桌数要求：</label>
+									<span>20桌</span>
+								</li>
+								<li>
+									<label>宴会厅尺寸：</label>
+									<span>100mX50m</span>
+								</li>
+								<li>
+									<label>宴会厅高度：</label>
+									<span>10m</span>
+								</li>
+								<li>
+									<label>餐标：</label>
+									<span>3000元/桌</span>
+								</li>
+								<li>
+									<label>有无立柱：</label>
+									<span>无</span>
+								</li>
+								<li>
+									<label>能否做暗场：</label>
+									<span>√</span>
+								</li> -->
+							</ul>
+						</div>
+						<!--表格-->
+						<div class="list">
+							<table border="1" cellspacing="0" cellpadding="0">
+								<?php echo $temp2 = 0;?>
+								<?php echo $temp3 = 0;?>
+								<?php echo $temp4 = 0;?>
+								<foreach name="add" item="v" key="k">
+									<if  condition="$v['level'] eq 2"><!--设备信息-->
+										<if condition="$v['level'] eq 2 and $temp2 eq 0">
+											<?php echo $temp2 = 1;?>
+											<tr>
+												<td rowspan="5" style="font-size: 24px;">设备信息</td>
+												<td>{$v[p_a_name]}</td>
+												<td>√</td><!-- {$att[$k][hotel_value]} -->
+											</tr>
+										<elseif condition="$v['level'] eq 2 and $temp2 eq 1" />
+											<tr>
+												<td style="display: none;"></td>
+												<td>{$v[p_a_name]}</td>
+												<td>√</td><!-- {$att[$k][hotel_value]} -->
+											</tr>
+										</if>
+									<elseif condition="$v['level'] eq 3" /><!--专享服务-->
+										<if condition="$v['level'] eq 3 and $temp3 eq 0">
+											<?php echo $temp3 = 1;?>
+											<tr>
+												<td rowspan="5" style="font-size: 24px;">设备信息</td>
+												<td>{$v[p_a_name]}</td>
+												<td>√</td><!-- {$att[$k][hotel_value]} -->
+											</tr>
+										<elseif condition="$v['level'] eq 3 and $temp3 eq 1" />
+											<tr>
+												<td style="display: none;"></td>
+												<td>{$v[p_a_name]}</td>
+												<td>√</td><!-- {$att[$k][hotel_value]} -->
+											</tr>
+										</if>
+									<elseif condition="$v['level'] eq 4" /><!--其他收费-->
+										<if condition="$v['level'] eq 4 and $temp4 eq 0">
+											<?php echo $temp4 = 1;?>
+											<tr>
+												<td rowspan="5" style="font-size: 24px;">设备信息</td>
+												<td>{$v[p_a_name]}</td>
+												<td>√</td><!-- {$att[$k][hotel_value]} -->
+											</tr>
+										<elseif condition="$v['level'] eq 4 and $temp4 eq 1" />
+											<tr>
+												<td style="display: none;"></td>
+												<td>{$v[p_a_name]}</td>
+												<td>√</td><!-- {$att[$k][hotel_value]} -->
+											</tr>
+										</if>
+									</if>
+								</foreach>
+								<!--设备信息-->
+							<!-- 	<tr>
+									<td rowspan="5" style="font-size: 24px;">设备信息</td>
+									<td>舞台（是否提供）</td>
+									<td>√</td>
+								</tr>
+								<tr>
+									<td style="display: none;"></td>
+									<td>LED屏幕（是否提供）</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td style="display: none;"></td>
+									<td>投影仪（是否提供）</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td style="display: none;"></td>
+									<td>T台（是否提供）</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td style="display: none;"></td>
+									<td>音响设备（是否提供）</td>
+									<td>√</td>
+								</tr> -->
+								<!--专享服务-->
+								<!-- <tr>
+									<td rowspan="6" style="font-size: 24px;">专享服务</td>
+									<td>独立迎宾区（是否提供）</td>
+									<td>√</td>
+								</tr>
+								<tr>
+									<td style="display: none;"></td>
+									<td>新娘房（是否提供）</td>
+									<td>√</td>
+								</tr>
+								<tr>
+									<td style="display: none;"></td>
+									<td>化妆间（是否提供）</td>
+									<td>√</td>
+								</tr>
+								<tr>
+									<td style="display: none;"></td>
+									<td>是否有停车场</td>
+									<td>√</td>
+								</tr>
+								<tr>
+									<td style="display: none;"></td>
+									<td>免费停车券（是否提供）</td>
+									<td>√</td>
+								</tr>
+								<tr>
+									<td style="display: none;"></td>
+									<td>免费婚宴试吃（是否提供）</td>
+									<td>√</td>
+								</tr> -->
+								<!--其他收费-->
+								<!-- <tr>
+									<td style="font-size: 24px;">其他收费</td>
+									<td>加收服务费</td>
+									<td>-</td>
+								</tr> -->
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--右侧-->
+			<div class="main_right">
+				<div class="item">
+					<div class="name">
+						<h3><span>中国大饭店</span>——<span>国宾厅/2F</span></h3>
+						<a href="javascript:;" class="reserve">预约酒店</a>
+					</div>
+					<ul>
+						<foreach name="data['h_show']" item="val" key="key">
+							<li><img src="__UPLOAD__{$val}"></li>
+	                	</foreach>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!--预约弹框-->
+		<div class="bg_gray">
+			<div class="collection">
+				<form action="" method="post">
+					<ul class="clearfix">
+						<li><label>姓名</label><input type="text" name="make_name" placeholder="例：张三"></li>
+						<li><label>电话</label><input type="text" name="make_phone" placeholder="例：13XXXXXXXXX"><span class="xin" style="color: red;display:none;">*</span></li>
+						<li><label>结婚日期</label><input type="text" name="make_widing_day" placeholder="例：XX年XX月"></li>
+						<li><label>备注</label><input type="text" name="make_PS"  placeholder="例：喜欢欧美风"></li>
+					</ul>	
+					<input type="hidden" name="p_p_id" value="{$_GET['id']}" />
+					<input type="button" class="sub" value="立即申请"/>
+				</form>
+				<a href="#" class="login_close"><img src="__PUBLIC__/Home/hotel/details/img/login_close.png"></a>
+			</div>
+		</div>
+		<!--end-->
+	</body>
+	
+	<script>
+		$('input[name=make_phone]').change(function(){
+			var phone = /^1[34578]\d{9}$/ ;
+			if(phone.test($(this).val())){
+				$('.sub').attr('type','submit');
+				$('.xin').hide();
+			}else{
+				$('.xin').show();
+				$('.sub').click(function(){
+					alert('您的手机号不可用，请重新输入！');
+				})
+			}
+		})
+		var h = document.documentElement.clientHeight;
+		$(".main_right .item").css("height",h);
+		$(".main_left .item").css("height",h);
+//		$(".main_left .video").css("height",h/2);
+		$(function(){
+		    $('.item').perfectScrollbar();
+		});
+	</script>
+	<script>
+	//预约弹框
+	$(".reserve").click(function(){
+		var h = document.documentElement.clientHeight;
+		$(".bg_gray").css("height",h);
+		$(".bg_gray").css("display","block");
+		$(".collection").css("display","block");
+	})
+	window.onload = function(){
+		var left = (document.body.clientWidth - 520)/2;
+		var top =  ($(window).height() - 440)/2;
+		$(".collection").css({"left":left,"top":top});
+	}	 
+	$(".login_close").click(function(){
+		$(this).parent(".collection").hide();
+		$(".bg_gray").css("display","none");
+	})
+</script>
+</html>

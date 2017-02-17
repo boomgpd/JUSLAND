@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="6%">主键</th>
+			  <th width="10%">商家名名称</th>
+			  <th width="10%">内容描述</th>
+			  <th width="10%">关键词</th>
+			  <th width="10%">标签</th>
+			  <th width="5%">点赞</th>
+			  <th width="10%">显示张数</th>
+			  <th width="5%">作者</th>
+			  <th width="10%">添加时间</th>
+			  <th width="10%">操作</th>
+			</tr>
+			<foreach name="data" item='v' key='k'>
+				<tr>
+					<td>{$k+1}</td>
+					<td>{$v['merchant_name']}</td>
+					<td>{$v['title']}</td>
+					<td>
+						<foreach name="v['keyword']" item='vv' key="kk">
+							{$vv},
+						</foreach>
+					</td>
+					<td>
+						<foreach name="v['lables']" item='vv' key="kk">
+							{$vv},
+						</foreach>
+					</td>
+					<td>{$v['click_num']}</td>
+					<td>{$v['show_num']}</td>
+					<td>{$v['author_id']}</td>
+					<td>{$v['addtime']}</td>
+					<td>
+						<a href="{:U('edit',array('p_id'=>$v['p_id']))}" class="btn btn-sm btn-warning">编辑</a>
+						<a href="javascript:;" pid="{$v['p_id']}" class="btn btn-sm btn-danger del">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script type="text/javascript">
+			$(".del").click(function(){
+				var p_id = $(this).attr('pid');
+				var This = $(this).parents('tr');
+				$.ajax({
+					type:"post",
+					url:"{:U('del')}",
+					data:{p_id:p_id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata == '删除成功'){
+							This.remove();
+						}
+						alert(phpdata);
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

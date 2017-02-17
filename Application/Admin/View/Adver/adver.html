@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <style type="text/css">
+	    	input{
+	    		border: none;
+	    	}
+	    	select{
+	    		border: none;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<a href="{:U('add_adver')}"><button type="button" class="btn btn-primary">添加广告</button></a>
+		<a href="javascript:;" class="save"><button type="button" class="btn btn-info">保存</button></a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">cid</th>
+			  <th>广告名称</th>
+			  <th>跳转路径</th>
+			  <th>
+			  	<select id="adver_type">
+			  		<option value="">广告类型</option>
+					<foreach name='adver_type' item='vv' key='kk'>
+						<if condition="$vv['adver_type_id'] eq $_GET['type_id']">
+							<option value="{$vv['adver_type_id']}" selected="selected">{$vv['adver_type_name']}</option>
+						<else />
+						<option value="{$vv['adver_type_id']}">{$vv['adver_type_name']}</option>
+						</if>
+					</foreach>
+				</select>
+			  </th>
+			  <th>图片</th>
+			  <th>操作</th>
+			</tr>
+			<form action="{:U('save_adver')}" method="post">
+				<foreach name="data" item='v' key='k'>
+					<tr>
+						<td>{$k+1}<input type="hidden" name="adver_id[]" value="{$v['adver_id']}" /></td>
+						<td><input type="text" name="adver_name[]" value="{$v['adver_name']}" /></td>
+						<td><input type="text" name="adver_url[]" value="{$v['adver_url']}" /></td>
+						<td>
+							<select name="adver_type_id[]">
+								<foreach name='adver_type' item='vv' key='kk'>
+									<option value="{$vv['adver_type_id']}">{$vv['adver_type_name']}</option>
+								</foreach>
+							</select>
+						</td>
+						<td>
+							<foreach name="v['pic_src']" item='vv' key='kk'>
+								<img src="/strinary/Uploads/{$vv}" style="width: 200px;"/><br/>
+							</foreach>
+						</td>
+						<td>
+							<!--<a href="" class="btn btn-sm btn-warning">编辑</a>-->
+							<a href="javascript:;" del="{$v['adver_id']}" class="btn btn-sm btn-danger del">删除</a>
+							<a href="{:U('edit',array('adver_id'=>$v['adver_id']))}" class="btn btn-sm btn-danger">编辑</a>
+						</td>	
+					</tr>
+				</foreach>
+			</form>
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$("#adver_type").change(function(){
+				var type_id= $(this).val();
+				location.href = "{:U('admin/adver/adver')}?type_id="+type_id;
+			})
+			$(".save").click(function(){
+				$("form").submit();
+			})
+			$(".del").click(function(){
+				var del = $(this).attr('del');
+				var This= $(this); 
+				$.ajax({
+					type:"post",
+					url:"{:U('admin/adver/del')}",
+					data:{del:del},
+					dataType:'json',
+					success:function(phpdata){
+						alert();
+						This.parents('tr').remove();
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/Admin/css/index_list.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Admin/css/reset.css" />
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--inspiration start-->
+	<div class="inspiration w clearfix">
+		<div class="inspiration_top">
+			<h3 align="center"><a href="{:U('home/waterfall/index',array('web_type'=>'d2F0ZXJmYWxs'))}">灵感库</a></h3>
+			<p align="center" style="color: #999;font-size: 16px;">已有<span class="c_blue">35981349</span>位婚礼人找到灵感</p>
+		</div>
+		<ul class="inspiration_content">
+			<li><a href="javascript:;" style="background-color: #DDEDF1;">婚礼</a></li>
+			<li><a href="javascript:;" style="background-color: #BCDAE3;">婚纱摄影</a></li>
+			<li><a href="javascript:;" style="background-color: #9BC8D6;">结婚礼服</a></li>
+			<li><a href="javascript:;" style="background-color: #79B6C8;">甜品</a></li>
+		</ul>
+		<foreach name="temp" item="v_one" key="k">
+			<if condition="$k eq 0">
+				<div class="inspiration_bot clearfix" >
+			<else/>
+				<div class="inspiration_bot clearfix" style="display:none ;">
+			</if>
+				<foreach name='v_one' item='v_two' key='kk'>
+					<if condition="$kk eq 1">
+						<ul style="margin: 0 3px;">
+					<else />
+						<ul>
+					</if>
+						<if condition="$kk eq 2">
+							<li>
+								<a href="javascript:;"><img src="__UPLOAD__{$v_two['adver']['pic_src']}" style="width: 398px;height: 691px;" alt="{$v_two['adver']['adver_name']}"></a>
+								<div class="bei"></div>
+								<a class="bian" href="{:U('edit_list',array('adver_id'=>$v_two['adver']['adver_id']))}">编辑</a>
+							</li>
+						</if>
+						<foreach name="v_two['picture']" item='v_three' key='kkk'>
+							<li>
+								<a href="{:U('choice')}"><img src="__UPLOAD__{$v_three['img_src']}" style="width: 398px;height: 229px;"></a>
+								<p>{$v_three['title']}</p>
+								<if condition="$v_two['type'] eq 1">
+									<a href="{:U('choice',array('picture_list_id'=>$v_three['picture_list_id'],'type'=>1))}"><div class="bei"></div></a>
+								<elseif condition="$v_two['type'] eq 2"/>
+									<a href="{:U('choice',array('picture_list_id'=>$v_three['picture_list_id'],'type'=>2))}"><div class="bei"></div></a>
+								<elseif condition="$v_two['type'] eq 3"/>
+									<a href="{:U('choice',array('picture_list_id'=>$v_three['picture_list_id'],'type'=>3))}"><div class="bei"></div></a>
+								<elseif condition="$v_two['type'] eq 4"/>
+									<a href="{:U('choice',array('picture_list_id'=>$v_three['picture_list_id'],'type'=>4))}"><div class="bei"></div></a>
+								</if>
+								<a class="bian" href="{:U('edit_list',array('picture_list_id'=>$v_three['picture_list_id']))}">编辑</a>
+							</li>
+						</foreach>
+						<if condition="$kk eq 0">
+							<li>
+								<a href="javascript:;"><img src="__UPLOAD__{$v_two['adver']['pic_src']}" style="width: 398px;height: 691px;" alt="{$v_two['adver']['adver_name']}"></a>
+								<div class="bei"></div>
+								<a class="bian" href="{:U('edit_list',array('adver_id'=>$v_two['adver']['adver_id']))}">编辑</a>
+							</li>
+						</if>
+					</ul>
+				</foreach>
+			</div>
+		</foreach>
+	</div>
+	<!--inspiration end-->
+	
+	</body>
+	<script>
+	//灵感库tab切换
+	window.onload = function(){
+            var $tab=$(".inspiration_content li");
+            var $tab_end=$(".inspiration_bot");
+            $tab.click(function(){
+                var $this=$(this);
+                var $inx=$this.index();
+                $tab_end.css("display","none");
+                $tab_end.eq($inx).css("display","block")
+            });
+            $(".inspiration_bot ul li").mouseover(function(){
+				$(this).addClass("hover");
+				$(this).find(".bei,.bian").show();
+			});
+			$(".inspiration_bot ul li").mouseout(function(){
+				$(this).removeClass("hover");
+				$(this).find(".bei,.bian").hide();
+			});
+	}
+   </script>
+</html>

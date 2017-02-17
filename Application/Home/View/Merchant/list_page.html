@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>商家列表页</title>
+		<link rel="stylesheet" type="text/css"href="__PUBLIC__/Home/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/list_page.css"/>
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.7.2.min.js" ></script>
+	</head>
+	<body>
+		<!--顶部  开始-->
+		<include file="Common/header" />
+		<!--头部  结束-->
+		<div class="body_bj">
+			<!--面包屑导航-->
+			<!--<div class="sj_BreadNav">
+				<ul class="w clearfix">
+					<li><a href="#">北京</a></li>
+					<li><span>></span></li>
+					<li><a href="#">婚庆公司</a></li>
+				</ul>
+			</div>-->
+			<div class="w clearfix">
+				<div class="fl">
+					<!--服务地区_start-->
+					<div class="ServeArea clearfix">
+						<div class="ServeArea_left fl">
+							<div class="ServeArea_left_top clearfix">
+								<ul class="weedclassify fl">
+									<li>类型</li>
+									<li>价格</li>
+									<li style="border: 0;padding-bottom: 1px;">区域</li>
+								</ul>
+								<div class="filtrate fl">
+									<ul class="clearfix region">
+										<!--<span></span>-->
+										<li><a href="#" class="active">全部</a></li>
+										<li><a href="#">高端婚礼定制</a></li>
+										<li><a href="#">婚礼策划</a></li>
+										<li><a href="#">婚庆公司</a></li>
+										<li><a href="#">婚礼服务</a></li>
+									</ul>
+									<ul class="clearfix region">
+										<!--<span></span>-->
+										<if condition="$get_data['price_id'] eq ''">
+											<li><a href="{:U('home/merchant/list_page',array('area_id'=>$get_data['area_id'],'q'=>$get_data['q']))}" class="active">全部</a></li>
+										<else />
+											<li><a href="{:U('home/merchant/list_page',array('area_id'=>$get_data['area_id'],'q'=>$get_data['q']))}">全部</a></li>
+										</if>
+										<foreach name="price" item='v' key='k'>
+											<if condition="$get_data['price_id'] eq $v['server_price_id']">
+												<li><a href="{:U('home/merchant/list_page',array('price_id'=>$v['server_price_id'],'area_id'=>$get_data['area_id'],'q'=>$get_data['q']))}" class="active">{$v['price_part']}</a></li>
+											<else />
+												<li><a href="{:U('home/merchant/list_page',array('price_id'=>$v['server_price_id'],'area_id'=>$get_data['area_id'],'q'=>$get_data['q']))}">{$v['price_part']}</a></li>
+											</if>
+										</foreach>
+									</ul>
+									<ul class="clearfix region">
+										<span></span>
+										<if condition="$get_data['area_id'] eq ''">
+											<li><a href="{:U('home/merchant/list_page',array('price_id'=>$get_data['price_id'],'q'=>$get_data['q']))}" class="active">全部</a></li>
+										<else />
+											<li><a href="{:U('home/merchant/list_page',array('price_id'=>$get_data['price_id'],'q'=>$get_data['q']))}">全部</a></li>
+										</if>
+										<foreach name="part" item='v' key='k'>
+											<if condition="$get_data['area_id'] eq $v['area_id']">
+												<li><a href="{:U('home/merchant/list_page',array('area_id'=>$v['area_id'],'price_id'=>$get_data['price_id'],'q'=>$get_data['q']))}" class="active">{$v['aname']}</a></li>
+											<else />
+												<li><a href="{:U('home/merchant/list_page',array('area_id'=>$v['area_id'],'price_id'=>$get_data['price_id'],'q'=>$get_data['q']))}">{$v['aname']}</a></li>
+											</if>
+										</foreach>
+									</ul>
+									<script>
+										$(".filtrate .region span").click(function(){										
+											var num = $(this).parents("ul.region").index();
+											var height = $(".region").eq(num).height();
+											if(height == 40){
+												$(".region").eq(num).css("height","auto");
+												height = $(".region").eq(num).height();
+												$(".weedclassify li").eq(num).css('height',height);
+												$(".region").eq(num).find("span").css("background-image","url(__PUBLIC__/Home/img/list_page/xl_top.png)");
+											}else{
+												$(".filtrate .region").css("height","40");	
+												$(".weedclassify li").eq(num).css('height','39');
+												$(".region").eq(num).find("span").css("background-image","url(__PUBLIC__/Home/img/list_page/xl_bot.png)");
+											}
+										});
+									</script>
+								</div>
+							</div>
+							<ul class="ServeArea_left_bot clearfix">
+								<li><a href="#" class="active">综合排序</a></li>
+								<li><a href="#">口碑榜</a></li>
+								<li><a href="#">热门榜</a></li>
+							</ul>
+						</div>
+					</div>
+					<!--服务地区_end-->
+					
+					<!--商家排行_start-->
+					<div class="StoreRank clearfix">
+						<div class="StoreRank_left fl">
+							<empty name="data">
+								<img src="__PUBLIC__/Home/img/list_page/no_merchant.png"/>
+							<else />
+								<foreach name="data" item='v' key='k'>
+									<a href="{:U('merchant/index',array('merchant_id'=>$v['merchant_id']))}">
+										<ul class="clearfix">
+											<!--<li><img src="__UPLOAD__{$v['logo_fang']}" width="150px" height="130px"></li>-->
+											<li><img src="__UPLOAD__{$v['logo_list']}" width="150px" height="130px"></li>
+											<li style="border:0;margin: 52px 15px 0;"><img src="__PUBLIC__/Home/img/list_page//tb2.png" ></li>
+											<li><img src="__UPLOAD__{$v['img_list']}" width="700px" height="130px"></li>
+										</ul>
+									</a>
+								</foreach>
+							</empty>
+						</div>
+					</div>
+					<!--商家排行_end-->
+				</div>
+				
+				<div class="ad_right fr">
+					<img src="__PUBLIC__/Home/img/list_page/enter.jpg">
+					<img src="__PUBLIC__/Home/img/list_page/enter.jpg">
+					<img src="__PUBLIC__/Home/img/list_page/enter.jpg">
+				</div>
+			</div>
+		</div>	
+		
+		
+	<!--底部   开始-->
+	<include file="Common/footer" />
+	<!--底部   结束-->
+	</body>
+</html>

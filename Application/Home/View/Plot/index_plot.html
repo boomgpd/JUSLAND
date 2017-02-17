@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>嘉仕澜德——免费策划报价</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/index_plot.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/reset.css">
+<script src="__PUBLIC__/Home/js/jquery.js"></script>
+</head>
+
+<body>
+<include file="Common/header" />
+<!--Tab start-->
+<div class="tab">
+	<ul class="clearfix">
+    	<li><div class="box"><a href="{:U('index_free')}"><span class="tab_span0 tab_span1">免费上门</span></a></div></li>
+        <li><div class="chybj"><a href="#"><span class="tab_span2">策划与报价</span></a></div></li>
+        <li><div class="box"><a href="{:U('index_ensure')}"><span class="tab_span0 tab_span3">结婚保</span></a></div></li>
+        <li><div class="box"><a href="{:U('index_credit')}"><span class="tab_span0 tab_span4">结婚贷</span></a></div></li>
+    </ul>
+</div>
+<!--Tab end-->    	
+<!--banner start-->
+<div class="bannerbox">
+	<div class="banner">
+		<img src="__PUBLIC__/Home/img/plot/index_plot/121.png">
+	</div>
+</div> 
+<div class="ban">
+	<div class="banner2 clearfix">
+		<a href="#" class="banner_a"></a>
+		<div class="banner_zc clearfix">
+            <div id="zc_box" class="clearfix">
+                <div class="zhuce_box">
+                    <span class="span1">免费策划报价</span>
+                    <ul class="mt8 clearfix">
+                    	<li class="ml15px"><img src="__PUBLIC__/Home/img/plot/index_plot/1.png"></li>
+                        <li><span>婚礼监理</span></li>
+                        <li><img src="__PUBLIC__/Home/img/plot/index_plot/2.png" class="ml10"></li>
+                        <li><span>资金保障</span></li>
+                        <li><img src="__PUBLIC__/Home/img/plot/index_plot/3.png" class="ml10"></li>
+                        <li><span>快速维权</span></li>
+                    </ul>
+                    <div style="margin-top:6px;">
+                        <form action="" method="post" class="form1">
+                            <input type="hidden" name="b_name" value="免费上门" />
+                            <div class="text">
+                                <input type="text" name="member_name" placeholder="您的称呼">
+                            </div>
+                            <div class="text">
+                                <input type="text" name="phone" placeholder="手机号码">
+                            </div>
+                            <div class="clearfix mt14">
+                                <select id="sheng" name="area_id[]" onChange="changeProvince('shen','city','town');" class="select fl" >
+                                    <option>省/市</option>
+                                    <foreach name="data['area']" item="v" key="k">
+                                    	<option value="{$v['area_id']}">{$v['aname']}</option>
+                                    </foreach>
+                                </select>
+                                <select id="city" name="area_id[]" onChange="changeTown('shen','city','town');" class="select fr">
+                                    <option>市/地区</option>
+                                    <option>选项二</option>
+                                </select>                                                                                          
+                            </div>
+                            <div class="hunqi" style="line-height: 34px;">
+                            	<span style="position: relative;top: -10px;">婚期：</span>
+                            	<input type="tetx" name="wedding[]" id="" value="" style="width: 47px;height: 20px;position: relative;top: -10px;"/>
+                                <span style="position: relative;top: -10px;">年</span>
+                            	<input type="text" name="wedding[]" id="" value="" style="width: 30px;height: 20px;position: relative;top: -10px;"/>
+                                <span style="position: relative;top: -10px;">月</span>
+                            	<input type="text" name="wedding[]" id="" value="" style="width: 30px;height: 20px;position: relative;top: -10px;"/>
+                                <span style="position: relative;top: -10px;">日</span>
+                            </div>
+                        <!--</form>
+                        <form class=" form2 mt17">-->
+                        	<div>
+                                <input type="checkbox" checked="checked" id=" checkbox fl" style="width: 15px;height: 15px;">
+                                <span style="margin-left:2px;position: relative;top: -3px;">我已阅读并接受<a href="#" style="color:#79b6c8; text-decoration:none;">《嘉仕澜德用户服务协议》</a></span>
+                            </div>
+                            <div class="mt20px fl clearfix">
+                            <input type="submit" value="免费申请" class="login_an">      
+                        </form>
+                        <p class="ml15px mt20 p1">嘉仕澜德提供的该项<span class="span2">免费服务，绝
+                        对不产生任何费用</span>，为了您的合法利益及我们
+                        的品牌口碑，您的隐私将会绝对保密。</p>
+                    </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+	</div>         
+</div>
+<!--banner end -->   
+
+<!--content start-->
+<div class="content1">
+	<div class="biaoti">
+    	<h1>更专业的婚礼定制服务</h1>
+        
+    </div>
+    <div class="c1_box clearfix">
+        <img src="__PUBLIC__/Home/img/plot/index_plot/c1_1.png" class="ml80 fl">
+        <div class="wenzi fr">
+        	<span>免费获得婚礼定制方案正规流程和报价</span>
+            <span>万余名专业婚礼人提供专属定制服务</span>
+            <span>营业执照和策划能力认证。通过嘉仕澜德和CWIA培训考试百万</span>
+            <span>结婚新人推荐</span>
+            <span>史上最高规格婚礼服务标准</span>
+            <span>专业监理审核预算，高性价比</span>
+        </div>
+    </div>
+</div>
+
+<div class="bj">
+	<div class="content2">
+    	<div class="biaoti">
+    		<h1>最新申请婚礼服务</h1>
+        </div>
+        <div class="wenzi_box">     	
+            <ul class="wen1">
+                <li style="margin:0"><span>婚礼形态</span></li>
+                <li><span>婚礼预约</span></li>
+                <li><span>婚礼特色</span></li>
+                <li><span>服务内容</span></li>
+                <li><span>联系电话</span></li>
+                <li><span>发布时间</span></li>
+            </ul>
+            <div id="ticker">
+            	<foreach name="array" item="v" key="k">
+	                <ul>
+	                	<li style="margin:0"><span>{$v['form']}</span></li>
+	                    <li><span>{$v['price']}</span></li>
+	                    <li><span>{$v['type']}</span></li>
+	                    <li><span>{$v['serce']}</span></li>
+	                    <li><span>{$v['phone']}</span></li>
+	                    <li><span>{$v['time']}</span></li>
+	                </ul>
+            	</foreach>
+            </div>     
+        </div>
+    </div>
+</div>
+
+<div class="bj3">
+	<div class="content3">
+    	<div class="biaoti">
+    		<h1>婚礼方案可以免费修改，直到新人满意为止</h1>
+        </div>
+        <ul>
+        	<li>
+            	<img src="__PUBLIC__/Home/img/plot/index_plot/c3_1.png">
+                <span>①专业策划师根据新人需求提供专属婚礼方案。</span>
+            </li>
+            <li>
+            	<img src="__PUBLIC__/Home/img/plot/index_plot/c3_2.png">
+                <span>②同时提供多名策划师婚礼方案，更多对比更多选择，
+                          </br>真正做到我选我喜欢。</span>
+            </li>
+            <li>
+            	<img src="__PUBLIC__/Home/img/plot/index_plot/c3_3.png">
+                <span>③策划不满意可以重复修改，直到满意为止。</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="bj4">
+	<div class="content4 w">
+    	<div class="biaoti">
+    		<h1>1分钟发布申请，坐等婚庆公司免费上门沟通</h1>
+        </div>
+        <div class="c4_box">
+        	<div class="fl ml270">
+            	<img src="__PUBLIC__/Home/img/plot/index_plot/c4_1.png">
+                <span>高端策划师专业沟通深挖新人故事</span>
+            </div>
+            <div class="fr mr270">
+            	<img src="__PUBLIC__/Home/img/plot/index_plot/c4_2.png">
+                <span>定制婚礼流程及方案</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bj5">
+	<div class="content5">
+    	<div class="biaoti">
+    		<h1>策划方案可全面参考，获取最合理的策划报价</h1>
+        </div>
+        <ul>
+        	<li>
+            	<img src="__PUBLIC__/Home/img/plot/index_plot/c5_1.png">
+                <span>①专业策划师根据新人需求提供专属婚礼方案。</span>
+            </li>
+            <li>
+            	<img src="__PUBLIC__/Home/img/plot/index_plot/c5_2.png">
+                <span>②同时提供多名策划师婚礼方案，更多对比更多选择，
+                          </br>真正做到我选我喜欢。</span>
+            </li>
+            <li>
+            	<img src="__PUBLIC__/Home/img/plot/index_plot/c5_3.png">
+                <span>③策划不满意可以重复修改，直到满意为止。</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="bj6">
+	<div class="content6 clearfix">
+    	<div class="biaoti">
+    		<h1>专业报道嘉仕澜德推动行业变革</h1>
+        </div>
+        <div class="report fl">
+	        <ul class="clearfix">
+	            <li><a href=""><img src="__PUBLIC__/Home/img/plot/index_plot/c6_1.png"></a></li>
+	            <li><a href=""><img src="__PUBLIC__/Home/img/plot/index_plot/c6_2.png"></a></li>
+	            <li><a href=""><img src="__PUBLIC__/Home/img/plot/index_plot/c6_3.png"></a></li>
+	            <li><a href=""><img src="__PUBLIC__/Home/img/plot/index_plot/c6_4.png"></a></li>
+	            <li><a href=""><img src="__PUBLIC__/Home/img/plot/index_plot/c6_1.png"></a></li>
+	            <li><a href=""><img src="__PUBLIC__/Home/img/plot/index_plot/c6_2.png"></a></li>
+	            <li><a href=""><img src="__PUBLIC__/Home/img/plot/index_plot/c6_3.png"></a></li>
+	            <li><a href=""><img src="__PUBLIC__/Home/img/plot/index_plot/c6_4.png"></a></li>
+	        </ul> 	
+	        <a href="javascript:;" class="report_prev fl"><img src="__PUBLIC__/Home/img/plot/index_plot/prev.png"></a>
+	        <a href="javascript:;" class="report_next fl"><img src="__PUBLIC__/Home/img/plot/index_plot/next.png"></a>
+        </div>
+    </div>
+</div>
+<!--content end-->
+<script>
+	$(document).ready(function(){
+		var li_num = $(".report li").length;
+		var now_num = 0;
+		$(".report ul").css({width:li_num*290+"px"});	
+		$(".report_next").on("click",function(){
+			now_num++;
+			if(now_num > (li_num-4)){
+				now_num = 0;
+			}
+			var left_distence = now_num*290;
+			$(".report ul").stop().animate({right:left_distence},1000);
+		})		
+		$(".report_prev").on("click",function(){
+			now_num--;
+			if(now_num < 0){
+				now_num = li_num-4;
+			}
+			var left_distence = now_num*290;
+			$(".report ul").stop().animate({right:left_distence},1000);
+		})
+	})
+</script>
+
+
+<!--footer start-->
+<div class="footer">
+	<div class="footer_top w">
+		<ul class="footer_chaining fl">
+			<li class="blogroll fl" style="margin-top:30px;margin-left: 60px;font-size: 18px;">友情链接</li>
+			<li><a href="#" style="margin-left: 40px;">阿里巴巴</a></li>
+			<li><a href="#">百度一下</a></li>
+			<li><a href="#">腾讯QQ</a></li>
+			<li><a href="#">北京银行</a></li>
+			<li><a href="#">97婚嫁</a></li>
+		</ul>
+		<div class="footer_vx fl">
+			<dl style="margin-right: 50px;">
+				<dt>关注微信</dt>
+				<dd><img src="__PUBLIC__/Home/img/plot/index_plot/index_vx.png"></dd>
+			</dl>
+			<dl>
+				<dt>下载APP</dt>
+				<dd><img src="__PUBLIC__/Home/img/plot/index_plot/index_vx.png"></dd>
+			</dl>
+		</div>
+	</div>
+	<div class="footer_bottom w">
+		<p><a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">意见反馈</a> | <a href="#">高薪聘请</a> | <a href="#">法律声明</a></p>
+		<p>免责声明：本网站部分内容由用户自行上传，如权利人发现存在误传其作品情形，请及时与本站联系。</p>
+		<p>© 2016 北京京折科技有限公司有限公司  保留所有权利</p>
+		<p>京ICP备14039745号-1</p>
+	</div>
+</div>
+
+
+
+<script>
+//新闻滚动
+	$(function() {
+		var ticker = $("#ticker");
+		ticker.children().filter("dt").each(function() {
+			var dt = $(this),
+		    container = $("<div>");
+		    dt.next().appendTo(container);
+		    dt.prependTo(container);
+		    container.appendTo(ticker);
+		});
+		ticker.css("overflow", "hidden");
+		function animator(currentItem) {
+		    var distance = currentItem.height();
+			duration = (distance + parseInt(currentItem.css("marginTop"))) / 0.025;
+		    currentItem.animate({ marginTop: -distance }, duration, "linear", function() {
+				currentItem.appendTo(currentItem.parent()).css("marginTop", 0);
+				animator(currentItem.parent().children(":first"));
+			}); 
+		};
+		animator(ticker.children(":first"));
+		ticker.mouseenter(function(){
+		    ticker.children().stop();
+		});
+		ticker.mouseleave(function(){
+		    animator(ticker.children(":first"));
+		});
+	});
+</script>
+<script type="text/javascript">
+        $("#sheng").change(function(){
+            var area_id = $(this).val();
+            $.ajax({
+				type:"post",
+				url:"{:U('waterfall/index')}",
+				data:{area_id:area_id},
+				dataType:'json',
+				success:function(phpdata){
+					if(phpdata){
+						var str = '<select id="city" name="city" class="select fr"><option>市/地区</option>';
+						$.each(phpdata,function(k,v){
+						 	str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+					    });
+						str += '</select>';
+						$('#city').html(str);
+					}else{
+														
+					}
+				}
+			});
+    	})
+    </script>
+</body>
+</html>

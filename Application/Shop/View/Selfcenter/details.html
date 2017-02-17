@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>道具商城——订单详情</title>
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/orders_detail.css" />
+		<script type="text/javascript" src="__PUBLIC__/Shop/js/jquery-3.1.1.min.js" ></script>
+	</head>
+	<body>
+		<include file="Common/header_two" />
+		<div class="detail">
+			<h2>订单详情</h2>
+			<div class="state">
+				<span>订单编号: {$data['number']}</span>
+				<span>当前状态：{$data['goods_list']['status_name']}</span>
+			</div>
+			<div class="plan">
+				<div class="per-detail clearfix">
+		            <ul class="progress">
+		            	<if condition="($data['status'] gt 0) OR ($data['status'] eq 0)">
+					    	<li  class="fl finish_step finishbg"> <strong>提交订单</strong> <span><?php echo date('Y-m-d H:i:s',$data['addtime']); ?></span> </li>
+					    <else />
+					    	<li  class="fl" > <strong>提交订单</strong> <span>暂未处理</span> </li>
+					    </if>
+					    
+					    <if condition="($data['status'] gt 0)">
+					    	<li  class="fl finish_step finishbg"> <strong>买家支付</strong> <span><?php echo date('Y-m-d H:i:s',$data['addtime']); ?></span> </li>
+					    <else />
+					    	<li  class="fl" > <strong>提交订单</strong> <span>买家支付</span> </li>
+					    </if>
+					    
+					    <if condition="($data['status'] gt 1) ">
+					    	<li  class="fl finish_step finishbg"> <strong>卖家发货</strong> <span><?php echo date('Y-m-d H:i:s',$data['addtime']); ?></span> </li>
+					    <else />
+					    	<li  class="fl" > <strong>提交订单</strong> <span>卖家发货</span> </li>
+					    </if>
+					    
+					    <if condition="($data['status'] gt 2)">
+					    	<li  class="fl finish_step laststep"> <strong>确认收货</strong> <span><?php echo date('Y-m-d H:i:s',$data['addtime']); ?></span> </li>
+					    <else />
+					    	<li  class="fl laststep" > <strong>提交订单</strong> <span>确认收货</span> </li>
+					    </if>
+					    <!--<li <if condition="$data['status'] gt 1"> class="fl finish_step finishbg" <else /> class="fl" </if>> <strong>买家支付</strong> <span><?php echo date('Y-m-d H:i:s',$data['addtime']); ?></span> </li>
+					    <li <if condition="$data['status'] gt 2"> class="fl finish_step finishbg" <else /> class="fl" </if>> <strong>卖家发货</strong> <span><?php echo date('Y-m-d H:i:s',$data['addtime']); ?></span> </li>
+					    <li <if condition="$data['status'] gt 3"> class="fl finish_step laststep" <else /> class="fl laststep" </if>> <strong>确认收货</strong> <span><?php echo date('Y-m-d H:i:s',$data['addtime']); ?></span> </li>-->
+					</ul>
+  				</div>
+			</div>
+			<div class="info">
+				<h3>详细信息</h3>
+				<ul>
+					<li>
+						<label>收 货 人：</label>
+						<span>{$data['consignee']}</span>
+					</li>
+					<li>
+						<label>收货地址：</label>
+						<span>{$data['address']}</span>
+					</li>
+					<li>
+						<label>收货邮编：</label>
+						<span>{$data['coding']}</span>
+					</li>
+					<li>
+						<label>联系电话：</label>
+						<span>{$data['phone']}</span>
+					</li>
+				</ul>
+			</div>
+			
+			<if condition="$data['status'] gt 1">
+			<div class="info">
+				<h3>物流信息</h3>
+				<ul>
+					<li>
+						<label>发货时间：</label>
+						<span><?php echo date('Y-m-d H:i:s',$data['goods_list']['tb']['ems_type']['addtime']); ?></span>
+					</li>
+					<li>
+						<label>物流公司：</label>
+						<span>{$data['goods_list']['tb']['ems_type']['title']} <!--<a href="javascript:;" class="c_blue">点击进入物流官网</a>--></span>
+					</li>
+					<li>
+						<label>物流单号：</label>
+						<span>{$data['goods_list']['tb']['ems_number']}</span>
+					</li>
+					<li>
+						<label>物流跟踪：</label>
+						<!--<span>以下跟踪信息由 <a href="javascript:;" class="c_blue">快递100</a> 提供，如有疑问请到物流公司官网查询。</span>-->
+						<foreach name="data['goods_list']['ems_msg']['Traces']" item='v' key='k'>
+							<p>【<span>{$v['AcceptTime']}</span>  <!--<span>11:00:00</span>-->】<span>{$v['AcceptStation']}</span></p>
+						</foreach>
+					</li>
+				</ul>
+			</div>
+			</if>
+			<div class="info">
+				<h3>商品清单</h3>
+				<table border="" cellspacing="" cellpadding="">
+					<tr>
+						<td>商品</td>
+						<td>单价（元）</td>
+						<td>数量</td>
+						<td>交易状态</td>
+						<td>店铺优惠</td>
+						<td>全场优惠</td>
+						<td>订单额（元）</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="{:U('Shop/Goods/details',array('id'=>$data['goods_list']['goods_data']['gid']))}" class="al fl" target="_blank">
+								<img src="__UPLOAD__{$data['goods_list']['goods_data']['pic']}" />
+							</a>
+							<div class="size fl">
+								<a href="{:U('Shop/Goods/details',array('id'=>$data['goods_list']['goods_data']['gid']))}" target="_blank">{$data['goods_list']['goods_data']['gname']}</a>
+								<foreach name="data['goods_list']['goods_list_product']['combine']" item='v' key='k'>
+									<p><span>{$v['spec_name']}</span>：<span>{$v['gavalue']}</span></p>
+								</foreach>
+							</div>
+						</td>
+						<td>
+							<del>{$data['goods_list']['goods_list_product']['market']}</del>
+					        <p>{$data['goods_list']['goods_list_product']['price']}</p>
+						</td>
+						<td><span>{$data['goods_list']['num']}</span></td>
+						<td><span class="c_gray">{$data['goods_list']['status_name']}</span></td>
+						<td><span></span></td>
+						<td><span></span></td>
+						<td><span>¥ {$data['goods_list']['subtotal']}</span></td>
+					</tr>
+				</table>
+				<!--<p style="padding-top: 10px;">买家备注:发货用百事汇通。</p>-->
+				<p class="c_gray">实付金额： <span class="c_orange">￥ {$data['goods_list']['subtotal']}</span></p>
+			</div>
+		</div>
+		<include file="Common/footer" />
+	</body>
+</html>

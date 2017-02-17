@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+	    <style type="text/css">
+		.uploadify-button {
+	        background-color: transparent;
+	        border: none;
+	        padding: 0;
+	    }
+	    .uploadify:hover .uploadify-button {
+	        background-color: transparent;
+    	}
+    	.hide{
+    		display: none;
+    	}
+    	body{
+    		margin-bottom: 100px;
+    	}
+    	li{
+    		list-style: none;
+    	}
+    	#uploadLista li{
+    		position: relative;
+    	}
+    	#uploadLista li span{
+    		display: block;
+    		width: 25px;
+    		height: 15px;
+    		font-family: "微软雅黑";
+    		font-size: 14px;
+    		background: indianred;
+    		color: white;
+    		line-height: 15px;
+    		font-weight: 700;
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+		.inp{
+			border: 0px;
+			outline:none
+		}	  
+		.divs{
+			width: 500px;
+			position: fixed;
+			display:none;
+			top: 100px;
+			background: #F0CED0;
+		}   	
+	    </style>
+	</head>
+	<body>
+		<a href="{:U('add_class')}" class="btn btn-sm btn-danger">推荐商品</a>
+		<table class="table table-hover" style="margin-top: 15px;">
+			<tr class="active">
+			  	<td width="10%">ID</td>
+			  	<td width="30%">商品名</td>
+			 	<td width="200">原价</td>
+			 	<td width="200">活动价</td>
+			 	<td width="200">操作</td>
+			</tr>
+			<form action="{:U('save')}" method="post">
+				<foreach name='data' item='v' key='k'>
+					<tr>
+						<td>{$k+1}</td>
+						<td>{$v['p_name']}</td>
+						<td>{$v['price']}</td>
+						<td>{$v['tnt']}</td>
+						<td>
+							<a href="{:U('del_class',array('p_p_id'=>$v['p_p_id']))}" class="btn btn-sm btn-danger">下线</a>
+							<a href="javasrcipt:;" p_p_id="{$v['p_p_id']}" class="btn btn-sm btn-danger save">编辑</a>
+						</td>
+					</tr>
+				</foreach>
+			</form>
+			
+		</table>
+		<div class="divs">
+			<form action="{:U('edit_class')}" method="post" >
+				<span>请添加一条活动描述（15字左右）</span><br />
+				<input type="text" name="desc" id="desc" value="" /><br />
+				<table class='table table-bordered table-hover'>
+					<tr class="info">
+						<td style="width: 100px;">上传图片</td>
+						<td lab="uploadFile">
+							<input type="file" name='pic' id='str'/>
+						    <script type="text/javascript">
+						        $(function() {
+						            $('#str').uploadify({
+						                'formData'     : {
+						                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+						                },
+						                'fileTypeDesc' : '上传文件',
+						                'fileTypeExts' : '*.jpg;*.png;*.gif;*.jpeg;',
+						                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+						                'uploader' : "{:U('admin/common/upload',array('name'=>'pic_text'))}",
+						                'buttonText':'选择文件',
+						                'fileSizeLimit' : '8000KB',
+						                'uploadLimit' : 1000,//上传文件数
+	//					                'width':65,
+	//					                'height':25,
+						                'successTimeout':10,//等待服务器响应时间
+						                'removeTimeout' : 0.2,//成功显示时间
+						                'onUploadSuccess' : function(file, data, response) {
+						                    //转为json
+						                    data=$.parseJSON(data);
+						                    //获得图片地址
+						                    var imageUrl = data;
+						                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='url' value='"+imageUrl+"'/></li>";
+						                    $("#uploadLista").html(li);
+						                }
+						            });
+						        });
+						    </script>
+						</td>
+						<td id="uploadLista">
+							<li style='float: left;'>
+								<img style='height: 100px;' src/>
+								<span>X</span>
+								<input type='hidden' name='url' value/>
+							</li>
+						</td>
+					</tr>
+				</table>
+				<div id="ids">
+					<input type="hidden" name="p_p_id"  value="" />
+				</div>
+				<input type="submit" value="确认" />
+			</form>
+		</div>
+		<script>
+			$("#uploadLista li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			$('.save').click(function(){
+				var id = $(this).attr('p_p_id');
+				$.ajax({
+					type:'post',
+					url:"{:U('ajax_alss')}",
+					data:{id:id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata){
+							$('input[name=p_p_id]').val(id);
+							$('input[name=url]').val(phpdata.url);
+							$('input[name=sell_title]').val(phpdata.desc);
+							$('#uploadLista').find('img').attr('src','__UPLOAD__'+phpdata.url+'');
+							$('.divs').show(); 
+						}
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

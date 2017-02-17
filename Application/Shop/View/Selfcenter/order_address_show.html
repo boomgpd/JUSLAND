@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>道具商城——地址管理</title>
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/self_center_common.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/site.css" />
+		<script type="text/javascript" src="__PUBLIC__/Shop/js/jquery-3.1.1.min.js" ></script>
+	</head>
+	<body>
+		<include file="Common/header" />
+		<div class="w clearfix">
+			<!--左侧-->
+			<include file="Selfcenter/left" />
+			
+			<!--右侧-->
+			<div class="site fl">
+				<h2>地址管理</h2>
+				<div class="content">
+					<!--按钮-->
+					<div class="submit">
+						<a href="javascript:;"> + 添加新地址 </a>
+					</div>
+					<!--添加新地址-->
+					<div class="add store">
+						<form action="" method="post">
+							<ul>
+								<li>
+									<label>收货人：</label>
+									<span class="c_orange">*</span>
+									<input type="text" class="text" name="linkman" value=""/>
+								</li>
+								<li>
+									<label>手机号：</label>
+									<span class="c_orange">*</span>
+									<input type="text" class="text" name="phone" value=""/>
+								</li>
+								<li>
+									<label>地区：</label>
+									<span class="c_orange">*</span>
+									<select class="w_140" name="province">
+										<option>请选择</option>
+										<foreach name="area_one" item='v' key='k'>
+											<option value="{$v['area_id']}">{$v['aname']}</option>
+										</foreach>
+									</select>
+									<span class="p_10" >市：</span>
+									<select class="w_100" name="city">
+										<option>请选择</option>
+									</select>
+									<!--<span class="p_10">区：</span>
+									<select class="w_100">
+										<option>请选择</option>
+									</select>-->
+								</li>
+								<li>
+									<label>详细地址：</label>
+									<span class="c_orange">*</span>
+									<textarea name="details"></textarea>
+								</li>
+								<li>
+									<label>邮政编码：</label>
+									<span class="c_orange">*</span>
+									<input type="text" class="text" name="coding" value=""/>
+								</li>
+							</ul>
+							<input type="button" value="确认地址" class="check submit"/>
+							<a href="javascript:;" class="hide">取消</a>
+						</form>
+					</div>
+					
+					<!--编辑新地址-->
+					<div class="add edit" style="display: none;">
+						<form action="{:U('address_edit')}" method="post">
+							<ul>
+								<li>
+									<label>收货人：</label>
+									<span class="c_orange">*</span>
+									<input type="text" class="text" name="linkman" value=""/>
+								</li>
+								<li>
+									<label>手机号：</label>
+									<span class="c_orange">*</span>
+									<input type="text" class="text" name="phone" value=""/>
+								</li>
+								<li>
+									<label>地区：</label>
+									<span class="c_orange">*</span>
+									<select class="w_140" name="province">
+										<option>请选择</option>
+										<foreach name="area_one" item='v' key='k'>
+											<option value="{$v['area_id']}">{$v['aname']}</option>
+										</foreach>
+									</select>
+									<span class="p_10" >市：</span>
+									<select class="w_100" name="city">
+										<option>请选择</option>
+									</select>
+								</li>
+								<li>
+									<label>详细地址：</label>
+									<span class="c_orange">*</span>
+									<textarea name="details"></textarea>
+								</li>
+								<li>
+									<label>邮政编码：</label>
+									<span class="c_orange">*</span>
+									<input type="text" class="text" name="coding" value=""/>
+								</li>
+							</ul>
+							<input type="hidden" name="id" value="" class="edit_id"/>
+							<input type="button" value="确认地址" class="check submit"/>
+							<a href="javascript:;" class="hide">取消</a>
+						</form>
+					</div>
+					<!--地址-->
+					<div class="site_son current">
+						<ul class="clearfix" style="margin-bottom: 10px;">
+								<li class="name">收件人</li>
+								<li class="addr">地址</li>
+								<li class="zcode">邮编</li>
+								<li class="mob" title="{$v['phone']}">手机号</li>
+								<li class="oper" style="text-align: center;width: 147px;">
+									<span>操作</span>
+								</li>
+							</ul>
+						<foreach name="data" item='v' key='k'>
+							<ul class="clearfix">
+								<li class="name">{$v['linkman']}</li>
+								<li class="addr">{$v['address']}</li>
+								<li class="zcode" style="height: 20px;">{$v['coding']}</li>
+								<li class="mob" title="{$v['phone']}">{$v['false_phone']}</li>
+								<li class="oper">
+									<a href="javasceipt:;" <if condition="$v['default'] eq 1"> class="default" <else /> class="normal" </if> address="{$v['id']}">设为默认</a>
+									<a href="javasceipt:;" class="address_edit" address="{$v['id']}">编辑</a>
+									<a href="javasceipt:;" class="address_del" address="{$v['id']}">删除</a>
+								</li>
+							</ul>
+						</foreach>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<include file="Common/footer" />
+		<include file="Public/Tool/sys_alert/index.html" />
+	</body>
+	
+	<script>
+	//添加新地址
+		$(".submit a").click(function(){
+			$(this).parent().siblings(".add.store").show();
+		})
+		$(".add .hide").click(function(){
+			$(this).parents(".add").hide();
+		})
+		
+	//默认地址修改
+		$(".default").click(function(){
+			$(this).parents(".site_son").addClass("current").siblings().removeClass("current");
+			$(this).html("默认地址").parents(".site_son").siblings().find(".default").html("设为默认");
+		});
+		$(".site_son.current").find(".default").html("默认地址");
+		
+	//创建异步获取地址方法
+	$(".add li select.w_140[name=province]").change(function(){
+		var province_id = $(this).val();
+		$.ajax({
+			type:"post",
+			url:"{:U('order/step_area')}",
+			data:{'pid':province_id},
+			dataType:'json',
+			success:function(phpdata){
+				var str = '<option>请选择</option>';
+				$.each(phpdata, function(k,v) {
+					str += '<option value="area_id">'+v.aname+'</option>';
+				});
+				$(".add li select[name=city]").html(str);
+			}
+		});
+	});
+//	创建验证信息是否完整方法
+	$("input[type=button].submit.check").click(function(){
+		var data = $(this).parents('form').serializeArray();
+		$.each(data, function(k,v) {
+			if(v.value == '' && v.name != 'coding' ){
+				wp_alert('请填写完整信息');
+				return;
+			}
+		});
+		$(this).parents('form').submit();
+	})
+	
+	/*创建设置默认收货地址方法*/
+	$(".site_son li.oper a.normal").click(function(){
+		var id = $(this).attr('address');
+		var This = $(this);
+		$.ajax({
+			type:"get",
+			url:"{:U('change_defalut')}",
+			data:{id:id},
+			dataType:'json',
+			success:function(phpdata){
+				$("a.default").html('设为默认').removeClass('default').addClass('normal');
+				This.html('默认地址').addClass('default');
+				if(phpdata !== 'false'){
+					wp_alert('设置成功');
+				}else{
+					wp_alert('设置失败');
+				}
+			}
+		});
+	})
+	
+	/*创建编辑收货地址方法*/
+	$("a.address_edit").click(function(){
+		var id = $(this).attr('address');
+		$.ajax({
+			type:"post",
+			url:"{:U('getOneAddress')}",
+			data:{id:id},
+			dataType:'json',
+			success:function(phpdata){
+				$(".add.edit li input[name=linkman]").val(phpdata.address.linkman);
+				$(".add.edit li input[name=phone]").val(phpdata.address.phone);
+				$(".add.edit li textarea[name=details]").val(phpdata.address.details);
+				$(".add.edit li input[name=coding]").val(phpdata.address.coding);
+				var area_one = '<option>请选择</option>';
+				var area_two = '<option>请选择</option>';
+				$.each(phpdata.area_one, function(k,v) {
+					if(phpdata.address.province == v.area_id){
+						area_one += '<option value="'+v.area_id+'" selected="selected">'+v.aname+'</option>';
+					}else{
+						area_one += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+					}
+				});
+				$(".add.edit li select[name=province]").html(area_one);
+				
+				$.each(phpdata.area_two, function(k,v) {
+					if(phpdata.address.city == v.area_id){
+						area_two += '<option value="'+v.area_id+'" selected="selected">'+v.aname+'</option>';
+					}else{
+						area_two += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+					}
+				});
+				
+				$(".add.edit li select[name=city]").html(area_two);
+				var hidden = '<input type="hidden" name="id" value="'+phpdata.address.id+'"/>';
+				$(".add.edit form input[type=hidden]").remove();
+				$(".add.edit form").append(hidden);
+				
+				$(".add.edit").show();
+			}
+		});
+	})
+	
+	/*创建删除方法*/
+	$("a.address_del").click(function(){
+		var id = $(this).attr('address');
+		var This = $(this);
+		$.ajax({
+			type:"get",
+			url:"{:U('address_del')}",
+			data:{id:id},
+			dataType:'json',
+			success:function(phpdata){
+				wp_alert('删除成功');
+				This.parents('ul').remove();
+			}
+		});
+	})
+	
+	
+	</script>
+</html>

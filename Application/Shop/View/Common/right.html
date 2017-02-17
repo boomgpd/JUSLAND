@@ -1,0 +1,95 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/Shop/common/css/reset.css" />
+		<script type="text/javascript" src="__PUBLIC__/Shop/common/js/jquery-3.1.1.min.js" ></script>
+		<style>
+			.kf{position: fixed;bottom: 20px;right: 0;}
+			.kf a{display: block;width: 30px;padding:10px 0;font-size: 16px;background-color: #EFB26F;color: #fff;}
+			.kf a:hover{background-color: #79B6C8;}
+			.kf img{display: block;margin: 0px auto 10px;}
+			.kf p{text-align: center;}
+		</style>
+	</head>
+	<body>
+		<include file="Public/Tool/sys_alert/index.html" />
+		<div class="kf">
+			<a href="javascript:;">
+				<img src="__PUBLIC__/Shop/common/img/user.png">
+				<p>在线客服</p>
+			</a>
+		</div>
+		<script type="text/javascript">
+			$(".kf a").click(function(){
+				var is_merchant = "<?php echo $_SESSION['merchant_id']?>";
+				if(is_merchant){
+					window.open("{:U('cose')}"); 
+				}else{
+					wp_confirm('您还没有登录，去登陆吗？',"http://wp.c-wia.com/Main/login/login.html?backname="+window.location.href+"?");
+				}
+			})
+		</script>
+	</body>
+</html>-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/Shop/common/css/reset.css" />
+		<script type="text/javascript" src="__PUBLIC__/Shop/common/js/jquery-3.1.1.min.js" ></script>
+	<style>
+		.cart_right{position: fixed;top: 0;right: 0;background: #000;z-index: 2000;width: 35px;height: 100%;font-size: 14px;color: #fff;}
+		.cart_cot{color: #fff;text-align:center;line-height: 20px;position: absolute;top: 20%;}
+		.cart_cot:hover{background-color: #C40000;}
+		.cart_cot span{display:block;width:20px;margin:0 auto;}
+		.cart_cot i{width:35px;height:35px;display:block; background:url(__PUBLIC__/Shop/img/cart_img/car.png) no-repeat;}
+		.cart_cot label{display: inline-block;width:20px;height:20px;text-align:center;line-height:20px;background-color: #C40000;border-radius: 50%;margin-top: 10px;}
+		
+		.cart_kf{color: #fff;text-align:center;line-height: 20px;position: absolute;bottom: 115px;border-top: 1px solid #fff;padding-bottom: 10px;}
+		.cart_kf:hover{background-color: #C40000;}
+		.cart_kf i{width:35px;height:35px;display:block; background:url(__PUBLIC__/Shop/img/cart_img/user.png) center center no-repeat;}
+		
+		.fz_top{color: #fff;text-align:center;line-height: 20px;position: absolute;bottom: 20px;padding: 10px 0;border-top: 1px solid #fff;}
+		.fz_top:hover{background-color: #C40000;}
+		.fz_top i{width:35px;height:35px;display:block; background:url(__PUBLIC__/Shop/img/cart_img/top.png) center center no-repeat;}
+	</style>
+	</head>
+	<body>
+		<div class="cart_right">
+			<a href="http://china.stinary.com/shop/goods/cart.html" class="cart_cot">
+				<i></i>
+				<span id="end">购物车</span>
+				<label>{$cartss}</label>
+			</a>
+			<a href="javascript:;" class="cart_kf">
+				<i></i>
+				<span>联系客服</span>
+			</a>
+			<a href="javascript:;" class="fz_top">
+				<i></i>
+				<span>返回顶部</span>
+			</a>
+		</div>
+		<!--<div id="msg">已成功加入购物车！</div>-->
+	</body>
+	
+	<script type="text/javascript">
+	//返回顶部
+		$(function(){
+			$(".fz_top").click(function() {
+		    	$("body,html").animate({scrollTop:0}, 500);
+			}); 
+		})
+		$(".cart_kf").click(function(){
+				var is_merchant = "<?php echo $_SESSION['merchant_id']?>";
+				if(is_merchant){
+					window.open("{:U('cose')}"); 
+				}else{
+					wp_confirm('您还没有登录，去登陆吗？',"http://wp.c-wia.com/Main/login/login.html?backname="+window.location.href+"?");
+				}
+			})
+	</script>
+</html>

@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>用户个人收集</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/draw/css/style1.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/reset.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/waterfall_index.css" />
+	
+</head>
+
+<body style="background:#efefec;">
+<include file="Common/header" />
+<!--全部内容的大盒子开始-->
+<div class="w">
+<div class="touxiangkuai_mt" >
+	<div class="uph clearfloat">
+    	<div class="yuanjiaohezi fl"><!--圆角盒子开始-->
+    	<div class="renwukuai">
+        	<div>
+        		<img src="{$data['member']['headimg']}">
+            </div>
+        </div>
+        </div><!--圆角盒子结束-->
+        <div class="uph_right fr clearfix"><!--右侧文字及设置按钮开始-->
+        	<div class="uph_right_left fl">{$data['member']['member_name']}</div>
+            <div class="uph_right_right fr">
+            	<a href="#" class="anniu">
+                	<span>账号设置</span>
+                </a>
+            </div>
+        </div><!--右侧文字及设置按钮结束-->
+        <div class="uph_dibu"><!--头像块底部开始-->
+        	<ul>
+            	<li><a href="#" class="uph_dibu_gongneng wenzi_juzhong02">{$data['member']['board_num']}画板</a></li>
+                <li><a href="{:U('board/single',array('member_id'=>$_SESSION['member_id']))}" class="uph_dibu_gongneng wenzi_juzhong">{$data['member']['board_list_num']}收集</a></li>
+        	</ul>
+            <div class="zhong fr">
+					<input type="text" name="board" class="serach01" value="" placeholder="搜索你喜欢的"/>
+					<a href="#" class="icon02"><img src="__PUBLIC__/Home/draw/images/qwe.jpg" alt=""/></a>
+			</div>
+        </div><!--头像块底部结束-->
+    </div>
+</div>
+<!--头像块部分结束-->
+<!--添加画板-->
+		<div class="tk_add">
+			<div class="tk_top">
+				<span class="fl">添加画板</span>
+				<a href="javascript:;" class="tk_close1 fr">
+					<img src="__PUBLIC__/Home/img/waterfall/tk_close.png" style="margin-top: -40px;">
+				</a>
+			</div>
+			<div class="tk_input">
+				<span>名称：</span><input type="text" name="board_name" placeholder="请输入画板名称" />
+			</div>
+			<div class="tk_bot">
+				<a href="javascript:;" class="tk_bot_down">添加画板</a>
+			</div>
+		</div>
+<div id="shoujineirong"><!--收集内容组开始-->
+	<div>
+    	<ul>
+    		<li style="border:0px;">
+	            <div class="one_wh fl" >
+	                <div class="one_wh_wh" >
+	                   	<a href="javascript:;">
+	                    	<img src="__PUBLIC__/Home/draw/images/chuanjian.png"  >
+	                  	 </a>   
+	                </div>
+	            </div>
+           	</li>
+           	<script type="text/javascript">
+           		$(".one_wh_wh").click(function(){
+           			$(".tk_add").show();
+           		})
+           		$(".tk_close1 img").click(function(){
+           			$(".tk_add").hide();
+           		})
+           	</script>
+        <foreach name="data['board']" item="v" key='k'>
+            	<li class="tai">
+            		<div class="boximg_w baise_bj pt10px">
+                		<div class="neirong_boximg_w">
+                    		<div class="boxtu">
+                    			<div class="boxtu02">
+                    				<if condition="$v['list'][0]['thumb'][0]">
+	                    				<a href="">
+	                    					<img src="__UPLOAD__{$v['list'][0]['thumb'][0]}" width="100%" height="100%">
+	                    				</a>
+                    				</if>
+                            		<a href="{:U('inside',array('board_id'=>$v['board_id'],'member_id'=>$v['member_member_id']))}" class="boxtu02_a" style="border: 1px solid #ededed;">
+                            			<span class="boxtu_span01">{$v['board_name']}</span>
+                               		 	</br>
+                               		 	<span class="boxtu_span02">{$v['border_list'][0]['box']['num']}</span>
+                          	  		</a>
+                       			</div>
+                        	</div>
+                        	<div class="sangexiaotu clearfloat mt3px">
+                    			<for start="1" end="4">
+		                  				<if condition="$v['list'][$i]['thumb'][0]">
+				                  			<div class="sangexiaotu_left sangexiaotu_wh fl">
+				                  				<img src="__UPLOAD__{$v['list'][$i]['thumb'][0]}" style="width: 100%;height: 100%;">
+				                  			</div>
+		                  				<else />
+		                  					<div class="sangexiaotu_left sangexiaotu_wh fl">
+				                  			</div>
+		                  				</if>
+	                        	</for>
+                       		</div>
+	                       	<a href="{:U('save',array('board_id'=>$v['board_id']))}" class="bianji_anniu text_center">
+	                        	<span>编辑</span>
+	                       	</a>
+                   	 	</div>
+               	 	</div>
+     			</li>
+        </foreach>
+        </ul>
+		<div style="width: 100%;height: 50px;border-top:1px solid #999999;float: left;text-align: center;"><img src="__PUBLIC__/Home/draw/images/jia.jpg" alt="" /></div>
+   	 </div>
+	</div><!--收集内容组结束-->
+</div><!--全部内容的大盒子结束-->
+	<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript">
+			$('.tk_bot_down').click(function(){
+				var data  = $("input[name=board_name]").val();
+				$.ajax({
+					type:"post",
+					url:"{:U('board')}",
+					data:{data:data},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata){
+							var str = '<li class="tai"><div class="boximg_w baise_bj pt10px"><div class="neirong_boximg_w"><div class="boxtu"><div class="boxtu02"><a href=""><img src="" width="100%"height="100%"></a>';
+								str += '<a href="{:U('inside',array('board_id'=>'+phpdata.board_id+','member_id'=>'+phpdata.member_member_id+'))}" class="boxtu02_a">';
+								str += '<span class="boxtu_span01">'+phpdata.board_name+'</span></br>';
+                				str += '<span class="boxtu_span02">'+phpdata.board_list_num+'</span>';
+                    			str += '</a></div></div><div class="sangexiaotu clearfloat mt3px"><div class="sangexiaotu_left sangexiaotu_wh fl"><img src="" style="width: 100%;height: 100%;"></div><div class="sangexiaotu_left sangexiaotu_wh fl"><img src="" style="width: 100%;height: 100%;"></div><div class="sangexiaotu_left sangexiaotu_wh fl"><img src="" style="width: 100%;height: 100%;"></div></div>';
+                    			str += '<a href="{:U('save',array('board_id'=>'+phpdata.board_id+'))}" class="bianji_anniu text_center">';
+                    			str += '<span>编辑</span></a></div></div></li>';
+                    			$('#shoujineirong div ul').append(str);
+                    			$(".tk_add").hide();
+							}else{
+								
+							}
+					}
+				});
+			})
+		$('.icon02').click(function(){
+			var data = $("input[name=board]").val();
+			var urls = "{:U('index')}"+"?board="+data;
+			window.location.href=urls;
+		})
+		$('.icon').click(function(){
+			var data = $("input[name=keyword]").val();
+			var urls = "{:U('Waterfall/index')}"+"?keydorw="+data;
+			window.location.href=urls;
+		})
+		</script>
+
+</body>
+</html>

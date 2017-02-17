@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/minti/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/minti/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/minti/Flat/img/favicon.ico">
+	</head>
+	<body>
+		<form action="" method="post">
+			<input type="hidden" name="picture_list_id" id="" value="{$_GET['picture_list_id']}" />
+			<button><a href="{:U('index_list')}" >返回</a></button>
+			<input type="submit" value="确认"/>
+			<span>只可以选取一个</span>
+			<table class="table table-hover">
+				<tr class="active">
+				  <th width="100">aid</th>
+				  <th>标题</th>
+				  <th>瀑布图</th>
+				  <th>添加时间</th>
+				</tr>
+					<foreach name="att" item="v" key="k">
+						<tr calss="remover">
+							<td><input type="checkbox" name="li" value="{$v['box']['p_id']}" />{$k+1}</td>
+							<td>{$v['box']['title']}</td>
+							<td><img src="__UPLOAD__{$v['box']['url'][0]}" alt="" height="50px"/></td>
+							<td>{$v['box']['addtime']}</td>
+						</tr>
+					</foreach>
+			</table>
+		</form>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('.dele').click(function(){
+				var del = $(this).attr('del');
+				$.ajax({
+					type:'post',
+					url:"{:U('admin/pictext/del')}",
+					data:{del:del},
+					dataType:'text',
+					success:function(phpdata){
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

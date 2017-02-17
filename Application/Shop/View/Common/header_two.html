@@ -1,0 +1,276 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/header_two.css" />
+		<div class="header">
+			<div class="w clearfix">
+				<a href="{:U('home/index/index',array('web_type'=>'aW5kZXg='))}" class="logo"><img src="__PUBLIC__/Home/img/new/img_text/three_header_logo.png" width="155px" height="40px"></a>
+				<ul class="header_left fl">
+					<li><a href="{:U('home/index/index',array('web_type'=>'aW5kZXg='))}">回到首页</a></li>
+					<li><a href="{:U('home/waterfall/index',array('web_type'=>'d2F0ZXJmYWxs'))}">空间灵感</a></li>
+					<li><a href="{:U('home/Plot/index_free',array('web_type'=>'cGxhbl9wcmljZQ=='))}">策划与报价</a></li>
+					<if condition="$_SESSION['web_type'] eq 'bmV3X3N0cmF0ZWd5'">
+						<li><a href="{:U('home/media/index',array('web_type'=>'bmV3X3N0cmF0ZWd5'))}" class="c_blue">结婚攻略</a></li>
+					<else />
+						<li><a href="{:U('home/media/index',array('web_type'=>'bmV3X3N0cmF0ZWd5'))}" >结婚攻略</a></li>
+					</if>
+					<if condition="$_SESSION['web_type'] eq 'bWVyY2hhbnRfYnJhbmQ='">
+						<li><a href="{:U('home/merchant/list_page',array('web_type'=>'bWVyY2hhbnRfYnJhbmQ='))}" class="c_blue">结婚品牌</a></li>
+					<else />
+						<li><a href="{:U('home/merchant/list_page',array('web_type'=>'bWVyY2hhbnRfYnJhbmQ='))}" >结婚品牌</a></li>
+					</if>
+
+					<li><a href="{:U('index/index',array('web_type'=>'RElZ'))}">DIY计划</a></li>
+				</ul>
+				<if condition="$member">
+					<ul class="header_right fr">
+						<li class="right_sub">
+							<a href="#">{$member['member_name']} ▼</a>
+							<ul class="vip_name clearfix" style="position: absolute;top: 40px;right: 80px;z-index: 999;">
+								<li><a href="{:U('shop/Selfcenter/index')}">个人中心</a></li>
+								<!-- <li><a href="{:U('board/index',array('member_id'=>$_SESSION['member_id']))}">我的画板</a></li> -->
+								<li><a href="javascript:;" onclick="check_out()" >退出登录</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" style="display: none;"><img src="__PUBLIC__/Home/img/new/img_text/login_ts.png"></a>
+							<a href="#"><img src="__PUBLIC__/Home/img/new/img_text/login_ts.gif"style="padding-bottom:5px;"></a>
+						</li>
+					</ul>
+				<else />
+					<ul class="header_right fr">
+						<li><a href="javascript:;" class="header_login">登录</a></li>
+						<li><a href="{:U('Registe/index')}">注册</a></li>
+						<li style="color: #fff;">咨询热线：{$header_two['phone']}</li>
+					</ul>
+				</if>
+			<script>
+				$(function(){
+					$(document).on('mouseover mouseout','.right_sub',function(){
+						$(this).find('.vip_name').toggle();
+					})
+				})
+			</script>
+			</div>
+		</div>
+<!--开始登陆弹窗-->
+<div class="login">
+	<ul class="classify clearfix">
+		<li>
+			<a href="#" class="bor_bot">个人用户</a>
+		</li>
+		<li>
+			<a href="#">企业用户</a>
+		</li>
+		<li>
+			<a href="#">婚礼人</a>
+		</li>
+	</ul>
+	<form action="#" method="post" class="user_form" id="member">
+		<ul class="user_data">
+			<li>
+				<label>用户名</label>
+				<input type="text" name="name" des_content = "用户名"/>
+				<span>请输入用户名！</span>
+			</li>
+			<li>
+				<label>密码</label>
+				<input type="password" name="password" des_content = "密码"/>
+				<span>请输入密码！</span>
+			</li>
+			<li>
+				<label>验证码</label>
+				<input type="text" name="code" style="width: 100px;" des_content = "验证码"/>
+				<img src="{:U('Common/code')}" width="80px" height="32px" style="vertical-align: top;">
+				<a href="javascript:;" style="color: #fff;border-bottom: 1px solid #fff;margin-left: 5px;" class="change_code">换一张</a>
+				<span>请输入验证码！</span>
+			</li>
+			<li>
+				<label></label>
+				<!--<input type="checkbox" style="vertical-align: top;" /> 一周内免登陆-->
+				<a href="#" style="color: #c5c5c5;margin-left: 50px;border-bottom: 1px solid #fff;">您忘记了密码？</a>
+			</li>
+		</ul>
+		<input type="hidden" name="form_type"  value="member" />
+		<input type="button" value="登录" style="width: 100px;text-align: center;height: 35px;line-height: 35px;background-color: #6C6C6C;color:#fff;border: 0;margin: 20px 20px 20px 110px;font-size: 16px;" />
+		<a href="{:U('Registe/index')}" style="color: #c5c5c5;">注册</a>
+	</form>
+	<form action="#" method="post" style="display: none;" class="user_form" id="merchant">
+		<ul class="user_data">
+			<li>
+				<label>用户名</label>
+				<input type="text" name="name" des_content = "用户名"/>
+				<span>请输入用户名或手机号！</span>
+			</li>
+			<li>
+				<label>密码</label>
+				<input type="password" name="password" des_content = "密码"/>
+				<span>密码不正确！</span>
+			</li>
+			<li>
+				<label>验证码</label>
+				<input type="text" name="code" style="width: 100px;" des_content = "验证码"/>
+				<img src="{:U('Common/code')}" width="80px" height="32px" style="vertical-align: top;">
+				<a href="javascript:;" style="color: #fff;border-bottom: 1px solid #fff;margin-left: 5px;" class="change_code">换一张</a>
+				<span>验证码错误！</span>
+			</li>
+			<li>
+				<label></label>
+				<!--<input type="checkbox" style="vertical-align: top;" /> 一周内免登陆-->
+				<a href="#" style="color: #c5c5c5;margin-left: 50px;border-bottom: 1px solid #fff;">您忘记了密码？</a>
+			</li>
+		</ul>
+		<input type="hidden" name="form_type"  value="merchant" />
+		<input type="button" value="登录" style="width: 100px;text-align: center;height: 35px;line-height: 35px;background-color: #6C6C6C;color:#fff;border: 0;margin: 20px 20px 20px 110px;font-size: 16px;"/>
+		<a href="{:U(registe/index)}" style="color: #c5c5c5;">注册</a>
+	</form>
+	<form action="#" method="post" style="display: none;" class="user_form" id="diy_marrier">
+		<ul class="user_data">
+			<li>
+				<label>用户名</label>
+				<input type="text" name="name" des_content = "用户名"/>
+				<span>*请输入用户名或手机号登录</span>
+			</li>
+			<li>
+				<label>密码</label>
+				<input type="password" name="password" des_content = "密码"/>
+				<span>*请输入密码</span>
+			</li>
+			<li>
+				<label>验证码</label>
+				<input type="text" name="code" style="width: 100px;" des_content = "验证码"/>
+				<img src="{:U('Common/code')}" width="80px" height="32px" style="vertical-align: top;">
+				<a href="javascript:;" style="color: #fff;border-bottom: 1px solid #fff;margin-left: 5px;" class="change_code">换一张</a>
+				<span>*请输入右侧验证码</span>
+			</li>
+			<li>
+				<label></label>
+				<!--<input type="checkbox" style="vertical-align: top;" /> 一周内免登陆-->
+				<a href="#" style="color: #c5c5c5;margin-left: 50px;border-bottom: 1px solid #fff;">您忘记了密码？</a>
+			</li>
+		</ul>
+		<input type="hidden" name="form_type"  value="diy_marrier" />
+		<input type="button" value="登录" style="width: 100px;text-align: center;height: 35px;line-height: 35px;background-color: #6C6C6C;color:#fff;border: 0;margin: 20px 20px 20px 110px;font-size: 16px;"/>
+		<a href="{:U(registe/index)}" style="color: #c5c5c5;">注册</a>
+	</form>
+	<a href="javascript:;" class="login_close"><img src="__PUBLIC__/Home/img/header/login_close.png"></a>
+</div>
+<div id="background_cover" style="width: 100%;height: 100%;background: black;opacity: 0.4;position: fixed;z-index: 99;top: 0;"></div>
+<include file="Common/alert_view_style" />
+<!--登录弹窗结束-->
+<script type="text/javascript">
+	/**
+	 * 给登录弹框添加定位属性
+	 */
+//	window.onload = function(){
+//		
+//	}
+	var login_type = 0; 
+	//	给登录按钮添加单机事件
+	$(".header_login").click(function(){
+		$("#background_cover").css('display','block');
+		$(".login").css('display','block');
+		if(login_type == 0){
+			var left = (document.body.clientWidth - 520)/2;
+			var top =  ($(window).height() - 440)/2;
+			$(".login").css({"left":left,"top":top});
+			login_type == 1;
+		}
+		
+	})
+	//	给×号添加单机事件
+	$(".login_close img").click(function(){
+		$("#background_cover").css('display','none');
+		$(".login").css('display','none');
+	})
+	//	给登录弹窗添加tab切换
+	$(document).on('click','.classify li',function(){
+				var num = $(this).index();
+				$('.user_form').eq(num).show().siblings("form").hide();
+				$(this).find("a").addClass("bor_bot").parent("li").siblings("li").find("a").removeClass("bor_bot");
+	})
+	
+	//选中文字颜色改变
+	$(".user_data li input[type=text]").click(function(){
+		$(this).prev("label").css("color","#fff");
+		$(this).parent("li").siblings("li").find("label").css("color","#c5c5c5");
+	});
+	
+	
+//	给input框添加失去焦点事件
+	$(".user_data li input").blur(function(){
+		var form_type = $(this).parents('form').attr('id');//表单类型
+		var name = $(this).attr('name');//input的name值
+		var value = $(this).attr('value');//input的value值
+		var warnning = $(this).attr('des_content');
+		var data = {
+			form_type : form_type,
+			name      : name,
+			value     : value
+		};
+		if(!value){
+			$(this).siblings('span').html(warnning+'不能为空').css('color','#E05E06');
+		}else{
+//			$(this).siblings('span').html('验证通过').css('color','green');
+			$(this).siblings('span').html('');
+		}
+	});
+	
+	$(".user_form input[type=button]").click(function(){
+		var form_type = $(this).parents('form').attr('id');//表单类型
+		var data = $(this).parents('form').serializeArray();
+		$.each(data, function(k,v) {
+			if(!v.value){
+				$(this).parents('form').find('input[name='+v.name+']').siblings('span').html(warnning+'不能为空').css('color','#E05E06');
+				return false;
+			}
+		});
+		check_login(data,form_type);
+	})
+//	替换验证码
+	$(".change_code").click(function(){
+		$(this).siblings('img').attr('src',"{:U('Common/code')}");
+	})
+	
+//	创建异步方法进行判定是否通过
+	function check_login(data,form_type){
+		$.ajax({
+			type:"post",
+			url:"{:U('home/login/check_login')}",
+			data:data,
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata['type'] == '101'){
+					//验证码错误
+					$(""+form_type+" .user_data li input[name=code]").siblings('span').html(phpdata['content']);
+					window.wxc.xcConfirm(phpdata['content'], window.wxc.xcConfirm.typeEnum.confirm);
+					$(""+form_type+" input[name=code]").siblings('img').attr('src',"{:U('Common/code')}");
+				}else if(phpdata['type'] == '102'){
+					//用户名不存在
+					$(""+form_type+" .user_data li input[name=name]").siblings('span').html(phpdata['content']);
+					window.wxc.xcConfirm(phpdata['content'], window.wxc.xcConfirm.typeEnum.confirm);
+					$(""+form_type+" input[name=code]").siblings('img').attr('src',"{:U('Common/code')}");
+				}else if(phpdata['type'] == '103'){
+					//密码输入错误
+					$(""+form_type+" .user_data li input[name=password]").siblings('span').html(phpdata['content']);
+					window.wxc.xcConfirm(phpdata['content'], window.wxc.xcConfirm.typeEnum.confirm);
+					$(""+form_type+" input[name=code]").siblings('img').attr('src',"{:U('Common/code')}");
+				}else if(phpdata['type'] == '100'){
+					//登录成功
+					var txt = '登录成功';
+					window.location.reload();
+				}
+			}
+		});
+	}
+	//	创建退出登录方法
+	function check_out(){
+		$.ajax({
+			type:"post",
+			url:"{:U('/Home/login/out')}",
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata){
+					window.location.reload();
+				}
+			}
+		});
+	}
+</script>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+		<!-- Loading Bootstrap -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+		<!-- Loading Flat UI -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+		<link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+		<link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.7.2.min.js"></script>
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+		<!--[if lt IE 9]>
+		<script src="dist/js/vendor/html5shiv.js"></script>
+		<script src="dist/js/vendor/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<form action="" method="post">
+			<div class="alert alert-success">
+				添加用户
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">用户名称</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入用户名称"  name="admin_name">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">用户密码</label>
+				<input id="exampleInputEmail1" class="form-control" type="password" placeholder="请输入用户密码"  name="password">
+			</div>
+			<p class="btn btn-primary">
+				分配角色
+			</p>
+			<table class="table table-bordered table-hover" id='attr' class="info">
+				<tr class="info">
+					<td width="50%">
+						<span id="">
+							请选择角色:
+						</span>
+						<select name="role[]" class="" style="padding-left:20%;padding-right: 20%;margin-left:10%">
+							<foreach name = "roleData" item = 'v'>
+								<option value="{$v.id}">{$v.name}</option>
+							</foreach>
+						</select>
+					</td>
+					<td class="msg" width="40%">
+						<span id="">
+							角色描述:
+						</span>
+						<input type="" name="" id="" value="{$remark}" style="margin-left:10%;"/>
+					</td>
+					<td>
+						<span class="btn btn-success add">增加角色</span>
+					</td>
+				</tr>
+			</table>
+			<button class="btn btn-primary btn-block" type="submit">
+			确定
+			</button>
+		</form>
+		
+
+		<script type="text/javascript">
+			$(function(){
+				//获得描述
+				$("select[name='role[]']").live('change',function(){
+					var This = $(this); 
+					var id = $(this).val();
+					$.ajax({
+						type:'post',
+						url:"{:U('getRemark')}",
+						data:{id:id},
+						dataType:'text',
+						success:function(phpData){
+							This.parent('td').siblings('.msg').find('input').val(phpData);
+						}
+					});
+				});
+				
+				
+				//添加角色
+				$('.add').live('click',function(){
+					//点击的父级tr
+					var parent = $(this).parents('tr');
+					//克隆
+					var clone = parent.clone();
+					//修改class
+					clone.find('.add').removeClass('btn-success add').addClass('btn-danger del').html('删除节点');
+					//追加
+					parent.after(clone);
+				});
+				
+				//删除
+				$('.del').live('click',function(){
+					$(this).parents('tr').remove();
+				})
+			});
+		</script>
+	</body>
+</html>

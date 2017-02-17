@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	#cont{
+	    		border: 0px;
+	    		outline:none;
+	    	}
+	    	#link{
+	    		border: 0px;
+	    		outline:none;
+	    	}
+	    </style>
+	</head>
+	<body>
+			<a href="{:U('add_choose')}"><button type="button" class="btn btn-primary">添加推荐</button></a>
+			<table class="table table-hover">
+				<tr class="active">
+				  <th width="30">ID</th>
+				  <th>商家名称</th>
+				  <th width="70">排名</th>
+				  <th>排名字段值</th>
+				  <th>星级</th>
+				  <th width="160">操作</th>
+				</tr>
+				<foreach name="data" item="v" key="k">
+					<tr class="dex">
+						<td>{$k+1}</td>
+						<td>{$v.m_name}</td>
+						<td>{$k+1}</td>
+						<td>{$v.rank}</td>
+						<td>
+							<if condition="$v['level'] eq 5">
+								<span>★★★★★</span>
+							<elseif condition="$v['level'] eq 4"/>
+								<span>★★★★☆</span>
+							<elseif condition="$v['level'] eq 3"/>
+								<span>★★★☆☆</span>
+							<elseif condition="$v['level'] eq 2"/>
+								<span>★★☆☆☆</span>
+							<elseif condition="$v['level'] eq 1"/>
+								<span>★☆☆☆☆</span>
+							</if>
+						</td>
+						<td>
+							<a href="javascript:;" msid="{$v['merchant_choose_id']}" class="btn btn-sm btn-success edit">编辑</a>
+							<a href="javascript:if(confirm('确认删除此条推荐吗？')) location.href='{:U('Merchant/del_choose',array('id'=>$v['merchant_choose_id']))}';" class="btn btn-sm btn-danger">删除</a>
+						</td>
+					</tr>
+				</foreach>
+			</table>
+			<if condition="!empty($data)">
+			<style>
+				#box{
+					width:100%;
+					height:100%;
+					position:absolute;
+					top:0px;left:0px;
+					z-index: 100;
+					background-color:rgba(0,0,0,0.1);
+					display: none;
+				}
+				form{
+					width:400px;
+					border:2px solid #bdc3c7;
+					border-radius:10px;
+					position:absolute;
+					background-color: white;
+					padding:20px;
+				}
+			</style>
+			<div id="box">
+			<form class="form-horizontal" role="form" method="post">
+				<span style="position: absolute;right:5px;top:3px;cursor: pointer;" id="none">X</span>
+			  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">排名</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="inputEmail3" name="rank">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">星级</label>
+		    <div class="col-sm-10">
+		      <select class="form-control" name="level">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">4</option>
+				  <option value="5">5</option>
+				</select>
+		    </div>
+		  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			    	<input type="hidden" name="merchant_choose_id"/>
+			      <button type="submit" class="btn btn-default">确定</button>
+			    </div>
+			  </div>
+			</form>
+			</div>
+			</if>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<if condition="!empty($data)">
+		<script>
+			$(function(){
+				$('.edit').click(function(){
+					var id = $(this).attr('msid');
+					$.ajax({
+						type:"post",
+						url:"{:U('Merchant/edit_choose')}",
+						data:{id:id},
+						dataType:'json',
+						async:false,
+						success:function(phpdata){
+							$("form input[name='rank']").val(phpdata.rank);
+							var str = '';
+							for(var i = 1;i <= 5;i++){
+								if(i == phpdata.level){
+									str += "<option value="+i+" selected='selected'>"+i+"</option>";
+								}else{
+									str += "<option value="+i+">"+i+"</option>";
+								};
+							};
+							$("form select[name='level']").html(str);
+							var width = document.documentElement.clientWidth;
+							var height = document.documentElement.clientHeight;
+							var h = $('form').height();
+							var w = $('form').width();
+							var left = (width - w) / 2 + 'px';
+							var top = (height - h) / 3 + 'px';
+							$('form').css({left:left,top:top});
+							$('#box').css({width:'100%',height:'100%',display:'block'});
+							$('form').find("input[type='hidden']").val(id);
+						}
+					});
+				})
+				
+				$('#none').click(function(){
+					$(this).parents('#box').css('display','none');
+				})
+			})
+		</script>
+		</if>
+	</body>
+</html>

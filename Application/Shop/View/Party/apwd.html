@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>婚礼人——修改手机</title>
+		<link rel="stylesheet" href="__PUBLIC__/Selfcenter/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Selfcenter/css/portrait2.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Selfcenter/css/common.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/self_center_common.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/orders.css" />
+		<script type="text/javascript" src="__PUBLIC__/Selfcenter/js/jquery-3.1.1.min.js" ></script>
+	</head>
+	<body style="background: #F0F4F5;">
+		<include file="Common/header" />
+			<div class="w clearfix">
+			<include file="Selfcenter/left" />
+			<div class="portrait_right fl">
+				<!--修改手机-->
+				<div class="compile">
+					<h2>设置密码</h2>
+					<form action="{:U('check_pwd')}" method="post">
+						<ul>
+							<li>
+								<label>原密码：</label>
+								<input type="password" name="password_yuan"/>
+							</li>
+							<li>
+								<label>新密码：</label>
+								<input type="password" name="password_xin"/>
+							</li>
+							<li>
+								<label>确认密码：</label>
+								<input type="password" name="password"/>
+							</li>
+							<li class="yes">
+								 <a href="javascript:;" class="sub">确定</a>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+			<!--右侧线条-->
+			<div class="bor_right fr"></div>
+		</div>
+	</div>
+	</body>
+	
+	<script>
+		$('.sub').click(function(){
+			$('form').submit();
+		})
+	</script>
+	
+	<script>
+		var height = document.documentElement.clientHeight;
+		var h_50 = height-50;
+		$(".basic_left").css("height",h_50);
+		$(".bor_right").css("height",h_50);
+	//用户信息
+		$(".user").hover(function(){
+			$(this).find("ul").toggle();
+		})
+	</script>
+	
+	<script>
+	//左侧导航点击
+		$(".basic_left ul li a").click(function(){
+			$(this).addClass("current").show().parent("li").siblings("li").find("a").removeClass("current").siblings("ul").hide();
+		})
+		$(".aq").click(function(){
+			$(this).siblings("ul").toggle();
+		})
+	</script>
+</html>

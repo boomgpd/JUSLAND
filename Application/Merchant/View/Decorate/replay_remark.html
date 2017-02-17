@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/bootstrap/css/bootstrap.min.css" />
+	
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span12">
+
+
+		<fieldset>
+			<legend>回复点评</legend>
+			<table class='table table-bordered table-hover'>
+				<thead>
+					<tr>
+						<th colspan="2" class="btn btn-primary">用户点评信息</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info">
+						<td>用户名称</td>
+						<td>{$data['member_name']}</td>
+					</tr>
+					<tr class="info">
+						<td>评论内容</td>
+						<td style="text-indent: 2rem;">{$data['content']}</td>
+					</tr>
+					<tr class="info">
+						<td>评论时间</td>
+						<td>{$data['addtime']}</td>
+					</tr>
+					<tr class="info">
+						<td>上传的图片</td>
+						<td>
+							<foreach name="data['list_img']" item='v' key='k'>
+								<img src="__UPLOAD__{$v}" style="height: 100px;margin-right: 5px;"/>
+							</foreach>
+						</td>
+					</tr>
+					<tr class="info">
+						<td>服务名称</td>
+						<td>{$data['service_type']}</td>
+					</tr>
+					<tr class="info">
+						<td>{$data['space_num']}</td>
+						<td>3</td>
+					</tr>
+					<tr class="info">
+						<td>{$data['star_num']}</td>
+						<td>5</td>
+					</tr>
+				</tbody>
+			</table>
+		<form action="" method='post'>
+			<legend>回复点评</legend>
+			<table class='table table-bordered table-hover'>
+				<thead>
+					<tr>
+						<th colspan="2" class="btn btn-primary">用户点评信息(回复内容内不能包含数字)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info">
+						<td>回复内容</td>
+						<td>
+							<textarea name="replay_content" rows="4" cols="50"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>	
+			<input type="hidden" name="merchant_remark_id" value="{$data['merchant_remark_id']}" />
+			<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+		</form>
+		
+		</fieldset>
+
+	</div>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<foreach name="data" item='v' key='k'>
+	<li >
+		<div class="img_block">
+			<foreach name="v['box']['url']" item='value' key='key'>
+				<a href="{:U('qing',array('p_id'=>$v['box']['p_id']))}"><img src="__UPLOAD__{$value}" /></a>
+			</foreach>
+			<if condition="!$_SESSION['member_id']">
+				<a href="#" title="点击获取" p_id="{$v['box']['p_id']}" class="zoom">GET</a>
+
+				<a href="#" tida="{$v['box']['p_id']}" class="ilike click">我喜欢</a>
+				<else />
+				<in name="v['box']['p_id']" value="$data['member']['picture_click']">
+					<a href="#" title="点击获取" p_id="{$v['box']['p_id']}" class="zoom">GET</a>
+					<a href="#" tida="{$v['box']['p_id']}" class="ilike_be click">我喜欢</a>
+					<else />
+					<a href="#" title="点击获取" p_id="{$v['box']['p_id']}" class="zoom">GET</a>
+
+					<a href="#" tida="{$v['box']['p_id']}" class="ilike click">我喜欢</a>
+				</in>
+			</if>
+
+		</div>
+		<div class="bottom">
+			<h3 style="padding: 0;">
+								<foreach name="v['box']['keyword']" item='vv' key='kk'>
+									<a href="">{$vv}</a>#
+								</foreach>
+							</h3>
+			<p style="padding: 0;">
+				<span class="left">{$v['box']['click_num']}</span>
+				<span class="right">{$v['box']['collect_num']}</span>
+			</p>
+			<!--<p style="background: #E0E5E5;">管家上传</p>-->
+			<p style="background: #FAFAFA;height: 40px;border-top:1px solid #f2f2f2;">
+				<img src="__UPLOAD__{$v['box']['merchant_logo']}" alt="" style="margin-top:8px;margin-right:7.5px;border-radius:50%;width: 34px;height: 34px;" />
+				<a href="javascript:;" style="color: #9E7E6B;margin-right:7.5px;;">{$v['box']['merchant_name']}</a>
+				<span style="color: #999;">公司</span><br/>
+				<span style="color: #9E7E6B;">{$v['box']['title']}</span>
+			</p>
+		</div>
+	</li>
+</foreach>

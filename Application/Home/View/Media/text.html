@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>嘉仕澜德——结婚就上嘉仕澜德</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/style.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/reset.css" />
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+	</head>
+	<body>
+    <include file="Common/header_two" />
+    <!--banner start-->
+    <div class="w"><img src="__UPLOAD__{$re['top_big_bananer']}" width="1200px"height="670px"></div>
+	<!--banner end-->
+	
+	<!--content start-->
+    <div class="w bj_se">
+    	<div class="clearfix">
+        	<div class="content_left ml104px fl clearfix">
+            	<div class="left_up">
+                	<p class="left_up_p">Terry<span class="left_up_span">{$re['addtime']}<span/></p>
+                </div>
+                <div class="content_left bj_se_ececec">
+                	<div class="w250">
+                        <h1>{$re['left_easy_title']}</h1>
+                        <foreach name="re['left_easy_content']" item="val" key="key">
+                        	<p class="mt25px">{$val}</p>
+                        </foreach>
+                        <img src="__PUBLIC__/Home/img/new/text/zuoce_lantiao.png" class="juzhong2">
+                    </div>
+                    
+                     <div id="mm" class="w75 mt170 clearfix">
+                    	<div><a href="#"><img src="__PUBLIC__/Home/img/new/text/zuoce_fuchuang1.png" class="fl"></a><a href="#" class="zuo_span fr">1788</a></div>
+                        <div class="mt10"><a href="javascript:;" class="tsina"><img src="__PUBLIC__/Home/img/new/text/zuoce_fuchuang2.png" class="fl"></a><a href="#" class="zuo_span fr">微博</a></div>
+                        <div class="mt10"><a href="javascript:;" class="tqq"><img src="__PUBLIC__/Home/img/new/text/zuoce_fuchuang3.png" class="fl"></a><a href="#" class="zuo_span fr">QQ</a></div>
+                        <div class="mt10"><a href="#"><img src="__PUBLIC__/Home/img/new/text/zuoce_fuchuang4.png" class="fl"></a><a href="#" class="zuo_span fr">微信</a></div>
+               	 	</div>
+                </div>
+            </div>
+            
+            <div class="content_right fr right_m clearfix">
+            	<img src="__UPLOAD__{$re['middel_small_bananer']}" class="w586px" style="padding-bottom:25px;">
+                <div class="w586px bj_se_ececec">
+                	<div class="w510">
+                    	<h1>{$re['right_main_title']}</h1>
+                        <h2>{$re['right_des_title']}</h2>
+                        <div class="font_img">
+                        	{$re['article_content']}
+						</div>
+						<img src="__PUBLIC__/Home/img/new/text/youce_dibu_lantiao.png" class="juzhong">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--content end-->
+   <include file="Common/bottom" />
+
+<script>
+$(function(){
+	$(document).scroll(function(){
+		var y=$(document).scrollTop();//读取滑块移动的距离
+		if(y>1270){
+			$("#mm").show();
+		}else{
+			$("#mm").hide();
+		}
+	});
+	
+});
+</script>
+<script src="http://connect.qq.com/widget/loader/loader.js" widget="shareqq" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function(){
+        //qq分享
+        $('.tqq').click(function(){
+            title = encodeURIComponent(document.title);
+            url = encodeURIComponent(location.href);
+            summary = encodeURIComponent('诗谛婚礼');
+            site = encodeURIComponent(location.href);
+            address = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title='+title+'&url='+url+'&summary='+summary+'&site='+site;
+            $(this).attr({'href':address,'target':'_blank'});
+        });
+        //微博分享
+        $('.tsina').click(function(){
+            title = encodeURIComponent(document.title);  
+            url = encodeURIComponent(location.href); 
+            address = 'http://service.weibo.com/share/share.php?title='+title+'&url='+url;
+            $(this).attr({'href':address,'target':'_blank'});
+        })
+        
+        
+    })
+   
+</script>
+
+	</body>
+</html>

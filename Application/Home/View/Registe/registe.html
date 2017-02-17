@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册页面</title>
+		<style type="text/css">
+			body{
+				padding-top: 50px;
+			}
+			.shou{
+				display: block;
+			}
+			.you{
+				display: none;
+			}
+			
+			#al{
+				width: 520px;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			input{
+				margin-bottom: 5px;
+			}
+			
+			#merchant{
+				display: none;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="al">
+			<div class="top">
+				<button type="button" class="member">用户注册</button>
+				<button type="button" class="merchant">商家注册</button>
+			</div>
+			<div id="merchant" style="margin-top: 20px;">
+				<form action="merchant" method="post">
+					公司名称：		    <input type="text" name="m_name" id="" value="" /><br/>
+					联系人：&nbsp;     <input type="text" name="leagal_person" id="" value="" /><br/>
+					手机号：&nbsp;     <input type="text" name="mobile_phone" id="" value="" /><br/>
+					公司座机：		    <input type="text" name="phone" id="" value="" /><br/>
+					邮箱：&nbsp;&nbsp; <input type="text" name="email" id="" value="" /><br/>
+					地区：&nbsp;&nbsp;
+					<select name="area[]" id="province">
+						<option value="">-请选择省份-</option>
+					</select>
+					<select name="area[]" id="city">
+						<option value="">-请选择省份-</option>
+					</select>
+					<select name="area[]" id="part">
+						<option value="">-请选择省份-</option>
+					</select>
+						
+					<br/><input type="submit" value="申请注册"/>
+				</form>
+			</div>
+			<div id="member" style="margin-top: 20px;">
+				<div  class="dan" style="margin-bottom: 20px;">
+						<input type="radio" id="shou"  name="sag" id="" value="手机号验证" checked="checked"/>：手机号验证
+						<input type="radio" id="you"  name="sag" id="" value="邮箱验证" />：邮箱验证
+				</div>
+				<form action="" method="post">
+				用&nbsp;户&nbsp;名：<input type="text" name="member_name" id="" value="" /><br />
+				密&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" id="" value="" /><br />
+				<div class="shou">
+				手&nbsp;机&nbsp;号：<input type="text" name="phone"  value="" /><br />
+				手机验证码：<input type="text" name="shouyan" id="ss" value="" />
+						<button type="button" id="dianji">获取验证码</button>
+				</div>
+				<div class="you">
+				邮&nbsp;&nbsp;&nbsp;箱：<input type="text" name="email" id="" value="" />
+				</div>
+				验&nbsp;证&nbsp;码：<input type="text" name="code" id="" value="" />
+				<img src="{:U('Common/code')}" id="code" alt="" /><a href="#" id="dian">看不清——换一张</a><br />		
+				<input type="submit" name="" id="" value="申请" />
+				</form>
+			</div>
+		</div>	
+		
+			
+		
+		
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript">	
+			$("#dian").click(function(){
+		    	$("#code").attr('src', "{:U('Common/code',array('id' => '2'))}");
+			})
+			$("#dianji").click(function(){
+				$.ajax({
+						type:'post',
+						url:'{:U("yan")}',
+						data:'name='+$("#ss").val(),
+						success:function(phpdata){
+							alert('验证码已发送');
+						}
+					})
+				});
+			$('#shou').click(function(){
+				$('.shou').css('display','block');
+				$('.you').css('display','none');
+			})
+			$('#you').click(function(){
+				$('.shou').css('display','none');
+				$('.you').css('display','block');
+			})
+			//注册用户tab切换
+			$(".member").click(function(){
+				$("#member").css('display','block');
+				$("#merchant").css('display','none');
+			})
+			
+			$(".merchant").click(function(){
+				$("#merchant").css('display','block');
+				$("#member").css('display','none');
+			})
+			
+			//			给省份添加change事件
+			$("#province").change(function(){
+				var pid = $(this).val();
+				step('city',pid);
+			})
+			
+			$("#city").change(function(){
+				var pid = $(this).val();
+				step('part',pid);
+			})
+		
+//			创建获取地区异步方法
+			function step(name,pid){
+				$.ajax({
+					type:"post",
+					url:"{:U('step_area')}",
+					data:{pid:pid},
+					dataType:'json',
+					success:function(phpdata){
+						var str = '<option value="">请选择</option>';
+						$.each(phpdata, function(k,v) {
+							str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+						});
+						$("#"+name+"").html(str);
+					}
+				});
+			}
+			
+			step('province');
+		</script>
+	</body>
+</html>

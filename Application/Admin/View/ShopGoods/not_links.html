@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{$title}</title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<!--<form class="navbar-form navbar-left" role="search" action="" method="post">
+	        <div class="form-group">
+	        	搜索：
+	          	<input type="text" class="form-control" placeholder="Search" name="name">
+	        </div>
+	        <button type="submit" class="btn btn-default">搜索<button>
+	    </form>-->
+	    
+	    <form class="form-inline" id="search" role="form" style="margin-bottom: 10px;float: left">
+			  <div class="form-group">
+			    <input type="text" name="value" class="form-control" id="exampleInputEmail2" placeholder="输入搜索内容" style="height: 38px;line-height: 38px;">
+			  </div>
+			  <div class="form-group">
+			    <select name="type"class="form-control" style="height: 38px;line-height: 38px;"> 
+			    	<option value="g.gname">-搜索类型-</option>
+			    	<option value="g.gname">-商品名称-</option>
+			    	<option value="c.cname">-分类-</option>
+			    	<option value="g.gnumber">-货号-</option>
+			    </select>
+			  </div>
+			  <div class="form-group">
+			    <select name="order" class="form-control" style="height: 38px;line-height: 38px;"> 
+			    	<option value="DESC">-时间排序-</option>
+			    	<option value="ASC">-正序-</option>
+			    	<option value="DESC">-倒序-</option>
+			    </select>
+			  </div>
+			  <a href="javascript:;" class="btn btn-default submit" style="height: 38px;line-height: 18px;">Search</a>
+			  <a href="{:U('not_links',array('id'=>$id))}" class="btn btn-default" style="height: 38px;line-height: 18px;">Back</a>
+		</form>
+		<a href="{:U('links_list',array('id'=>$id))}" class="btn btn-info" style="float: right">返回</a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="5%">序号</th>
+			  <th width="25%">商品名称</th>
+			  <th width="12%">货号</th>
+			  <th width="13%">价格</th>
+			  <th width="15%">所属分类</th>
+			  <th width="25%">添加时间</th>
+			  <td>操作</td>
+			</tr>
+			<foreach name='data' item='v' key='k'>
+				<tr key="{$v['gid']}">
+					<td>{$k+1}</td>
+					<td>{$v['gname']}</td>
+					<td>{$v['gnumber']}</td>
+					<td>
+						<span style="color: #606060;text-decoration:line-through;">市场价:{$v['marketprice']}</span><br/>
+						<span style="color: black;">会员价:{$v['shopprice']}</span>
+					</td>
+					<td>{$v['cname']}</td>
+					<td><?php echo date('Y-m-d H:i:s',$v['addtime'])?></td>
+					<td>
+						<a href="javascript:;" class="btn btn-success add">添加</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		
+		<script type="text/javascript">
+			$("#search a.submit").click(function(){
+				var value = $("input[name=value]").val();
+				var order = $("select[name=order]").val();
+				var type = $("select[name=type]").val();
+				location.href = "{:U('admin/shopGoods/not_links')}?id="+{$id}+"&value="+value+"&order="+order+"&type="+type;
+			});
+			var id = {$id};
+			$('.add').click(function(){
+				var val = $(this).parents('tr').attr('key');
+				var This = $(this);
+				$.ajax({
+					url:"{:U('links_add')}",
+					type:'post',
+					data:{one:id,two:val},
+					dataType:'json',
+					success:function(phpdata){
+						alert(phpdata.msg);
+						if(phpdata.type == 1){
+							This.parents('tr').remove();
+						}
+					}
+				});
+			})
+		</script>
+		
+	</body>
+</html>

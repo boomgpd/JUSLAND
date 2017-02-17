@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="Public/uploadify/jquery-1.8.2.min.js"></script>
+    <style type="text/css">
+        body{
+            margin-bottom: 100px;
+        }
+        .table th, .table td{
+            vertical-align: middle;
+        }
+        td{
+        	font-size: 16px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="alert alert-success">货品列表</div>
+    <div class="container-fluid" style="padding:0;">
+    <div class="row-fluid">
+    <div class="span12">
+
+    
+    <form action="{:U('admin/shopGoods/goods_list_add')}" method='post'>
+    
+        <table class='table table-bordered table-hover'>
+            <tr>
+                <th width="90px">货品序号</th>
+            	<foreach name="spec" item='v' key='k'>
+	                <th>{$v['spec_name']}<input type="hidden" name="s_id[]" id="s_id" value="{$v['s_id']}" /></th>
+	            </foreach>
+                <th>市场价格</th>
+	            <th>商城价格</th>
+	            <th width="160px">操作</th>
+            </tr>
+            <tr class="info">
+                <td>添加货品</td>
+            	<foreach name="spec" item='v' key='k'>
+                	<td>
+                		<input type="text" name="gavalue[]" id="gavalue" value="" style="width: 100%;"/>
+                	</td>
+                </foreach>
+                <td>
+                    <input type="text" name='market' style="width:150px;" required=""/>
+                </td>
+                <td>
+                    <input type="text" name='price' style="width:150px;" required=""/>
+                </td>
+                <td>
+                	<input type="hidden" name="goods_id" value="{$gid}" />
+        			<input type="submit" value='保存添加' class="btn btn-primary"/>
+        			<a href="{:U('show',array('cid'=>$cid))}" class="btn btn-danger">返回</a>
+                </td>
+            </tr>
+            <foreach name="data" item='v' key='k'>
+	            <tr class="info">
+	                <td>添加货品</td>
+	                	<foreach name="v['combine']" item='vv' key='kk'>
+		                	<td>{$vv}</td>
+	                    </foreach>
+                    <td>{$v['market']}</td>
+	                <td>{$v['price']}</td>
+	                <td>
+	        			<a href="{:U('admin/shopGoods/goods_list_edit',array('glid'=>$v['glid'],'goods_id'=>$gid))}" class="btn btn-info">编辑</a>
+	        			<a href="{:U('admin/shopGoods/goods_list_del',array('glid'=>$v['glid'],'goods_id'=>$gid))}" class="btn btn-danger">删除</a>
+	                </td>
+	            </tr>
+            </foreach>
+        </table>
+    </form>
+
+    </div>
+    </div>
+    </div>
+
+</body>
+</html>

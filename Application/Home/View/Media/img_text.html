@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/News_XiangQing.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/reset.css">
+<script src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+</head>
+
+<body>
+	<include file="Common/header_two" />
+	<div class="Carousel"><!--轮播=carousel-->
+        <div class="report fl">
+	        <ul class="clearfix">
+	        	<foreach name="re" item="v" key="k">
+		            <li>
+	                	<a href=""><img src="__UPLOAD__{$v['pic_src']}" width="1200"height="700"></a>
+	                    <div class="futiao clearfix">
+	                        <div class="yema fl">
+	                            <span class="futiao_shu1 db fl">{$k+1}</span>
+	                            </br>
+	                            <span class="futiao_shu2 db fr"><?php echo count($re); ?></span>
+	                        </div>
+	                        <p>{$v['text_content']}</p>
+	                    </div>
+	                </li>
+	        	</foreach>
+	        </ul>
+             	
+	        <a href="javascript:;" class="report_prev fl"><img src="__PUBLIC__/Home/img/new/img_text/prev.png"></a>
+	        <a href="javascript:;" class="report_next fl"><img src="__PUBLIC__/Home/img/new/img_text/next.png"></a>
+        </div>    
+    </div> 
+    <div class="c2 w clearfix">
+    	<div class="left fl">
+        	<ul class="clearfix">
+            	<li><img src="__PUBLIC__/Home/img/new/img_text/news_xq_tubiao.png" class="mt1 ml10"></li>
+                <li><span class="span1 ml10">标签：</span></li>
+                <foreach name="data['keyword']" item="val" key="key">
+                	<li><span class="span0 ml8">{$val}</span></li>		
+                	<!--<li><span class="span0 ml8">策划师</span></li>	
+	                <li><span class="span0 ml8">花艺师</span></li>-->
+                </foreach>
+            </ul>
+            <p class="ml10 mt15">{$re[0]['text_content']}</p>
+        </div>
+        <div class="right fr">
+        	<h1 class="fl">相关推荐</h1>
+            <div class="right_right fr">
+            	<foreach name="list" item="val" key="key">
+	            	<div class="box">
+	                	<a href="{:U('img_text',array('type'=>2,'id'=>$val['pic_text_id']))}"><img src="__UPLOAD__{$val['list_img']}" class="tu"></a>
+	                    <div class="wenzi">
+	                    	<p>{$val['title']}</p>
+	                    </div>
+	                </div>
+            	</foreach>
+            </div>
+        </div>
+    </div>
+    <include file="Common/bottom" />
+</body>
+<script>
+	$(document).ready(function(){
+		var li_num = $(".report li").length;
+		var now_num = 0;
+		$(".report ul").css({width:li_num*1200+"px"});	
+		$(".report_next").on("click",function(){
+			now_num++;
+			if(now_num > (li_num-1)){
+				now_num = 0;
+			}
+			var left_distence = now_num*1200;
+			$(".report ul").stop().animate({right:left_distence},1000);
+		})		
+		$(".report_prev").on("click",function(){
+			now_num--;
+			if(now_num < 0){
+				now_num = li_num-1;
+			}
+			var left_distence = now_num*1200;
+			$(".report ul").stop().animate({right:left_distence},1000);
+		})
+	})
+</script>   
+</html>

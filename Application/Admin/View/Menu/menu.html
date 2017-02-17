@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <style type="text/css">
+	    	#cont{
+	    		border: 0px;
+	    		outline:none;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">ID</th>
+			  <th>菜单名称</th>
+			  <th>菜单链接</th>
+			  <th width="210">操作</th>
+			</tr>
+			<foreach name="data['menu']" item="v" key="k">
+				<tr class="dex">
+					<td>{$k+1}</td>
+					<td><input type="text" name="menu_cont" tid="{$v['m_id']}" id="cont" value="{$v['menu_cont']}" /></td>
+					<td><input type="text" name="menu_link" tid="{$v['m_id']}" id="link" value="{$v['menu_link']}" /></td>
+					<td>
+						<a href="javascript:;" tid="{$v['m_id']}" class="btn btn-sm btn-warning save" >编辑</a>
+						<a href="javascript:;" del="{$v['m_id']}" class="btn btn-sm btn-danger dele">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+		$(".save").click(function(){
+				var cont = $(this).parents('tr').find('#cont').val();
+				var link_ = $(this).parents('tr').find('#link').val();
+				var tid = $(this).attr('tid');
+				$.ajax({
+					type:"post",
+					url:"{:U('admin/menu/save_menu')}",
+					data:{cont:cont,tid:tid,link_:link_},
+					dataType:'text',
+					success:function(phpdata){
+						if(phpdata){
+							var str = '<tr class="dex"><td>{$k+1}</td>';
+								str += '<td><input type="text" name="menu_cont" tid="'+phpdata.m_id+'" id="cont" value="'+phpdata.menu_cont+'" /></td>';
+								str += '<td><input type="text" name="menu_link" tid="'+phpdata.m_id+'" id="link" value="'+phpdata.menu_link+'" /></td>';
+								str += '<td><a href="javascript:;" tid="'+phpdatd.m_id+'" class="btn btn-sm btn-warning save" >编辑</a>';
+								str += '<a href="javascript:;" del="'+phpdata.m_id+'" class="btn btn-sm btn-danger dele">删除</a></td></tr>';
+								$('.save').find('tr').html(str);
+						}
+	    			}
+				});
+			})
+		$('.dele').click(function(){
+			var del = $(this).attr('del');
+			var This = $(this);
+			$.ajax({
+				type:'post',
+				url:"{:U('admin/menu/del_menu')}",
+				data:{del:del},
+				dataType:'text',
+				success:function(phpdata){
+					if(phpdata){
+						This.parents('tr').remove();
+					}
+				}
+			});
+		})
+		</script>
+	</body>
+</html>

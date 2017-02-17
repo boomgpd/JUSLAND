@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <style type="text/css">
+	    	input{
+	    		border: 0px;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<a href="{:U('add')}"><button class="btn btn-sm btn-danger">添加规格</button></a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th>tid</th>
+			  <th>名称</th>
+			  <th>操作</th>
+			</tr>
+			<foreach name="data" item="val" key="key">
+				<tr>
+					<td>{$key+1}</td>
+					<td><input type="text" name="spec_name" id="aname" value="{$val['spec_name']}" /></td>
+					<td>
+						<a href="javascript:;" id="{$val['s_id']}" class="btn btn-sm btn-warning edit">保存</a>
+						<a href="javascript:;" id="{$val['s_id']}" class="btn btn-sm btn-danger del">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript">  
+			$(".edit").click(function(){
+	    		var name = $(this).parents('tr').find('#aname').val();
+	    		var id = $(this).attr('id');
+	    		$.ajax({
+	    			type:"post",
+	    			url:"{:U('edit')}",
+	    			data:{name:name,id:id},
+	    			dataType:'text',
+	    			success:function(phpdata){
+	    				if(phpdata){
+	    					alert('编辑成功');
+	    				}else{
+	    					alert('编辑失败');
+	    				}
+	    			}
+	    		});
+	    	});
+		
+			$(".del").click(function(){
+	    		var id   = $(this).attr('id');
+	    		var This = $(this);
+	    		$.ajax({
+	    			type:"post",
+	    			url:"{:U('dele')}",
+	    			data:{id:id},
+	    			dataType:'text',
+	    			success:function(phpdata){
+	    				if(phpdata){
+	    					This.parents('tr').remove();
+		    				alert('删除成功');
+	    				}else{
+	    					alert('删除失败');
+	    				}
+	    			}
+	    		});
+	    	});
+		</script>
+	</body>
+</html>

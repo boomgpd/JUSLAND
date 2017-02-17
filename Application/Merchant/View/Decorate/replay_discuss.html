@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/bootstrap/css/bootstrap.min.css" />
+	
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span12">
+
+
+		<fieldset>
+			<legend>问答回复</legend>
+			<table class='table table-bordered table-hover'>
+				<thead>
+					<tr>
+						<th colspan="2" class="btn btn-primary">用户提问</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info">
+						<td>用户名称</td>
+						<td>{$data['member_name']}</td>
+					</tr>
+					<tr class="info">
+						<td>评论内容</td>
+						<td>{$data['question_content']}</td>
+					</tr>
+					<tr class="info">
+						<td>评论时间</td>
+						<td>{$data['addtime']}</td>
+					</tr>
+				</tbody>
+			</table>
+		<form action="" method='post'>
+			<table class='table table-bordered table-hover'>
+				<thead>
+					<tr>
+						<th colspan="2" class="btn btn-primary">回答问题(回复内容内不能包含数字)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info">
+						<td>回复内容</td>
+						<td>
+							<textarea name="replay_content" rows="4" cols="50"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>	
+			<input type="hidden" name="merchant_discuss_id" value="{$data['merchant_discuss_id']}" />
+			<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+		</form>
+		
+		</fieldset>
+
+	</div>
+	</div>
+	</div>
+</body>
+</html>

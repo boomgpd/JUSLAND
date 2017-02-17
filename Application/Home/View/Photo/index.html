@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>嘉仕澜德——影楼摄影</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/photo/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/photo/css/index.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/photo/css/new_file.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/bottom.css" />
+		<script type="text/javascript" src="__PUBLIC__/Home/photo/js/jquery-3.1.1.min.js" ></script>
+		<script type="text/javascript" src="__PUBLIC__/Home/photo/js/bootstrap.min.js" ></script>
+	</head>
+	<body>
+		<include file="Common/header" />
+		<!--header start-->
+		<div class="photo_index_banner w">
+			<!--banner start-->
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			    <!--标记-->
+				<ol class="carousel-indicators">
+				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				</ol>
+			  	<!--图片-->
+			  	<div class="carousel-inner" role="listbox">
+			  		<foreach name="data['bananer']" item="val" key="key">
+			  			<if condition="$key eq 0">
+					    	<div class="item active">
+					   	<else />
+					   		<div class="item">
+			  			</if>
+					      	<img src="__UPLOAD__{$val['pic_src']}" alt="..." width="1200px" height="550px">
+					     	<div class="carousel-caption"></div>
+					    </div>
+			  		</foreach>
+				</div>
+			</div>
+			<!--start end-->
+			
+			<!--nav start-->
+			<div class="photo_index_nav clearfix">
+				<!--左侧竖排导航-->
+				<div class="nav_left clearfix">
+					<foreach name="data['photo_type']['one']" item="val" key="key">
+						<if condition="$key eq 0">
+					    	<a href="javascript:;" class="nav_current">{$val['cname']}</a>
+					   	<else />
+					   		<a href="javascript:;">{$val['cname']}</a>
+			  			</if>
+					</foreach>
+				</div>
+				
+				<!--右侧详情导航-->
+				<foreach name="data['photo_type']['two']" item="val" key="key">
+					<if condition="$key eq 0">
+						<div class="nav_right">
+				   	<else />
+				   		<div class="nav_right" style="display: none;">
+		  			</if>
+					<foreach name="val" item="v" key="k">
+						<div class="nav_three">
+							<h6>{$v['cname']}</h6>
+							<foreach name="v['three']" item="vv" key="kk">
+								<a href="{:U('photo_list',array('id'=>$vv['p_c_id']))}">{$vv['cname']}</a>
+							</foreach>
+						</div>
+					</foreach>
+					</div>
+				</foreach>
+			</div>
+			<!--nav end-->
+		</div>
+		<!--header end-->
+		
+		<!--内容 开始-->
+		<div class="index_content w clearfix">
+			<!--左侧 开始-->
+			<div class="content_left fl">
+				<!--限时特惠 开始-->
+				<div class="limit">
+					<div class="limit_top clearfix">
+						<h3 class="fl">限时特惠</h3>
+						<a href="" class="fr">更多>></a>
+					</div>
+					<ul class="limit_bot clearfix">
+						<foreach name="data['photo_tnt']" item="val" key="key">
+							<if condition="$key eq 3">
+								<li style="margin-right: 0;">
+									<a href="{:U('details',array('id'=>$val['p_p_id']))}">
+										<img src="__UPLOAD__{$val['box']['url']}" width="225px"height="125px">
+										<div class="right_cot">
+											<p id="time"><span class="y">{$val['box']['limit_time']}</span> 天 <span class="m">{$val['box']['limit_timess'][0]}</span> 时 <span class="d">{$val['box']['limit_timess'][1]}</span> 分</p>
+											<p><{$val['box']['photo']['p_c_id']}></p>
+											<p>{$val['box']['desc']}</p>
+											<p><del>￥{$val['box']['photo']['original']}</del><b>￥{$val['box']['photo']['price']}</b></p>
+										</div>
+									</a>
+								</li>
+							<else />
+								<li>
+									<a href="javascropt:;">
+										<img src="__UPLOAD__{$val['box']['url']}" width="225px"height="125px">
+										<div class="right_cot">
+											<p id="time"><span class="y">{$val['box']['limit_time']}</span> 天 <span class="m">{$val['box']['limit_timess'][0]}</span> 时 <span class="d">{$val['box']['limit_timess'][1]}</span> 分</p>
+											<p><{$val['box']['photo']['p_c_id']}></p>
+											<p>{$val['box']['desc']}</p>
+											<p><del>￥{$val['box']['photo']['original']}</del><b>￥{$val['box']['photo']['price']}</b></p>
+										</div>
+									</a>
+								</li>
+							</if>
+						</foreach>
+						<script type="text/javascript">
+							var length = $('.limit_bot li').length;
+							var limit_times = [];
+							<foreach name="data['photo_tnt']" item="val" key="key">	
+								limit_times.push({$val['box']['limit_times']});
+							</foreach>
+								setInterval(get_time,60000);//每秒执行一次下面的函数
+								function get_time(){
+									for(var i = 0;i < length ;i++){
+										var fen = parseInt($('.limit_bot li').eq(i).find('.d').html());
+										if(fen === 0){
+											fen = 59;
+											$('.limit_bot li').eq(i).find('.d').html(fen);
+											var shi = parseInt($('.limit_bot li').eq(i).find('.m').html());
+											if(shi === 0){
+												shi = 23;
+												$('.limit_bot li').eq(i).find('.m').html(shi);
+												var tian  = parseInt($('.limit_bot li').eq(i).find('.y').html());
+												if(tian === 0){
+												}else{
+													--tian;
+													$('.limit_bot li').eq(i).find('.y').html(tian);
+												}
+											}else{
+												--shi;
+												$('.limit_bot li').eq(i).find('.m').html(shi);
+											}
+										}else{
+											--fen;
+											$('.limit_bot li').eq(i).find('.d').html(fen);
+										};
+									}
+								}
+							
+						</script>
+					</ul>
+				</div>
+				<!--限时特惠 结束-->
+				
+				<!--结婚分期 开始-->
+				<!--<div class="stages">
+					<div class="stages_top clearfix">
+						<h3 class="fl">结婚分期</h3>
+						<a href="javascript:;" class="fr">更多>></a>
+					</div>
+					<ul class="stages_bot clearfix">
+						<li>
+							<a href="javascropt:;">
+								<img src="__PUBLIC__/Home/photo/img/index_02.png">
+								<div class="right_cot">
+									<p class="boder_bot"><b>灵活分期</b></p>
+									<p><嘉仕澜德首推></p>
+									<p>欧洲8国旅拍超值</p>
+									<p>首付<b>￥5999</b></p>
+									<p>月付204*11期</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascropt:;">
+								<img src="__PUBLIC__/Home/photo/img/index_02.png">
+								<div class="right_cot">
+									<p class="boder_bot"><b>灵活分期</b></p>
+									<p><嘉仕澜德首推></p>
+									<p>欧洲8国旅拍超值</p>
+									<p>首付<b>￥5999</b></p>
+									<p>月付204*11期</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascropt:;">
+								<img src="__PUBLIC__/Home/photo/img/index_02.png">
+								<div class="right_cot">
+									<p class="boder_bot"><b>灵活分期</b></p>
+									<p><嘉仕澜德首推></p>
+									<p>欧洲8国旅拍超值</p>
+									<p>首付<b>￥5999</b></p>
+									<p>月付204*11期</p>
+								</div>
+							</a>
+						</li>
+						<li style="margin-right: 0;">
+							<a href="javascropt:;">
+								<img src="__PUBLIC__/Home/photo/img/index_02.png">
+								<div class="right_cot">
+									<p class="boder_bot"><b>灵活分期</b></p>
+									<p><嘉仕澜德首推></p>
+									<p>欧洲8国旅拍超值</p>
+									<p>首付<b>￥5999</b></p>
+									<p>月付204*11期</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>-->
+				<!--结婚分期 结束-->
+				
+				<foreach name="data['photo_c']" item="val" key="key">
+					<div class="hotsell">
+						<div class="hotsell_top clearfix">
+							<h3 class="fl">{$val['p_r_t_name']}</h3>
+							<ul class="fl">
+								<foreach name="val['cids']" item="v" key="k">
+									<if condition="$k eq 0">
+										<li><a href="javascript:;" class="hotsell_current">{$v['p_r_t_name']}</a></li>
+								   	<else />
+								   		<li><a href="javascript:;">{$v['p_r_t_name']}</a></li>
+						  			</if>
+								</foreach>
+							</ul>
+							<a href="{:U('photo_list',array('id'=>$val['cid']))}" class="fr">更多>></a>
+						</div>
+							<ul class="hotsell_bot">
+								<foreach name="val['cids']" item="v" key="k">
+									<if condition="$k eq 0">
+										<li class="clearfix">
+										<if condition="$v['left']">
+											<div class="hotsell_bot_left fl">
+												<a href="javascript:;"><img src="__UPLOAD__{$v['left']['list_src']}" width="225px" height="280px"></a>
+												<a href="javascript:;" class="posi_ab">
+													<span class="fl">￥{$v['left']['pro_id']['price']}</span>
+													<span class="fr">{$v['left']['pro_id']['p_name']}</span>
+												</a>
+											</div>
+										<else />
+											<div class="hotsell_bot_left fl">
+												<a href="javascript:;"><img src="__PUBLIC__/Home/photo/img/index_03.png" width="225px" height="280px"></a>
+												<a href="javascript:;" class="posi_ab">
+													<span class="fl">￥6999</span>
+													<span class="fr">风尚巴黎专享系列</span>
+												</a>
+											</div>
+										</if>
+								   	<else />
+								   		<li class="clearfix" style="display: none;">
+										<if condition="$val['left']">
+											<li class="clearfix">
+											<div class="hotsell_bot_left fl">
+												<a href="javascript:;"><img src="__UPLOAD__{$v['left']['list_src']}" width="225px" height="280px"></a>
+												<a href="javascript:;" class="posi_ab">
+													<span class="fl">￥{$v['left']['pro_id']['price']}</span>
+													<span class="fr">{$v['left']['pro_id']['p_name']}</span>
+												</a>
+											</div>
+										<else />
+											<div class="hotsell_bot_left fl">
+												<a href="javascript:;"><img src="__PUBLIC__/Home/photo/img/index_03.png" width="225px" height="280px"></a>
+												<a href="javascript:;" class="posi_ab">
+													<span class="fl">￥6999</span>
+													<span class="fr">风尚巴黎专享系列</span>
+												</a>
+											</div>
+										</if>
+						  			</if>
+									<ul class="hotsell_bot_right fl">
+										<foreach name="v['cids']" item="vv" key="kk">
+											<if condition="($kk+1)%3 eq 0">
+												<li class="fl" style="margin-right: 0;">
+											<else />
+												<li class="fl">
+											</if>
+												<a href="{:U('details',array('id'=>$vv['pro_id']['p_p_id']))}"><img src="__UPLOAD__{$vv['list_src']}" width="225px" height="125px"></a>
+												<a href="javascript:;" class="posi_ab">
+													<span class="fl">￥{$vv['pro_id']['price']}</span>
+													<span class="fr">{$vv['pro_id']['p_name']}
+												</a>
+											</li>
+										</foreach>
+									</ul>
+								</li>
+							</foreach>
+						</ul>
+					</div>
+				</foreach>
+			</div>
+			<!--右侧 开始-->
+			<div class="content_right fl">
+				<!--热门头条 开始-->
+				<div class="hot">
+					<h3>热门头条</h3>
+					<div class="hot_article">
+						<a href="javascript:;"><span>【活动】</span>100%中奖，最高5999元免单</a>
+						<a href="javascript:;"><span>【活动】</span>100%中奖，最高5999元免单</a>
+						<a href="javascript:;"><span>【活动】</span>100%中奖，最高5999元免单</a>
+						<a href="javascript:;"><span>【活动】</span>100%中奖，最高5999元免单</a>
+						<a href="javascript:;"><span>【活动】</span>100%中奖，最高5999元免单</a>
+						<a href="javascript:;"><span>【活动】</span>100%中奖，最高5999元免单</a>
+					</div>
+				</div>
+				<!--热门头条 结束-->
+				
+				<!--国内拍摄排行榜 开始-->
+				<div class="array">
+					<h3>全球拍摄畅销榜</h3>
+					<ul class="array_cot clearfix">
+						<foreach name="data['photo_sell']" item="val" key="key">
+							<li class="fl">
+								<a href="{:U('details',array('id'=>$val['p_p_id']['p_p_id']))}" class="fl"><img src="__UPLOAD__{$val['list_img']}"></a>
+								<div class="array_cot_right fl">
+									<a href="javascript:;"><{$val['sell_title']}></a>
+									<span>{$val['sell_desc']}</span>
+									<p class="clearfix">
+										{$val['type']}
+										<b class="fr">￥{$val['p_p_id']['price']}</b>
+									</p>
+								</div>
+							</li>
+						</foreach>
+					</ul>
+				</div>
+			</div>
+			<!--右侧 结束-->
+		</div>
+		<!--内容 结束-->
+		<include file="Common/bottom" />
+	</body>
+	
+<script>
+//nav切换
+	$(".nav_left a").click(function(){
+		$(this).addClass("nav_current").siblings("a").removeClass("nav_current");
+	});
+	$(function(){
+		var $tab=$(".nav_left a");
+		var $tab_end=$(".nav_right");
+		$tab.click(function(){
+			var $this=$(this);
+			var $inx=$this.index();
+			$tab_end.css("display","none");
+			$tab_end.eq($inx).css("display","block")
+		});
+	});
+</script>
+<script>
+//热销风格种类切换
+	$(".hotsell_top ul a").click(function(){
+		$(this).addClass("hotsell_current").parent("li").siblings("li").find("a").removeClass("hotsell_current");
+	});
+	$(function(){
+		$(".hotsell_top ul li").click(function(){
+			var parent = $(this).parents(".hotsell").index(".hotsell");
+			var num=$(this).index();
+			$(".hotsell_bot").eq(parent).find("li.clearfix").eq(num).css("display","block").siblings("li").css("display","none");
+
+		});
+	});
+</script>
+</html>

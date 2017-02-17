@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>三级页面头部导航条</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/Merchant/dianping/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/Merchant/dianping/css/vip_remark.css" />
+    	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+    	<script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+		<style type="text/css">
+		/*去掉uploadify上传按钮的边框*/
+    	#uploadList li{
+    		position: relative;
+    	}
+    	#uploadList li span{
+    		display: block;
+    		width: 25px;
+    		height: 15px;
+    		font-family: "微软雅黑";
+    		font-size: 14px;
+    		background: indianred;
+    		color: white;
+    		line-height: 15px;
+    		font-weight: 700;
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+    	li img{
+    		cursor: pointer;
+    	}
+	</style> 
+	</head>
+	<body>
+		<!--header start-->
+		<div class="header">
+			<div class="w clearfix">
+				<a href="#" class="logo"><img src="__PUBLIC__/Home/Merchant/dianping/img/three_header_logo.png" width="155px" height="40px"></a>
+				<ul class="header_left fl">
+					<li><a href="#">回到首页</a></li>
+					<li><a href="#">空间灵感</a></li>
+					<li><a href="#">结婚攻略</a></li>
+					<li><a href="#" class="c_blue">结婚品牌</a></li>
+					<li><a href="#">DIY计划</a></li>
+				</ul>
+				<if condition="$_SESSION['member_id']">
+					<ul class="header_right fr">
+						<li class="right_sub">
+							<a href="#">会员昵称 ▼</a>
+							<ul class="vip_name clearfix" style="position: absolute;top: 40px;right: 80px;z-index: 999;">
+								<li><a href="#">我的婚礼</a></li>
+								<li><a href="#">个人中心</a></li>
+								<li><a href="#">退出登录</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" style="display: none;"><img src="__PUBLIC__/Home/Merchant/dianping/img/login_ts.png"></a>
+							<a href="#"><img src="__PUBLIC__/Home/Merchant/dianping/img/login_ts.gif"style="padding-bottom:5px;"></a>					
+						</li>
+					</ul>
+				<else />
+					<ul class="header_right fr" >
+						<li><a href="{:U('registe/registe')}">注册</a></li>
+						<li><a href="{:U('login/login')}">登录</a></li>
+						<li style="color: #fff;">咨询热线：400-800-1888</li>
+					</ul>
+				</if>
+			</div>
+		</div>
+		<!--header end-->
+		
+		<!--content start-->
+		<div class="remark w">
+			<div class="remark_top">
+				<div class="fl">
+					<h4>STINARY诗缔婚礼</h4>
+				</div>
+				<a href="javascript:;" class="fr">点评其他商户>></a>
+			</div>
+			<form action="{:U('chenck_remark_on')}" method="post">
+				<input type="hidden" name="member_name" id="" value="{$data['member']['member_name']}" />
+				<input type="hidden" name="merchant_id" id="" value="{$data['merchant_id']}" />
+				<ul>
+					<li class="space">
+						<label>搭建空间：</label>
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_01.png" class="remark_yes">
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_02.png" class="remark_no">
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_02.png" class="remark_no">
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_02.png" class="remark_no">
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_02.png" class="remark_no">
+						<input type="hidden" name="space_num" value="1" />
+					</li>
+					<li class="star">
+						<label>服务星级：</label>
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_01.png" class="remark_yes">
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_02.png" class="remark_no">
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_02.png" class="remark_no">
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_02.png" class="remark_no">
+						<img src="__PUBLIC__/Home/Merchant/dianping/img/remark_02.png" class="remark_no">
+						<input type="hidden" name="star_num" value="1" />
+					</li>
+					<li>
+						<label>服务类型：</label>
+						<select name="service_type">
+							<option>请选择</option>
+							<foreach name="data['type_select']" item="v">
+								<option value="{$v}">{$v}</option>
+							</foreach>
+						</select>
+					</li>
+					<li>
+						<label class="fl">评价：</label>
+						<textarea name="content" placeholder="请输入评价内容"></textarea>
+					</li>
+					<li style="height:30px;line-height: 30px;">
+						<label class="fl">上传图片：</label>
+						<div style="width: 200px;height:27px;background: #d4e8ed;position: absolute;left: 220px;text-align: center;">点击上传图片</div>
+						<a href="javascript:;" class="upload" style="opacity: 0;position: absolute;left:220px;z-index: 10;"><input type="file" name='pic' id='pic'/>点击这里上传图片</a>
+						<span class="c_gray"><span style="margin-left: 230px;">图片最多上传5张</span></span>
+					</li>
+					<script type="text/javascript">
+					        $(function() {
+					            $('#pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('home/common/upload',array('name'=>'remark'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='list_img[]' value='"+imageUrl+"'/></li>";
+					                    $("#uploadList").prepend(li);
+					                }
+					            });
+					        });
+					    </script>
+					<li id="uploadList"></li>
+					
+					<li style="margin-top: 100px;">
+						<label></label>
+						<input type="submit" value="提交点评"/>
+					</li>
+				</ul>
+				
+			</form>
+		</div>
+		<!--content end-->
+		
+		<!--footer start-->
+		<include file="Common/bottom" />		
+	</body>
+	
+	
+	<script type="text/javascript">
+		$(function(){
+			$(document).on('mouseover mouseout','.right_sub',function() {
+				$(this).find('.vip_name').toggle();
+			})
+		})
+		$("#uploadList ul li span").live('click',function(){
+			$(this).parents('#uploadList ul').remove();
+		})
+//		给显示数量添加change事件
+			$("input[name = show_num]").change(function(){
+				var num = $(this).val();
+				if(num>5){
+					alert('最大显示数量为5');
+					$(this).val(5);
+				}else if(num<1){
+					alert('最小显示数量为1');
+					$(this).val(1);
+				}
+			})
+		var remark_yes = '__PUBLIC__/Home/Merchant/dianping/img/remark_01.png';
+		var remark_no = '__PUBLIC__/Home/Merchant/dianping/img/remark_02.png';
+		var space_num = $("li.space img.remark_yes").length;
+		
+		$("li.space img").hover(function(){
+			var num = $(this).index();
+			for(var i=0;i<5;i++){
+				if(i<num){
+					$("li.space img").eq(i).attr('src',remark_yes);
+				}else{
+					$("li.space img").eq(i).attr('src',remark_no);
+				}
+				
+			}
+		},function(){
+			for(var i=0;i<5;i++){
+				if(i<space_num){
+					$("li.space img").eq(i).attr('src',remark_yes);
+				}else{
+					$("li.space img").eq(i).attr('src',remark_no);
+				}
+			}
+		})
+		
+		$("li.space img").click(function(){
+			var num = $(this).index();
+			for(var i=0;i<5;i++){
+				if(i<num){
+					$("li.space img").eq(i).addClass('remark_yes').removeClass('remark_no');
+				}else{
+					$("li.space img").eq(i).addClass('remark_no').removeClass('remark_yes');
+				}
+			}
+			
+			space_num = $("li.space img.remark_yes").length;
+			$("li.space input[name=space_num]").val(space_num);
+		})
+		
+		var star_num = $("li.star img.remark_yes").length;
+		$("li.star img").hover(function(){
+			var num = $(this).index();
+			for(var i=0;i<5;i++){
+				if(i<num){
+					$("li.star img").eq(i).attr('src',remark_yes);
+				}else{
+					$("li.star img").eq(i).attr('src',remark_no);
+				}
+				
+			}
+		},function(){
+			for(var i=0;i<5;i++){
+				if(i<star_num){
+					$("li.star img").eq(i).attr('src',remark_yes);
+				}else{
+					$("li.star img").eq(i).attr('src',remark_no);
+				}
+			}
+		})
+		
+		$("li.star img").click(function(){
+			var num = $(this).index();
+			for(var i=0;i<5;i++){
+				if(i<num){
+					$("li.star img").eq(i).addClass('remark_yes').removeClass('remark_no');
+				}else{
+					$("li.star img").eq(i).addClass('remark_no').removeClass('remark_yes');
+				}
+			}
+			
+			star_num = $("li.star img.remark_yes").length;
+			$("li.star input[name=star_num]").val(star_num);
+		})
+	</script>
+</html>

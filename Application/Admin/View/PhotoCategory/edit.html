@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span12">
+
+	<form action="" method='post'>
+		<fieldset>
+			<legend>添加分类</legend>
+
+			<table class='table table-bordered'>
+				<!--<tr>
+					<th colspan="3" class="btn btn-primary">图片上传</th>
+				</tr>-->
+				<tr class="info">
+						<td>分类名称</td>
+						<td>
+							<input type="text" name="cname"  value="{$data['cname']}" />
+						</td>
+						<td></td>
+				</tr>
+				<tr class="info">
+						<td>排序</td>
+						<td>
+							<input type="text" name="sort"  value="{$data['sort']}" />
+						</td>
+						<td></td>
+				</tr>
+			</table>
+			<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+		</fieldset>
+	</form>
+
+	</div>
+	</div>
+	</div>
+	
+	<script type="text/javascript">
+//			给图片添加单机事件
+			$("#uploadList li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+	</script>		
+</body>
+</html>

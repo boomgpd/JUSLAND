@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+		<!-- Loading Bootstrap -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+		<!-- Loading Flat UI -->
+		<link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+		<link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.7.2.min.js"></script>
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+		<!--[if lt IE 9]>
+		<script src="dist/js/vendor/html5shiv.js"></script>
+		<script src="dist/js/vendor/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<form action="" method="post">
+			<div class="alert alert-success">
+				添加角色
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">角色名称</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入角色名称"  name="name">
+			</div>
+			<p class="btn btn-primary">
+				选择属性
+			</p>
+			<table class="table table-bordered table-hover" id='attr' class="info">
+				<tr class="info">
+					<td width="40%">
+						<span >
+							模块:
+						</span>
+						<select name="" class="ctl" style="padding-left:20%;padding-right:20%;margin-left:10%;">
+							<option value="0" >-请选择模块-</option>
+							<foreach name = "con_data" item = 'v'>
+								<option value="{$v.id}" >{$v.title}</option>
+							</foreach>
+						</select>
+					</td>
+					<td width="40%">
+						<span >
+							动作:
+						</span>
+						<select name="" class="act" style="padding-left:20%;padding-right:20%;margin-left:10%;">
+							<option value="" >-请先选择模块-</option>
+						</select>
+					</td>
+					<td>
+						<span class="btn btn-success add">增加</span>
+					</td>
+				</tr>
+			</table>
+			<div class="form-group">
+				<label for="exampleInputEmail1">角色描述</label>
+				<textarea name="remark" rows="5" cols=""  class="form-control" placeholder="请输入角色描述"></textarea>
+			</div>
+			<button class="btn btn-primary btn-block" type="submit">
+			确定
+			</button>
+		</form>
+
+		<!--异步查询方法-->
+		<script type="text/javascript">
+		var start = '<option value="" >-请选择模块-</option>';
+		<foreach name="con_data" key="k" item="v">
+			start += '<option value="{$v.id}">{$v.title}</option>';
+		</foreach>
+		var end = '<option value="" >-请先选择模块-</option>';
+			$(function(){
+				$(".ctl").live('change',function(){
+					var id = $(this).val();
+					This = $(this);
+					$.ajax({
+						type:"post",
+						url:"{:U('get_action')}",
+						data:{id:id},
+						dataType:'json',
+						success:function(phpData){
+							if(phpData){
+								var str = '<option value="" >-请选择动作-</option>';
+								$.each(phpData, function(k,v){
+									 str += '<option value="'+v.id+'" >'+v.title+'</option>'
+								});
+								This.parents('tr').find('.act').html(str);
+							}else{
+								This.parents('tr').find('.act').html(end);
+							};
+						}
+					});
+				});
+
+
+				$('.act').live('change',function(){
+
+				})
+			});
+		</script>
+		
+		<!--添加删除节点-->
+		<script type="text/javascript">
+			$(function(){
+				//添加
+				$('.add').live('click',function(){
+					//点击的父级tr
+					var parent = $(this).parents('tr');
+					//克隆
+					var clone = parent.clone();
+					//修改html
+					clone.find('.ctl').html(start);
+					clone.find('.act').html(end);
+					//修改class
+					clone.find('.add').removeClass('btn-success add').addClass('btn-danger del').html('删除');
+					//追加
+					parent.after(clone);
+				});
+				
+				//删除
+				$('.del').live('click',function(){
+					$(this).parents('tr').remove();
+				})
+			});
+		</script>
+	</body>
+</html>

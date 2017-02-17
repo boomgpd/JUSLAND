@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0px;padding: 0px;}
+			.db{
+				width: 100%;
+				height: 70px;
+				background: #f1f1f1;
+			}
+			.left{
+				margin-left:20px ;
+				line-height: 70px;
+				float: left;
+			}
+			.right{
+				margin-right:20px ;
+				line-height: 70px;
+				float: right;
+			}
+			.photo{
+				width: 542px;
+				margin: 0px auto;
+			}
+			.photo img{
+				width: 442px;
+				background: #00BDEF;
+				border: 2px solid #A1B1BC;
+			}
+			.form #input{
+				width: 400px;
+				height: 50px;
+			}
+			#sublime{
+				width: 38px;
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1></h1>
+		
+		<!--<a href="sedraw">查看我的画板</a><form action="" method="post">
+			添加画板<input type="text" name="board_name" id="" value="" />
+			<input type="submit" value="添加"/>
+		</form>-->
+		<div class="db">
+			<div class="left">
+				你好:<a href="">{$data['member']['member_name']}</a>
+			</div>
+			<div class="right">
+				回到<a href="{:U('index')}">首页</a>!
+			</div>
+		</div>
+		<div class="photo">
+			<div>
+				<foreach name="data['picture']['url']" item="v">
+						<img src="{$v}" alt="" width="442px"; height="30px";/>
+				</foreach>
+				
+			</div>
+			<div class="form">
+					<input type="text" name="discuss_content" id="input" value="" />
+					<input type="hidden" name="board_list_board_id" id="list" value="{$data['get']}" />
+					<input type="submit" value="评论" id="sublime" tid="{$data['get']}"/>
+			</div>
+			
+			<div id="">
+				<table style="width: 442px;border: 1px solid #000000;" class="discuss">
+					<tr> 
+						<td style="border: 1px solid #000000;">
+							评论人
+						</td>
+						<td style="border: 1px solid #000000;">
+							评论内容
+						</td>
+						<td style="border: 1px solid #000000;">
+							评论时间
+						</td>
+					</tr>
+					<foreach name="data['discuss']" item="v">
+						<tr> 
+							<td style="border: 1px solid #000000;">
+								{$v['dis']['member_name']}
+							</td>
+							<td style="border: 1px solid #000000;">
+								{$v['dis']['discuss_content']}
+							</td>
+							<td style="border: 1px solid #000000;">
+								{$v['dis']['discuss_time']}
+							</td>
+						</tr>
+					</foreach>
+				</table>
+			</div>
+			 
+		</div>
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript">
+			$('#sublime').click(function(){
+				var data = $("input[name=discuss_content]").val();
+				var list = $(this).attr('tid');
+//				alert(data+list);
+				$.ajax({
+					type:"post",
+					url:"{:U('discuss')}",
+					data:{data:data,tid:list},
+					dataType:"json",
+					success:function(phpdata){
+						if(phpdata.type == 0){
+							var str = '<tr><td class="member" style="border: 1px solid #000000;">'+phpdata.member_member_id+'</td>';
+							str += '<td class="cont" style="border: 1px solid #000000;">'+phpdata.discuss_content+'</td>';
+							str += '<td class="time" style="border: 1px solid #000000;">'+phpdata.time+'</td></tr>';
+							$(".discuss").append(str);
+						}else{
+							alert(phpdata.content);
+						}
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

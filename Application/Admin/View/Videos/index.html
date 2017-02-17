@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	input{
+	    		border: none;
+	    	}
+	    	select{
+	    		border: none;
+	    	}
+	    	span{
+	    		color:#F0EAD8;
+	    		font-size: 12px
+	    	}
+	    </style>
+	</head>
+	<body>
+	<form action="{:U('getsave')}" method="post">
+		<a href="{:U('add_videos')}"><button type="button" class="btn btn-primary">添加视频</button></a>
+		<select name="is" id="is_ban_hot" style="border: 1px solid;">
+			<option value="">设置</option>
+			<option value="1">轮播</option>
+			<option value="2">热点推荐</option>
+			<option value="3">取消轮播</option>
+			<option value="4">取消热点推荐</option>
+		</select>
+<!--		<span>最多选择三个轮播或者六个推荐</span>-->
+		<button type="submit" class="btn btn-info">确认</button>
+		<!--<input type="submit" value="确认"/>-->
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">cid</th>
+			  <th width="200">视频标题</th>
+			  <th>宽图</th>
+			  <th>
+			  	<select name="type" id="new_video_type_id">
+			  		<option value="0">全部类型</option>
+			  		<foreach name="type" item="v">
+			 			<if condition="I('get.type_id')  eq $v['new_video_type_id']">
+			  				<option value="{$v['new_video_type_id']}" selected="selected">{$v['type_name']}</option>
+			  			<else />
+			  				<option value="{$v['new_video_type_id']}">{$v['type_name']}</option>	
+			  			</if>
+			  		</foreach>
+				</select>
+			  </th>
+			  <th>
+			  	<select name="bananer" id="is_bananer">
+			  		<option value="0">全部轮播</option>
+			  		<if condition="I('get.is_bananer')">	
+				  		<option value="2" selected="selected">是</option>
+				  		<option value="1" >否</option>
+				  	<else />
+				  		<option value="2" >是</option>
+				  		<option value="1" >否</option>
+				  	</if>
+				</select>
+			  </th>
+			  <th>
+			  	<select name="hot" id="is_hot">
+			  		<option value="0">全部热点推荐</option>
+			  		<if condition="I('get.is_hot')">	
+				  		<option value="2" selected="selected">是</option>
+				  		<option value="1" >否</option>
+				  	<else />
+				  		<option value="2" >是</option>
+				  		<option value="1" >否</option>
+				  	</if>
+				</select>
+			  </th>
+			  <th>操作</th>
+			</tr>
+				<foreach name="arr" item="v" key="k">
+					<tr>
+						<td >
+							<input type="checkbox" name="li[]" value="{$v['box']['new_video_id']}" class="lic" />{$k+1}
+						</td>
+						<td>
+							{$v['box']['video_title']}
+						</td>
+						<td >
+							<img src="__UPLOAD__{$v['box']['video_width_img']}" alt="" width="50px"/>
+						</td>
+						<td >
+							{$v['box']['type_name']}
+						</td>
+						<td >
+							<if condition="$v['box']['is_bananer'] eq 2">
+								<div  class="dui">
+									<img src="__PUBLIC__/img/dui.png" />
+								</div>
+							<else />
+								<div  class="cuo">
+									<img src="__PUBLIC__/img/cuo.png" />
+								</div>
+							</if>
+						</td>
+						<td  class="dui">
+							<if condition="$v['box']['is_hot'] eq 2">
+								<div  class="dui">
+									<img src="__PUBLIC__/img/dui.png" />
+								</div>
+							<else />
+								<div  class="cuo">
+									<img src="__PUBLIC__/img/cuo.png" />
+								</div>
+							</if>
+						</td>
+						<td>
+							<a href="{:U('save_videos',array('new_video_id'=>$v['box']['new_video_id']))}" class="btn btn-sm btn-warning">编辑</a>							
+							<a href="" del="{$v['box']['new_video_id']}" class="btn btn-sm btn-danger dele">删除</a>
+							<a href="{:U('News/add',array('new_video_id'=>$v['box']['new_video_id']))}" class="btn btn-info recom" style="width: 102px;height: 36px;">首页推荐</a>
+						</td>
+					</tr>
+				</foreach>
+			</form>
+			
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		window.onload = function(){
+			$("select[name=bananer]").change(function(){
+				var is_bananer= $(this).val();
+				location.href = "{:U('admin/videos/index')}?is_bananer="+is_bananer;
+			})
+			$("select[name=hot]").change(function(){
+				var is_hot= $(this).val();
+				location.href = "{:U('admin/videos/index')}?is_hot="+is_hot;
+			})
+			$("select[name=type]").change(function(){
+					var type_id = $(this).val();
+					window.location.href = "{:U('admin/videos/index')}?type_id="+type_id;
+				})
+			$('.dele').click(function(){
+				var del = $(this).attr('del');
+				$.ajax({
+					type:'post',
+					url:"{:U('admin/videos/del_videos')}",
+					data:{del:del},
+					dataType:'text',
+					success:function(phpdata){
+						
+					}
+				});
+			})
+		}
+		</script>
+	</body>
+</html>

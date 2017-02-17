@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript" src="__PUBLIC__/jquery-1.7.2.min.js"></script>
+	    <style type="text/css">
+		li{
+			list-style: none;
+			float: left;
+		}
+	    </style>
+	</head>
+	<script type="text/javascript">
+		//删除图片
+		$('.del').live('click',function(){
+			var val = $(this).siblings('input').val();
+			del(val);
+			$(this).parent('li').remove();
+		});
+		function del(path){
+			$.ajax({
+				url: '{:U("del")}',
+				type: 'get',
+				data: {path:path},
+			})
+		}
+		function shanchu(This){
+			This.parent('li').remove();
+		}
+		
+	</script>
+	<body>
+		<div class="alert alert-success">修改资料</div>
+		<form action="" method="post">
+			<div class="form-group">
+				<label>请输入出生年份</label>
+				<input id="exampleInputEmail1"  class="form-control" type="text" placeholder=""  name="age" value="{$data['age']}">
+			</div>
+			<div class="form-group">
+				<label>市场价</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder="" name="market_price" value="{$data['market_price']}">
+			</div>
+			<div class="form-group">
+				<label>嘉仕澜德价</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder=""  name="price" value="{$data['price']}">
+			</div>
+			<div class="form-group">
+				<label>手机号码</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder=""  name="phone" value="{$data['phone']}">
+			</div>
+			<div class="form-group">
+				<label>个人邮箱</label>
+				<input id="exampleInputEmail1" class="form-control" type="text" placeholder=""  name="email" value="{$data['email']}">
+			</div>
+			<div class="form-group">
+				<label>从业经验</label>
+				<select name="experience" id="">
+					<option value="一年" <if condition="$data['experience'] eq '一年'">selected='selected'</if>>一年</option>
+					<option value="二年" <if condition="$data['experience'] eq '二年'">selected='selected'</if>>二年</option>
+					<option value="三年" <if condition="$data['experience'] eq '三年'">selected='selected'</if>>三年</option>
+					<option value="四年" <if condition="$data['experience'] eq '四年'">selected='selected'</if>>四年</option>
+					<option value="五年" <if condition="$data['experience'] eq '五年'">selected='selected'</if>>五年</option>
+					<option value="六年" <if condition="$data['experience'] eq '六年'">selected='selected'</if>>六年</option>
+					<option value="七年" <if condition="$data['experience'] eq '七年'">selected='selected'</if>>七年</option>
+					<option value="八年" <if condition="$data['experience'] eq '八年'">selected='selected'</if>>八年</option>
+					<option value="九年" <if condition="$data['experience'] eq '九年'">selected='selected'</if>>九年</option>
+					<option value="十年" <if condition="$data['experience'] eq '十年'">selected='selected'</if>>十年</option>
+					<option value="十年以上" <if condition="$data['experience'] eq '十年以上'">selected='selected'</if>>十年以上</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>所属类型</label>
+				<select name="diy_marrier_type_id" id="">
+					<foreach name="typeData" item="v">
+					<option value="{$v['diy_marrier_type_id']}">{$v.type_name}</option>
+					</foreach>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>所属城市</label>
+				<select name="address[]" id="" class="province">
+					<foreach name="areaData" item="v">
+					<option value="{$v['area_id']}" <eq name="data['address'][0]" value='$v["area_id"]'>selected="selected"</eq> >{$v.aname}</option>
+					</foreach>
+				</select>
+				<select name="address[]" id="" class="city">
+					<foreach name="city" item="v">
+					<option value="{$v['area_id']}" <eq name="data['address'][1]" value='$v["area_id"]'>selected="selected"</eq> >{$v.aname}</option>
+					</foreach>
+				</select>
+			</div>
+			<script type="text/javascript">
+					//城市联动
+					$('.province').change(function(){
+						var pid = $(this).val();
+						$.ajax({
+							url: '{:U('linkage')}',
+							type: 'POST',
+							dataType: 'json',
+							data: {pid:pid,level:1},
+							success:function(phpData){
+								if(phpData){
+									var one = '';
+									var two = '';
+									$.each(phpData.city, function(k, v) {
+										 one += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+									});
+									$.each(phpData.county, function(k, v) {
+										 two += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+									});
+									$('.city').html(one);
+									$('.county').html(two);
+								};
+							}
+						})	
+					});
+			</script>
+			<table class='table table-bordered'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">上传logo【一张,建议尺寸为一比一】</th>
+				</tr>
+				<tr class="info">
+					<td width="100px;">上传图片</td>
+					<td lab="uploadFile">
+						<input type="file" name='logo' id='logo'/>
+						<td id="logo">
+						<if condition="!empty($data['logo'])">
+						<li style='float: left;position:relative'>
+							<img src="__UPLOAD__/{$data['logo']}" alt="" width="100px">
+							<input type="hidden" name="logo" value="{$data['logo']}">
+							<a href="javascript:;" style='position:absolute;right:-10px;top:40%;cursor:pointer' onclick="shanchu($(this))">X</a>
+						</li>
+						</if>
+						</td>
+					    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+						<script type="text/javascript">
+					        $(function(){
+					            $('#logo').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('Diy/Index/upload',array('name'=>'diy'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+	//					                'width':65,
+	//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;position:relative'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><a style='position:absolute;right:-10px;top:40%;cursor:pointer;' class='del'>X</a><input type='hidden' name='logo' value='"+imageUrl+"'/></li>";
+					                    var num = $("#logo li").length;
+					                    if(num >= 1){
+					                    	alert('只能上传一张logo!');
+					                    	del(imageUrl);
+					                    }else{
+					                    	$("#logo").append(li);
+					                    };
+					                }
+					            });
+					        })
+					    </script>
+					</td>
+				</tr>
+			</table>
+			<table class='table table-bordered'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">上传头像【一张,建议尺寸为530*630】</th>
+				</tr>
+				<tr class="info">
+					<td width="100px;">上传图片</td>
+					<td lab="uploadFile">
+						<input type="file" name='portrait' id='portrait'/>
+						<td id="portrait">
+						<if condition="!empty($data['portrait'])">
+						<li style='float: left;position:relative'>
+							<img src="__UPLOAD__/{$data['portrait']}" alt="" width="100px">
+							<input type="hidden" name="portrait" value="{$data['portrait']}">
+							<a href="javascript:;" style='position:absolute;right:-10px;top:40%;cursor:pointer' onclick="shanchu($(this))">X</a>
+						</li>
+						</if>
+						</td>
+					    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+						<script type="text/javascript">
+					        $(function(){
+					            $('#portrait').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('Diy/Index/upload',array('name'=>'diy'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+	//					                'width':65,
+	//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;position:relative'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><a style='position:absolute;right:-10px;top:40%;cursor:pointer;' class='del'>X</a><input type='hidden' name='portrait' value='"+imageUrl+"'/></li>";
+					                    var num = $("#portrait li").length;
+					                    if(num >= 1){
+					                    	alert('只能上传一张头像!');
+					                    	del(imageUrl);
+					                    }else{
+					                    	$("#portrait").append(li);
+					                    };
+					                }
+					            });
+					        })
+					    </script>
+					</td>
+				</tr>
+			</table>
+			<button class="btn btn-primary btn-block" type="submit">确定</button>
+		</form>
+	</body>
+</html>

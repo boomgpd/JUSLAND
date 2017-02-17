@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	li{
+	    		list-style: none;
+	    		float: left;
+	    		overflow: hidden;
+	    		margin-bottom: 8px;
+	    	}
+	    	li img{
+	    		width: 60px;
+	    		
+	    	}
+	    	ul{
+	    		margin: 0;
+	    		padding: 0;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="55">序号</th>
+			  <th>用户名</th>
+			  <th>服务类型</th>
+			  <th>空间评价</th>
+			  <th>服务星级</th>
+			  <th width="10%">评论内容</th>
+			  <th width="10%">商家回复</th>
+			  <th width="15%">列表图</th>
+			  <th>操作</th>
+			</tr>
+			
+			<foreach name="data" item='v' key='k'>
+				<tr>
+					<td>{$k+1}</td>
+					<td>{$v['member_name']}</td>
+					<td>{$v['service_type']}</td>
+					<td>{$v['space_num']}</td>
+					<td>{$v['star_num']}</td>
+					<td style="text-indent: 2rem;">{$v['content']}</td>
+					<td>
+						<if condition="$v['reply_content']">
+							{$v['reply_content']}
+						<else />
+							暂未回复
+						</if>
+					</td>
+					<td>
+						<ul>
+							<foreach name="v['list_img']" item='vv' key='k'>
+								<li><img src="/strinary/Uploads/{$vv}" style="height: 100px;margin-right: 5px;"/></li>
+							</foreach>
+						</ul>
+					</td>
+					<td>
+						<!--<a href="" class="btn btn-sm btn-primary">添加子类</a>
+						<a href="" class="btn btn-sm btn-warning">编辑</a>-->
+						<a href="javascript:;" class="btn btn-sm btn-danger" merchant_id="{$v['merchant_remark_id']}">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script type="text/javascript">
+		
+			//创建异步删除评价方法
+			$(".btn-danger").click(function(){
+				var id =$(this).attr('merchant_id');
+				var This = $(this);
+				$.ajax({
+					type:"post",
+					url:"{:U('del_remark')}",
+					data:{id:id},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata.type){
+							This.parents('tr').remove();
+						}
+						alert(phpdata.content);
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

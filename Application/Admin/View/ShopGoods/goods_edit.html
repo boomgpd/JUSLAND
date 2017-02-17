@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+    	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+	    <script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    	<script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor1_4_3/ueditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor1_4_3/ueditor.all.min.js"> </script>
+		<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor1_4_3/lang/zh-cn/zh-cn.js"></script>
+	    <style type="text/css">
+			/*去掉uploadify上传按钮的边框*/
+		    .uploadify-button {
+		        background-color: transparent;
+		        border: none;
+		        padding: 0;
+		    }
+		    .uploadify:hover .uploadify-button {
+		        background-color: transparent;
+	    	}
+	    	.hide{
+	    		display: none;
+	    	}
+	    	body{
+	    		margin-bottom: 100px;
+	    	}
+	    	li{
+	    		list-style: none;
+	    	}
+	    	li{
+	    		position: relative;
+	    	}
+	    	
+	    	li{
+	    		margin-left:5px;
+	    		margin-top: 5px;
+	    	}
+	    	
+	    	li span.cha{
+	    		display: block;
+	    		width: 25px;
+	    		height: 15px;
+	    		font-family: "微软雅黑";
+	    		font-size: 14px;
+	    		background: indianred;
+	    		color: white;
+	    		line-height: 15px;
+	    		font-weight: 700;
+	    		position: absolute;
+	    		top: 0;
+	    		right: 0;
+	    		text-align: center;
+	    		cursor: pointer;
+	    	}
+		</style> 
+	</head>
+	<body>
+		<form action="" method="post" enctype="multipart/form-data">
+			
+		<div class="alert alert-success">添加商品</div>
+		<table class='table table-bordered table-hover'>
+			<thead>
+				<tr>
+					<th colspan="2" class="btn btn-primary">基本信息</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="info">
+					<td>商品名称</td>
+					<td>
+						<input type="text" name='gname' value="{$data['goods']['gname']}" style="width: 40%;" placeholder="请输入商品名称" />
+					</td>
+				</tr>
+				
+				<tr class="info merchant">
+					<td>商品分类</td>
+					<td>
+						<select name="category_id" style="width: 40%;">
+							<option value="0">请选择分类</option>
+							<foreach name='category' item='v' key='k'>
+								<option value="{$v['cid']}" level="2">{$v['cname']}</option>
+								<if condition="$v['sonData']">
+									<foreach name="v['sonData']" item='vv' key='kk'>
+										<if condition="($kk+1) eq count($v['sonData'])">
+											<if condition="$data['goods']['category_cid'] eq $vv['cid']">
+												<option value="{$vv['cid']}" selected="selected">∟ &nbsp;{$vv['cname']}</option>
+											<else />
+												<option value="{$vv['cid']}">∟ &nbsp;{$vv['cname']}</option>
+											</if>
+										<else />
+											<if condition="$data['goods']['category_cid'] eq $vv['cid']">
+												<option value="{$vv['cid']}" selected="selected">─ &nbsp;{$vv['cname']}</option>
+											<else />
+												<option value="{$vv['cid']}">─ &nbsp;{$vv['cname']}</option>
+											</if>
+										</if>
+									</foreach>
+								</if>
+							</foreach>
+						</select>
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>计量单位</td>
+					<td>
+						<input type="text" name='unit' value="{$data['goods']['unit']}" style="width: 40%;" placeholder="请输入计量单位" />
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>市场价格</td>
+					<td>
+						<input type="text" name='marketprice' value="{$data['goods']['marketprice']}" style="width: 40%;" placeholder="请输入市场价格" />
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>会员价格</td>
+					<td>
+						<input type="text" name='shopprice' value="{$data['goods']['shopprice']}" style="width: 40%;" placeholder="请输入会员价格" />
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>点击量</td>
+					<td>
+						<input type="text" name='click' value="{$data['goods']['click']}" style="width: 40%;" placeholder="请输入点赞数量" />
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td>商品描述</td>
+					<td>
+						<input type="text" name='des' value="{$data['goods']['des']}" style="width: 40%;" placeholder="请输商品描述,字数推荐为30-50字之间" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!--网站链接-->
+		<table class='table table-bordered table-hover ppp url'>
+			
+			<thead>
+				<tr>
+					<th colspan="2" class="btn btn-primary">网站链接</th>
+				</tr>
+			</thead>
+			<tbody id="url">
+				<foreach name="data['goods']['url']" item='v' key='k'>
+					<tr class="info merchant">
+						<if condition="$k eq 0">
+							<td style="width: 20%;">添加网站链接</td>
+							<td style="width: 70%;">
+								<input type="text" name="url[]"  value="{$v}" placeholder="请输入网站链接"/>
+							</td>
+							<td style="width: 20%;"><button type="button" class="btn btn-info addurl">增加链接</button></td>
+						<else />
+							<td style="width: 20%;"></td>
+							<td style="width: 70%;">
+								<input type="text" name="url[]"  value="{$v}" placeholder="请输入网站链接"/>
+							</td>
+							<td style="width: 20%;"><button type="button" class="btn btn-danger del_url">删除链接</button></td>
+						</if>
+					</tr>
+				</foreach>
+			</tbody>
+			
+		</table>
+		<!--网站链接-->
+		
+		<p class="btn btn-primary">商品标签</p>
+		<div class="form-group">
+			<foreach name="label" key="k" item="v">
+				<label class="checkbox checkbox-inline">
+					<input class="custom-checkbox" type="checkbox" name="label[]" value="{$v['id']}" <if condition="in_array($v['id'],$labels)">checked="checked"</if> /><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>{$v.name}</label>
+			</foreach>
+		</div>
+		<p class="btn btn-primary">商品规格</p>
+		<div class="form-group" id="spec">
+			<foreach name="data['att']" item='vv' key='kk'>
+				<label class="checkbox checkbox-inline">
+					<input class="custom-checkbox" type="checkbox" checked="checked" name="spec_id[]" value="{$vv['s_id']}"/>
+					<span class="icons">
+						<span class="icon-unchecked"></span>
+						<span class="icon-checked"></span>
+					</span>{$vv['spec_name']}</label>
+			</foreach>
+			<p class="btn btn-primary addspec" style="float: right;" gid="{$_GET['gid']}">增加规格</p>
+		</div>
+		
+		<table class='table table-bordered table-hover'>	
+			<thead>
+				<tr>
+					<th colspan="2" class="btn btn-primary">商品列表图</th>
+				</tr>
+			</thead>
+			<tbody id="spec">
+				<tr class="info">
+					<td style="width: 20%;">列表图片(图片比例为280*280)</td>
+					<td style="width: 40%;">
+						<input type="file" name="pic" id="pic" value="" />
+						<script type="text/javascript">
+					        $(function() {
+					            $('#pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'shop_list_img'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':100000,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span class='cha'>X</span><input type='hidden' name='pic' value='"+imageUrl+"'/></li>";
+					                    $("#pic_img").html(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td style="width: 40%;" id="pic_img">
+						<li style='float: left;'>
+							<img style='height: 100px;' src="__UPLOAD__{$data['goods']['pic']}"/>
+							<span class='cha'>X</span>
+							<input type='hidden' name='pic' value="{$data['goods']['pic']}"/>
+						</li>
+					</td>
+				</tr>
+				
+				<tr class="info">
+					<td style="width: 20%;">图片展示（比例为540*540）</td>
+					<td style="width: 40%;">
+						<input type="file" name="show_pic" id="show_pic" value="" />
+						<script type="text/javascript">
+					        $(function() {
+					            $('#show_pic').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'shop_detail_img'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 10,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10000,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl[1]+"'/><span class='cha'>X</span><input type='hidden' name='big[]' value='"+imageUrl[0]+"'/><input type='hidden' name='medium[]' value='"+imageUrl[1]+"'/></li>";
+					                    $("#show_pic_img").append(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td style="width: 40%;" id="show_pic_img">
+						<foreach name="data['details']['medium']" item='v' key='k'>
+							<li style='float: left;'>
+								<img style='height: 100px;' src='__UPLOAD__{$v}'/>
+								<span class='cha'>X</span>
+								<input type='hidden' name='big[]' value="{$data['details']['big'][$k]}"/>
+								<input type='hidden' name='medium[]' value='{$v}'/>
+							</li>
+						</foreach>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<table class='table table-bordered table-hover ppp spec'>	
+			<thead>
+				<tr>
+					<th colspan="2" class="btn btn-primary">商品详情</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="info merchant">
+					<td style="width: 20%;">商品分类</td>
+					<td style="width: 80%;">
+						<script id="one" type="text/plain" style="width:100%;height:500px;" name="details" >{$data['details']['details']}</script>
+    					<script>
+        				 	var ue = UE.getEditor('one');
+    					</script>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<input type="hidden" name="gid" value="{$data['goods']['gid']}" />
+		<button class="btn btn-primary btn-block" type="submit"> 确定 </button>
+	</form>
+		
+		<script type="text/javascript">
+			$("select[name=category_id]").change(function(){
+				getAttr();
+			});
+			function getAttr(){
+				var category_id = $("select[name=category_id]").val();
+				if(category_id == 0) return false;
+				$.ajax({
+					type:"get",
+					url:"{:U('admin/shopGoods/get_attr')}",
+					async:true,
+					data:{category_id:category_id},
+					dataType:'json',
+					success:function(phpdata){
+						$("#spec").html(phpdata.attr);
+//						$("#spec").html(phpdata.spec);
+					},
+					error:function(error){
+						alert(error);
+					}
+				});
+			}
+			
+			$("li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			
+			$(".addspec").click(function(){
+				var gid = $(this).attr('gid');
+				var This =$(this);
+				$.ajax({
+					type:"post",
+					url:"{:U('addspec')}",
+					data:{gid:gid},
+					dataType:'json',
+					success:function(phpdata){
+						if(phpdata){
+							var str ="";
+							$.each(phpdata, function(k,v) {
+								str += '<label class="checkbox checkbox-inline">';
+								str += '<input class="custom-checkbox" type="checkbox" name="spec_id[]" value="'+v.s_id+'"/>';
+								str += '<span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>';
+								str += ''+v.spec_name+'</label>';
+							});
+							This.parent('div').append(str);			
+						}
+					}
+				});
+			})
+			$("#url .addurl").click(function(){
+				var str = '<tr class="info"><td style="width:20%;"></td><td style="width:70%;">';
+				str += '<input type="text" name="url[]"  value="" placeholder="请输入网站链接"/>';
+				str += '</td><td style="width:20%;"><button type="button" class="btn btn-danger del_url">删除链接</button></td></tr>'
+				$(this).parents('tr').after(str);
+			})
+			
+			$("#url").on('click',' .del_url',function(){
+				$(this).parents('tr').remove();
+			})
+		</script>
+	</body>
+</html>
+

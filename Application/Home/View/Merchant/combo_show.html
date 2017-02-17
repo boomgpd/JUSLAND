@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>嘉仕澜德——商家案例展示</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/Merchant/css/case.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/Merchant/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/Merchant/css/pgwslideshow.css" />
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js" ></script>
+		<style>
+
+		</style>
+	</head>
+	<body>
+		<!--header start-->
+		<!--header end-->
+			<include file="Common/header_two" />
+		<!--nav start-->
+		<div class="nav">
+			<div class="w">
+				<ul>
+					<li>您所在的位置：</li>
+					<li><a href="{:U('home/index/index')}">嘉仕澜德</a><span>>></span></li>
+					<li><a href="{:U('home/merchant/list_page')}">结婚品牌</a><span>>></span></li>
+					<li><a href="{:U('home/merchant/index',array('merchant_id'=>$data['combo']['merchant_id']))}">诗缔婚礼</a><span>>></span></li>
+					<li><a href="{:U('home/merchant/case_show',array('id'=>$data['combo']['merchant_case_id']))}">套餐展示</a><span>>></span></li>
+					<li><span>{$data['combo']['title']}</span></li>
+				</ul>
+			</div>
+		</div>
+		<!--nav end-->
+		
+		<!--content start-->
+		<div class="content w">
+			<div class="jq22-content bgcolor-3" style="background: url(__PUBLIC__/Home/Merchant/images/case/background.jpg) no-repeat;background-size:100% 100% ;">
+				<ul class="pgwSlideshow">
+					<foreach name="data['combo']['img_url']" item='v' key='k'>
+				    	<li><img src="__UPLOAD__{$v}" alt=""></li>
+					</foreach>
+				</ul>
+		</div>
+		</div>
+		<div class="w" style="height: 20px;background-color: #f5f5f5;border: 1px solid #e0e0e0;border-top: 0;"></div>
+		<!--content end-->
+
+		<!--reserve start-->
+		<div class="reserve clearfix">
+			<div class="reserve_left fl">
+				<h5>{$data['merchant']['m_name']}</h5>
+				<div class="grade">
+					<img src="__PUBLIC__/Home/Merchant/images/case/grade_01.png" style="vertical-align: top;"/>
+					<span>人均￥5000</span><span>丨</span><span>{$data['merchant']['area'][0]}</span><span>{$data['merchant']['area'][2]}</span>
+				</div>
+				<a href="javascript:;">预约看店</a>
+			</div>
+			<div class="reserve_right fr">
+				<p>相似案例</p>
+				<volist name="data[combos]" id="v" offset="1" length='4'>
+					<dl>
+						<dt><img src="__UPLOAD__{$v['img_url'][0]}" style="height: 94px;"></dt>
+						<dd style="text-align: center;margin-top: 5px;"><a href="{:U('home/merchant/combo_show',array('combo_id'=>$v['merchant_combo_id']))}" >{$v['title']}</a></dd>
+					</dl>
+				</volist>
+			</div>
+		</div>
+		<!--reserve end-->
+		<!--弹框-->
+			<div class="content8" style="width: 100%;height: 100%;background: #000000;opacity: 0.5;position: fixed;top:0;left:0;display: none;z-index: 100;"></div>
+			<div class="collection" style="position: fixed;display: none;z-index: 101;">
+				<form action="" method="post">
+					<ul>
+						<li><label>姓名</label><input type="text" name="member_name"></li>
+						<li><label>联系电话</label><input type="text" name="phone"></li>
+						<input type="hidden" name="b_name" value="预约看店案例大" />
+						<li><input type="submit" value="立即申请"/></li>
+					</ul>			
+				</form>
+				<a href="javascript:;" class="login_close"><img src="__PUBLIC__/Home/Merchant/images/case/login_close.png"></a>
+			</div>
+		<!--弹框-->
+		<script>
+		window.onload = function(){
+			var left = (document.body.clientWidth - 520)/2;
+			var top =  ($(window).height() - 440)/2;
+			$(".collection").css({"left":left,"top":top});
+		}	   
+		</script>
+		<script type="text/javascript">
+			$('.reserve .reserve_left a').click(function(){
+				$('.collection').show();
+				$('.content8').show();
+			})
+			$('.login_close').click(function(){
+				$('.collection').hide();
+				$('.content8').hide();
+			})
+		</script>
+		<!--footer start-->
+		<div class="footer">
+			<div class="footer_top w">
+				<ul class="footer_chaining fl" style="background-image: url(__PUBLIC__/Home/Merchant/images/case/index_footer.png);">
+					<li class="blogroll fl" style="margin-top:30px;margin-left: 60px;font-size: 18px;color: #fff;">友情链接</li>
+					<li><a href="#" style="margin-left: 40px;">阿里巴巴</a></li>
+					<li><a href="#">百度一下</a></li>
+					<li><a href="#">腾讯QQ</a></li>
+					<li><a href="#">北京银行</a></li>
+					<li><a href="#">97婚嫁</a></li>
+				</ul>
+				<div class="footer_vx fl">
+					<dl style="margin-right: 50px;">
+						<dt>关注微信</dt>
+						<dd><img src="__PUBLIC__/Home/Merchant/images/case/index_vx.png"></dd>
+					</dl>
+					<dl>
+						<dt>下载APP</dt>
+						<dd><img src="__PUBLIC__/Home/Merchant/images/case/index_vx.png"></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="footer_bottom w">
+				<p><a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">意见反馈</a> | <a href="#">高薪聘请</a> | <a href="#">法律声明</a></p>
+				<p>免责声明：本网站部分内容由用户自行上传，如权利人发现存在误传其作品情形，请及时与本站联系。</p>
+				<p>© 2016 北京京折科技有限公司有限公司  保留所有权利</p>
+				<p>京ICP备14039745号-1</p>
+			</div>
+		</div>
+		<!--footer end-->
+	</body>
+	
+	<script type="text/javascript" src="__PUBLIC__/Home/Merchant/js/pgwslideshow.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('.pgwSlideshow').pgwSlideshow({
+		    	transitionEffect:'fading',
+		    	autoSlide:true
+		    });
+		});
+	</script>
+</html>

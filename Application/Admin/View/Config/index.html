@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<a href="{:U('addArticle')}"><button class="btn btn-info">添加站点配置</button></a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">ID</th>
+			  <th>站点配置名称/位置</th>
+			  <th>站点配置内容</th>
+			  <th width="210">操作</th>
+			</tr>
+			<foreach name="data['config']" item="value" key="key">
+				<tr class="dex">
+					<td>{$key+1}</td>
+					<td>{$value['attr_name']}</td>
+					<if condition="strstr($value['attr_value'],'system')">
+						<td><img src="__UPLOAD__{$value['attr_value']}" alt="" height="100px"/></td>
+					<else />
+						<td>{$value['attr_value']}</td>
+					</if>
+					<td>
+						<a href="{:U('edit',array('site_config_id'=>$value['site_config_id']))}" tid="" class="btn btn-sm btn-warning save" >编辑</a>
+						<a href="" del="{$value['site_config_id']}" class="btn btn-sm btn-danger dele">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+		$('.dele').click(function(){
+			var del = $(this).attr('del');
+			$.ajax({
+				type:'post',
+				url:"{:U('admin/config/del_config')}",
+				data:{del:del},
+				dataType:'text',
+				success:function(phpdata){
+					
+				}
+			});
+		})
+		</script>
+	</body>
+</html>

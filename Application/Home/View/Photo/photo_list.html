@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>嘉仕澜德——摄影列表页</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/photo/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/photo/css/list.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/photo/css/new_file.css">
+		<script type="text/javascript" src="__PUBLIC__/Home/photo/js/jquery-3.1.1.min.js" ></script>
+		<script type="text/javascript" src="__PUBLIC__/Home/photo/js/bootstrap.min.js" ></script>
+	</head>
+	<body>
+		<include file="Common/header" />
+		<!--header start-->
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		  	<div class="carousel-inner" role="listbox">
+		    	<div class="item active">
+			      	<img src="__PUBLIC__/Home/photo/img/banner_01.jpg" alt="...">
+			      	<div class="carousel-caption"></div>
+			    </div>
+			    <div class="item">
+			      	<img src="__PUBLIC__/Home/photo/img/banner_02.jpg" alt="...">
+			     	 <div class="carousel-caption"></div>
+			    </div>
+			    <div class="item">
+			      	<img src="__PUBLIC__/Home/photo/img/banner_03.jpg" alt="...">
+			     	 <div class="carousel-caption"></div>
+			    </div>
+			</div>
+			<!--两侧按钮-->
+			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			</a>
+			
+			<!--条件筛选-->
+			<div style="width: 100%;position: absolute;bottom: 40px;">
+				<ul class="condition clearfix">
+					<li>店铺区域</li>
+					<li>拍摄地址</li>
+					<li>拍摄风格</li>
+					<li style="margin-right: 0;">预计费用</li>
+				</ul>
+				<ul class="condition_cot clearfix" style="display: none;">
+					<foreach name="data['area']" item="val" key="key">
+						<li><a href="{:U('photo_list',array('area_id'=>$val['area_id'],'id'=>$_GET['id'],'desc'=>$_GET['desc']))}">{$val['aname']}</a></li>
+					</foreach>
+					<a href="javascript:;" class="more">更多</a>
+				</ul>
+				<foreach name="data['photo_list']" item="val" key="key">
+					<?php 
+						$temp = $arr;
+						$temp[$key] = 0;
+					?>
+					<ul class="condition_cot clearfix" style="display: none;">
+						<if condition="$arr[$key] eq 0">
+							<!--加个class-->
+							<li><a href="{:U('photo_list',array('desc'=>implode('_',$temp),'area_id'=>$_GET['area_id'],'id'=>$_GET['id']))}">全部</a></li>
+						<else />
+							<li><a href="{:U('photo_list',array('desc'=>implode('_',$temp),'area_id'=>$_GET['area_id'],'id'=>$_GET['id']))}">全部</a></li>
+						</if>
+						<foreach name="val" item="v" key="k">
+							<?php $temp[$key] = $v;?>
+							<if condition="$arr[$key] eq $v">
+								<!--加个class-->
+								<li><a href="{:U('photo_list',array('desc'=>implode('_',$temp),'area_id'=>$_GET['area_id'],'id'=>$_GET['id']))}">{$v}</a></li>
+							<else />
+								<li><a href="{:U('photo_list',array('desc'=>implode('_',$temp),'area_id'=>$_GET['area_id'],'id'=>$_GET['id']))}">{$v}</a></li>
+							</if>
+						</foreach>
+					</ul>
+				</foreach>
+			</div>
+		</div>
+		<!--header end-->
+		
+		<!--排序 开始-->
+		<ul class="list_sort w clearfix">
+			<li><a href="javascript:;" class="current">综合排序</a></li>
+			<li><a href="{:U('photo_list',array('moods'=>1,'page' => $_GET['page'],'desc'=>implode('_',$arr),'area_id' =>$_GET['area_id'],'id'=>$_GET['id']))}">人气</a></li>
+			<li><a href="{:U('photo_list',array('make'=>1,'page' => $_GET['page'],'desc'=>implode('_',$arr),'area_id' =>$_GET['area_id'],'id'=>$_GET['id']))}">预约量</a></li>
+			<li><a href="{:U('photo_list',array('price'=>1,'page' => $_GET['page'],'desc'=>implode('_',$arr),'area_id' =>$_GET['area_id'],'id'=>$_GET['id']))}">价格</a></li>
+			<div class="qujian fl">
+				<form action="" method="post">
+					<input type="hidden" name="get[]"  value="{$_GET}" />
+					<input type="text" name="stae" placeholder="￥"/>
+					-
+					<input type="text" name="end" placeholder="￥"/>
+					<a href="javascript:;"><button class="yes" type="submit" style="border: 0;">确认</button></a>
+				</form>
+			</div>
+			<div class="seek fr">
+				<input type="text" placeholder="输入搜索宝贝名称"/>
+				<a href="javascript:;"><img src="__PUBLIC__/Home/photo/img/seek.png"></a>
+			</div>
+		</ul>
+		<!--排序 结束-->
+		
+		<!--content start-->
+		<div class="content w">
+			<div class="clearfix">
+				<foreach name="data['photo_goods']" item="val" key="key">
+					<if condition="$val['p_p_id']">
+						<if condition= "($key+1)%3 eq 0">
+							<dl style="margin-right:0;">
+						<else />
+							<dl>	
+						</if>
+							<dt><a href="{:U('details',array('id'=>$val['p_p_id']))}"><img src="__UPLOAD__{$val['list_img']}"></a></dt>
+							<dd><a href="javascript:;">{$val['p_name']}</a></dd>
+							<dd class="fr"><del>原价{$val['original']}</del><span>￥{$val['price']}</span></dd>
+						</dl>
+					</if>
+				</foreach>
+			</div>
+		</div>
+		<!--content end-->
+		
+		<!--分页 开始-->
+		<if condition="$data['photo_goods']['count']['page_type']">
+			<div class="list_page w" style="margin-bottom: 20px;">
+				<?php $temp_two = $get;?>
+				<if condition="$data['photo_goods']['count']['page'] gt 1">
+					<?php $temp['moods'] = 1;$temp['make'] = 1;$temp['price'] = 1;$temp_two['page'] = 1; $temp_two['id'] = $_GET['id'];$temp_two['desc']=$_GET['desc'];$temp_two['area_id']=$_GET['area_id'];?>
+					<a href="{:U('photo_list',$temp_two)}" class="turning page">首页</a>
+					<?php $temp['moods'] = 1;$temp['make'] = 1;$temp['price'] = 1;$temp_two['page'] = $data['photo_goods']['count']['page']-1; $temp_two['id'] = $_GET['id'];$temp_two['desc']=$_GET['desc'];$temp_two['area_id']=$_GET['area_id'];?>
+					<a href="{:U('photo_list',$temp_two)}" class="turning page">< 上一页</a>
+				</if>
+				<if condition="$page['page'] gt 3">
+					...
+				</if>
+				<for start="$data['photo_goods']['count']['page'] - $data['photo_goods']['count']['page_left']" end="$data['photo_goods']['count']['page']">
+					<?php $temp['moods'] = 1;$temp['make'] = 1;$temp['price'] = 1;$temp_two['page'] = $i; $temp_two['id'] = $_GET['id'];$temp_two['desc']=$_GET['desc'];$temp_two['area_id']=$_GET['area_id'];?>
+					<a href="{:U('photo_list',$temp_two)}" class="num page">{$i}</a>
+				</for>
+				<?php $temp['moods'] = 1;$temp['make'] = 1;$temp['price'] = 1;$temp_two['page'] = $data['photo_goods']['count']['page']; $temp_two['id'] = $_GET['id'];$temp_two['desc']=$_GET['desc'];$temp_two['area_id']=$_GET['area_id'];?>
+				<a href="{:U('photo_list',$temp_two)}" class="num current page">{$data['photo_goods']['count']['page']}</a>
+				<for start="$data['photo_goods']['count']['page'] + 1" end="$data['photo_goods']['count']['page']+$data['photo_goods']['count']['page_right']+1">
+					<?php $temp['moods'] = 1;$temp['make'] = 1;$temp['price'] = 1;$temp_two['page'] = $i; $temp_two['id'] = $_GET['id'];$temp_two['desc']=$_GET['desc'];$temp_two['area_id']=$_GET['area_id'];?>
+					<a href="{:U('photo_list',$temp_two)}" class="num page">{$i}</a>
+				</for>
+				<if condition="($data['photo_goods']['count']['num'] - $data['photo_goods']['count']['page']) gt 3">
+					...
+				</if>
+				<if condition="$data['photo_goods']['count']['page'] lt $data['photo_goods']['count']['num']">
+					<?php $temp['moods'] = 1;$temp['make'] = 1;$temp['price'] = 1;$temp_two['page'] = $data['photo_goods']['count']['page'] + 1; $temp_two['id'] = $_GET['id'];$temp_two['desc']=$_GET['desc'];$temp_two['area_id']=$_GET['area_id'];?>
+					<a href="{:U('photo_list',$temp_two)}" class="turning page">下一页 ></a>
+					<?php $temp['moods'] = 1;$temp['make'] = 1;$temp['price'] = 1;$temp_two['page'] = $data['photo_goods']['count']['num']; $temp_two['id'] = $_GET['id'];$temp_two['desc']=$_GET['desc'];$temp_two['area_id']=$_GET['area_id'];?>
+					<a href="{:U('photo_list',$temp_two)}" class="turning page">尾页</a>
+				</if>
+				共<span>{$data['photo_goods']['count']['num']}页</span>，到第<input type="text" name="page"/>页
+				<a href="{:U('photo_list',$get)}" class="page_yes">确认</a>
+			</div>
+		</if>
+		
+		<!--footer start-->
+		<div class="footer">
+			<div class="footer_cot">
+				<h3>会员可享受丰厚礼遇</h3>
+				<span>5000积分，即刻升级套餐享更多优惠</span>
+				<div class="submit">
+					<a href="{:U('Registe/index')}">现在加入</a>
+					<a href="{:U('Login/login')}">登录</a>
+				</div>
+				
+			</div>
+		</div>
+		<!--footer end-->
+	</body>
+
+<script>
+//排序
+	$(".list_sort li a").click(function(){
+		$(this).addClass("current").parent("li").siblings("li").find("a").removeClass("current");
+	});
+</script>
+<script>
+//分页页数按钮
+	$(".list_page .num").click(function(){
+		$(this).addClass("current").siblings("a.num").removeClass("current");
+	})
+</script>
+<script>
+//条件筛选
+	$(function(){
+		var $tab=$(".condition li");
+		var $tab_end=$(".condition_cot");
+		$tab.click(function(){
+			var $this=$(this);
+			var $inx=$this.index();
+			$tab_end.css("display","none");
+			$tab_end.eq($inx).css("display","block")
+		});
+	})
+//确认选择
+	$(".condition_cot li a").click(function(){
+		$(this).parents(".condition_cot").hide();
+		var a_pro = $(this).html();
+		var num = $(this).parents(".condition_cot").index();
+		$(".condition li").eq(num-1).html(a_pro);
+	})
+</script>
+<script>
+	var banner_height = $(".carousel-inner > .item > img").height();
+	$(".footer").css("height",banner_height);
+	var footer_height = $(".footer").height();
+	var footer_cot_height = $(".footer_cot").height();
+	var mt = (footer_height - footer_cot_height)/2;
+	$(".footer_cot").css("padding-top",mt);
+</script>
+</html>

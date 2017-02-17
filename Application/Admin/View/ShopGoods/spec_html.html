@@ -1,0 +1,14 @@
+<foreach name="spec" item='v' key='k'>
+	<tr class="info merchant">
+		<td style="width: 20%;">{$v['taname']}</td>
+		<td style="width: 70%;">
+			<select name="spec[{$v['taid']}][]" style="width: 40%;">
+				<option value="0">请选择规格</option>
+				<foreach name="v['tavalue']" item='vv' key='kk'>
+					<option value="{$vv}">{$vv}</option>
+				</foreach>
+			</select>
+		</td>
+		<td style="width: 20%;"><button type="button" class="btn btn-info addspec">增加规格</button></td>
+	</tr>
+</foreach>

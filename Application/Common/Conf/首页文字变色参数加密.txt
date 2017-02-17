@@ -1,0 +1,10 @@
+web_type =>array(
+		'index' => 'aW5kZXg=',
+		'waterfall' => 'd2F0ZXJmYWxs',
+		'plan_price' => 'cGxhbl9wcmljZQ==',
+		'new_strategy' => 'bmV3X3N0cmF0ZWd5',
+		'merchant_brand' => 'bWVyY2hhbnRfYnJhbmQ=',
+		'DIY' => 'RElZ',
+		'shop' => 'c2hvcA==',	
+		),
+		

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>嘉仕澜德——商城购物车</title>
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Shop/css/cart.css" />
+		<script type="text/javascript" src="__PUBLIC__/Shop/js/jquery-3.1.1.min.js" ></script>
+	</head>
+	<body>
+		<include file="Common/header_two" />
+		<include file="Public/Tool/sys_alert/index.html" /> 
+		<!--顶部LOGO 开始-->
+		<div class="top w clearfix" style="padding-top: 50px;padding-bottom: 30px;">
+			<a href="{:U('shop/index/index')}"><img src="/Public/Shop/img/pay_logo.png" class="ml93" style="margin-left: 93px;"></a>
+		    <img src="/Public/Shop/img/1.png" class="ml66" style="margin-left: 66px;">
+		</div>
+		<!--顶部LOGO 结束-->
+		
+		<!--购物车主体内容 开始-->
+		<empty name="data['goods']">
+			<div class="cart_cot">
+				<div class="cart_title">
+					<p>购物车内产品</p>
+				</div>
+				<div class="cart_empty">
+					<p>购物车空空的哦~，去看看心仪的商品吧~</p>
+					<a href="{:U('shop/index/index')}" class="c_blue">去购物>></a>
+				</div>
+				<div class="cart_gross">
+					
+				</div>
+			</div>
+		<else/>
+		<form action="{:U('Order/index')}" method="post">
+		<div class="cart_cot">
+			<div class="cart_title">
+				<p>购物车内产品</p>
+			</div>
+				<foreach name="data['goods']" key="k" item="v">
+				<div class="cart_product clearfix">
+					<input type="checkbox" name="ids[]" value="{$v['cart_id']}"/>
+					<div class="cart_product_left fl">
+						<a href="{:U('Shop/Goods/details',array('id'=>$v['gid']))}" target="_blank"><img src="__UPLOAD__/{$v['pic']}"></a>
+					</div>
+					<div class="cart_product_right fl">
+						<div class="top clearfix">
+							<a href="{:U('Shop/Goods/details',array('id'=>$v['gid']))}" target="_blank" class="title fl">{$v.gname}</a>
+							<span class="fl c_orange" style="margin-right: 40px;">¥{$v['price']}</span>
+							<a href="javascript:;" class="count count_min fl">-</a>
+							<input type="text" class="fl" value="{$v['num']}"/>
+							<a href="javascript:;" class="count count_add fl">+</a>
+							<b class="fr">¥{$v['total']}</b>
+						</div>
+						<div class="bot">
+							<p>编号：<span>{$v['gnumber']}</span></p>
+							<span>{$v['specs']}</span>
+							<a href="javascript:;" class="del fr c_blue">删除</a>
+						</div>
+					</div>
+				</div>
+			</foreach>
+			<div class="cart_gross">
+				<p><span>总计</span><b>￥0</b></p>
+			</div>
+			<div class="cart_bill clearfix">
+				<a href="javascript:;" class="buy">结账</a>
+				<button id="go" style="display:none"></button>
+			</div>
+		</div>
+		</form>
+		</empty>
+		<!--购物车主体内容 结束-->
+		<div style="width: 100%;height: 20px;"></div>
+		<include file="Common/bottom" /> 
+	</body>
+
+<script> 
+	$(function(){ 
+		$('.cart_bill.clearfix a.buy').click(function(){
+			var length = $("input[name='ids[]']:checked").length;
+			if(length < 1){
+				wp_alert('请至少选择一样商品');
+				return false;
+			};
+			$.ajax({
+				url:"{:U('Order/index')}",
+				type: 'post',
+				dataType: 'json',
+				data: {bool:true},
+				success:function(phpdata){
+					if(phpdata.type == 'error'){
+						wp_confirm(phpdata.msg,phpdata.url);
+					}else{
+						$("#go").click();
+					}
+				}
+			});
+		});
+		$(".count_add").click(function(){ 
+			var t=$(this).parent().find("input[type=text]"); 
+			t.val(parseInt(t.val())+1);
+			var num = t.val();
+			go_change($(this),num);
+		});
+
+		$(".count_min").click(function(){
+			var t=$(this).parent().find('input[type=text]'); 
+			t.val(parseInt(t.val())-1) ;
+			if(parseInt(t.val())<1){
+				t.val(1); 
+			};
+			var num = t.val();
+			go_change($(this),num);
+		});
+
+		function go_change(This,num){
+			var p = This.parents('.cart_product.clearfix').find("input[name='ids[]']");
+			var bool = p.is(':checked');
+			if(bool){
+				var length = $("input[name='ids[]']").length;
+				var ids = '';
+				for(var i = 0;i < length;i++){
+					if($("input[name='ids[]']").eq(i).is(':checked')){
+						ids += '|'+$("input[name='ids[]']").eq(i).val();
+					};
+				};
+				ids = p.val() + ids;
+			}else{
+				var ids = p.val();
+			};
+			change(This,ids,num,bool);
+		};
+
+		function change(This,ids,num,bool){
+			$.ajax({
+				url:'{:U("Goods/change_cart")}',
+				type:'post',
+				dataType:'json',
+				data: {ids:ids,num:num,bool:bool},
+				success:function(phpdata){
+					if(phpdata.type == 'error'){
+						wp_alert(phpdata.msg);
+					}else{
+						This.siblings('.fr').html('¥'+phpdata.total);
+						if(bool == true){
+							$('.cart_gross').find('b').html('￥'+phpdata.total_all);
+						};
+					};
+				}
+			});
+		};
+
+		$("input[name='ids[]']").click(function(){
+			var length = $("input[name='ids[]']").length;
+			var ids = '';
+			for(var i = 0;i < length;i++){
+				if($("input[name='ids[]']").eq(i).is(':checked')){
+					ids += '|'+$("input[name='ids[]']").eq(i).val();
+				};
+			};
+			ids = ids.replace('|','');
+			action(ids,'click',false,$(this));
+		});
+
+		$(".cart_product .del").click(function(){
+			var p = $(this).parents('.cart_product.clearfix').find("input[name='ids[]']");
+			var bool = p.is(":checked");
+			var ids = '';
+			if(bool == true){
+				var length = $("input[name='ids[]']").length;
+				for(var i = 0;i < length;i++){
+					if($("input[name='ids[]']").eq(i).is(':checked')){
+						ids += '|'+$("input[name='ids[]']").eq(i).val();
+					};
+				};
+			};
+			ids = p.val() + ids;
+			action(ids,'del',bool,$(this));
+		});
+
+		function action(ids,action,bool,This){
+			$.ajax({
+				url:'{:U("Goods/change_cart")}',
+				type:'post',
+				dataType:'json',
+				data: {ids:ids,action:action,bool:bool},
+				success:function(phpdata){
+					if(phpdata.type == 'error'){
+						wp_alert(phpdata.msg);
+					}else{
+						if(action == 'click'){
+							$('.cart_gross').find('b').html('￥'+phpdata.total_all);
+						};
+						if(action == 'del'){
+							This.parents(".cart_product").remove();
+							if(bool == true){
+								$('.cart_gross').find('b').html('￥'+phpdata.total_all);
+							};
+						};
+					};
+				}
+			});
+		};
+
+		$('input[type=text].fl').blur(function() {
+			var val = $(this).val();
+			var reg = /^[0-9]*[1-9][0-9]*$/;
+			if(!reg.test(val)){
+				$(this).val(1);
+			};
+			var num = $(this).val();
+			go_change($(this),num);
+		});
+
+	}) 
+</script>
+</html>

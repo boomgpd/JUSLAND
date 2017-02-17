@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+
+	<link rel="stylesheet" href="__PUBLIC__/Admin/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+	
+	<style type="text/css">
+		/*去掉uploadify上传按钮的边框*/
+	    .uploadify-button {
+	        background-color: transparent;
+	        border: none;
+	        padding: 0;
+	    }
+	    .uploadify:hover .uploadify-button {
+	        background-color: transparent;
+    	}
+    	.hide{
+    		display: none;
+    	}
+    	body{
+    		margin-bottom: 100px;
+    	}
+    	li{
+    		list-style: none;
+    	}
+    	#uploadLista li{
+    		position: relative;
+    	}
+    	#uploadLista li span{
+    		display: block;
+    		width: 25px;
+    		height: 15px;
+    		font-family: "微软雅黑";
+    		font-size: 14px;
+    		background: indianred;
+    		color: white;
+    		line-height: 15px;
+    		font-weight: 700;
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+	</style> 
+	
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span12">
+
+	<form action="" method='post'>
+		<if condition="$_GET['picture_list_id']">
+			<input type="hidden" name="picture_list_id" id="" value="{$data['picture_list_id']}" />
+		<elseif condition="$_GET['adver_id']" />
+			<input type="hidden" name="adver_id" id="" value="{$data['adver_id']}" />
+		</if>
+		<fieldset>
+			<legend>更换首页推荐图</legend>
+			<table class='table table-bordered'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">图片上传（最多限20张,超过按前20张处理）</th>
+				</tr>
+				<tr class="info">
+					<!--<td style="width: 100px;">上传图片</td>-->
+					<td lab="uploadFile">
+						<input type="file" name='pic' id='url'/>
+					    <script type="text/javascript">
+					        $(function() {
+					            $('#url').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png;*.gif;*.jpeg;',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'pic_text_index'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='img_src' value='"+imageUrl+"'/></li>";
+					                    $("#uploadLista").html(li);
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td id="uploadLista">
+						<if condition="$_GET['picture_list_id']">
+							<li style='float: left;'>
+								<img style='height: 100px;' src='__UPLOAD__{$data['img_src']}'/>
+								<span>X</span>
+								<input type='hidden' name='img_src' value='{$data['img_src']}'/>
+							</li>
+						<elseif condition="$_GET['adver_id']" />
+							<li style='float: left;'>
+								<img style='height: 100px;' src='__UPLOAD__{$data['pic_src']}'/>
+								<span>X</span>
+								<input type='hidden' name='img_src' value='{$data['pic_src']}'/>
+							</li>
+						</if>
+					</td>
+				</tr>
+			</table>
+			<if condition="$_GET['picture_list_id']">
+				<table class='table table-bordered'>
+					<tr>
+						<th colspan="3" class="btn btn-primary">填写标题（0~15字为佳）</th><th></th>
+					</tr>
+					<tr class="info">
+						<td><input type="text" name="title" value=""/></td>
+						<td></td>
+					</tr>
+				</table>
+			<elseif condition="$_GET['adver_id']" />
+			</if>
+			<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+		</fieldset>
+	</form>
+
+	</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+//			给图片添加单机事件
+			$("#uploadLista li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+//			给显示数量添加change事件
+			$("input[name = show_num]").change(function(){
+				var num = $(this).val();
+				if(num>5){
+					alert('最大显示数量为5');
+					$(this).val(5);
+				}else if(num<1){
+					alert('最小显示数量为1');
+					$(this).val(1);
+				}
+			})
+	</script>
+</body>
+</html>

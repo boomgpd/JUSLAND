@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>婚博士在线聊天</title>
+		<link rel="stylesheet" href="__PUBLIC__/Shop/cose/css/style.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Shop/cose/css/reset.css" />
+		<script type="text/javascript" src="__PUBLIC__/Shop/cose/js/jquery-3.1.1.min.js" ></script>
+		<style type="text/css">
+			.hf span a{
+				color: blue;
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<!--头部-->
+		<div class="header clearfix">
+			<div class="logo">
+				<img src="__PUBLIC__/Shop/cose/img/logo.png">
+			</div>
+			<div class="size">
+				<span class="name">会员某某</span>
+				<span>您好！婚博士正在为您服务~</span>
+			</div>
+			<div class="fr" style="margin: 21px;">
+				<a href="javascript:;" class="xx"><img src="__PUBLIC__/Shop/cose/img/close.png"></a>
+			</div>
+		</div>
+		
+		<!--对话-->
+		<div class="content clearfix">
+			<!--左侧-->
+			<div class="left fl">
+				<div class="talk">
+					<div class="staff">
+						<!--<div class="time">
+							<span>12:00</span>
+						</div>-->
+						<div class="say clearfix">
+							<div class="tx fl">
+								<img src="__PUBLIC__/Shop/cose/img/tx.png" />
+							</div>
+							<div class="zi">
+								<div class="name">婚博士</div>
+								<div class="hf">
+									<span>婚里人只为婚礼人！</span><br />
+									<span>婚里人——让天下婚礼人都受益，让我们共同努力，共创婚礼人的辉煌，你好</span><br />
+									<foreach name="data" item="val" key="key">
+										<span><a href="javascript:;" class="custom" desc="{$val['desc']}" id="{$val['custom_type_id']}">{$val['cus_name']}</a></span><br />
+									</foreach>
+									<img src="__PUBLIC__/Shop/cose/img/left.png" class="tb_left">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--<div class="client">
+						<div class="say clearfix">
+							<div class="tx fr">
+								<img src="__PUBLIC__/Shop/cose/img/tx_02.jpg" />
+							</div>
+							<div class="zi">
+								<div class="name">用户某某</div>
+								<div class="hf">
+									<span>婚博士是干什么的，能帮助我做些什么？</span>
+									<img src="__PUBLIC__/Shop/cose/img/right.png" class="tb_right">
+								</div>
+							</div>
+						</div>
+					</div>-->
+				</div>
+				<div class="input">
+					<textarea maxlength="150"  id="a" name="cose_conent" placeholder="请在这里输入问题，婚博士会快速回复您的"></textarea>
+					<button class="send">发送</button>
+				</div>
+			</div>
+			
+			<!--右侧-->
+			<div class="right fl">
+				<div class="hbs">
+					<h4>
+						<img src="__PUBLIC__/Shop/cose/img/wh.png">
+						<span>婚博士是什么？</span>
+					</h4>
+					<p>婚博士是嘉仕澜德婚礼平台旗下专为新人解决问题的智囊，专注婚礼行业垂直细分市场，帮助新人解决婚礼筹备的难题。嘉仕澜德平台集婚纱摄影、婚礼道具、婚宴酒店、婚礼摄影、婚礼摄像、婚礼跟妆、婚礼司仪、婚礼策划等婚礼商家为一体，本着“让天下婚礼人都受益”的平台理念，为适婚人群提供一站式的婚礼服务。</p>
+				</div>
+				<div class="tel">
+					<h4>
+						<img src="__PUBLIC__/Shop/cose/img/tel.png">
+						<span>服务热线</span>
+						<img src="__PUBLIC__/Shop/cose/img/show.png" class="xb">
+					</h4>
+					<div class="phone">
+						<p>嘉仕澜德：400-888-8888</p>
+						<p>婚礼人：400-888-8888</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var height = document.documentElement.clientHeight;
+		var t_height = height-127;
+		var r_height = height-63;
+		$(".content .left .talk").css("height",t_height);
+		$(".content .right").css("height",r_height);
+		
+		//右侧电话号码显示
+		$(".right .tel").click(function(){
+			$(this).find(".phone").toggle(500);
+			$(this).find(".xb").toggle(500);
+		})			
+	</script>
+<script src='//cdn.bootcss.com/socket.io/1.3.7/socket.io.js'></script>
+<script>
+$('.xx').click(function(){
+	if(confirm("您确定要关闭本页吗？")){
+		var merchant = "<?php echo $_SESSION['merchant_id']?>";
+		var admin_id = {$admin['admin_id']};
+		if(admin_id){
+			$.ajax({
+				type:"post",
+				url:"{:U('clean')}",
+				data:{merchant:merchant,admin_id:admin_id},
+				dataType:'json',
+				success:function(phpdata){
+					if(phpdata){
+						custom_close();
+					}
+				}
+			});
+		}else{
+			custom_close();
+		}
+	}else{}
+})
+function custom_close(){
+	window.opener=null;
+	window.open('','_self');
+	window.close();
+}
+//$(document).keydown(function(event){ 
+//	if(event.keyCode == 13){
+//		$('.send').click();
+//	} 
+//}); 
+document.onkeydown=function(e){
+    if(e.keyCode == 13 && e.ctrlKey){
+    // 这里实现换行
+        document.getElementById("a").value += "\n";
+    }else if(e.keyCode == 13){
+    // 避免回车键换行
+        e.preventDefault();
+    // 下面写你的发送消息的代码
+    	$('.send').click();
+    }
+}
+$('.send').click(function(){
+	if({$admin['admin_id']}){
+		var admin_id = {$admin['admin_id']};
+		var cose_conent = $('textarea[name=cose_conent]').val();
+		if(!cose_conent){
+			alert('不可以发送空文本');
+		}else{
+			$.ajax({
+				type:'post',
+				url:"{:U('send')}",
+				data:{cose_conent:cose_conent,admin_id:admin_id},
+				dataType:'json',
+				success:function(phpdata){
+					var str = '<div class="client"><div class="say clearfix"><div class="tx fr">';
+					if(phpdata.head_img){
+						str += '<img src="__UPLOAD__'+phpdata.head_img+'" />';
+					}else{
+						str += '<img src="__PUBLIC__/Shop/cose/img/tx_02.jpg" />';
+					}
+						str += '</div><div class="zi"><div class="name">'+phpdata.m_name+'</div>';
+						str += '<div class="hf"><span>'+cose_conent+'</span><img src="__PUBLIC__/Shop/cose/img/right.png" class="tb_right"></div></div></div></div>'; 
+					$('.talk').append(str);
+					$('textarea[name=cose_conent]').val('');
+					$(".talk").scrollTop($(".talk")[0].scrollHeight);
+				}
+			});
+		}
+	}else{
+		alert('请先选择客服');
+	}
+})
+// 初始化io对象 
+var socket = io('http://'+document.domain+':2359');
+// uid 可以为网站用户的uid，作为例子这里用session_id代替
+var uid = "<?php echo C('SYS_NAME').'_merchant_'.$_SESSION['merchant_id'].C('SYS_NAME').'_custom_'.$admin['admin_id'];?>";
+// 当socket连接后发送登录请求
+socket.on('connect', function(){
+	socket.emit('login', uid);
+});
+// 当服务端推送来消息时触发，这里简单的aler出来，用户可做成自己的展示效果
+socket.on('new_msg', function(msg){
+	msg = eval('(' + msg + ')');
+	console.log(msg);
+	$.ajax({
+		type:'post',
+		url:"{:U('custom')}",
+		data:{msg:msg},
+		dataType:'json',
+		success:function(phpdata){
+			var str = '<div class="staff"><div class="say clearfix"><div class="tx fl">';
+				str +='<img src="__PUBLIC__/Shop/cose/img/tx.png" />';
+				str += '</div><div class="zi"><div class="name">'+phpdata.admin_name+'</div><div class="hf">';
+				str += '<span>'+msg.cose_conent+'</span><img src="__PUBLIC__/Shop/cose/img/right.png" class="tb_right">';
+				str += '</div></div></div></div>';
+				$('.talk').append(str);
+				$(".talk").scrollTop($(".talk")[0].scrollHeight);
+		}
+	});
+});
+	//匹配客户开始
+$('.custom').click(function(){
+	var id = $(this).attr('id');
+	var desc = $(this).attr('desc');
+	$.ajax({
+		type:"post",
+		url:"{:U('check_cose')}",
+		data:{custom_type:id,desc:desc},
+		dataType:'json',
+		success:function(phpdata){
+			if(phpdata){
+				var str = '<div class="staff"><div class="say clearfix"><div class="tx fl">';
+				str +='<img src="__PUBLIC__/Shop/cose/img/tx.png" />';
+				str += '</div><div class="zi"><div class="name">客服</div><div class="hf">';
+				str += '<span>'+phpdata.content+'</span><img src="__PUBLIC__/Shop/cose/img/right.png" class="tb_right">';
+				str += '</div></div></div></div>';
+				$('.talk').append(str);
+				$(".talk").scrollTop($(".talk")[0].scrollHeight);
+				uid.replace('0', phpdata.admin_id);
+			}
+		}
+	});
+})
+		document.onkeydown = function(){
+	        if(event.keyCode==116 || event.ctrlKey   &&   event.keyCode==82) {
+	         	event.keyCode=0;
+	         	event.returnValue = false;
+	        }
+		}
+		document.oncontextmenu = function(){
+			event.returnValue=false;
+		}
+		window.onbeforeunload = function(){
+		    return "真的离开?";
+		}
+</script>
+</html>

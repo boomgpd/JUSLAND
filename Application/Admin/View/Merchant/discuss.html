@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="10%">序号</th>
+			  <th width="25%">商家名称</th>
+			  <th>问答条数</th>
+			  <th width="25%">操作</th>
+			</tr>
+				<foreach name='data' item='v' key='k'>
+			<tr>
+					<td>{$k+1}</td>
+					<td>{$v['m_name']}</td>
+					<td>{$v['question_num']}</td>
+					<td>
+						<a href="{:U('discuss_show',array('merchant_id'=>$v['merchant_id']))}" class="btn btn-sm btn-primary">查看问答</a>
+						<a href="{:U('discuss_add',array('merchant_id'=>$v['merchant_id']))}" class="btn btn-sm btn-warning">添加问答</a>
+					</td>
+			</tr>
+				</foreach>
+			<img src="" alt="">
+		</table>
+	</body>
+</html>

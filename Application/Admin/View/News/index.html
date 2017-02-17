@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/minti/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/minti/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/minti/Flat/img/favicon.ico">
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">aid</th>
+			  <th style="width: 400px;text-align: center;">内容</th>
+			  <th style="width: 500px;text-align: center;">
+			  	<select name="new_recommend_type" id="sele">
+			  		<if condition="$_GET['type'] eq 0 ">
+			  			<option value="0" selected="selected">推荐类型</option>
+				  		<option value="1">轮播推荐</option>
+				  		<option value="2">头条推荐</option>
+				  		<option value="3">热点推荐</option>
+				  		<option value="4">最新推荐</option>
+				  		<option value="5">本周推荐</option>
+			  		<elseif condition="$_GET['type'] eq 1 "/>
+			  			<option value="0">推荐类型</option>
+				  		<option value="1" selected="selected">轮播推荐</option>
+				  		<option value="2">头条推荐</option>
+				  		<option value="3">热点推荐</option>
+				  		<option value="4">最新推荐</option>
+				  		<option value="5">本周推荐</option>
+			  		<elseif condition="$_GET['type'] eq 2 "/>
+			  			<option value="0">推荐类型</option>
+				  		<option value="1">轮播推荐</option>
+				  		<option value="2" selected="selected">头条推荐</option>
+				  		<option value="3">热点推荐</option>
+				  		<option value="4">最新推荐</option>
+				  		<option value="5">本周推荐</option>
+			  		<elseif condition="$_GET['type'] eq 3 "/>
+				  		<option value="0">推荐类型</option>
+				  		<option value="1">轮播推荐</option>
+				  		<option value="2">头条推荐</option>
+				  		<option value="3" selected="selected">热点推荐</option>
+				  		<option value="4">最新推荐</option>
+				  		<option value="5">本周推荐</option>
+			  		<elseif condition="$_GET['type'] eq 4 "/>
+				  		<option value="0">推荐类型</option>
+				  		<option value="1">轮播推荐</option>
+				  		<option value="2">头条推荐</option>
+				  		<option value="3">热点推荐</option>
+				  		<option value="4" selected="selected">最新推荐</option>
+				  		<option value="5">本周推荐</option>	
+			  		<elseif condition="$_GET['type'] eq 5 "/>
+				  		<option value="0">推荐类型</option>
+				  		<option value="1">轮播推荐</option>
+				  		<option value="2">头条推荐</option>
+				  		<option value="3">热点推荐</option>
+				  		<option value="4">最新推荐</option>
+				  		<option value="5" selected="selected">本周推荐</option>
+			  		</if>
+			  	</select>
+			  </th>
+			  <th  style="text-align: center;">操作</th>
+			</tr>
+			<script type="text/javascript">
+			window.onload = function(){
+				$("select[name=new_recommend_type]").change(function(){
+					var type= $(this).val();
+					location.href = "{:U('admin/news/index')}?type="+type;
+				})
+			}
+			</script>
+			<foreach name="data" item="val" key="key">
+				<tr calss="remover" style="text-align: center;">
+					<td>{$key+1}</td>
+					<if condition="$val['img_src']">
+						<td><img src="__UPLOAD__{$val['img_src']}" width="80"/></td>
+					<elseif condition="$val['title']"/>
+						<td>{$val['title']}</td>	
+					</if>
+					<if condition="$val['new_recommend_type'] eq 1">
+						<td>轮播推荐</td>
+					<elseif condition="$val['new_recommend_type'] eq 2"/>
+						<td>头条推荐</td>
+					<elseif condition="$val['new_recommend_type'] eq 3"/>
+						<td>热点推荐</td>
+					<elseif condition="$val['new_recommend_type'] eq 4"/>
+						<td>最新推荐</td>	
+					<elseif condition="$val['new_recommend_type'] eq 5"/>
+						<td>本周推荐</td>	
+					</if>
+					<td>
+						<a href="javascript:;" del="{$val['new_recommend_id']}" class="btn btn-sm btn-danger dele">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+			$('.dele').click(function(){
+				var del = $(this).attr('del');
+				var This = $(this);
+				$.ajax({
+					type:'post',
+					url:"{:U('admin/news/del')}",
+					data:{del:del},
+					dataType:'text',
+					success:function(phpdata){
+						if(phpdata){
+							This.parents('tr').remove();
+						}
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

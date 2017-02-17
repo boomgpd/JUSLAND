@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>酒店首页</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/hotel-index_style.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/hotel/css/reset.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/bottom.css">
+<script src="__PUBLIC__/Home/hotel/js/jquery-1.11.2.min.js"></script>
+<style type="text/css">
+	.num{
+		width: 20px;
+		height: 20px;
+		border-top-left-radius:20px ;
+		border-top-right-radius:20px ;
+		border-bottom-left-radius:20px ;
+		background: red;
+		position: relative;
+		top: -10px;
+		left: -10px;
+		line-height: 20px;
+		color: #fff;
+	}
+</style>
+</head>
+
+<body>
+<include file="Common/header" />	
+<div id="all">
+<!--top start-->
+	<div id="bj">
+    	<img src="__PUBLIC__/Home/hotel/img/top_bj.png">
+    </div>
+<!--top end-->
+<!--content start-->
+<div class="content_all">
+	<div class="content w clearfix">
+    	<div class="left fl">
+        	<a href="#" class="logo"><img src="__PUBLIC__/Home/hotel/img/logo.png"></a>
+            <img src="__PUBLIC__/Home/hotel/img/xiao_hengtiao.png" class="left_xiaotiao">
+            <div class="fu_nav">
+            	<a href="#" class="dangqian">首页</a>
+                <a href="{:U('hotel_list')}">看酒店</a>
+                <a href="#">选店建议</a>
+                <a href="#">加盟</a>
+                <a href="#">服务保障</a>
+                <img src="__PUBLIC__/Home/hotel/img/xiao_hengtiao.png" class="left_xiaotiao2">
+            </div>
+        </div>
+        <div class="right fr">
+            <div class="Carousel"><!--轮播=carousel-->
+                <div class="report fl">
+                    <ul class="clearfix">
+                    	<foreach name="data['bananer']" item="val" key="key">
+	                        <li>
+	                            <a href=""><img src="__UPLOAD__{$val['pic_src']}"></a>
+	                        </li>
+                        </foreach>
+                    </ul>
+                        
+                    <a href="javascript:;" class="report_prev fl"><img src="__PUBLIC__/Home/hotel/img/prev.png"></a>
+                    <a href="javascript:;" class="report_next fl"><img src="__PUBLIC__/Home/hotel/img/next.png"></a>
+                </div>    
+            </div>
+            <img src="__PUBLIC__/Home/hotel/img/lunbo_wenzi.png" class="fuwen"> 
+        </div>
+        <!--酒店展示开始-->
+        <div class="zhanshi clearfix">
+        	<div class="fl" style="width:300px;">
+                <p class="zhanshi_biaoti1">hotel display</p>
+                <p class="zhanshi_biaoti2">酒店展示</p>
+            </div>
+            <a href="#" class="more fr" style=" display:block; width:27px; height:27px; background:url(__PUBLIC__/Home/hotel/img/more.png) no-repeat; margin-right:"></a>
+        	<ul class="clearfix">
+            	<foreach name="data['hotel']" item="val" key="key">
+	                <li>
+	                	<div><a href="{:U('details',array('id'=>$val['p_p_id']['id']))}"><img src="__UPLOAD__{$val['list_src']}"></a></div>
+	                    <a href="#" class="name">{$val['p_p_id']['h_name']}</a>
+	                    <span class="xq">{$val['p_r_t_title']}</span>
+	                    <span class="weizi">{$val['p_p_id']['city']}</span>
+	                    <a href="#" class="duibi fr">
+	                    	<if condition="$_SESSION['ids'][0] eq $val['p_p_id']['id']">
+	                    		<span>对比</span><input type="checkbox" name="id" checked="checked" value="{$val['p_p_id']['id']}" />
+	                    	<elseif condition="$_SESSION['ids'][1] eq $val['p_p_id']['id']" />
+	                    		<span>对比</span><input type="checkbox" name="id" checked="checked" value="{$val['p_p_id']['id']}" />
+	                    	<elseif condition="$_SESSION['ids'][2] eq $val['p_p_id']['id']" />
+	                    		<span>对比</span><input type="checkbox" name="id" checked="checked" value="{$val['p_p_id']['id']}" />
+	                    	<else />
+	                    		<span>对比</span><input type="checkbox" name="id" value="{$val['p_p_id']['id']}" />
+	                    	</if>
+	                    </a>
+	                </li>
+                </foreach>
+            </ul>
+        </div><!--end-->
+        <img src="__PUBLIC__/Home/hotel/img/zhuangshi.png" style="display:block; margin:0 auto;padding:130px 0 110px 0;">
+    </div>
+</div>
+<!--content end-->
+</div>
+
+<a href="{:U('contrast')}" id="dban"><div class="num"><?php echo count($_SESSION['ids']); ?></div>对比</a>
+<include file="Common/bottom" style="z-index: 1000000" />
+<!--对比结束-->
+</body>
+<script>
+	$('input[name=id]').click(function(){
+		if($(this).is(":checked")){
+			var action = 'add';
+			var ids = $(this).val();
+		}else{
+			var action = 'del';
+			var ids = $(this).val();
+		}
+		var This = $(this);
+		$.ajax({
+			type:'post',
+			url:"{:U('check')}",
+			data:{action:action,ids:ids},
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata.type){
+					var str = phpdata.conent;
+					$('.num').html(str);
+				}else{
+					alert(phpdata.conent);
+					This.prop('checked',false);
+				}
+			}
+		});
+	})
+	$(document).ready(function(){
+		var li_num = $(".report li").length;
+		var now_num = 0;
+		$(".report ul").css({width:li_num*1000+"px"});	
+		$(".report_next").on("click",function(){
+			now_num++;
+			if(now_num > (li_num-1)){
+				now_num = 0;
+			}
+			var left_distence = now_num*1000;
+			$(".report ul").stop().animate({right:left_distence},1000);
+		})		
+		$(".report_prev").on("click",function(){
+			now_num--;
+			if(now_num < 0){
+				now_num = li_num-1;
+			}
+			var left_distence = now_num*1000;
+			$(".report ul").stop().animate({right:left_distence},1000);
+		})
+	})
+</script>
+</html>

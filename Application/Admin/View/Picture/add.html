@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title></title>
+
+		<link rel="stylesheet" href="__PUBLIC__/Admin/bootstrap/css/bootstrap.min.css" />
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+
+		<style type="text/css">
+			/*去掉uploadify上传按钮的边框*/
+			
+			.uploadify-button {
+				background-color: transparent;
+				border: none;
+				padding: 0;
+			}
+			
+			.uploadify:hover .uploadify-button {
+				background-color: transparent;
+			}
+			
+			.hide {
+				display: none;
+			}
+			
+			body {
+				margin-bottom: 100px;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			#uploadList li {
+				position: relative;
+			}
+			
+			#uploadList li span {
+				display: block;
+				width: 25px;
+				height: 15px;
+				font-family: "微软雅黑";
+				font-size: 14px;
+				background: indianred;
+				color: white;
+				line-height: 15px;
+				font-weight: 700;
+				position: absolute;
+				top: 0;
+				right: 0;
+				text-align: center;
+				cursor: pointer;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+
+					<form action="" method='post'>
+						<fieldset>
+							<if condition="$merchant_data">
+								<legend>添加{$merchant_data['m_name']}公司案例</legend>
+								<input type="hidden" name="merchant_merchant_id" id="" value="{$merchant_data['merchant_id']}" />
+								<else />
+								<legend>添加案例</legend>
+							</if>
+							<table class='table table-bordered table-hover'>
+								<thead>
+									<tr>
+										<th colspan="2" class="btn btn-primary">基本信息</th>
+									</tr>
+								</thead>
+								<tbody>
+									<empty name="merchant_data">
+										<!--<tr class="info picture_type">
+											<td>瀑布流类型</td>
+											<td>
+												<select name="picture_type" id="picture_type" style="width: 40%;">
+													<option value=""> - 请选择瀑布流类型 - </option>
+													<option value="1">已注册公司</option>
+													<option value="2">未注册公司</option>
+												</select>
+											</td>
+										</tr>-->
+										
+										<tr class="info merchant">
+											<td>公司名称</td>
+											<td>
+												<select name="merchant_merchant_id" style="width: 40%;">
+													<option value="0"> - 请选择公司名称- </option>
+													<foreach name="sale_data" item='v' key='k'>
+														<option value="{$v['merchant_id']}">{$v['m_name']}</option>
+													</foreach>
+												</select>
+											</td>
+										</tr>
+									</empty>
+									
+
+									<tr class="info">
+										<td>所属分类</td>
+										<td>
+											<select name="type_tid" id="type_tid" style="width: 40%;">
+												<option value="0"> - 请选择分类 - </option>
+												<foreach name="type" item='v' key='k'>
+													<option value="{$v['tid']}">{$v['tname']}</option>
+												</foreach>
+											</select>
+										</td>
+									</tr>
+									<tr class="info">
+										<td>标签</td>
+										<td id="lables">
+											请选择对应分类
+										</td>
+
+									</tr>
+									<tr class="info">
+										<td>简介</td>
+										<td>
+											<input type="title" name='title' value="" style="width: 40%;" placeholder="请输入简介，建议0~50字以内" />
+										</td>
+									</tr>
+									<tr class="info">
+										<td>关键词</td>
+										<td>
+											<input type="keyword" name='keyword' value="" style="width: 40%;" placeholder="请输入关键词，以#分割开" />
+										</td>
+									</tr>
+									<tr class="info">
+										<td>点赞数</td>
+										<td>
+											<input type="text" name='click_num' value="" style="width: 40%;" placeholder="请输入点赞数量" />
+										</td>
+									</tr>
+									<tr class="info">
+										<td>转载量</td>
+										<td>
+											<input type="text" name='collect_num' value="" style="width: 40%;" placeholder="请输入点转载量" />
+										</td>
+									</tr>
+									<tr class="info">
+										<td>访问次数</td>
+										<td>
+											<input type="text" name='click' value="" style="width: 40%;" placeholder="请输入被转载数量" />
+										</td>
+									</tr>
+									<tr class="info">
+										<td>首页显示数量</td>
+										<td>
+											<input type="text" name='show_num' value="" style="width: 40%;" placeholder="请输入首页显示图片数量" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table class='table table-bordered'>
+								<tr>
+									<th colspan="3" class="btn btn-primary">图片上传（最多限20张,超过按前20张处理）</th>
+								</tr>
+								<tr class="info">
+									<td style="width: 100px;">上传图片</td>
+									<td lab="uploadFile">
+										<input type="file" name='pic' id='pic' />
+										<script type="text/javascript">
+											$(function() {
+												$('#pic').uploadify({
+													'formData': {
+														"<?php echo session_name();?>": "<?php echo session_id();?>",
+													},
+													'fileTypeDesc': '上传文件',
+													'fileTypeExts': '*.jpg;*.png',
+													'swf': '__PUBLIC__/Admin/uploadify/uploadify.swf',
+													'uploader': "{:U('admin/common/upload',array('name'=>'Picture'))}",
+													'buttonText': '选择文件',
+													'fileSizeLimit': '8000KB',
+													'uploadLimit': 1000, //上传文件数
+													//					                'width':65,
+													//					                'height':25,
+													'successTimeout': 10, //等待服务器响应时间
+													'removeTimeout': 0.2, //成功显示时间
+													'onUploadSuccess': function(file, data, response) {
+														//转为json
+														data = $.parseJSON(data);
+														//获得图片地址
+														var imageUrl = data;
+														var li = "<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__" + imageUrl[1] + "'/><span>X</span><input type='hidden' name='thumb[]' value='" + imageUrl[1] + "'/><input type='hidden' name='url[]' value='"+imageUrl[0]+"'/></li>";
+														$("#uploadList").append(li);
+													}
+												});
+											});
+										</script>
+										（最多限20张,超过按前20张处理）
+									</td>
+									<td id="uploadList"></td>
+								</tr>
+							</table>
+							<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+						</fieldset>
+					</form>
+
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//			给图片添加单机事件
+			$("#uploadList li span").live('click', function() {
+				$(this).parents('li').remove();
+			});
+
+			//			给显示数量添加change事件
+			$("input[name = show_num]").change(function() {
+				var num = $(this).val();
+				if(num > 5) {
+					alert('最大显示数量为5');
+					$(this).val(5);
+				} else if(num < 1) {
+					alert('最小显示数量为1');
+					$(this).val(1);
+				}
+			})
+
+			//给分类添加change事件
+			$("#type_tid").change(function() {
+				var type_tid = $(this).val();
+				//发送异步获取对应标签
+				$.ajax({
+					type: "post",
+					url: "{:U('picture/getLables')}",
+					data: {
+						type_tid: type_tid
+					},
+					dataType: 'json',
+					success: function(phpdata) {
+						if(phpdata) {
+							var str = '';
+							$.each(phpdata, function(k, v) {
+								str += '<input class="custom-checkbox" type="checkbox" data-toggle="checkbox" value="' + v.lid + '" style="margin-right: 8px;margin-left: 8px;" name="lables[]">' + v.lname;
+							});
+
+							$("#lables").html(str);
+						} else {
+							str = '请选择对应分类';
+							$("#lables").html(str);
+						}
+					}
+				});
+			});
+
+		</script>
+	</body>
+
+</html>

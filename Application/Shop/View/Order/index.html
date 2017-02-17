@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>嘉仕澜德——收货地址</title>
+        <link rel="stylesheet" href="__PUBLIC__/Shop/css/reset.css" />
+        <link rel="stylesheet" href="__PUBLIC__/Shop/css/c.css" />
+        <script src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    </head>
+    <style type="text/css">
+        .gb{
+            display:block;
+            width:30px;
+            height:30px;
+            position:absolute;
+            top:0px;
+            right:0px;
+            background:url(__PUBLIC__/Shop/img/lancha.png);
+        }
+        .gb:hover{
+            background:url(__PUBLIC__/Shop/img/huicha.png);
+        }
+    </style>
+    <body>
+    	<include file="Common/header_two" />
+    <div class="address-all in" style="position:fixed; top:0; z-index:99; background:rgba(0,0,0,.7);">
+        <!--顶部LOGO 开始-->
+       	<div class="top w clearfix" style="padding-top: 50px;padding-bottom: 30px;">
+			<a href="{:U('shop/index/index')}"><img src="/Public/Shop/img/pay_logo.png" class="ml93" style="margin-left: 93px;"></a>
+		    <img src="/Public/Shop/img/2.png" class="ml66" style="margin-left: 66px;">
+		</div>
+        <!--顶部LOGO 结束-->
+        
+        <!--购物车主体内容 开始-->
+        <div class="cart_cot" style="position:relative">
+            <div class="address">
+                <span class="address_title">修改地址</span>
+                <div id="huitiao" style="width:1102px;height:1px; margin:0 auto; background:#cacaca"></div>
+                <div class="address_tab">
+                    <div class="wenzi">
+                        <form action="" method="post" class="on clearfix">
+                            <div class="text">
+                                <input type="text" placeholder="姓名" class="w1" name="linkman">
+                            </div>
+                            <div class="text">
+                                <input type="text" placeholder="联系人电话" class="w2" name="phone">
+                            </div>
+                            <div class="text">
+                                <select id="sheng" name="province" class=" w4" >
+
+                                </select>
+                            </div>
+                            <div class="text">
+                                <select id="sheng" name="city" class=" w4" >
+
+                                </select>
+                            </div> 
+                            <div class="text">
+                                <input type="text" placeholder="邮政编码" class="w1" name="coding">
+                            </div>
+                            <div class="text">
+                                <input type="text" placeholder="详细地址" class="w3" name="details">
+                            </div>
+                            <input type="hidden" name="id">
+                    </div>
+                </div>
+                <div class="goon">
+                    <div class="goon_box">
+                        <div class="left fl">
+                            <input type="checkbox" value="1" name="default" />
+                            <span>保存为我的默认收货地址</span>
+                        </div>
+                        </form>
+                        <a href="javascript:;" class="fr jixu2" action="edit">确定</a>
+                    </div>    
+                </div> 
+            </div>
+            <a href="javascript:;" class="gb"></a>
+        </div>     
+    </div> 
+    <!--创建新地址end-->
+
+     <div class="address-all in" style="position:fixed; top:0;z-index:99;background:rgba(0,0,0,0.7);">
+        <!--顶部LOGO 开始-->
+        <!--顶部LOGO 结束-->
+        
+        <!--购物车主体内容 开始-->
+        <div class="cart_cot" style="position:relative">
+            <div class="address">
+                <span class="address_title">添加新地址</span>
+                <div id="huitiao" style="width:1102px;height:1px; margin:0 auto; background:#cacaca"></div>
+                <div class="address_tab">
+                    
+                    <div class="wenzi">
+                        <form action="" method="post" class="on clearfix">
+                            <div class="text">
+                                <input type="text" placeholder="姓名" class="w1" name="linkman">
+                            </div>
+                            <div class="text">
+                                <input type="text" placeholder="联系人电话" class="w2" name="phone">
+                            </div>
+                            <div class="text">
+                                <select id="sheng" name="province"  class=" w4" >
+                                    <option value="">-请选择省份-</option>
+                                    <foreach name="province" key="k" item="v">
+                                        <option value="{$v['area_id']}">{$v.aname}</option>
+                                    </foreach>
+                                </select>
+                            </div>
+                            <div class="text">
+                                <select id="sheng" name="city" class=" w4" >
+                                    <option value="">-请选择城市-</option>
+                                </select>
+                            </div> 
+                            <div class="text">
+                                <input type="text" placeholder="邮政编码" class="w1" name="coding">
+                            </div>
+                            <div class="text">
+                                <input type="text" placeholder="详细地址" class="w3" name="details">
+                            </div>                  
+                    </div>
+                </div>
+                <div class="goon">
+                    <div class="goon_box">
+                        <div class="left fl">
+                            <input type="checkbox" value="1" name="default" />
+                            <span>保存为我的默认收货地址</span>
+                        </div>
+                        </form>
+                        <a href="javascript:;" class="fr jixu2" action="add">确定</a>
+                    </div>    
+                </div> 
+            </div>
+            <a href="javascript:;" class="gb"></a>
+        </div>  
+    </div> 
+    <!--创建新地址end-->
+        <div class="address-all">
+        <!--顶部LOGO 开始-->
+        <div class="top w clearfix" style="padding-top: 50px;padding-bottom: 30px;">
+			<a href="{:U('shop/index/index')}"><img src="/Public/Shop/img/pay_logo.png" class="ml93" style="margin-left: 93px;"></a>
+		    <img src="/Public/Shop/img/2.png" class="ml66" style="margin-left: 66px;">
+		</div>
+        <!--顶部LOGO 结束-->
+        
+        <!--购物车主体内容 开始-->
+        <div class="cart_cot">
+            <div class="address">
+                <span class="address_title">选择地址</span>
+                <div id="huitiao" style="width:1102px;height:1px; margin:0 auto; background:#cacaca"></div>
+                <div class="address2">
+                    
+                    <div class="address_box">
+                        <ul class="address_box_ul address_box_ul_h clearfix">
+                            <foreach name="address" key="k" item="v">
+                            <li <eq name="v['default']" value="1">class="z"</eq> key="{$v['key']}">
+                                <a href="javascript:;" class="dian">
+                                    <div class="address_box_ul_li_box">
+                                        <span>{$v.province}</span>
+                                        <span><strong>{$v.city}</strong></span>
+                                        <span class="span_name">{$v.linkman}</span>
+                                        <span>（收）</span>
+                                    </div>
+                                    <div class="address_box_ul_li_box2">
+                                        <p>{$v.details}</p>
+                                        <a href="javascript:;" class="xiugai">修改</a>
+                                    </div>
+                                </a>
+                            </li>
+                            </foreach>
+                        </ul>
+                        <a href="javascript:;" class="address_box_more">更多</a>
+                        <div class="address_box_xinguan clearfix">
+                            <a href="javascript:;" class="address_box_xinguan_xin fl" id="address">添加新地址</a>
+                            <a href="" class="address_box_xinguan_guan fr">管理地址</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!--<div class="goon">
+                    <div class="goon_box">
+                        <div class="left fl">
+                            <input type="checkbox" value="v" />
+                            <span>保存为我的默认收货地址</span>
+                        </div>
+                        <a href="javascript:;" class="fr jixu2">确定</a>
+                    </div>    
+                </div>-->
+                
+            </div>
+            
+            <div class="cart_title2 w">
+                <span style="margin-left:245px;">产品名称</span>
+                <span style="margin-left:343px;">单价</span>
+                <span style="margin-left:204px;">数量</span>
+                <span style="margin-left:150px;">小计</span>
+            </div>
+            <foreach name="data['goods']" key="k" item="v">
+            <div class="cart_product clearfix">
+                <div class="cart_product_left fl">
+                    <img src="__UPLOAD__{$v['pic']}">
+                </div>
+                <div class="cart_product_right fl">
+                    <div class="top clearfix">
+                        <a href="javascript:;" class="fl text">{$v['gname']}</a>
+                        <span class="fl" style="width: 150px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;text-align: center;">¥{$v['price']}</span>
+                        <span style="display:inline-block;width:50px;text-align:center;margin-left:145px;">{$v['num']}</span>
+                        <b class="fr" style="margin-right:30px;">¥{$v['total']}</b>
+                    </div>
+                    <div class="bot">
+                        <p>编号：<span>{$v['gnumber']}</span></p>
+                        <span>{$v['specs']}</span>
+                        <!--<a href="javascript:;" class="del fr c_blue">删除</a>-->
+                    </div>
+                </div>
+            </div>
+            </foreach>
+
+            <div class="cart_gross">
+                <p>总计<span>￥{$data['total']}</span></p>
+            </div>
+            <div class="cart_bill clearfix">
+                <a href="{:U('Goods/cart')}" class="fanhui">返回购物车</a>
+                <form action="{:U('add')}" method="post">
+                    <foreach name="data['goods']" key="k" item="v">
+                        <input type="hidden" name="ids[]" value="{$v['cart_id']}">
+                    </foreach>
+                    <if condition="$type_good">
+                    	 <input type="hidden" name="type_good" value="1" >
+                    	 <input type="hidden" name="gid" value="{$get['gid']}" >
+                    	 <input type="hidden" name="glid" value="{$get['glid']}" >
+                    	 <input type="hidden" name="num" value="{$get['num']}" >
+                    </if>
+                    <input type="hidden" name="address" >
+                    <a href="javascript:;" class="jiesuan">提交订单</a>
+                    <button type="submit" style="display:none"></button>
+                </form>
+                <script type="text/javascript">
+                    $('.jiesuan').click(function(){
+                        var length = $('.address_box_ul.address_box_ul_h .z').length;
+                        if(length != 1){
+                            alert('请选择一个收货地址');
+                            return false;
+                        };
+                        var address = $('.address_box_ul.address_box_ul_h .z').attr('key');
+                        $(this).siblings("input[name='address']").val(address);
+                        $(this).siblings('button').click();
+                    })
+                </script>
+            </div>
+        </div>     
+    </div>
+
+    <li id="demo">
+        <a href="javascript:;" class="dian">
+            <div class="address_box_ul_li_box">
+                <span>北京</span>
+                <span><strong>北京</strong></span>
+                <span class="span_name">老王</span>
+                <span>（收）</span>
+            </div>
+            <div class="address_box_ul_li_box2">
+                <p>松北松北黑龙江省哈尔滨市松北区松北街道哈尔滨师范大学江北校区15545174058 </p>
+                <a href="javascript:;" class="xiugai">修改</a>
+            </div>
+        </a>
+    </li>
+    <style type="text/css">
+        #demo{
+            display:none;
+        }
+    </style>
+    <include file="Common/bottom" /> 
+    </body>
+<!--点击更多地址-->
+<script>
+$(function(){
+    $(".address_box_more").click(function(){
+        var num=$(this).index();
+        $(".address_box ul").removeClass("address_box_ul_h");
+        $(".address_box ul").eq(num).addClass("address_box_ul_h");
+        
+        $(".address_box_more").addClass("in");
+        $(".address_box_more").eq(num).addClass("in");
+    })
+})
+</script>
+
+
+<script>
+$(function(){
+    //点击地址
+    $(".address_box_ul").on('click','li',function(){
+        var num=$(this).index();
+        $(".address_box_ul li").removeClass("z");
+        $(".address_box_ul li").eq(num).addClass("z");
+    });
+
+    //点击关闭
+    $('.gb').click(function(){
+        $(this).parents('.address-all').css('display','none').find('form')[0].reset();
+    })
+})
+</script>
+
+<script>
+$(function(){
+    // 点击修改
+    $("ul").on('click','.xiugai',function(){
+        // $('.address-all').eq(0).css({'display':'block'});
+        var h = (document.documentElement.clientHeight - $('.address-all:eq(0) .cart_cot').height() - $('.address-all:eq(0) .top_logo').height()*10)/2;
+        // $('.address-all').eq(0).css({'padding-top':h+'px'});
+        var key = $(this).parents('li').attr('key');
+        get_data(key);
+    });
+
+    function get_data(key){
+        $.ajax({
+            type:"post",
+            url:"{:U('get_address')}",
+            data:{key:key},
+            dataType:'json',
+            async: false,
+            success:function(phpdata){
+                if(phpdata.type == 'error'){
+                    alert(phpdata.msg);
+                }else{
+                    var obj = $('.address-all').eq(0);
+                    obj.find("input[name='linkman']").val(phpdata.data.linkman);
+                    obj.find("input[name='phone']").val(phpdata.data.phone);
+                    obj.find("input[name='coding']").val(phpdata.data.coding);
+                    obj.find("input[name='details']").val(phpdata.data.details);
+                    obj.find("input[name='id']").val(phpdata.data.id);
+                    if(phpdata.data.default == 1){
+                        obj.find(("input[name='default']")).attr('checked',true);
+                    };
+                    var province = '<option value="">-请选择省份-</option>';
+                    $.each(phpdata.data.province_all, function(k,v) {
+                        if(phpdata.data.province == v.area_id){
+                            province += '<option value="'+v.area_id+'" selected="selected">'+v.aname+'</option>';
+                        }else{
+                            province += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+                        };
+                    });
+                    obj.find("select[name='province']").html(province);
+                    var city = '<option value="">-请选择城市-</option>';
+                    $.each(phpdata.data.city_all, function(k,v) {
+                        if(phpdata.data.city == v.area_id){
+                            city += '<option value="'+v.area_id+'" selected="selected">'+v.aname+'</option>';
+                        }else{
+                            city += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+                        };
+                    });
+                    obj.find("select[name='city']").html(city);
+                    obj.css('display','block');
+                }
+            }
+        });
+    }
+
+    //点击添加
+    $('#address').click(function(){
+        $('.address-all').eq(1).css({'display':'block'});
+        var h = (document.documentElement.clientHeight - $('.address-all:eq(1) .cart_cot').height() - $('.address-all:eq(1) .top_logo').height()*10)/2;
+        $('.address-all').eq(1).css({'padding-top':h+'px'});
+    });
+
+    //添加点击确认
+    $('.jixu2').click(function(){
+        var data = $(this).parents('.address-all').find('form').serializeArray();//获得对象数据
+        //验证数据
+        var title = '';
+        $.each(data, function(k,v) {
+            //不为邮编且为空
+            if(v.value == '' && v.name != 'coding'){
+                title = verify(v.name);
+                return;
+            };
+            //手机正则
+            if(v.name == 'phone'){
+                var myreg = /^1[3|4|5|8|7][0-9]\d{4,8}$/;
+                if(!myreg.test(v.value)){
+                    title  = '手机格式不正确';
+                    return;
+                };
+            };
+            //填了邮编
+            if(v.name == 'coding' && v.value != ''){
+                var myreg = /\d{6}/;
+                if(!myreg.test(v.value)){
+                    title  = '邮政编码格式不正确'; 
+                    return;
+                };
+            };
+        });
+        if(title){
+            alert(title);
+            return false;
+        }else{
+            var action = $(this).attr('action');
+            if(action == 'edit'){
+                var key = $(this).parents('.address-all').find("input[name='id']").val();
+                var obj = $('.address_box_ul').find("li[key='"+key+"']");
+            }else{
+                var obj = $(this);
+            };
+//          console.log(data);
+            ajax(data,action,obj);
+        };
+    });
+
+    //获得name名称
+    function verify(name){
+        switch(name){
+            case 'linkman':
+            var title = '请填写联系人';
+            break;
+            case 'phone':
+            var title = '请填写手机号';
+            break;
+            case 'province':
+            var title = '请选择省份';
+            break;
+            case 'city':
+            var title = '请选择城市';
+            break;
+            case 'details':
+            var title = '请填写详细地址';
+            break;
+            default:
+            var title = '请求异常';
+            break;
+        };
+        return title;
+    }
+
+    function ajax(data,action,obj){
+        $.ajax({
+            type:"post",
+            url:"{:U('change_address')}",
+            data:{data:data,action:action},
+            dataType:'json',
+            async: false,
+            success:function(phpdata){
+                if(phpdata.type == 'error'){
+                    alert(phpdata.msg);
+                }else{
+                    if(action == 'add'){
+                        var kl = $("#demo").clone();
+                        kl.find('span').eq(0).html(phpdata.data.province);
+                        kl.find('strong').html(phpdata.data.city);
+                        kl.find('.span_name').html(phpdata.data.linkman);
+                        kl.find('p').html(phpdata.data.details);
+                        kl.removeAttr('id').attr('key',phpdata.data.key);
+                        obj.parents('.address-all').css('display','none');
+                        if(phpdata.data.default == 1){
+                            $('.address_box_ul.clearfix').find('li').removeClass('z');
+                            kl.addClass('z');
+                        };
+                        $('.address_box_ul.clearfix').prepend(kl);
+                        obj.parents('.address-all').find("select[name='city']").html('<option value="">-请选择城市-</option>');
+                        obj.parents('.address-all').find('form')[0].reset();
+                    }else{
+                        obj.find('span').eq(0).html(phpdata.data.province);
+                        obj.find('strong').html(phpdata.data.city);
+                        obj.find('.span_name').html(phpdata.data.linkman);
+                        obj.find('p').html(phpdata.data.details);
+                        if(phpdata.data.default == 1){
+                            $('.address_box_ul.clearfix').find('li').removeClass('z');
+                            obj.addClass('z');
+                            var kl = obj.clone();
+                            obj.remove();
+                            $('.address_box_ul.clearfix').prepend(kl);
+                        };
+                        $('.address-all').eq(0).css({'display':'none'});
+                    };
+                };
+            }
+        });
+    }
+})
+</script>
+<!--城市联动-->
+<script>
+$(function(){
+    $("select[name='province']").change(function(event) {
+        var str = step($(this).val());
+        $(this).parents('.wenzi').find("select[name='city']").html(str);
+    });
+
+    // 创建获取地区异步方法
+    function step(pid){
+        var str = '<option value="">-请选择城市-</option>';
+        $.ajax({
+            type:"post",
+            url:"{:U('step_area')}",
+            data:{pid:pid},
+            dataType:'json',
+            async: false,
+            success:function(phpdata){
+                $.each(phpdata, function(k,v) {
+                    str += '<option value="'+v.area_id+'">'+v.aname+'</option>';
+                });
+            }
+        });
+        return str;
+    }
+})
+</script>
+</html>

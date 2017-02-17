@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <!-- Loading Flat UI -->
+    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	   
+	</head>
+	<body>
+		<form action="" method="post">
+		<div class="alert alert-success">编辑属性</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">名称</label>
+			<input type="text" name="taname" class="form-control" value="{$data['taname']}">
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">类别</label>
+			<br/>
+			<label class="checkbox checkbox-inline">
+				<input class="custom-checkbox" type="checkbox" name="class" value="1" <eq name="data[
+				'class']" value="1">checked="checked"</eq> >
+				<span class="icons">
+				<span class="icon-unchecked"></span>
+				<span class="icon-checked"></span>
+				</span>
+				属性
+			</label>
+			<label class="checkbox checkbox-inline">
+				<input class="custom-checkbox" type="checkbox" name="class" value="2" <eq name="data[
+				'class']" value="2">checked="checked"</eq>>
+				<span class="icons">
+				<span class="icon-unchecked"></span>
+				<span class="icon-checked"></span>
+				</span>
+				规格
+			</label>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">属性值(用|隔开)</label>
+			<textarea name="tavalue" id="" cols="30" rows="10" class="form-control">{$data['tavalue']}</textarea>
+		</div>
+		<input type="hidden" name="taid" value="{$data['taid']}">
+		<button class="btn btn-primary btn-block" type="submit"> 确定 </button>
+		</form>
+	</body>
+	<script type="text/javascript">
+		$("input[name='class']").click(function(){
+			$("input[name='class']").prop('checked',false);
+			$(this).attr('checked',true);
+		})
+	</script>
+</html>

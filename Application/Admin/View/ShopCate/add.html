@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	</head>
+	<body>
+		<div class="alert alert-success">添加分类</div>
+		<form action="" method="post">
+			<if condition="$type eq 'classify'">
+				<div class="form-group">
+					<label for="exampleInputEmail1">分类名称</label>
+					<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入分类名称" name="cname">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">所属类型</label>
+					<select name="type_id" class="form-control">
+						<eq name="pid" value="0">
+							<option value="0">不需选择</option>
+						<else/>
+							<foreach name="type_data" key="k" item="v">
+								<option value="{$v.tid}">{$v.tname}</option>
+							</foreach>
+						</eq>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">分类排序</label>
+					<input id="exampleInputEmail1" class="form-control" type="text" placeholder="请输入分类排序" required="" name="sort" value="100">
+				</div>
+			<elseif condition="$type eq 'spec'" />
+			<div class="alert alert-success">所有规格</div>
+				<foreach name="spec" item="val" key="key">
+					<label class="checkbox checkbox-inline">
+						<input class="custom-checkbox" type="checkbox" name="s_id[]" value="{$val['s_id']}">
+						<span class="icons">
+							<span class="icon-unchecked"></span>
+							<span class="icon-checked"></span>
+						</span>
+						{$val['spec_name']}
+					</label>
+				</foreach>
+			</if>
+			<input type="hidden" name="type" id="type" value="{$type}" />
+			<button class="btn btn-primary btn-block" type="submit"> 确定 </button>
+		</form>
+	</body>
+</html>

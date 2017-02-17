@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    <style type="text/css">
+	    	img{
+	    		width: 150px;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<form class="navbar-form navbar-left" role="search" action="" method="post">
+	        <div class="form-group">
+	        	搜索：
+	          	<input type="text" class="form-control" placeholder="推荐分类名、所属分类名" name="keyword">
+	        </div>
+	        <button type="submit" class="btn btn-default">搜索</button>
+	     </form>
+		<a href="{:U('add',array('pid'=>$pid))}" class="btn btn-info">添加推荐</a>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="10%">序号</th>
+			  <th width="10%">分类名称</th>
+			  <th width="10%">所属分类</th>
+			  <th width="15%">添加时间</th>
+			  <th width="5%">状态</th>
+			  <th width="20%" >操作</th>
+			</tr>
+			<foreach name="data" item='v' key='k'>
+				<tr key="{$v['cid']}" show="{$v['is_show']}">
+					<td>{$k+1}</td>
+					<td>{$v['name']}</td>
+					<td>{$v['cname']}</td>
+					<td><?php echo date('Y-m-d H:i:s',$v['addtime'])?></td>
+					<td>
+						<eq name="v['is_show']" value="0">
+							隐藏
+						<else/>
+							显示
+						</eq>
+					</td>
+					<td>
+						<a href="{:U('show',array('id'=>$v['cid']))}" class="btn btn-sm btn-info">已推荐商品</a>
+						<a href="javascript:;" class="btn btn-sm btn-success cut">切换状态</a>
+						<a href="{:U('edit',array('id'=>$v['cid']))}" class="btn btn-sm btn-primary">编辑</a>
+						<a href="javascript:if(confirm('确认删除吗?')) location.href='{:U('del',array('id'=>$v['cid']))}';" class="btn btn-sm btn-danger">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+	</body>
+	<script type="text/javascript">
+		$('.cut').click(function(){
+			var key = $(this).parents('tr').attr('key');
+			var show = $(this).parents('tr').attr('show');
+			if(show == 0){
+				if(!confirm('确认在首页展示该推荐分类吗?')){
+					return false;
+				};
+			}else{
+				if(!confirm('确认隐藏该推荐分类吗?')){
+					return false;
+				};
+			};
+			var This = $(this);
+			$.ajax({
+				url: '{:U("cut")}',
+				type: 'post',
+				dataType: 'json',
+				data: {key:key},
+				success:function(phpdata){
+					if(phpdata.type == 0){
+						alert('操作失败');
+					}else{
+						alert('操作成功');
+						if(show == 0){
+							This.parents('tr').attr('show',1);
+							This.parents('tr').find('td:eq(4)').html('显示');
+						}else{
+							This.parents('tr').attr('show',0);
+							This.parents('tr').find('td:eq(4)').html('隐藏');
+						};
+					};
+				}
+			})
+			
+		})
+	</script>
+</html>

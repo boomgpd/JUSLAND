@@ -1,0 +1,69 @@
+<div class="left fl" style="height: 810px;">
+	<div class="portrait">
+		<div class="img">
+			<img src="{$left_data['headimg']}"/>
+		</div>
+		<div class="size">
+			<span>{$left_data['member_name']}</span>
+		</div>
+	</div>
+	<ul class="nav">
+		<li>
+			<a href="javascript:;" <if condition="ACTION_NAME eq 'index'"> class="par" <else /> class="par_si"</if>>订单管理 ></a>
+			<ul class="nav_zi">
+				<li <if condition="!isset($_GET['status'])"> class="current" </if> ><a href="{:U('shop/selfcenter/index')}">全部订单</a></li>
+				<li <if condition="($_GET['status'] eq 0) AND (isset($_GET['status']))"> class="current" </if>><a href="{:U('shop/selfcenter/index',array('status'=>0))}">待付款</a></li>
+				<li <if condition="$_GET['status'] eq 1"> class="current" </if>><a href="{:U('shop/selfcenter/index',array('status'=>1))}">待发货</a></li>
+				<li <if condition="$_GET['status'] eq 2"> class="current" </if>><a href="{:U('shop/selfcenter/index',array('status'=>2))}">已发货</a></li>
+				<li <if condition="$_GET['status'] eq 3"> class="current" </if>><a href="{:U('shop/selfcenter/index',array('status'=>3))}">已签收</a></li>
+				<li <if condition="$_GET['is_del'] eq 1"> class="current" </if>><a href="{:U('shop/selfcenter/index',array('is_del'=>1))}">订单回收站</a></li>
+			</ul>
+		</li> 
+		<li><a href="{:U('shop/selfcenter/order_address_show')}" <if condition="(!isset($_GET['status'])) AND (ACTION_NAME eq 'order_address_show')"> class="current" </if>>地址管理 ></a></li>
+		<li><a href="{:U('shop/goods/cart')}" target="_blank">购物车 ></a></li>
+		<li><a href="{:U('/home/board/index',array('member_id'=>$_SESSION['member_id']))}" target="_blank">我的画板 ></a></li>
+		<li>
+			<a href="javascript:;" <if condition="'CONTROLLER_NAME' EQ 'Party'"> class="par" <else /> class="par_si"</if>>用户中心 ></a>
+			<ul class="nav_zi">
+				<li <if condition="ACTION_NAME eq 'basic'"> class="current" </if>><a href="{:U('shop/Party/basic')}">基本信息</a></li>
+				<li <if condition="ACTION_NAME eq 'apwd'"> class="current" </if> ><a href="{:U('shop/Party/apwd')}">修改密码</a></li>
+				<li <if condition="ACTION_NAME eq 'anquan'"> class="current" </if>><a href="{:U('shop/Party/anquan')}">手机更换</a></li>
+				<li <if condition="ACTION_NAME eq 'e_mail'"> class="current" </if> ><a href="{:U('shop/Party/e_mail')}">邮箱更换</a></li>
+			</ul>
+		</li> 
+	</ul>
+</div>
+<script>
+	//小导航显示隐藏
+		$(".nav .par").click(function(){
+//			var obj = $(this).siblings(".nav_zi");
+			give_height($(this));
+//			if(obj.css('display') == 'block'){
+//				obj.css({'display':'none'});
+//				$(this).parents('.left').height('332px');
+//				$(this).removeClass('current');
+//			}else{
+//				obj.css({'display':'block'});
+//				$(this).parents('.left').height('500px');
+//				$(this).addClass('current');
+//			}
+		})
+		$('.nav .par_si').click(function(){
+			give_height($(this));
+		})
+		
+		give_height($(".nav .par"));
+		function give_height(objescts){
+
+			var obj = objescts.siblings(".nav_zi");
+			if(obj.css('display') == 'block'){
+				obj.css({'display':'none'});
+				objescts.parents('.left').height('810px');
+				objescts.removeClass('current');
+			}else{
+				obj.css({'display':'block'});
+				objescts.parents('.left').height('810px');
+				objescts.addClass('current');
+			}
+		}
+	</script>

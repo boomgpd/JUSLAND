@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link href="__PUBLIC__/Admin/Flat/docs/assets/css/demo.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<a href="{:U('add_node',array('level'=>$level,'id'=>$id,'pid'=>$pid))}" class="btn btn-sm btn-info">
+		<switch name="level">
+			<case value="1">添加系统</case>
+			<case value="2">添加模块</case>
+			<case value="3">添加控制器</case>
+			<case value="4">添加方法</case>
+		</switch>
+		</a>
+		<table class="table table-hover">
+			<tr class="active">
+				<th>id</th>
+			  	<th>
+			  		<switch name="level">
+						<case value="1">系统名称</case>
+						<case value="2">模块名称</case>
+						<case value="3">控制器名称</case>
+						<case value="4">方法名称</case>
+					</switch>
+			  	</th>
+			  	<th width="220">操作</th>
+			</tr>
+			<foreach name = 'data' item = 'v' key = 'k'>
+			<tr>
+				<td>{$k+1}</td>
+				<td>{$v.title}</td>
+				<td>
+					<neq name="level" value="4">
+					<a href="{:U('look_list',array('id' => $id,'level'=>$level+1,'pid'=>$v['id']))}" class="btn btn-sm btn-info">
+						<switch name="level">
+							<case value="1">查看模块</case>
+							<case value="2">查看控制器</case>
+							<case value="3">查看方法</case>
+						</switch>
+					</a>
+					</neq>
+					<a href="{:U('edit',array('id' => $v['id']))}" class="btn btn-sm btn-danger">删除</a>
+				</td>
+			</tr>
+			</foreach>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,582 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/header.css" />
+<!--头部信息-->
+<div class="header">
+	<div class="w clearfix">
+		<div class="header_left fl">
+			<span><img/ src="__PUBLIC__/Home/index/img/index/index_dw.png" /></span>
+			<span class="c_gray">
+				<if condition="$_SESSION['location_city_name']">
+					{$_SESSION['location_city_name']}
+				<else />
+					北京市
+				</if>
+			</span>
+			<span><a href="javascript:;" class="c_blue">[切换]</a></span>
+		</div>
+		<!--开始城市切换-->
+		<ul class="dw_city"></ul>
+		<!--城市切换结束-->
+
+		<ul class="header_right fr">
+			<if condition="$header_data['member']">
+				<li>
+					<a href="javascript:;"><img src="__PUBLIC__/Home/index/img/index/login_ts.png"></a>
+					<a href="javascript:;" style="display: none;"><img src="__PUBLIC__/Home/index/img/index/login_ts.gif" style="padding-bottom:5px;"></a>
+				</li>
+				<li class="right_sub">
+					<a href="javascript:;">{$header_data['member']['member_name']} ▼</a>
+					<ul class="vip_name clearfix" style="position: absolute;top: 40px;right: 40px;z-index: 99;">
+						<!-- <li>
+							<a href="javascript:;">我的婚礼</a>
+						</li> -->
+						<li>
+							<a href="{:U('shop/Selfcenter/index')}">个人中心</a>
+						</li>
+						<!-- <li>
+							<a href="{:U('Home/board/index',array('member_id'=>$_SESSION['member_id']))}">我的画板</a>
+						</li> -->
+						<li>
+							<a href="javascript:;" onclick ='check_out()'>退出登录</a>
+						</li>
+					</ul>
+				</li>
+				<else />
+				<li>
+					<a href="{:U('Registe/index')}" target="_blank">注册</a>
+				</li>
+				<li>
+					<!--<a href="{:U('Login/login')}" target="_blank" >登录</a>-->
+					<a href="javascript:;"  class="home_login">登录</a>
+				</li>
+			</if>
+			<li style="color: #999;">咨询电话：{$header_data['phone']}</li>
+		</ul>
+	</div>
+</div>
+<div style="background: #fff;">
+	<div class="nav w">
+		<div class="nav_top clearfix">
+			<a href="{:U('home/index/index')}" class="fl">
+				<img/ src="__UPLOAD__{$header_data['logo']}">
+			</a>
+			<form method="get" action="#" class="fl">
+				<select class="fl">
+					<option value="{:U('waterfall/index')}" <eq name="CONTROLLER_NAME" value="Waterfall">selected="selected"</eq> >空间灵感</option>
+					<option value="{:U('Media/list_data')}" <eq name="CONTROLLER_NAME" value="Media">selected="selected"</eq> >结婚攻略</option>
+					<option value="{:U('Shop/Goods/search')}" <eq name="MODULE_NAME" value="Shop">selected="selected"</eq> >婚礼商城</option>	
+					<option value="{:U('Merchant/list_page')}" <eq name="CONTROLLER_NAME" value="Merchant">selected="selected"</eq> >婚庆公司</option>
+				</select>
+				<input class="fl" type="text" value="" name="q" placeholder="婚礼灵感 婚庆公司 免费策划 免费报价" />
+				<a href="javascript:;" class="nav_button fl"></a>
+			</form>
+			<script type="text/javascript">
+				$('form.fl').attr('action',$('form.fl select').val());
+				$('form.fl select').change(function(){
+					var val = $(this).val();
+					$(this).parent('form').attr('action',val);
+				});
+				$('form a.fl').click(function(){
+					var val = $(this).siblings('input').val();
+					if(val == ''){
+						alert('请输入搜索内容');return;
+					};
+					$(this).parent('form').submit();
+				})
+			</script>
+			<div class="fl">
+				<a href="javascript:;" class="tb_app">APP</a>
+				<a href="javascript:;" class="tb_app">APP</a>
+				<a href="javascript:;" class="tb_app">APP</a>
+				<a href="javascript:;" class="tb_app">APP</a>
+			</div>
+		</div>
+		<ul class="nav_one fl">
+			<if condition="$controller eq 'Index'">
+				<li>
+					<a href="{:U('home/index/index')}" class="current">首页</a>
+				</li>
+				<else />
+				<li>
+					<a href="{:U('home/index/index')}">首页</a>
+				</li>
+			</if>
+			<if condition="$controller eq 'Waterfall'">
+				<li>
+					<a href="{:U('home/waterfall/index')}" class="current" target="_blank">空间灵感</a>
+				</li>
+				<else />
+				<li>
+					<a href="{:U('home/waterfall/index')}" target="_blank">空间灵感</a>
+				</li>
+			</if>
+			<li class="nav_one_gl">
+				<if condition="$controller eq 'Plot'">
+					<a href="{:U('home/Plot/index_plot')}" class="current" target="_blank">策划与报价▼</a>
+				<else />
+					<a href="{:U('home/Plot/index_plot')}" target="_blank">策划与报价▼</a>
+				</if>
+				<ul class="nav_two_gl clearfix" style="left:145px;">
+					<li>
+						<a href="http://china.stinary.com/Home/Plot/index_free.html" target="_blank" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_07.jpg);">免费上门</a>
+					</li>
+					<li style="margin: 1px 0;">
+						<a href="http://china.stinary.com/Home/Plot/index_plot.html" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_08.jpg);">策划与报价</a>
+					</li>
+					<li>
+						<a href="http://china.stinary.com/Home/Plot/index_ensure.html" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_09.jpg);">结婚保</a>
+					</li>
+					<li style="margin-top: 1px;">
+						<a href="http://china.stinary.com/Home/Plot/index_credit.html" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_010.jpg);">结婚贷</a>
+					</li>
+				</ul>
+			</li>
+
+			<li ><!--class="nav_one_gl"▼▼-->
+				<if condition="$controller eq 'Media'">
+					<a href="{:U('home/media/index')}" class="current" target="_blank">结婚攻略 </a>
+					<else />
+					<a href="{:U('home/media/index')}" target="_blank">结婚攻略 </a>
+				</if>
+
+				<!--<ul class="nav_two_gl clearfix">
+					<li>
+						<a href="{:U('home/media/index')}" target="_blank" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_01.jpg);">学婚礼</a>
+					</li>
+					<li style="margin: 1px 0;">
+						<a href="javascript:;" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_02.jpg);">婚博士</a>
+					</li>
+					<li>
+						<a href="javascript:;" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_03.jpg);">婚礼日志</a>
+					</li>
+				</ul>-->
+			</li>
+
+				<li class="nav_one_ch">
+					<if condition="$controller eq 'Merchant'">
+						<a href="{:U('home/merchant/list_page')}" class="current" target="_blank">结婚品牌▼</a>
+						<else />
+						<a href="{:U('home/merchant/list_page')}" target="_blank">结婚品牌▼</a>
+					</if>
+					
+					<ul class="nav_two_ch clearfix">
+						<!--<li>
+							<a href="javascript:;" target="_blank"> style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_04.jpg);" target="_blank">婚礼人</a>
+						</li>-->
+						<li style="margin-bottom: 1px;">
+							<a href="http://china.stinary.com/home/photo/index" target="_blank" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_010.jpg);">影楼</a>
+						</li>
+						<li>
+							<a href="http://china.stinary.com/home/hotel/index" target="_blank" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_06.jpg);">酒店</a>
+						</li>
+					</ul>
+				</li>
+
+			<li class="nav_one_diy">
+				<if condition="$controller eq 'Diy'">
+					<a href="{:U('home/diy/index')}" class="current" target="_blank" target="_blank">DIY计划 ▼</a>
+					<else />
+					<a href="{:U('home/diy/index')}" target="_blank">DIY计划 ▼</a>
+				</if>
+
+				<ul class="nav_two_diy clearfix">
+					<li>
+						<a href="{:U('home/diy/index')}" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_04.jpg);" target="_blank">选择婚礼人</a>
+					</li>
+					<li style="margin: 1px 0;">
+						<a href="javascript:;" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_05.jpg);">定制演绎</a>
+					</li>
+					<li>
+						<a href="javascript:;" style="background-image: url(__PUBLIC__/Home/index/img/index/index_nav_06.jpg);">定制道具</a>
+					</li>
+				</ul>
+			</li>
+
+			<if condition="$controller eq 'Merchant'">
+				<li>
+					<a href="{:U('Shop/Index/index')}" class="current" target="_blank">结婚商城</a>
+				</li>
+				<else />
+				<li>
+					<a href="{:U('Shop/Index/index')}" target="_blank">结婚商城</a>
+				</li>
+			</if>
+
+		</ul>
+		<div class="nav_free fr">
+			<a href="{:U('Home/Plot/index_plot')}">免费策划</a>
+			<a href="{:U('Home/Plot/index_computer')}">免费报价</a>
+		</div>
+	</div>
+
+	<if condition="$controller neq 'Index'">
+		<div style="width: 100%;border-bottom: 2px solid #79b6c8;"></div>
+	</if>
+</div>
+
+<!--头部信息结束-->
+
+<!--开始登陆弹窗-->
+<div class="login">
+	<ul class="classify clearfix">
+		<li>
+			<a href="#" class="bor_bot">个人用户</a>
+		</li>
+		<li>
+			<a href="#">企业用户</a>
+		</li>
+		<li>
+			<a href="#">婚礼人</a>
+		</li>
+	</ul>
+	<form action="#" method="post" class="user_form" id="member">
+		<ul class="user_data">
+			<li>
+				<label>用户名</label>
+				<input type="text" name="name" des_content = "用户名"/>
+				<span>请输入用户名！</span>
+			</li>
+			<li>
+				<label>密码</label>
+				<input type="password" name="password" des_content = "密码"/>
+				<span>请输入密码！</span>
+			</li>
+			<li>
+				<label>验证码</label>
+				<input type="text" name="code" style="width: 100px;" des_content = "验证码"/>
+				<img src="{:U('Common/code')}" width="80px" height="32px" style="vertical-align: top;">
+				<a href="javascript:;" style="color: #fff;border-bottom: 1px solid #fff;margin-left: 5px;" class="change_code">换一张</a>
+				<span>请输入验证码！</span>
+			</li>
+			<li>
+				<label></label>
+				<!--<input type="checkbox" style="vertical-align: top;" /> 一周内免登陆-->
+				<a href="#" style="color: #c5c5c5;margin-left: 50px;border-bottom: 1px solid #fff;">您忘记了密码？</a>
+			</li>
+		</ul>
+		<input type="hidden" name="form_type"  value="member" />
+		<input type="button" value="登录" style="width: 100px;text-align: center;height: 35px;line-height: 35px;background-color: #6C6C6C;color:#fff;border: 0;margin: 20px 20px 20px 110px;font-size: 16px;" />
+		<a href="{:U('Registe/index')}" style="color: #c5c5c5;">注册</a>
+	</form>
+	<form action="#" method="post" style="display: none;" class="user_form" id="merchant">
+		<ul class="user_data">
+			<li>
+				<label>用户名</label>
+				<input type="text" name="name" des_content = "用户名"/>
+				<span>请输入用户名或手机号！</span>
+			</li>
+			<li>
+				<label>密码</label>
+				<input type="password" name="password" des_content = "密码"/>
+				<span>密码不正确！</span>
+			</li>
+			<li>
+				<label>身份</label>
+				<label><input type="radio" value="merchant" name="identity" checked="checked">婚礼</label>
+				<label><input type="radio" value="photo" name="identity">影楼</label>
+				<label><input type="radio" value="hotel" name="identity">酒店</label>
+			</li>
+			<li>
+				<label>验证码</label>
+				<input type="text" name="code" style="width: 100px;" des_content = "验证码"/>
+				<img src="{:U('Common/code')}" width="80px" height="32px" style="vertical-align: top;">
+				<a href="javascript:;" style="color: #fff;border-bottom: 1px solid #fff;margin-left: 5px;" class="change_code">换一张</a>
+				<span>验证码错误！</span>
+			</li>
+			<li>
+				<label></label>
+				<!--<input type="checkbox" style="vertical-align: top;" /> 一周内免登陆-->
+				<a href="#" style="color: #c5c5c5;margin-left: 50px;border-bottom: 1px solid #fff;">您忘记了密码？</a>
+			</li>
+		</ul>
+		<input type="hidden" name="form_type"  value="merchant" />
+		<input type="button" value="登录" style="width: 100px;text-align: center;height: 35px;line-height: 35px;background-color: #6C6C6C;color:#fff;border: 0;margin: 20px 20px 20px 110px;font-size: 16px;"/>
+		<a href="{:U(registe/index)}" style="color: #c5c5c5;">注册</a>
+	</form>
+	<form action="#" method="post" style="display: none;" class="user_form" id="diy_marrier">
+		<ul class="user_data">
+			<li>
+				<label>用户名</label>
+				<input type="text" name="name" des_content = "用户名"/>
+				<span>*请输入用户名或手机号登录</span>
+			</li>
+			<li>
+				<label>密码</label>
+				<input type="password" name="password" des_content = "密码"/>
+				<span>*请输入密码</span>
+			</li>
+			<li>
+				<label>验证码</label>
+				<input type="text" name="code" style="width: 100px;" des_content = "验证码"/>
+				<img src="{:U('Common/code')}" width="80px" height="32px" style="vertical-align: top;">
+				<a href="javascript:;" style="color: #fff;border-bottom: 1px solid #fff;margin-left: 5px;" class="change_code">换一张</a>
+				<span>*请输入右侧验证码</span>
+			</li>
+			<li>
+				<label></label>
+				<!--<input type="checkbox" style="vertical-align: top;" /> 一周内免登陆-->
+				<a href="#" style="color: #c5c5c5;margin-left: 50px;border-bottom: 1px solid #fff;">您忘记了密码？</a>
+			</li>
+		</ul>
+		<input type="hidden" name="form_type"  value="diy_marrier" />
+		<input type="button" value="登录" style="width: 100px;text-align: center;height: 35px;line-height: 35px;background-color: #6C6C6C;color:#fff;border: 0;margin: 20px 20px 20px 110px;font-size: 16px;"/>
+		<a href="{:U(registe/index)}" style="color: #c5c5c5;">注册</a>
+	</form>
+	<a href="javascript:;" class="login_close"><img src="__PUBLIC__/Home/img/header/login_close.png"></a>
+</div>
+
+<div id="background_cover" style="width: 100%;height: 100%;background: black;opacity: 0.4;position: fixed;z-index: 99;top: 0;"></div>
+
+<!--登录弹窗结束-->
+<include file="Common/alert_view_style" />
+<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+<script>
+	//头部下拉
+	$(function() {
+			$(document).on('mouseover mouseout', '.right_sub', function() {
+				$(this).find('.vip_name').toggle();
+			})
+		})
+		//导航下拉
+	$(function() {
+		$(document).on('mouseover mouseout', '.nav_one_gl', function() {
+			$(this).find('.nav_two_gl').toggle();
+		})
+	});
+	$(function() {
+		$(document).on('mouseover mouseout', '.nav_one_diy', function() {
+			$(this).find('.nav_two_diy').toggle();
+		})
+	})
+	$(function() {
+		$(document).on('mouseover mouseout', '.nav_one_ch', function() {
+			$(this).find('.nav_two_ch').toggle();
+		})
+	})
+
+	//切换城市
+	var city_type_num = 1;
+	$(".header_left .c_blue").click(function() {
+		$.ajax({
+			type:"post",
+			url:"{:U('home/common/getCity')}",
+			dataType:'json',
+			success:function(phpdata){
+				var str = '<span style="display:block;height:2px;width: 110px;position: absolute;top:-2px;background-color: #F9F9F9;"></span>';
+				$.each(phpdata, function(k,v) {
+					str += '<li class="clearfix"><h6 class="fl">'+v.first_chat+'</h6>';
+					str+= '<label class="fr">'
+					$.each(v.data, function(key,value) {
+						str += '<a href="javascript:;" area_id="'+value.area_id+'" class="change_location">'+value.name+'</a>';
+					});
+					str += '</label></li>';
+				});
+				$(".dw_city").html(str);
+			},
+			complete:function(){
+				if(city_type_num == 1) {
+					$(".header_left").css({
+						"border-left": "1px solid #F0F0F0",
+						"border-right": "1px solid #F0F0F0"
+					});
+					city_type_num = 2;
+				} else if(city_type_num == 2) {
+					$(".header_left").css({
+						"border-left": "1px solid #F9F9F9",
+						"border-right": "1px solid #F9F9F9"
+					});
+					city_type_num = 1;
+				}
+				$(".dw_city").toggle();
+			}
+		});
+	});
+	
+	$(".change_location").live('click',function(){
+		var area_id = $(this).attr('area_id');
+		var This = $(this);
+		var name = $(this).html();
+		$.ajax({
+			type:"post",
+			url:"{:U('home/common/change_location_city')}",
+			data:{area_id:area_id},
+			dataType:'json',
+			success:function(phpdata){
+				This.parents('ul.dw_city').find('a.change_location').attr('id','');
+				This.attr('id','c_blue');
+				$(".header_left span.c_gray").html(name);
+			},
+			complete:function(){
+				if(city_type_num == 1) {
+					$(".header_left").css({
+						"border-left": "1px solid #F0F0F0",
+						"border-right": "1px solid #F0F0F0"
+					});
+					city_type_num = 2;
+				} else if(city_type_num == 2) {
+					$(".header_left").css({
+						"border-left": "1px solid #F9F9F9",
+						"border-right": "1px solid #F9F9F9"
+					});
+					city_type_num = 1;
+				}
+				$(".dw_city").toggle();
+				 window.location.reload();
+			}
+		});
+	})
+	
+	/**
+	 * 给登录弹框添加定位属性
+	 */
+//	window.onload = function(){
+//		var left = (document.body.clientWidth - 520)/2;
+//		var top =  ($(window).height() - 440)/2;
+//		$(".login").css({"left":left,"top":top});
+//	}
+	
+//	给登录按钮添加单机事件
+	var login_type = 0;
+	$(".home_login").click(function(){
+		$("#background_cover").css('display','block');
+		$(".login").css('display','block');
+		if(login_type == 0){
+			var left = (document.body.clientWidth - 520)/2;
+			var top =  ($(window).height() - 440)/2;
+			$(".login").css({"left":left,"top":top});
+		}
+	})
+	
+//	给叉号添加单机事件
+	$(".login_close").click(function(){
+		$("#background_cover").css('display','none');
+		$(".login").css('display','none');
+	})
+	
+//	给登录弹窗添加tab切换
+	$(document).on('click','.classify li',function(){
+				var num = $(this).index();
+				$('.user_form').eq(num).show().siblings("form").hide();
+				$(this).find("a").addClass("bor_bot").parent("li").siblings("li").find("a").removeClass("bor_bot");
+	})
+	
+	//选中文字颜色改变
+	$(".user_data li input[type=text]").click(function(){
+		$(this).prev("label").css("color","#fff");
+		$(this).parent("li").siblings("li").find("label").css("color","#c5c5c5");
+	});
+	
+	
+//	给input框添加失去焦点事件
+	$(".user_data li input").blur(function(){
+		var form_type = $(this).parents('form').attr('id');//表单类型
+		var name = $(this).attr('name');//input的name值
+		var value = $(this).attr('value');//input的value值
+		var warnning = $(this).attr('des_content');
+		var data = {
+			form_type : form_type,
+			name      : name,
+			value     : value
+		};
+		if(!value){
+			$(this).siblings('span').html(warnning+'不能为空').css('color','#E05E06');
+		}else{
+//			$(this).siblings('span').html('验证通过').css('color','green');
+			$(this).siblings('span').html('');
+		}
+	});
+	
+	
+//	替换验证码
+	$(".change_code").click(function(){
+		$(this).siblings('img').attr('src',"{:U('Common/code')}");
+	})
+	
+	
+//	创建异步方法进行判定是否通过
+	function check_login(data,form_type){
+		$.ajax({
+			type:"post",
+			url:"{:U('home/login/check_login')}",
+			data:data,
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata['type'] == '101'){
+					//验证码错误
+					$(""+form_type+" .user_data li input[name=code]").siblings('span').html(phpdata['content']);
+					window.wxc.xcConfirm(phpdata['content'], window.wxc.xcConfirm.typeEnum.confirm);
+					$(""+form_type+" input[name=code]").siblings('img').attr('src',"{:U('Common/code')}");
+				}else if(phpdata['type'] == '102'){
+					//用户名不存在
+					$(""+form_type+" .user_data li input[name=name]").siblings('span').html(phpdata['content']);
+					window.wxc.xcConfirm(phpdata['content'], window.wxc.xcConfirm.typeEnum.confirm);
+					$(""+form_type+" input[name=code]").siblings('img').attr('src',"{:U('Common/code')}");
+				}else if(phpdata['type'] == '103'){
+					//密码输入错误
+					$(""+form_type+" .user_data li input[name=password]").siblings('span').html(phpdata['content']);
+					window.wxc.xcConfirm(phpdata['content'], window.wxc.xcConfirm.typeEnum.confirm);
+					$(""+form_type+" input[name=code]").siblings('img').attr('src',"{:U('Common/code')}");
+				}else if(phpdata['type'] == '104'){
+					//审核未通过
+					window.wxc.xcConfirm(phpdata['content'], window.wxc.xcConfirm.typeEnum.info);
+					$(""+form_type+" input[name=code]").siblings('img').attr('src',"{:U('Common/code')}");
+				}else if(phpdata['type'] == '100'){
+					//登录成功
+					var txt = '登录成功';
+					window.wxc.xcConfirm(phpdata['content'], window.wxc.xcConfirm.typeEnum.confirm);
+					if(phpdata.urls == ''){
+						window.location.reload();
+					}else{
+						window.location.href = phpdata.urls;
+					}
+					
+				}
+			}
+		});
+	}
+	
+	/**
+	 * 给回车事件添加提交事件
+	 */
+	$('.user_form input').keydown(function(){
+		if (window.event.keyCode == '13'){
+			var obj = $(this).parents('form.user_form');
+			getData(obj);
+		}
+	})
+	
+	/**
+	 * 给提交按钮添加单击事件
+	 */
+	$(".user_form input[type=button]").click(function(){
+		var obj = $(this).parents('form.user_form');//表单类型
+		getData(obj);
+	})
+	
+//	创建检索登录方法
+	function getData(obj){
+		var form_type = obj.attr('id');//表单类型
+		var data = obj.serializeArray();
+		$.each(data, function(k,v) {
+			if(!v.value){
+				obj.find('input[name='+v.name+']').siblings('span').html(warnning+'不能为空').css('color','#E05E06');
+				return false;
+			}
+		});
+		check_login(data,form_type);
+	}
+	
+//	创建退出登录方法
+	function check_out(){
+		$.ajax({
+			type:"post",
+			url:"{:U('/home/login/out')}",
+			dataType:'json',
+			success:function(phpdata){
+				if(phpdata){
+					window.location.reload();
+				}
+			}
+		});
+	}
+	
+</script>

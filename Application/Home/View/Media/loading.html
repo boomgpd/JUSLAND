@@ -1,0 +1,53 @@
+<foreach name="data" item="val" key="key">
+		    <div class="pin">
+		    	<div class="single_hide clearfix">
+		    		<if condition="$val['new_word_id']">
+		    			<in name="val['new_word_id']" value="$text">
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_yes" tid="{$val['new_word_id']}" type="1"></a>
+		    				</div>
+		    			<else />
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_no" tid="{$val['new_word_id']}" type="1"></a>
+		    				</div>
+		    			</in>
+		    		<elseif condition="$val['pic_text_id']"/>
+		    			<in name="val['pic_text_id']" value="$img_text">
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_yes" tid="{$val['pic_text_id']}" type="2"></a>
+		    				</div>
+		    			<else />
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_no" tid="{$val['pic_text_id']}" type="2"></a>
+		    				</div>
+		    			</in>
+		    		<elseif condition="$val['new_video_id']"/>
+		    			<in name="val['new_video_id']" value="$vodeos">
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_yes" tid="{$val['new_video_id']}" type="3"></a>
+		    				</div>
+		    			<else />
+		    				<div class="hide_right">
+		    					<a href="javascript:;" class="zan_no" tid="{$val['new_video_id']}" type="3"></a>
+		    				</div>
+		    			</in>
+		    		</if>
+		    	</div>
+		        <div class="box">
+		            <a href="#"><img src="__UPLOAD__{$val['list_img']}"></a>
+		            <div style="padding: 10px;">
+		        		<span>新闻标题——限制一行</span>
+		        		<ul class="zf_zan clearfix">
+		        			<li class="zan"><span>10</span></li>
+		        		</ul>
+		       		</div>
+		       		<div class="user clearfix">
+		       			<a class="tx"></a>
+		       			<div class="user_name">
+		       				<span>编辑：<a href="#">郭沛东</a></span><br />
+		       				<span>发布日期：<a href="#">2016-9-23</a></span>
+		       			</div>
+		       		</div>
+		        </div>
+		    </div>
+		</foreach>

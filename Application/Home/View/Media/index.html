@@ -1,0 +1,417 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>new_index</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/new_index.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/swiper.min.css">
+		<script src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+		<script src="__PUBLIC__/Home/js/swiper.min.js"></script>
+		<style>
+			/* 设置滚动条的样式 */
+			
+			::-webkit-scrollbar {
+				width: 4px;
+				height: 87px;
+			}
+			/* 滚动槽 */
+			
+			::-webkit-scrollbar-track {
+				background: #5c5c5c;
+				height: 457px;
+			}
+			/* 滚动条滑块 */
+			
+			::-webkit-scrollbar-thumb {
+				background: url(__PUBLIC__/Home/img/new/index/gundongtiao.png) no-repeat center center;
+			}
+			
+			::-webkit-scrollbar-thumb:window-inactive {}
+		</style>
+	</head>
+
+	<body>
+		<include file="Common/header" />
+
+		<!--content start-->
+		<div class="w">
+			<div class="content_w">
+				<!--内容1开始-->
+				<div class="content1 clearfix">
+					<div class="left fl">
+						<div class="left_left fl">
+							<div>
+								<a href=""><img src="__PUBLIC__/Home/img/new/index/content1_zuo1.png"></a>
+							</div>
+							<div class="mt3">
+								<a href="{:U('list_data')}"><img src="__PUBLIC__/Home/img/new/index/content1_zuo2.png"></a>
+							</div>
+							<div class="mt3">
+								<a href=""><img src="__PUBLIC__/Home/img/new/index/content1_zuo3.png"></a>
+							</div>
+							<div class="mt3">
+								<a href=""><img src="__PUBLIC__/Home/img/new/index/content1_zuo4.png"></a>
+							</div>
+						</div>
+						<div class="left_right fr clearfix">
+							<div id="wrapper">
+								<!-- 最外层部分 -->
+								<div id="banner">
+									<!-- 轮播部分 -->
+									<ul class="imgList">
+										<!-- 图片部分 -->
+										<foreach name="list" item="val" key="key">
+											<if condition="$val['new_recommend_type'] eq 1">
+												<if condition="$val['new_type'] eq 1">
+													<li>
+														<a href="{:U('text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}"><img src="__UPLOAD__{$val['img_src']}" width="330px" height="450px"></a>
+													</li>
+													<elseif condition="$val['new_type'] eq 2" />
+													<li>
+														<a href="{:U('img_text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}"><img src="__UPLOAD__{$val['img_src']}" width="330px" height="450px"></a>
+													</li>
+													<elseif condition="$val['new_type'] eq 3" />
+													<li>
+														<a href="{:U('videos',array('type'=>$val['new_type'],'id'=>$val['new_id']))}"><img src="__UPLOAD__{$val['img_src']}" width="330px" height="450px"></a>
+													</li>
+												</if>
+											</if>
+										</foreach>
+									</ul>
+									<!--<img src="__PUBLIC__/Home/img/new/index/prev.png" width="20px" height="40px" id="prev">
+                          <img src="__PUBLIC__/Home/img/new/index/next.png" width="20px" height="40px" id="next">-->
+									<div class="bg"></div>
+									<!-- 图片底部背景层部分-->
+									<ul class="indexList">
+										<!-- 图片右下角序号部分 -->
+										<li class="indexOn">1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="right fr">
+						<div class="up">
+							<img src="__UPLOAD__{$data['tiday'][0]['list_img']}" style="width: 420px;height: 200px;">
+						</div>
+						<div>
+							<div class="content1_right_biaoti">
+								<foreach name="list" item="val" key="key">
+									<if condition="$val['new_recommend_type'] eq 2">
+										<if condition="$val['new_type'] eq 1">
+											<span class="content1_wz1"><a href="{:U('text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a></span>
+											<elseif condition="$val['new_type'] eq 2" />
+											<span class="content1_wz1"><a href="{:U('img_text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a></span>
+											<elseif condition="$val['new_type'] eq 3" />
+											<span class="content1_wz1"><a href="{:U('videos',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a></span>
+										</if>
+									</if>
+								</foreach>
+								<div class="content1_right_lanmu">
+									<ul class="clearfix">
+										<li class="on"><span>热点推荐</span></li>
+										<li><span>最新资讯</span></li>
+										<li><span>本周推荐</span></li>
+									</ul>
+									<div class="news mt5px on">
+										<foreach name="list" item="val" key="key">
+											<if condition="$val['new_recommend_type'] eq 3">
+												<if condition="$val['new_type'] eq 1">
+													<div>
+														<a href="{:U('text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a>
+													</div>
+													<elseif condition="$val['new_type'] eq 2" />
+													<div>
+														<a href="{:U('img_text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a>
+													</div>
+													<elseif condition="$val['new_type'] eq 3" />
+													<div>
+														<a href="{:U('videos',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a>
+													</div>
+												</if>
+											</if>
+										</foreach>
+										<!--<div><a href="#">广东一场土豪婚礼引发网友关注，新娘全身穿戴了重达几十斤黄金配饰。</a></div>-->
+									</div>
+									<div class="news mt5px">
+										<foreach name="list" item="val" key="key">
+											<if condition="$val['new_recommend_type'] eq 4">
+												<if condition="$val['new_type'] eq 1">
+													<div>
+														<a href="{:U('text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a>
+													</div>
+													<elseif condition="$val['new_type'] eq 2" />
+													<div>
+														<a href="{:U('img_text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a>
+													</div>
+													<elseif condition="$val['new_type'] eq 3" />
+													<div>
+														<a href="{:U('videos',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a>
+													</div>
+												</if>
+											</if>
+										</foreach>
+									</div>
+									<div class="news mt5px">
+										<foreach name="list" item="val" key="key">
+											<if condition="$val['new_recommend_type'] eq 5">
+												<if condition="$val['new_type'] eq 1">
+													<div>
+														<a href="{:U('text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a>
+													</div>
+													<elseif condition="$val['new_type'] eq 2" />
+													<div>
+														<a href="{:U('img_text',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a>
+													</div>
+													<elseif condition="$val['new_type'] eq 3" />
+													<div>
+														<a href="{:U('videos',array('type'=>$val['new_type'],'id'=>$val['new_id']))}">{$val['title']}</a>
+													</div>
+												</if>
+											</if>
+										</foreach>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--内容1结束-->
+		</div>
+
+		<!--广告位-->
+		<div class="adver">
+			<!--<img src=""/>-->
+		</div>
+		<!--广告位结束-->
+
+		<div class="content2">
+			<div class="bigbox clearfix">
+				<div class="left fl clearfix">
+					<div class="left_left fl clearfix">
+						<for start="0" end="2">
+							<div class="wh{$i+1} mt2">
+								<div class="father">
+									<div class="imgs"><img src="__UPLOAD__{$re[$i]['img_src']}" class="wh{$i+1}"></div>
+									<div class="box wh{$i+1}">
+										<a href="{:U('img_text',array('id'=>$re[$i]['pic_text_id'],type=>2))}" class="wh{$i+1} lh1">{$re[$i]['title']}</a>
+									</div>
+								</div>
+							</div>
+						</for>
+					</div>
+					<div class="left_right fr clearfix">
+						<for start="2" end="5">
+							<div class="wh{$i+1} mt2">
+								<div class="father">
+									<div class="imgs"><img src="__UPLOAD__{$re[$i]['img_src']}" class="wh{$i+1}"></div>
+									<div class="box wh{$i+1}">
+										<a href="{:U('img_text',array('id'=>$re[$i]['pic_text_id'],type=>2))}" class="wh{$i+1} lh1">{$re[$i]['title']}</a>
+									</div>
+								</div>
+							</div>
+						</for>
+					</div>
+				</div>
+				<div class="right fr clearfix">
+					<for start="5" end="7">
+						<div class="wh{$i+1} mt2">
+							<div class="father">
+								<div class="imgs"><img src="__UPLOAD__{$re[$i]['img_src']}" class="wh{$i+1}"></div>
+								<div class="box wh{$i+1}">
+									<a href="{:U('img_text',array('id'=>$re[$i]['pic_text_id'],type=>2))}" class="wh{$i+1} lh1">{$re[$i]['title']}</a>
+								</div>
+							</div>
+						</div>
+					</for>
+				</div>
+			</div>
+		</div>
+
+		<!--广告位-->
+		<div class="adver">
+			<!--<img src=""/>-->
+		</div>
+		<!--广告位结束-->
+
+		<div class="content3 clearfix">
+			<div class="swiper-container fl clearfix">
+			<!-- Swiper -->
+				<div class="swiper-wrapper">
+					<foreach name="videos" item="val" key="key">
+						<if condition="$val['box']['is_bananer'] eq 2">
+							<div class="swiper-slide" >
+								<a href="{:U('videos',array('id'=>$val['box']['new_video_id'],'type'=>3))}">
+									<img src="__UPLOAD__{$val['box']['video_width_img']}" class="img1">
+								</a>
+								<div class="c4_futiao clearfix">
+									<div class="c4_logo fl"></div>
+									<p class="fr"><!--{$val['box']['video_title']}--></p>
+								</div>
+							</div>
+						</if>
+					</foreach>
+				</div>
+			<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="right fr clearfix">
+				<div class="c3_new">
+					<ul>
+						<foreach name="videos" item="val" key="key">
+							<li class="clearfix">
+								<div class="c3_wenzi">
+									<a href="{:U('videos',array('id'=>$val['box']['new_video_id'],'type'=>3))}" class="c3_a1">{$val['box']['video_title']}</a>
+									<p>{$val['box']['video_des']}</p>
+								</div>
+								<div class="c3_tu"><img src="__UPLOAD__{$val['box']['list_img']}"></div>
+							</li>
+						</foreach>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!--<div class="guanggao1">
+</div>-->
+
+		<!--广告位-->
+		<div class="adver">
+			<!--<img src=""/>-->
+		</div>
+		<!--广告位结束-->
+
+		<div>
+			<div class="content4">
+				<ul class="clearfix">
+					<foreach name="arr" item="val" key="key">
+						<li>
+							<a href="{:U('text',array('id'=>$val['box']['new_word_id'],'type'=>1))}"><div><img src="__UPLOAD__{$val['box']['list_img']}" width="210" height="150"></div></a>
+							<a href="{:U('text',array('id'=>$val['box']['new_word_id'],'type'=>1))}"><p>{$val['box']['show_title']}<p></a>
+							<a class="aa" href="{:U('text',array('id'=>$val['box']['new_word_id'],'type'=>1))}"></a>
+						</li>
+					</foreach>
+				</ul>
+			</div>
+		</div>
+
+		<!--content end-->
+
+		<!--footer start-->
+		<include file="Common/bottom" />
+		<!--footer end-->
+	</body>
+	<script>
+		$(function() {
+			$(document).on('mouseover mouseout', '.nav_one_gl', function() {
+				$(this).find('.nav_two_gl').toggle();
+			})
+		});
+		$(function() {
+			$(document).on('mouseover mouseout', '.nav_one_diy', function() {
+				$(this).find('.nav_two_diy').toggle();
+			})
+		})
+	</script>
+
+	<script type="text/javascript">
+		var curIndex = 0, //当前index
+			imgLen = $(".imgList li").length; //图片总数
+		// 定时器自动变换2.5秒每次
+		var autoChange = setInterval(function() {
+			if(curIndex < imgLen - 1) {
+				curIndex++;
+			} else {
+				curIndex = 0;
+			}
+			//调用变换处理函数
+			changeTo(curIndex);
+		}, 2500);
+		//左箭头滑入滑出事件处理
+		$("#prev").hover(function() {
+			//滑入清除定时器
+			clearInterval(autoChange);
+		}, function() {
+			//滑出则重置定时器
+			autoChangeAgain();
+		});
+		//左箭头点击处理
+		$("#prev").click(function() {
+			//根据curIndex进行上一个图片处理
+			curIndex = (curIndex > 0) ? (--curIndex) : (imgLen - 1);
+			changeTo(curIndex);
+		});
+		//右箭头滑入滑出事件处理
+		$("#next").hover(function() {
+			//滑入清除定时器
+			clearInterval(autoChange);
+		}, function() {
+			//滑出则重置定时器
+			autoChangeAgain();
+		});
+		//右箭头点击处理
+		$("#next").click(function() {
+			curIndex = (curIndex < imgLen - 1) ? (++curIndex) : 0;
+			changeTo(curIndex);
+		});
+		//对右下角按钮index进行事件绑定处理等
+		$(".indexList").find("li").each(function(item) {
+			$(this).hover(function() {
+				clearInterval(autoChange);
+				changeTo(item);
+				curIndex = item;
+			}, function() {
+				autoChangeAgain();
+			});
+		});
+		//清除定时器时候的重置定时器--封装
+		function autoChangeAgain() {
+			autoChange = setInterval(function() {
+				if(curIndex < imgLen - 1) {
+					curIndex++;
+				} else {
+					curIndex = 0;
+				}
+				//调用变换处理函数
+				changeTo(curIndex);
+			}, 2500);
+		}
+
+		function changeTo(num) {
+			var goLeft = num * 330;
+			$(".imgList").animate({
+				left: "-" + goLeft + "px"
+			}, 500);
+			$(".infoList").find("li").removeClass("infoOn").eq(num).addClass("infoOn");
+			$(".indexList").find("li").removeClass("indexOn").eq(num).addClass("indexOn");
+		}
+		 var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        direction: 'vertical',
+        autoplay:3000
+    	});
+
+	</script>
+
+	<script>
+		$(function() {
+			$(".content1_right_lanmu ul li").mouseenter(function() {
+				var num = $(this).index();
+				$(".content1_right_lanmu ul li").removeClass("on");
+				$(".content1_right_lanmu ul li").eq(num).addClass("on");
+				$(".news").removeClass("on");
+				$(".news").eq(num).addClass("on");
+			})
+		})
+	</script>
+
+</html>

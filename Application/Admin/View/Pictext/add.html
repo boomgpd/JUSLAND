@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+
+	<link rel="stylesheet" href="__PUBLIC__/Admin/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/uploadify/uploadify.css">
+	
+	<style type="text/css">
+		/*去掉uploadify上传按钮的边框*/
+	    .uploadify-button {
+	        background-color: transparent;
+	        border: none;
+	        padding: 0;
+	    }
+	    .uploadify:hover .uploadify-button {
+	        background-color: transparent;
+    	}
+    	.hide{
+    		display: none;
+    	}
+    	body{
+    		margin-bottom: 100px;
+    	}
+    	li{
+    		list-style: none;
+    	}
+    	#uploadList li{
+    		position: relative;
+    	}
+    	#uploadList li span{
+    		display: block;
+    		width: 25px;
+    		height: 15px;
+    		font-family: "微软雅黑";
+    		font-size: 14px;
+    		background: indianred;
+    		color: white;
+    		line-height: 15px;
+    		font-weight: 700;
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+    	#uploadLista li{
+    		position: relative;
+    	}
+    	#uploadLista li span{
+    		display: block;
+    		width: 25px;
+    		height: 15px;
+    		font-family: "微软雅黑";
+    		font-size: 14px;
+    		background: indianred;
+    		color: white;
+    		line-height: 15px;
+    		font-weight: 700;
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+    	.del{
+    		width: 80px;
+    		height: 40px;
+    		background: #F0AD4E;
+    		border: 0px;
+    		margin-top: 40px;
+    	}
+    	#ke{
+    		width: 200px;
+    		height: 37px;
+    		margin-top: -7px;
+    		background: #F05F2A;
+    		border: 0px;
+    	}
+	</style> 
+	
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span12">
+
+	<form action="{:U('add')}" method='post'>
+		<fieldset>
+			<legend>添加图文新闻</legend>
+			<table class='table table-bordered table-hover'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">图片上传（添加列表图）</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr class="info">
+					<td style="width: 100px;">上传图片</td>
+					<td lab="uploadFile">
+						<input type="file" name='pic' id='str'/>
+					    <script type="text/javascript">
+					        $(function() {
+					            $('#str').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png;*.gif;*.jpeg;',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('admin/common/upload',array('name'=>'pic_text'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+//					                'width':65,
+//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;'><img style='height: 100px;' src='__UPLOAD__"+imageUrl+"'/><span>X</span><input type='hidden' name='list_img' value='"+imageUrl+"'/></li>";
+					                    $("#uploadLista").html(li);
+					                    
+					                }
+					            });
+					        });
+					    </script>
+					</td>
+					<td id="uploadLista"></td>
+				</tr>
+				<tr class="info">
+					<td>新闻标题</td>
+					<td>
+						<input type="text" name="title" value="" placeholder="请输入简易标题"/>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr class="info">
+					<td>关键词</td>
+					<td>
+						<input type="text" name="keyword" value="" placeholder="请输入关键词以#间隔"/>
+					</td>
+					<td>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" value="确认添加" class="btn btn-primary btn-block btn-large" />
+		</fieldset>
+	</form>
+
+	</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+//			给图片添加单机事件
+			$("#uploadList li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			$("#uploadLista li span").live('click',function(){
+				$(this).parents('li').remove();
+			});
+			
+	</script>
+</body>
+</html>

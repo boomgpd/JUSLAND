@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <script src="__PUBLIC__/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript" src="__PUBLIC__/jquery-1.7.2.min.js"></script>
+	    <style type="text/css">
+		li{
+			list-style: none;
+			float: left;
+		}
+	    </style>
+	</head>
+	<script type="text/javascript">
+		//删除图片
+		$('.del').live('click',function(){
+			var val = $(this).siblings('input').val();
+			del(val);
+			$(this).parent('li').remove();
+		});
+		function del(path){
+			$.ajax({
+				url: '{:U("del")}',
+				type: 'get',
+				data: {path:path},
+			})
+		}
+		function shanchu(This){
+			This.parent('li').remove();
+		}
+		
+	</script>
+	<body>
+		<div class="alert alert-success">修改资料</div>
+		<form action="" method="post">
+			<script type="text/javascript">
+				$(function(){
+					$('.show_pwd').click(function(){
+						$(this).css({display:'none'});
+						$('.password').css({display:'block'}).attr('name','password');
+					});
+				})
+			</script>
+			<div class="form-group">
+				<label>个人描述</label>
+				<textarea name="remark" rows="5" cols=""  class="form-control" placeholder="请输入描述">{$data['remark']}</textarea>
+			</div>
+			<table class='table table-bordered'>
+				<tr>
+					<th colspan="3" class="btn btn-primary">上传作品【20张以内】</th>
+				</tr>
+				<tr class="info">
+					<td width="100px;">上传图片</td>
+					<td lab="uploadFile">
+						<input type="file" name='showed' id='showed'/>
+						<td id="showed">
+						<if condition="!empty($data['showed'][0])">
+							<foreach name="data['showed']" item="v">
+							<li style='float: left;position:relative;margin-left:10px'>
+								<img src="__UPLOAD__/{$v}" alt="" width="231px">
+								<input type="hidden" name="showed[]" value="{$v}">
+								<a href="javascript:;" style='position:absolute;right:-10px;top:40%;cursor:pointer' onclick="shanchu($(this))">X</a>
+							</li>
+							</foreach>
+						</if>
+						</td>
+					    <script type="text/javascript" src="__PUBLIC__/Admin/uploadify/jquery.uploadify.min.js"></script>
+						<script type="text/javascript">
+					        $(function(){
+					            $('#showed').uploadify({
+					                'formData'     : {
+					                    "<?php echo session_name();?>" : "<?php echo session_id();?>",
+					                },
+					                'fileTypeDesc' : '上传文件',
+					                'fileTypeExts' : '*.jpg;*.png',
+					                'swf'      : '__PUBLIC__/Admin/uploadify/uploadify.swf',
+					                'uploader' : "{:U('Diy/Index/upload',array('name'=>'diy'))}",
+					                'buttonText':'选择文件',
+					                'fileSizeLimit' : '8000KB',
+					                'uploadLimit' : 1000,//上传文件数
+	//					                'width':65,
+	//					                'height':25,
+					                'successTimeout':10,//等待服务器响应时间
+					                'removeTimeout' : 0.2,//成功显示时间
+					                'onUploadSuccess' : function(file, data, response) {
+					                    //转为json
+					                    data=$.parseJSON(data);
+					                    //获得图片地址
+					                    var imageUrl = data;
+					                    var li="<li style='float: left;position:relative'><img style='width:231px;' src='__UPLOAD__"+imageUrl+"'/><a style='position:absolute;right:-10px;top:45%;cursor:pointer' class='del'>X</a><input type='hidden' name='showed[]' value='"+imageUrl+"'/></li>";
+					                    var num = $("#showed li").length;
+					                    if(num >= 20){
+					                    	alert('只能上传20张作品展示!');
+					                    	del(imageUrl);
+					                    }else{
+					                    	$("#showed").append(li);
+					                    };
+					                }
+					            });
+					        })
+					    </script>
+					</td>
+				</tr>
+			</table>
+			<button class="btn btn-primary btn-block" type="submit">确定</button>
+		</form>
+	</body>
+</html>

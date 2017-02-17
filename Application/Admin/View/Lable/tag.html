@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	    <!-- Loading Bootstrap -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	    <!-- Loading Flat UI -->
+	    <link href="__PUBLIC__/Admin/Flat/dist/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="__PUBLIC__/Admin/Flat/img/favicon.ico">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+	      <script src="dist/js/vendor/html5shiv.js"></script>
+	      <script src="dist/js/vendor/respond.min.js"></script>
+	    <![endif]-->
+	    
+	    <style type="text/css">
+	    	input{
+	    		border: 0px;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<table class="table table-hover">
+			<tr class="active">
+			  <th width="30">tid</th>
+			  <th>标签名</th>
+			  <!--<th>类型</th>-->
+			  <th width="200">操作</th>
+			</tr>
+			<form action="{:U('savetag')}" method="post">
+				<foreach name="info" item="v" key='k'>
+					<tr>
+						<td>
+							{$k+1}
+						</td>
+						<td>
+							<input type="text" name="lname" lid="{$v['lid']}" id="aname" value="{$v['lname']}" />
+						</td>
+						<!--<td>
+							{$v['type_tid']}
+						</td>-->
+						<td>
+							<a href="javascript:;" class="btn btn-sm btn-warning edit">保存</a>
+							<a href="javascript:;" lid="{$v['lid']}" class="btn btn-sm btn-danger del">删除</a>
+						</td>
+					</tr>
+				</foreach>
+			</form>
+		</table>
+		<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript">  
+			$(".edit").click(function(){
+	    		var lname = $(this).parents('tr').find('#aname').val();
+	    		var lid = $(this).parents('tr').find('#aname').attr('lid');
+	    		$.ajax({
+	    			type:"post",
+	    			url:"{:U('admin/Lable/savetag')}",
+	    			data:{lname:lname,lid:lid},
+	    			dataType:'text',
+	    			success:function(phpdata){
+	    				alert(phpdata);
+	    			}
+	    		});
+	    	});
+		
+			$(".del").click(function(){
+	    		var lid   = $(this).attr('lid');
+	    		var This = $(this);
+	    		$.ajax({
+	    			type:"post",
+	    			url:"{:U('admin/Lable/deletetag')}",
+	    			data:{lid:lid},
+	    			dataType:'text',
+	    			success:function(phpdata){
+	    				if(phpdata=='删除成功'){
+	    					This.parents('tr').remove();
+	    				}
+	    				alert(phpdata);
+	    			}
+	    		});
+	    	});
+		</script>
+	</body>
+</html>

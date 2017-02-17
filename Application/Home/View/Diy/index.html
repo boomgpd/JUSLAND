@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title>诗缔婚礼平台-首页</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Diy/css/style.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Diy/css/reset.css"/>
+		<link rel="stylesheet" href="__PUBLIC__/Home/Diy/css/jquery.fullPage.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Diy/css/animate.min.css"/>
+		<script src="__PUBLIC__/Home/Diy/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/Home/Diy/js/jquery.fullPage.min.js"></script>
+		<script src="__PUBLIC__/Home/Diy/js/jquery.mousewheel.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function(){
+				$('#dowebok').fullpage({
+					'navigation': true,
+					anchors: ['page1', 'page2', 'page3', 'page4'],
+					menu: '#menu'
+				});
+//				var pages = [3,8,9];
+//				$("body").mousewheel(function(){
+//					alert()
+//				})			
+			});
+		</script>
+	</head>
+	<body>
+		<!--<div class="header">
+			<div class="logo"></div>
+			<nav>
+				<a class="nav_current" href="index.html">STINARY</a>
+		        <a href="javascript:;">主持人</a>
+		        <a href="javascript:;">摄影师</a>
+		        <a href="javascript:;">摄像师</a>       
+		        <a href="javascript:;">化妆师</a>
+		        <a href="javascript:;">花艺师</a>
+		        <a href="javascript:;">空间搭建</a>
+			</nav>
+		</div>-->
+		<div id="dowebok">
+			<!-- <div class="section section1">
+				<div class="button" align="center">
+					<img src="__PUBLIC__/Home/Diy/images/index_back_size_02.png" class="animated fadeInUp" width="80%">
+				</div>
+			</div>
+			<div class="section section2">
+				<div class="button" align="center">
+					<img src="__PUBLIC__/Home/Diy/images/zhuchi_03.png">
+				</div>
+				<div class="button" align="center">
+					<a href="javascript:;" class="btn_2">E N T E R</a>
+				</div>
+			</div>
+			<div class="section section3">
+				<div class="button" align="center">
+					<img src="__PUBLIC__/Home/Diy/images/sheying_03.png">
+				</div>
+				<div  class="button" align="center">
+					<a href="javascript:;" class="btn_3">E N T E R</a>
+				</div>
+			</div>
+			<div class="section section4">
+				<div class="button" align="center">
+					<img src="__PUBLIC__/Home/Diy/images/shexiang_03.png">
+				</div>
+				<div  class="button" align="center">
+					<a href="javascript:;" class="btn_4">E N T E R</a>
+				</div>
+			</div>
+			<div class="section section5">
+				<div class="button" align="center">
+					<img src="__PUBLIC__/Home/Diy/images/huazhuang_03.png">
+				</div>
+				<div  class="button" align="center">
+					<a href="javascript:;" class="btn_5">E N T E R</a>
+				</div>
+			</div>
+			<div class="section section6">
+				<div class="button" align="center">
+					<img src="__PUBLIC__/Home/Diy/images/huayi_03.png">
+				</div>
+				<div  class="button" align="center">
+					<a href="javascript:;" class="btn_6">E N T E R</a>
+				</div>				
+			</div> -->
+			<foreach name="data" item="v" key="k">
+			<div class="section section{$k+1}">
+				<div class="button" align="center">
+					<img src="__UPLOAD__/{$v['attr_value']}">
+				</div>
+				<neq name="k" value="0">
+				<div  class="button" align="center">
+					<a href="{:U('lists',array('type_id'=>$k))}" class="btn_{$k+1}">E N T E R</a>
+				</div>
+				</neq>
+				<eq name="k" value="6">
+				<div class="footer">
+					<p>Copyright © 2005 北京诗缔艺恒文化传播有限公司 All rights reserved 京ICP备14039745号-1 </p>
+				</div>
+				</eq>
+			</div>
+			</foreach>
+		</div>
+	</body>
+	<<script type="text/javascript"></script>
+	<script>
+		$(".btn_2").mouseover(function(){			//鼠标经过
+	  		$(this).parents(".section2").css("background-image","url(__PUBLIC__/Home/Diy/images/zhuchi_02.jpg)");  
+		});  
+		$(".btn_2").mouseout(function(){			//鼠标离开
+			$(this).parents(".section2").css("background-image","url(__PUBLIC__/Home/Diy/images/zhuchi.png)");
+		}); 
+		$(".btn_3").mouseover(function(){			//鼠标经过
+	  		$(this).parents(".section3").css("background-image","url(__PUBLIC__/Home/Diy/images/sheying_02.jpg)");  
+		});  
+		$(".btn_3").mouseout(function(){			//鼠标离开
+			$(this).parents(".section3").css("background-image","url(__PUBLIC__/Home/Diy/images/sheying.png)");
+		}); 
+		$(".btn_4").mouseover(function(){			//鼠标经过
+	  		$(this).parents(".section4").css("background-image","url(__PUBLIC__/Home/Diy/images/shexiang_01.jpg)");  
+		});  
+		$(".btn_4").mouseout(function(){			//鼠标离开
+			$(this).parents(".section4").css("background-image","url(__PUBLIC__/Home/Diy/images/shexiang.png)");
+		}); 
+		$(".btn_5").mouseover(function(){			//鼠标经过
+	  		$(this).parents(".section5").css("background-image","url(__PUBLIC__/Home/Diy/images/huazhuang_02.jpg)");  
+		});  
+		$(".btn_5").mouseout(function(){			//鼠标离开
+			$(this).parents(".section5").css("background-image","url(__PUBLIC__/Home/Diy/images/huazhuang.png)");
+		}); 
+		$(".btn_6").mouseover(function(){			//鼠标经过
+	  		$(this).parents(".section6").css("background-image","url(__PUBLIC__/Home/Diy/images/huayi_02.jpg)");  
+		});  
+		$(".btn_6").mouseout(function(){			//鼠标离开
+			$(this).parents(".section6").css("background-image","url(__PUBLIC__/Home/Diy/images/huayi.png)");
+		}); 
+		$(".btn_7").mouseover(function(){			//鼠标经过
+	  		$(this).parents(".section7").css("background-image","url(__PUBLIC__/Home/Diy/images/kongjian_02.jpg)");  
+		});  
+		$(".btn_7").mouseout(function(){			//鼠标离开
+			$(this).parents(".section7").css("background-image","url(__PUBLIC__/Home/Diy/images/kongjian.png)");
+		}); 
+	</script>
+	<!--
+	<script type="text/javascript">
+		 $(function () {	 	
+		 	var _width = $(window).width(); 
+		    if(_width <= 768){
+			    $(".section1").css("background-image","url(images/index_mob_01.png)");
+			    $(".section2").css("background-image","url(images/index_mob_02.png)");
+			    $(".section3").css("background-image","url(images/index_mob_03.png)");
+			    $(".section4").css("background-image","url(images/index_mob_04.png)");
+			    $(".section5").css("background-image","url(images/index_mob_05.png)");
+			    $(".section6").css("background-image","url(images/index_mob_06.png)");
+			    $(".section7").css("background-image","url(images/index_mob_07.png)");
+			    $(".section8").css("background-image","url(images/index_mob_08.png)");
+			    $(".section9").css("background-image","url(images/index_mob_09.png)");
+			    $(".section1 img,.section2 img,.section3 img,.section4 img,.section5 img,.section6 img,.section7 img,.section8 img,.section9 img").hide();
+	        }else{
+	           	$(".section1").css("background-image","url(images/index_02.png)");
+	           	$(".section2").css("background-image","url(images/zhuchi.png)");
+	           	$(".section3").css("background-image","url(images/sheying.png)");
+	           	$(".section4").css("background-image","url(images/shexiang.png)");
+	           	$(".section5").css("background-image","url(images/huazhuang.png)");
+	           	$(".section6").css("background-image","url(images/kongjian.png)");
+	           	$(".section7").css("background-image","url(images/huayi.png)");
+	           	$(".section8").css("background-image","url(images/yanyi.png)");
+	           	$(".section9").css("background-image","url(images/dengguang.png)");
+	        }
+        });
+	</script>
+	-->
+</html>
